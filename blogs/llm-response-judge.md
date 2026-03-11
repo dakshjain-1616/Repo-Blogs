@@ -11,7 +11,7 @@ github: https://github.com/Dakshjain1604/LLM-response-Judge
 
 [View the code on GitHub](https://github.com/Dakshjain1604/LLM-response-Judge)
 
-![Pipeline Architecture](/images/diagrams/llm-response-judge.png)
+![Pipeline Architecture](../public/images/diagrams/llm-response-judge.png)
 
 
 Manual evaluation of LLM responses does not scale. You might review 50 responses carefully and build a good intuition for quality. But when you have 500, or 5,000, or you want to run evaluation continuously as part of a deployment pipeline, manual review breaks down.

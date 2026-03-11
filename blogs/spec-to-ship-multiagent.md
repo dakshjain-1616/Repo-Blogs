@@ -11,7 +11,7 @@ github: https://github.com/dakshjain-1616/Spec-To-Ship
 
 [View the code on GitHub](https://github.com/dakshjain-1616/Spec-To-Ship)
 
-![Pipeline Architecture](/images/diagrams/spec-to-ship-multiagent.png)
+![Pipeline Architecture](../public/images/diagrams/spec-to-ship-multiagent.png)
 
 The gap between "we have a spec" and "we have working code" is where most engineering time disappears. Writing the spec is fast. Implementing it, writing tests for it, and reviewing it for security issues takes most of the sprint. We built a system to close that gap.
 

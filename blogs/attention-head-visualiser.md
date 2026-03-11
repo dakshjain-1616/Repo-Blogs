@@ -11,7 +11,7 @@ github: https://github.com/dakshjain-1616/Attention-Head-Visualiser
 
 [View the code on GitHub](https://github.com/dakshjain-1616/Attention-Head-Visualiser)
 
-![Pipeline Architecture](/images/diagrams/attention-head-visualiser.png)
+![Pipeline Architecture](../public/images/diagrams/attention-head-visualiser.png)
 
 
 Transformer models are full of attention heads, and most of them don't get studied individually. The default assumption is that they collectively handle something useful, but identifying what specific heads are doing requires careful analysis that most teams skip.

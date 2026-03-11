@@ -11,7 +11,7 @@ github: https://github.com/abhishekgandhi-neo/MultiAgent_Observability_Platform_
 
 [View the code on GitHub](https://github.com/abhishekgandhi-neo/MultiAgent_Observability_Platform_by_NEO)
 
-![Pipeline Architecture](/images/diagrams/multi-agent-observability-platform.png)
+![Pipeline Architecture](../public/images/diagrams/multi-agent-observability-platform.png)
 
 You can't debug what you can't see. That's true for distributed systems, and it's doubly true for multi-agent AI workflows, where a chain of model calls, tool invocations, and decision branches can produce an output you don't trust with no clear way to understand why.
 

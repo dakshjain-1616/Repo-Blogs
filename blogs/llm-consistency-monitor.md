@@ -11,7 +11,7 @@ github: https://github.com/Dakshjain1604/LLM-consistency-Monitor
 
 [View the code on GitHub](https://github.com/Dakshjain1604/LLM-consistency-Monitor)
 
-![Pipeline Architecture](/images/diagrams/llm-consistency-monitor.png)
+![Pipeline Architecture](../public/images/diagrams/llm-consistency-monitor.png)
 
 Here is a question worth asking before you ship any LLM application: if a user asks the same thing in two slightly different ways, does the model give the same answer?
 

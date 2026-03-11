@@ -11,7 +11,7 @@ github: https://github.com/dakshjain-1616/MOSS-TTS-CPU-Optimized-Inference-Pipel
 
 [View the code on GitHub](https://github.com/dakshjain-1616/MOSS-TTS-CPU-Optimized-Inference-Pipeline)
 
-![Pipeline Architecture](/images/diagrams/moss-tts-cpu-optimized-inference.png)
+![Pipeline Architecture](../public/images/diagrams/moss-tts-cpu-optimized-inference.png)
 
 GPU access is expensive. For organizations running inference on-premises, or teams prototyping before committing to cloud GPU costs, the ability to run large models on CPU hardware can be the difference between shipping something and waiting for budget approval.
 

@@ -11,7 +11,7 @@ github: https://github.com/dakshjain-1616/Prompt-Injection-Defence-System
 
 [View the code on GitHub](https://github.com/dakshjain-1616/Prompt-Injection-Defence-System)
 
-![Pipeline Architecture](/images/diagrams/prompt-injection-defense-system.png)
+![Pipeline Architecture](../public/images/diagrams/prompt-injection-defense-system.png)
 
 Security for large language models remains an unsolved problem in most production systems. The standard approach is to bolt on a basic content filter and call it done. We took a different approach: a proper, layered defense system that treats prompt injection as a first-class threat, tested against over 1,000 adversarial scenarios.
 

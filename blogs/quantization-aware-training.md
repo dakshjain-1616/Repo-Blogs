@@ -11,7 +11,7 @@ github: https://github.com/dakshjain-1616/Quantisation-Awareness-training
 
 [View the code on GitHub](https://github.com/dakshjain-1616/Quantisation-Awareness-training)
 
-![Pipeline Architecture](/images/diagrams/quantization-aware-training.png)
+![Pipeline Architecture](../public/images/diagrams/quantization-aware-training.png)
 
 Deploying neural networks to edge devices is a genuine engineering challenge. The model that works great on your training server is often too large and too slow for a mobile device or a Raspberry Pi. Quantization is one of the most practical tools for closing that gap, and this pipeline shows exactly how to do it with MobileNetV2.
 

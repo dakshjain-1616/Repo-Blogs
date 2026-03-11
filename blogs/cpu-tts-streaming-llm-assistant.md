@@ -11,7 +11,7 @@ github: https://github.com/abhishekgandhi-neo/Low-Latency-CPU-Based-Voice-Assist
 
 [View the code on GitHub](https://github.com/abhishekgandhi-neo/Low-Latency-CPU-Based-Voice-Assistant)
 
-![Pipeline Architecture](/images/diagrams/cpu-tts-streaming-llm-assistant.png)
+![Pipeline Architecture](../public/images/diagrams/cpu-tts-streaming-llm-assistant.png)
 
 Most voice assistants feel sluggish. You ask a question, wait two or three seconds, and then speech finally starts playing. That gap is the difference between a system that feels alive and one that feels like a demo. We set out to close it, and the result is a CPU-based voice assistant that achieves 1.25 seconds time-to-first-audio (TTFA) without a GPU.
 

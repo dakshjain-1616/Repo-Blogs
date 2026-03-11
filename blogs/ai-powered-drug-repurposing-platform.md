@@ -11,7 +11,7 @@ github: https://github.com/Dakshjain1604/AI-Powered-Drug-Repurposing-Platform
 
 [View the code on GitHub](https://github.com/Dakshjain1604/AI-Powered-Drug-Repurposing-Platform)
 
-![Pipeline Architecture](/images/diagrams/ai-powered-drug-repurposing-platform.png)
+![Pipeline Architecture](../public/images/diagrams/ai-powered-drug-repurposing-platform.png)
 
 
 Drug discovery is slow and expensive. Repurposing approved drugs is a different problem. The candidates already have safety profiles. The question is whether the mechanism fits a new disease context. That's a question a well-designed AI system can help answer.

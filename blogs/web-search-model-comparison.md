@@ -11,7 +11,7 @@ github: https://github.com/dakshjain-1616/SearchModel-Comparison
 
 [View the code on GitHub](https://github.com/dakshjain-1616/SearchModel-Comparison)
 
-![Pipeline Architecture](/images/diagrams/web-search-model-comparison.png)
+![Pipeline Architecture](../public/images/diagrams/web-search-model-comparison.png)
 
 Which AI model is better at answering search queries? The question sounds simple. The answer depends entirely on what you mean by "better." Faster? More accurate? More recent? Better cited? More concise?
 

@@ -11,7 +11,7 @@ github: https://github.com/abhishekgandhi-neo/MCP_Optimization_Suggestion_Agent_
 
 [View the code on GitHub](https://github.com/abhishekgandhi-neo/MCP_Optimization_Suggestion_Agent_By_NEO)
 
-![Pipeline Architecture](/images/diagrams/mcp-optimization-suggestion-agent.png)
+![Pipeline Architecture](../public/images/diagrams/mcp-optimization-suggestion-agent.png)
 
 
 If you've spent time configuring Model Context Protocol servers, you know the routine. Search GitHub. Filter through dozens of repos of varying quality. Read each README. Figure out if the tool actually fits your use case. Edit JSON by hand. Break something. Fix it. Repeat.

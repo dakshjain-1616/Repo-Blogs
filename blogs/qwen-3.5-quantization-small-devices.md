@@ -11,7 +11,7 @@ github: https://github.com/dakshjain-1616/Qwen-3.5-Quantisation-for-small-device
 
 [View the code on GitHub](https://github.com/dakshjain-1616/Qwen-3.5-Quantisation-for-small-devices-)
 
-![Pipeline Architecture](/images/diagrams/qwen-3.5-quantization-small-devices.png)
+![Pipeline Architecture](../public/images/diagrams/qwen-3.5-quantization-small-devices.png)
 
 The original Qwen3.5-2B model weighs in at 3.6GB. A Raspberry Pi 4 has 4GB of RAM total, and you need most of that just to run the operating system. Getting a capable language model onto resource-constrained hardware means making aggressive tradeoffs, and making them intelligently.
 

@@ -11,7 +11,7 @@ github: https://github.com/dakshjain-1616/AI-Powered-Time-Series-Forecasting
 
 [View the code on GitHub](https://github.com/dakshjain-1616/AI-Powered-Time-Series-Forecasting)
 
-![Pipeline Architecture](/images/diagrams/ai-powered-time-series-forecasting.png)
+![Pipeline Architecture](../public/images/diagrams/ai-powered-time-series-forecasting.png)
 
 Time series forecasting has a usability problem. The models are capable. Getting them to run requires a data science background, the right libraries, carefully shaped input data, and enough domain knowledge to interpret the output. Most people who would benefit from forecasting can't access it because the tooling is too technical.
 

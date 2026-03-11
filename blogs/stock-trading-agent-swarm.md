@@ -11,7 +11,7 @@ github: https://github.com/dakshjain-1616/Stock-trading-Agent-Swarm
 
 [View the code on GitHub](https://github.com/dakshjain-1616/Stock-trading-Agent-Swarm)
 
-![Pipeline Architecture](/images/diagrams/stock-trading-agent-swarm.png)
+![Pipeline Architecture](../public/images/diagrams/stock-trading-agent-swarm.png)
 
 Multi-agent systems are easy to talk about and hard to actually build. Coordination overhead, message ordering, deadlocks, agents that step on each other's decisions. Most implementations that look clean in architecture diagrams get messy fast when you wire them together.
 

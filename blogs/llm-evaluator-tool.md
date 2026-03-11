@@ -11,7 +11,7 @@ github: https://github.com/gauravvij/llm-evaluator
 
 [View the code on GitHub](https://github.com/gauravvij/llm-evaluator)
 
-![Pipeline Architecture](/images/diagrams/llm-evaluator-tool.png)
+![Pipeline Architecture](../public/images/diagrams/llm-evaluator-tool.png)
 
 Choosing the right LLM for a production task is harder than it looks. Leaderboard rankings tell you how models perform on academic benchmarks. They tell you very little about how a model will perform on your specific task, with your input distribution, evaluated against criteria that matter to your use case.
 

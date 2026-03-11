@@ -11,7 +11,7 @@ github: https://github.com/Dakshjain1604/Job-Application-AutoFiller-Agent
 
 [View the code on GitHub](https://github.com/Dakshjain1604/Job-Application-AutoFiller-Agent)
 
-![Pipeline Architecture](/images/diagrams/job-application-autofiller-agent.png)
+![Pipeline Architecture](../public/images/diagrams/job-application-autofiller-agent.png)
 
 
 Job hunting is repetitive by design. Copy your resume details into a form. Write a cover letter. Submit. Repeat forty times. The process is structured enough that a machine should handle it. So we built one.

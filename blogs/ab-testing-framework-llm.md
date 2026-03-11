@@ -11,7 +11,7 @@ github: https://github.com/dakshjain-1616/AB-testing-tool
 
 [View the code on GitHub](https://github.com/dakshjain-1616/AB-testing-tool)
 
-![Pipeline Architecture](/images/diagrams/ab-testing-framework-llm.png)
+![Pipeline Architecture](../public/images/diagrams/ab-testing-framework-llm.png)
 
 Most A/B testing frameworks are built for two things: websites and simple binary outcomes. Click or no-click. Convert or bounce. LLM evaluation is a different problem. You might be comparing three prompt templates, two model sizes, and a fine-tuned variant all at once. You need statistics that actually handle that.
 

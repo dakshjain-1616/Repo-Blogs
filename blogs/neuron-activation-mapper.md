@@ -11,7 +11,7 @@ github: https://github.com/dakshjain-1616/Neuron-Activation-Mapper
 
 [View the code on GitHub](https://github.com/dakshjain-1616/Neuron-Activation-Mapper)
 
-![Pipeline Architecture](/images/diagrams/neuron-activation-mapper.png)
+![Pipeline Architecture](../public/images/diagrams/neuron-activation-mapper.png)
 
 Neural networks learn representations we didn't explicitly program. Somewhere inside a language model, there are neurons that respond specifically to royalty-related tokens. Others fire consistently on negations. Others track grammatical tense. These aren't metaphors. They're measurable, testable properties of the network's internal activations.
 

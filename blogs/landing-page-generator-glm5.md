@@ -11,7 +11,7 @@ github: https://github.com/dakshjain-1616/GLA5-Landing-Page-tool
 
 [View the code on GitHub](https://github.com/dakshjain-1616/GLA5-Landing-Page-tool)
 
-![Pipeline Architecture](/images/diagrams/landing-page-generator-glm5.png)
+![Pipeline Architecture](../public/images/diagrams/landing-page-generator-glm5.png)
 
 Most code generation tools produce snippets. They give you a component, a function, a starting point you then spend an hour wiring together. We wanted something different: a tool that takes a product description and returns a complete, deployable landing page. No assembly required.
 

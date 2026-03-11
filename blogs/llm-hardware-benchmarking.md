@@ -11,7 +11,7 @@ github: https://github.com/gauravvij/llm-hardware-benchmarking
 
 [View the code on GitHub](https://github.com/gauravvij/llm-hardware-benchmarking)
 
-![Pipeline Architecture](/images/diagrams/llm-hardware-benchmarking.png)
+![Pipeline Architecture](../public/images/diagrams/llm-hardware-benchmarking.png)
 
 Everyone has opinions about which quantization format is "best." BF16 preserves quality. INT4 saves memory. FP8 is faster on the right hardware. But these claims are made in the abstract, without reference to specific models, specific hardware, or specific workloads.
 

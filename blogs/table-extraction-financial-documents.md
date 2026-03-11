@@ -11,7 +11,7 @@ github: https://github.com/dakshjain-1616/Table-Extraction-from-Financial-Docume
 
 [View the code on GitHub](https://github.com/dakshjain-1616/Table-Extraction-from-Financial-Documents)
 
-![Pipeline Architecture](/images/diagrams/table-extraction-financial-documents.png)
+![Pipeline Architecture](../public/images/diagrams/table-extraction-financial-documents.png)
 
 
 Financial documents are dense. Balance sheets, income statements, cash flow tables, broker confirmations. They're all structured around tabular data, but getting that data into a usable format has historically required either manual entry or brittle template-based parsers.

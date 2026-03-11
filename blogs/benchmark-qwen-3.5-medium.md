@@ -11,7 +11,7 @@ github: https://github.com/dakshjain-1616/Benchmark-Qwen-3.5-Medium-Edition
 
 [View the code on GitHub](https://github.com/dakshjain-1616/Benchmark-Qwen-3.5-Medium-Edition)
 
-![Pipeline Architecture](/images/diagrams/benchmark-qwen-3.5-medium.png)
+![Pipeline Architecture](../public/images/diagrams/benchmark-qwen-3.5-medium.png)
 
 Picking a model for production used to mean a simple choice: pay for GPT-4 quality or accept lower quality from cheaper alternatives. That tradeoff has shifted. Medium-scale models have gotten significantly better, and the cost gap between them and frontier models has stayed large.
 

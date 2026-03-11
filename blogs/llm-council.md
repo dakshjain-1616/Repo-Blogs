@@ -11,7 +11,7 @@ github: https://github.com/abhishekgandhi-neo/llm_council_by_neo
 
 [View the code on GitHub](https://github.com/abhishekgandhi-neo/llm_council_by_neo)
 
-![Pipeline Architecture](/images/diagrams/llm-council.png)
+![Pipeline Architecture](../public/images/diagrams/llm-council.png)
 
 
 Single-model outputs have a ceiling. No matter how good GPT-4 or Claude gets, they still hallucinate, they still get overconfident on edge cases, and they still reflect the biases baked into their training data. The fix isn't always a bigger model. Sometimes it's more models, working together.

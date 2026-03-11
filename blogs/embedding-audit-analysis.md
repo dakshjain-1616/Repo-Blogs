@@ -11,7 +11,7 @@ github: https://github.com/dakshjain-1616/Embedding-Evaluator
 
 [View the code on GitHub](https://github.com/dakshjain-1616/Embedding-Evaluator)
 
-![Pipeline Architecture](/images/diagrams/embedding-audit-analysis.png)
+![Pipeline Architecture](../public/images/diagrams/embedding-audit-analysis.png)
 
 
 Embeddings fail quietly. A model's vector representations can look reasonable in aggregate while hiding structural problems that hurt retrieval quality, clustering accuracy, or downstream classification performance. The only way to catch those problems is to look directly at the embedding space.

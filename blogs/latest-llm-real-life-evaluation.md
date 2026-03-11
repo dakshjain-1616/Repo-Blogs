@@ -11,7 +11,7 @@ github: https://github.com/dakshjain-1616/Latest-LLMs-Real-Life-Task-Evaluation
 
 [View the code on GitHub](https://github.com/dakshjain-1616/Latest-LLMs-Real-Life-Task-Evaluation)
 
-![Pipeline Architecture](/images/diagrams/latest-llm-real-life-evaluation.png)
+![Pipeline Architecture](../public/images/diagrams/latest-llm-real-life-evaluation.png)
 
 
 Model leaderboards are everywhere. Most of them measure performance on academic benchmarks designed years ago, optimized by training teams to look good, and increasingly disconnected from what actually matters when you're building something real.

@@ -11,7 +11,7 @@ github: https://github.com/Dakshjain1604/Prompt-AB-testing-Tool
 
 [View the code on GitHub](https://github.com/Dakshjain1604/Prompt-AB-testing-Tool)
 
-![Pipeline Architecture](/images/diagrams/prompt-ab-testing-tool.png)
+![Pipeline Architecture](../public/images/diagrams/prompt-ab-testing-tool.png)
 
 
 Prompt engineering often works like this: someone writes a system prompt, tests it on a handful of examples, decides it looks good, and ships it. Then the next person who touches it rewrites it based on intuition. Nobody actually knows whether the new version is better or worse.

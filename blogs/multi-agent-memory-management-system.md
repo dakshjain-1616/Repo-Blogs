@@ -11,7 +11,7 @@ github: https://github.com/abhishekgandhi-neo/Multi-Agent_Memory_Management_Syst
 
 [View the code on GitHub](https://github.com/abhishekgandhi-neo/Multi-Agent_Memory_Management_System_BY_NEO)
 
-![Pipeline Architecture](/images/diagrams/multi-agent-memory-management-system.png)
+![Pipeline Architecture](../public/images/diagrams/multi-agent-memory-management-system.png)
 
 Context windows are finite. LLMs forget. These two facts combine to create one of the most frustrating problems in production agent development: maintaining coherent, accurate behavior across long conversations or multi-step workflows.
 

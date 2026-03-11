@@ -11,7 +11,7 @@ github: https://github.com/dakshjain-1616/Code-Agent-Analysis-and-Refactoring-to
 
 [View the code on GitHub](https://github.com/dakshjain-1616/Code-Agent-Analysis-and-Refactoring-tool)
 
-![Pipeline Architecture](/images/diagrams/code-analysis-refactoring-agent.png)
+![Pipeline Architecture](../public/images/diagrams/code-analysis-refactoring-agent.png)
 
 
 Code quality degrades over time. Deadlines happen, requirements change, and the codebase that made sense six months ago has accumulated enough patches that the original structure is barely recognizable. Manual refactoring is slow, inconsistent, and easy to deprioritize.

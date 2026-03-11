@@ -11,7 +11,7 @@ github: https://github.com/dakshjain-1616/Multi-Model-RAG
 
 [View the code on GitHub](https://github.com/dakshjain-1616/Multi-Model-RAG)
 
-![Pipeline Architecture](/images/diagrams/multimodal-rag-system.png)
+![Pipeline Architecture](../public/images/diagrams/multimodal-rag-system.png)
 
 Most RAG systems handle text. Send in a query, retrieve the relevant text chunks, feed them to an LLM. That works well when your knowledge base is entirely text-based. But real-world knowledge bases aren't like that.
 

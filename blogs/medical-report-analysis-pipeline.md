@@ -11,7 +11,7 @@ github: https://github.com/dakshjain-1616/Medical-Report-Analysis-Pipeline
 
 [View the code on GitHub](https://github.com/dakshjain-1616/Medical-Report-Analysis-Pipeline)
 
-![Pipeline Architecture](/images/diagrams/medical-report-analysis-pipeline.png)
+![Pipeline Architecture](../public/images/diagrams/medical-report-analysis-pipeline.png)
 
 Medical AI is a different category of engineering problem. The technical challenges are real, but the compliance and security requirements add a layer of complexity that doesn't exist in most other ML domains. You're not just building a system that works. You're building a system that works and maintains the privacy and security guarantees that patient data requires.
 

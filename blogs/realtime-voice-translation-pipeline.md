@@ -11,7 +11,7 @@ github: https://github.com/dakshjain-1616/Real-time-Voice-Translation-Pipeline
 
 [View the code on GitHub](https://github.com/dakshjain-1616/Real-time-Voice-Translation-Pipeline)
 
-![Pipeline Architecture](/images/diagrams/realtime-voice-translation-pipeline.png)
+![Pipeline Architecture](../public/images/diagrams/realtime-voice-translation-pipeline.png)
 
 
 Latency is everything in voice applications. Once you cross two seconds of delay between someone speaking and hearing a translated response, the interaction stops feeling natural. It becomes a transaction. The goal with this pipeline was to stay well under that threshold while keeping the system practical to deploy.

@@ -11,7 +11,7 @@ github: https://github.com/dakshjain-1616/CarbonAwareModelTraining
 
 [View the code on GitHub](https://github.com/dakshjain-1616/CarbonAwareModelTraining)
 
-![Pipeline Architecture](/images/diagrams/carbon-aware-model-training.png)
+![Pipeline Architecture](../public/images/diagrams/carbon-aware-model-training.png)
 
 
 Training machine learning models is expensive. Not just in compute costs, but in carbon. Large training runs can produce hundreds of kilograms of CO2 depending on where and when they run. Most teams simply ignore this. We decided to take it seriously and build tooling around it.

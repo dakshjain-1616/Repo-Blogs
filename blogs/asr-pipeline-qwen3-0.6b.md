@@ -11,7 +11,7 @@ github: https://github.com/dakshjain-1616/ASR-pipeline-using-Qwen3-ASR-0.6B---BY
 
 [View the code on GitHub](https://github.com/dakshjain-1616/ASR-pipeline-using-Qwen3-ASR-0.6B---BY-NEO)
 
-![Pipeline Architecture](/images/diagrams/asr-pipeline-qwen3-0.6b.png)
+![Pipeline Architecture](../public/images/diagrams/asr-pipeline-qwen3-0.6b.png)
 
 Full-size automatic speech recognition models are not always practical. A 1B+ parameter model may run fine on a cloud server with dedicated GPU capacity, but deploy it to an edge device or a resource-constrained environment and you run into problems fast. The memory footprint alone rules it out for many real deployments.
 

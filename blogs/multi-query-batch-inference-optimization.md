@@ -11,7 +11,7 @@ github: https://github.com/dakshjain-1616/Multi-Query-Batch-Inference-Optimizati
 
 [View the code on GitHub](https://github.com/dakshjain-1616/Multi-Query-Batch-Inference-Optimization)
 
-![Pipeline Architecture](/images/diagrams/multi-query-batch-inference-optimization.png)
+![Pipeline Architecture](../public/images/diagrams/multi-query-batch-inference-optimization.png)
 
 
 Running LLMs in production on CPU hardware sounds like a bad idea until you realize that for many applications, the economics make sense and the latency requirements are achievable. GPU instances are expensive. Not every organization has the budget or the need for dedicated GPU infrastructure.

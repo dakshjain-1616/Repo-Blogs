@@ -11,7 +11,7 @@ github: https://github.com/gauravvij/GithubRepoAgent
 
 [View the code on GitHub](https://github.com/gauravvij/GithubRepoAgent)
 
-![Pipeline Architecture](/images/diagrams/query-github-repo-agent.png)
+![Pipeline Architecture](../public/images/diagrams/query-github-repo-agent.png)
 
 
 Reading a codebase you've never seen before is slow work. You clone the repo, start scanning files, try to figure out what connects to what, and spend the first hour just building a mental model before you can answer a single real question. It's tedious, and it shouldn't be.

@@ -11,7 +11,7 @@ github: https://github.com/dakshjain-1616/Adversarial-Robustness-Probe
 
 [View the code on GitHub](https://github.com/dakshjain-1616/Adversarial-Robustness-Probe)
 
-![Pipeline Architecture](/images/diagrams/adversarial-robustness-probe.png)
+![Pipeline Architecture](../public/images/diagrams/adversarial-robustness-probe.png)
 
 A model that works on your test set may not work on data that's been slightly modified. Typos, paraphrasing, noise injection, small pixel perturbations: these are the kinds of inputs that expose the gap between benchmark performance and real-world reliability. That gap matters if your model is making decisions with consequences.
 

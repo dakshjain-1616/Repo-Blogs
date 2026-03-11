@@ -11,7 +11,7 @@ github: https://github.com/dakshjain-1616/New-Hire-OnBoarding-Tool
 
 [View the code on GitHub](https://github.com/dakshjain-1616/New-Hire-OnBoarding-Tool)
 
-![Pipeline Architecture](/images/diagrams/new-hire-onboarding-tool.png)
+![Pipeline Architecture](../public/images/diagrams/new-hire-onboarding-tool.png)
 
 Every new hire triggers the same checklist. Create the email account. Add them to Jira. Set up Slack. Schedule the first one-on-ones. Send the welcome email. It's ten to thirty minutes of work per person that happens dozens of times a year. It's manual, it's repetitive, and it breaks in predictable ways when someone forgets a step.
 

@@ -11,7 +11,7 @@ github: https://github.com/dakshjain-1616/Speculative-Decoding-Bench-marker
 
 [View the code on GitHub](https://github.com/dakshjain-1616/Speculative-Decoding-Bench-marker)
 
-![Pipeline Architecture](/images/diagrams/speculative-decoding-benchmarker.png)
+![Pipeline Architecture](../public/images/diagrams/speculative-decoding-benchmarker.png)
 
 
 Speculative decoding is one of the more interesting ideas in LLM inference optimization. The core insight is straightforward: large target models are slow, but small draft models are fast. If you use a small model to propose several tokens at once, then verify them with the large model in a single forward pass, you can generate tokens faster than sequential generation allows, without changing the output distribution.
