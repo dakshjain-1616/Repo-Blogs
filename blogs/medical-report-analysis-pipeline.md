@@ -11,6 +11,8 @@ github: https://github.com/dakshjain-1616/Medical-Report-Analysis-Pipeline
 
 [View the code on GitHub](https://github.com/dakshjain-1616/Medical-Report-Analysis-Pipeline)
 
+![Pipeline Architecture](/images/diagrams/medical-report-analysis-pipeline.png)
+
 Medical AI is a different category of engineering problem. The technical challenges are real, but the compliance and security requirements add a layer of complexity that doesn't exist in most other ML domains. You're not just building a system that works. You're building a system that works and maintains the privacy and security guarantees that patient data requires.
 
 This is a research and educational implementation of a medical imaging analysis pipeline. It is not FDA-approved for clinical diagnosis and should not be used as such in clinical settings. What it is, is a careful demonstration of how to build this kind of system correctly from a security and architecture standpoint.
@@ -82,3 +84,14 @@ The bottleneck now is compliance and validation infrastructure. Systems that get
 ---
 
 Building compliant AI infrastructure in a specialized domain is exactly the kind of problem [NEO](https://heyneo.so/) is designed to handle. Visit heyneo.so to see how autonomous ML engineering can accelerate your healthcare AI work.
+
+---
+
+## Try NEO in Your IDE
+
+Install the NEO extension to bring AI-powered development directly into your workflow:
+
+- **VS Code**: [NEO in VS Code](https://marketplace.visualstudio.com/items?itemName=NeoResearchInc.heyneo)
+- **Cursor**: [NEO in Cursor](cursor:extension/NeoResearchInc.heyneo)
+
+---

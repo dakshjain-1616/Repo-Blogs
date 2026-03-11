@@ -11,6 +11,9 @@ github: https://github.com/dakshjain-1616/Attention-Head-Visualiser
 
 [View the code on GitHub](https://github.com/dakshjain-1616/Attention-Head-Visualiser)
 
+![Pipeline Architecture](/images/diagrams/attention-head-visualiser.png)
+
+
 Transformer models are full of attention heads, and most of them don't get studied individually. The default assumption is that they collectively handle something useful, but identifying what specific heads are doing requires careful analysis that most teams skip.
 
 We built the Attention Head Visualiser to automate that analysis for GPT-2 models. It classifies every head into one of four behavior types, scores each head's confidence in that classification, and produces interactive reports you can explore without writing any code.
@@ -72,3 +75,14 @@ Most people who use transformer models treat the attention mechanism as a black 
 The Attention Head Visualiser makes that knowledge accessible without requiring you to implement the analysis yourself. We build interpretability tools like this because we think good ML engineering includes understanding what you've built.
 
 See more of what we build at [heyneo.so](https://heyneo.so/).
+
+---
+
+## Try NEO in Your IDE
+
+Install the NEO extension to bring AI-powered development directly into your workflow:
+
+- **VS Code**: [NEO in VS Code](https://marketplace.visualstudio.com/items?itemName=NeoResearchInc.heyneo)
+- **Cursor**: [NEO in Cursor](cursor:extension/NeoResearchInc.heyneo)
+
+---

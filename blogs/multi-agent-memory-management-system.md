@@ -11,6 +11,8 @@ github: https://github.com/abhishekgandhi-neo/Multi-Agent_Memory_Management_Syst
 
 [View the code on GitHub](https://github.com/abhishekgandhi-neo/Multi-Agent_Memory_Management_System_BY_NEO)
 
+![Pipeline Architecture](/images/diagrams/multi-agent-memory-management-system.png)
+
 Context windows are finite. LLMs forget. These two facts combine to create one of the most frustrating problems in production agent development: maintaining coherent, accurate behavior across long conversations or multi-step workflows.
 
 The naive fix is truncation. Keep the last N turns, discard the rest. Simple to implement, terrible in practice. The information you discard might be exactly what the agent needs three steps later. You've traded predictable behavior for a smaller token bill.
@@ -89,3 +91,14 @@ Long-running agent sessions are the obvious target. Customer support bots, resea
 It's also valuable for multi-session systems where a user interacts with an agent across multiple days or weeks. Persistent cold storage means the agent can recall relevant context from previous sessions without bloating every new conversation with historical data.
 
 If you want NEO to integrate intelligent memory management into your agent system or optimize your existing context handling, visit [heyneo.so](https://heyneo.so/) to see what we can build together.
+
+---
+
+## Try NEO in Your IDE
+
+Install the NEO extension to bring AI-powered development directly into your workflow:
+
+- **VS Code**: [NEO in VS Code](https://marketplace.visualstudio.com/items?itemName=NeoResearchInc.heyneo)
+- **Cursor**: [NEO in Cursor](cursor:extension/NeoResearchInc.heyneo)
+
+---

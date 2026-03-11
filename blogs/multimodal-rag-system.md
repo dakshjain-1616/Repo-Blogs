@@ -11,6 +11,8 @@ github: https://github.com/dakshjain-1616/Multi-Model-RAG
 
 [View the code on GitHub](https://github.com/dakshjain-1616/Multi-Model-RAG)
 
+![Pipeline Architecture](/images/diagrams/multimodal-rag-system.png)
+
 Most RAG systems handle text. Send in a query, retrieve the relevant text chunks, feed them to an LLM. That works well when your knowledge base is entirely text-based. But real-world knowledge bases aren't like that.
 
 Technical documentation has diagrams. Financial reports have tables. Product databases have images. If your retrieval system can only handle text, a large portion of your knowledge base is unsearchable.
@@ -94,3 +96,14 @@ Video is the other obvious modality to add. The CLIP architecture extends to vid
 ---
 
 If you're building a retrieval system that needs to handle more than just text, [NEO](https://heyneo.so/) can architect and implement the full multimodal pipeline. Visit heyneo.so to see what we're working on.
+
+---
+
+## Try NEO in Your IDE
+
+Install the NEO extension to bring AI-powered development directly into your workflow:
+
+- **VS Code**: [NEO in VS Code](https://marketplace.visualstudio.com/items?itemName=NeoResearchInc.heyneo)
+- **Cursor**: [NEO in Cursor](cursor:extension/NeoResearchInc.heyneo)
+
+---

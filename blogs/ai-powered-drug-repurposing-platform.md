@@ -11,6 +11,9 @@ github: https://github.com/Dakshjain1604/AI-Powered-Drug-Repurposing-Platform
 
 [View the code on GitHub](https://github.com/Dakshjain1604/AI-Powered-Drug-Repurposing-Platform)
 
+![Pipeline Architecture](/images/diagrams/ai-powered-drug-repurposing-platform.png)
+
+
 Drug discovery is slow and expensive. Repurposing approved drugs is a different problem. The candidates already have safety profiles. The question is whether the mechanism fits a new disease context. That's a question a well-designed AI system can help answer.
 
 We built BioScript to do exactly that: mine current scientific literature, extract viable drug candidates, score them against known disease pathways, and generate structured research reports. The focus is fibrotic diseases, but the architecture generalizes.
@@ -58,3 +61,12 @@ Secondary use cases include pharmaceutical analysts tracking the competitive lan
 The design principle we returned to throughout development was transparency. An AI system making biomedical claims needs to be interrogable. The live reasoning trace isn't a nice-to-have. It's a requirement for any context where a researcher needs to know why the system ranked a particular candidate.
 
 BioScript is one example of what happens when you apply rigorous ML engineering to a domain problem with real stakes. We build systems like this regularly at NEO. If you want to see what that process looks like, visit [heyneo.so](https://heyneo.so/).
+
+---
+
+## Try NEO in Your IDE
+
+Install the NEO extension to bring AI-powered development directly into your workflow:
+
+- **VS Code**: [NEO in VS Code](https://marketplace.visualstudio.com/items?itemName=NeoResearchInc.heyneo)
+- **Cursor**: [NEO in Cursor](cursor:extension/NeoResearchInc.heyneo)

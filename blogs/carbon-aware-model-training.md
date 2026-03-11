@@ -11,6 +11,9 @@ github: https://github.com/dakshjain-1616/CarbonAwareModelTraining
 
 [View the code on GitHub](https://github.com/dakshjain-1616/CarbonAwareModelTraining)
 
+![Pipeline Architecture](/images/diagrams/carbon-aware-model-training.png)
+
+
 Training machine learning models is expensive. Not just in compute costs, but in carbon. Large training runs can produce hundreds of kilograms of CO2 depending on where and when they run. Most teams simply ignore this. We decided to take it seriously and build tooling around it.
 
 The result is a PyTorch training pipeline that monitors real-time grid carbon intensity, schedules training during cleaner energy windows, and tracks emissions throughout the run. On MNIST with an RTX 3090, we achieved a 43.2% CO2 reduction while keeping accuracy within 0.3% of baseline.
@@ -82,3 +85,12 @@ We put together a video walkthrough of the pipeline in action, showing the carbo
 NEO builds ML systems that account for the full cost of what they do. Carbon is part of that cost.
 
 See more at [heyneo.so](https://heyneo.so).
+
+---
+
+## Try NEO in Your IDE
+
+Install the NEO extension to bring AI-powered development directly into your workflow:
+
+- **VS Code**: [NEO in VS Code](https://marketplace.visualstudio.com/items?itemName=NeoResearchInc.heyneo)
+- **Cursor**: [NEO in Cursor](cursor:extension/NeoResearchInc.heyneo)

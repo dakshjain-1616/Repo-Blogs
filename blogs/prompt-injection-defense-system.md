@@ -11,6 +11,8 @@ github: https://github.com/dakshjain-1616/Prompt-Injection-Defence-System
 
 [View the code on GitHub](https://github.com/dakshjain-1616/Prompt-Injection-Defence-System)
 
+![Pipeline Architecture](/images/diagrams/prompt-injection-defense-system.png)
+
 Security for large language models remains an unsolved problem in most production systems. The standard approach is to bolt on a basic content filter and call it done. We took a different approach: a proper, layered defense system that treats prompt injection as a first-class threat, tested against over 1,000 adversarial scenarios.
 
 The result: 98.9% overall detection accuracy, a 0.4% false positive rate, and sub-200ms latency. Here is what we built and why it matters.
@@ -80,3 +82,14 @@ Integrations with REST APIs and monitoring dashboards are on the roadmap so secu
 If you are building an LLM application and need a defense system that holds up under adversarial testing, NEO builds this infrastructure. We design with real threat models, not best-guess safety filters.
 
 Check out what else we are working on at [heyneo.so](https://heyneo.so).
+
+---
+
+## Try NEO in Your IDE
+
+Install the NEO extension to bring AI-powered development directly into your workflow:
+
+- **VS Code**: [NEO in VS Code](https://marketplace.visualstudio.com/items?itemName=NeoResearchInc.heyneo)
+- **Cursor**: [NEO in Cursor](cursor:extension/NeoResearchInc.heyneo)
+
+---

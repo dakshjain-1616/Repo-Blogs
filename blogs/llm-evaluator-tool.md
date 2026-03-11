@@ -11,6 +11,8 @@ github: https://github.com/gauravvij/llm-evaluator
 
 [View the code on GitHub](https://github.com/gauravvij/llm-evaluator)
 
+![Pipeline Architecture](/images/diagrams/llm-evaluator-tool.png)
+
 Choosing the right LLM for a production task is harder than it looks. Leaderboard rankings tell you how models perform on academic benchmarks. They tell you very little about how a model will perform on your specific task, with your input distribution, evaluated against criteria that matter to your use case.
 
 We built a tool that answers the actual question: given a task description, which model performs best on that task?
@@ -94,3 +96,14 @@ The goal of this tool is to make continuous evaluation cheap and systematic enou
 If you're building production ML systems and need help with evaluation infrastructure, model selection, or end-to-end pipeline design, this is what we do at NEO.
 
 Learn more at [heyneo.so](https://heyneo.so/).
+
+---
+
+## Try NEO in Your IDE
+
+Install the NEO extension to bring AI-powered development directly into your workflow:
+
+- **VS Code**: [NEO in VS Code](https://marketplace.visualstudio.com/items?itemName=NeoResearchInc.heyneo)
+- **Cursor**: [NEO in Cursor](cursor:extension/NeoResearchInc.heyneo)
+
+---

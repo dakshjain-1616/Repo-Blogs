@@ -11,6 +11,8 @@ github: https://github.com/dakshjain-1616/ASR-pipeline-using-Qwen3-ASR-0.6B---BY
 
 [View the code on GitHub](https://github.com/dakshjain-1616/ASR-pipeline-using-Qwen3-ASR-0.6B---BY-NEO)
 
+![Pipeline Architecture](/images/diagrams/asr-pipeline-qwen3-0.6b.png)
+
 Full-size automatic speech recognition models are not always practical. A 1B+ parameter model may run fine on a cloud server with dedicated GPU capacity, but deploy it to an edge device or a resource-constrained environment and you run into problems fast. The memory footprint alone rules it out for many real deployments.
 
 We built an ASR pipeline around Qwen3-ASR-0.6B, a 0.6 billion parameter model that requires only about 3GB of storage. It transcribes speech accurately, handles multiple audio formats, and runs on GPU or CPU depending on what is available. We wrapped it in three different interfaces so it fits however you want to use it.
@@ -79,3 +81,14 @@ We recorded a live demo of the ASR pipeline transcribing audio through the Strea
 NEO builds AI systems that work at the edges of what is possible, literally and figuratively. An ASR pipeline that fits on a device rather than requiring a cloud call is a better answer for many problems.
 
 Explore more at [heyneo.so](https://heyneo.so).
+
+---
+
+## Try NEO in Your IDE
+
+Install the NEO extension to bring AI-powered development directly into your workflow:
+
+- **VS Code**: [NEO in VS Code](https://marketplace.visualstudio.com/items?itemName=NeoResearchInc.heyneo)
+- **Cursor**: [NEO in Cursor](cursor:extension/NeoResearchInc.heyneo)
+
+---

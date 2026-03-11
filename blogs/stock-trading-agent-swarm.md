@@ -11,6 +11,8 @@ github: https://github.com/dakshjain-1616/Stock-trading-Agent-Swarm
 
 [View the code on GitHub](https://github.com/dakshjain-1616/Stock-trading-Agent-Swarm)
 
+![Pipeline Architecture](/images/diagrams/stock-trading-agent-swarm.png)
+
 Multi-agent systems are easy to talk about and hard to actually build. Coordination overhead, message ordering, deadlocks, agents that step on each other's decisions. Most implementations that look clean in architecture diagrams get messy fast when you wire them together.
 
 We built a 10-agent trading simulation to work through these problems in a domain that makes the coordination challenges concrete. Ten specialized agents, an asynchronous message bus, $1M in simulated capital, and 250 days of real S&P 500 data to test against. The result was +4.62% returns, 86 executed trades, and a system that blocked 26 risky positions before they went through.
@@ -88,3 +90,14 @@ We recorded the full swarm running through a live simulation, with the message b
 NEO builds multi-agent systems for real ML problems. The patterns that make a trading swarm work are the same patterns that power production agent pipelines.
 
 See what we are building at [heyneo.so](https://heyneo.so).
+
+---
+
+## Try NEO in Your IDE
+
+Install the NEO extension to bring AI-powered development directly into your workflow:
+
+- **VS Code**: [NEO in VS Code](https://marketplace.visualstudio.com/items?itemName=NeoResearchInc.heyneo)
+- **Cursor**: [NEO in Cursor](cursor:extension/NeoResearchInc.heyneo)
+
+---

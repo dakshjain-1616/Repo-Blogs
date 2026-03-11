@@ -11,6 +11,8 @@ github: https://github.com/dakshjain-1616/Neuron-Activation-Mapper
 
 [View the code on GitHub](https://github.com/dakshjain-1616/Neuron-Activation-Mapper)
 
+![Pipeline Architecture](/images/diagrams/neuron-activation-mapper.png)
+
 Neural networks learn representations we didn't explicitly program. Somewhere inside a language model, there are neurons that respond specifically to royalty-related tokens. Others fire consistently on negations. Others track grammatical tense. These aren't metaphors. They're measurable, testable properties of the network's internal activations.
 
 NeuroLens automates the process of finding those neurons, validating that they actually encode the concept rather than just correlating with it, and presenting the results in a format that's useful for both research and engineering decisions.
@@ -78,3 +80,14 @@ NeuroLens doesn't solve interpretability. But it makes one important part of it,
 We built this because we think the gap between ML engineering and ML understanding needs to close. Tools that make internal model analysis accessible are part of how that happens.
 
 Explore more of what NEO builds at [heyneo.so](https://heyneo.so/).
+
+---
+
+## Try NEO in Your IDE
+
+Install the NEO extension to bring AI-powered development directly into your workflow:
+
+- **VS Code**: [NEO in VS Code](https://marketplace.visualstudio.com/items?itemName=NeoResearchInc.heyneo)
+- **Cursor**: [NEO in Cursor](cursor:extension/NeoResearchInc.heyneo)
+
+---

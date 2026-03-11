@@ -11,6 +11,9 @@ github: https://github.com/Dakshjain1604/LLM-response-Judge
 
 [View the code on GitHub](https://github.com/Dakshjain1604/LLM-response-Judge)
 
+![Pipeline Architecture](/images/diagrams/llm-response-judge.png)
+
+
 Manual evaluation of LLM responses does not scale. You might review 50 responses carefully and build a good intuition for quality. But when you have 500, or 5,000, or you want to run evaluation continuously as part of a deployment pipeline, manual review breaks down.
 
 The standard alternatives are weak metrics like ROUGE or BLEU scores, which measure surface overlap and miss semantic quality entirely, or expensive human annotation pipelines with slow turnaround times.
@@ -72,3 +75,14 @@ Content moderation and compliance review are adjacent uses. Configure the rubric
 Evaluation is what separates systems that work in demos from systems that work in production. NEO builds the evaluation infrastructure alongside the models.
 
 Find out more at [heyneo.so](https://heyneo.so).
+
+---
+
+## Try NEO in Your IDE
+
+Install the NEO extension to bring AI-powered development directly into your workflow:
+
+- **VS Code**: [NEO in VS Code](https://marketplace.visualstudio.com/items?itemName=NeoResearchInc.heyneo)
+- **Cursor**: [NEO in Cursor](cursor:extension/NeoResearchInc.heyneo)
+
+---

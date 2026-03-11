@@ -11,6 +11,8 @@ github: https://github.com/abhishekgandhi-neo/MultiAgent_Observability_Platform_
 
 [View the code on GitHub](https://github.com/abhishekgandhi-neo/MultiAgent_Observability_Platform_by_NEO)
 
+![Pipeline Architecture](/images/diagrams/multi-agent-observability-platform.png)
+
 You can't debug what you can't see. That's true for distributed systems, and it's doubly true for multi-agent AI workflows, where a chain of model calls, tool invocations, and decision branches can produce an output you don't trust with no clear way to understand why.
 
 Standard observability tools weren't designed for this. Datadog tracks infrastructure. Prometheus tracks metrics. Neither tells you that your retrieval agent looped 47 times, or that your summarization step cost $2.80 on a query that should have cost $0.04, or that Agent B is making the same decision regardless of what Agent A passes it.
@@ -84,3 +86,14 @@ In production, it gives you the visibility to catch degradation before users not
 Teams building customer-facing AI products, internal automation workflows, or complex research pipelines have all found value here. Anywhere you're running more than one agent in a coordinated system, observability pays for itself quickly.
 
 If you want NEO to set up production observability for your multi-agent system or build custom anomaly detection for your specific workflow patterns, visit [heyneo.so](https://heyneo.so/).
+
+---
+
+## Try NEO in Your IDE
+
+Install the NEO extension to bring AI-powered development directly into your workflow:
+
+- **VS Code**: [NEO in VS Code](https://marketplace.visualstudio.com/items?itemName=NeoResearchInc.heyneo)
+- **Cursor**: [NEO in Cursor](cursor:extension/NeoResearchInc.heyneo)
+
+---

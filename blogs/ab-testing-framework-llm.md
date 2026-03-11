@@ -11,6 +11,8 @@ github: https://github.com/dakshjain-1616/AB-testing-tool
 
 [View the code on GitHub](https://github.com/dakshjain-1616/AB-testing-tool)
 
+![Pipeline Architecture](/images/diagrams/ab-testing-framework-llm.png)
+
 Most A/B testing frameworks are built for two things: websites and simple binary outcomes. Click or no-click. Convert or bounce. LLM evaluation is a different problem. You might be comparing three prompt templates, two model sizes, and a fine-tuned variant all at once. You need statistics that actually handle that.
 
 We built a multi-variant testing framework from the ground up, designed specifically for ML systems. It supports N variants simultaneously, uses proper statistical corrections for multiple comparisons, and adds under 0.5ms of routing overhead per request.
@@ -76,3 +78,14 @@ That is the difference between shipping a hunch and shipping a measured improvem
 NEO builds ML infrastructure where rigorous evaluation is a first-class concern, not an afterthought. See what else we ship at [heyneo.so](https://heyneo.so/).
 
 See more of what we are building at [heyneo.so](https://heyneo.so).
+
+---
+
+## Try NEO in Your IDE
+
+Install the NEO extension to bring AI-powered development directly into your workflow:
+
+- **VS Code**: [NEO in VS Code](https://marketplace.visualstudio.com/items?itemName=NeoResearchInc.heyneo)
+- **Cursor**: [NEO in Cursor](cursor:extension/NeoResearchInc.heyneo)
+
+---

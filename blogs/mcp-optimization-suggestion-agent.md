@@ -11,6 +11,9 @@ github: https://github.com/abhishekgandhi-neo/MCP_Optimization_Suggestion_Agent_
 
 [View the code on GitHub](https://github.com/abhishekgandhi-neo/MCP_Optimization_Suggestion_Agent_By_NEO)
 
+![Pipeline Architecture](/images/diagrams/mcp-optimization-suggestion-agent.png)
+
+
 If you've spent time configuring Model Context Protocol servers, you know the routine. Search GitHub. Filter through dozens of repos of varying quality. Read each README. Figure out if the tool actually fits your use case. Edit JSON by hand. Break something. Fix it. Repeat.
 
 It's tedious, time-consuming work. So we automated it.
@@ -76,3 +79,12 @@ This agent is useful any time you're setting up a new Claude Desktop environment
 It's also a concrete example of what an agentic research pipeline looks like in practice: live data retrieval, structured reasoning, validated output generation, and clean integration with existing tooling. No magic, just a well-designed pipeline.
 
 If you want NEO to build a similar research-and-configuration agent for your own tooling or infrastructure, visit [heyneo.so](https://heyneo.so/) to get started.
+
+---
+
+## Try NEO in Your IDE
+
+Install the NEO extension to bring AI-powered development directly into your workflow:
+
+- **VS Code**: [NEO in VS Code](https://marketplace.visualstudio.com/items?itemName=NeoResearchInc.heyneo)
+- **Cursor**: [NEO in Cursor](cursor:extension/NeoResearchInc.heyneo)

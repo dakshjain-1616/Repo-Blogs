@@ -11,6 +11,9 @@ github: https://github.com/dakshjain-1616/Table-Extraction-from-Financial-Docume
 
 [View the code on GitHub](https://github.com/dakshjain-1616/Table-Extraction-from-Financial-Documents)
 
+![Pipeline Architecture](/images/diagrams/table-extraction-financial-documents.png)
+
+
 Financial documents are dense. Balance sheets, income statements, cash flow tables, broker confirmations. They're all structured around tabular data, but getting that data into a usable format has historically required either manual entry or brittle template-based parsers.
 
 We built a pipeline that handles this automatically. It detects tables, extracts cell-level text, reconstructs the structure, and validates the output. Here's how it works.
@@ -84,3 +87,12 @@ Analysts who previously spent hours manually transcribing tables can run this pi
 ---
 
 Want to build a financial document extraction system like this? [NEO](https://heyneo.so/) handles the architecture, model selection, and integration work. Visit heyneo.so to see what autonomous ML engineering looks like in practice.
+
+---
+
+## Try NEO in Your IDE
+
+Install the NEO extension to bring AI-powered development directly into your workflow:
+
+- **VS Code**: [NEO in VS Code](https://marketplace.visualstudio.com/items?itemName=NeoResearchInc.heyneo)
+- **Cursor**: [NEO in Cursor](cursor:extension/NeoResearchInc.heyneo)

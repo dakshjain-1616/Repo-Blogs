@@ -11,6 +11,8 @@ github: https://github.com/dakshjain-1616/Spec-To-Ship
 
 [View the code on GitHub](https://github.com/dakshjain-1616/Spec-To-Ship)
 
+![Pipeline Architecture](/images/diagrams/spec-to-ship-multiagent.png)
+
 The gap between "we have a spec" and "we have working code" is where most engineering time disappears. Writing the spec is fast. Implementing it, writing tests for it, and reviewing it for security issues takes most of the sprint. We built a system to close that gap.
 
 Spec-to-Ship is a multi-agent pipeline that takes a feature idea as input and outputs tested, production-ready TypeScript code. No manual implementation steps. No separate test-writing pass. The whole thing runs automatically.
@@ -77,3 +79,14 @@ Multi-agent pipelines like this one are a better fit for mechanical implementati
 If you want to build automated engineering pipelines, code generation systems, or multi-agent workflows for your team, NEO builds exactly this. See what we're working on at [heyneo.so](https://heyneo.so/).
 
 See what's possible at [heyneo.so](https://heyneo.so/).
+
+---
+
+## Try NEO in Your IDE
+
+Install the NEO extension to bring AI-powered development directly into your workflow:
+
+- **VS Code**: [NEO in VS Code](https://marketplace.visualstudio.com/items?itemName=NeoResearchInc.heyneo)
+- **Cursor**: [NEO in Cursor](cursor:extension/NeoResearchInc.heyneo)
+
+---

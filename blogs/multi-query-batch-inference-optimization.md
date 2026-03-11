@@ -11,6 +11,9 @@ github: https://github.com/dakshjain-1616/Multi-Query-Batch-Inference-Optimizati
 
 [View the code on GitHub](https://github.com/dakshjain-1616/Multi-Query-Batch-Inference-Optimization)
 
+![Pipeline Architecture](/images/diagrams/multi-query-batch-inference-optimization.png)
+
+
 Running LLMs in production on CPU hardware sounds like a bad idea until you realize that for many applications, the economics make sense and the latency requirements are achievable. GPU instances are expensive. Not every organization has the budget or the need for dedicated GPU infrastructure.
 
 We built a Mistral-7B inference server that achieves 18.7 requests per second on CPU, compared to a naive sequential baseline of 1.2 requests per second. That's a 15.6x improvement. Here's how we got there.
@@ -94,3 +97,14 @@ Structured output support is increasingly important as LLMs get integrated into 
 ---
 
 If you're building production LLM serving infrastructure, [NEO](https://heyneo.so/) can handle the optimization work and get you to production-ready performance fast. See what we're building at heyneo.so.
+
+---
+
+## Try NEO in Your IDE
+
+Install the NEO extension to bring AI-powered development directly into your workflow:
+
+- **VS Code**: [NEO in VS Code](https://marketplace.visualstudio.com/items?itemName=NeoResearchInc.heyneo)
+- **Cursor**: [NEO in Cursor](cursor:extension/NeoResearchInc.heyneo)
+
+---

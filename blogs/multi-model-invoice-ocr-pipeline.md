@@ -11,6 +11,8 @@ github: https://github.com/dakshjain-1616/Multi-Model-Invoice-OCR-Pipeline
 
 [View the code on GitHub](https://github.com/dakshjain-1616/Multi-Model-Invoice-OCR-Pipeline)
 
+![Pipeline Architecture](/images/diagrams/multi-model-invoice-ocr-pipeline.png)
+
 Invoice processing is one of those problems that sounds simple until you're staring at 50 different invoice formats from 50 different vendors, each with its own layout quirks. Template-based systems break almost immediately. Rule-based parsers require constant maintenance. We needed something smarter.
 
 We built a two-stage pipeline that fuses vision-based OCR with specialized entity extraction, and the results are strong enough for production.
@@ -82,3 +84,14 @@ We're also experimenting with streaming outputs so that partial results are avai
 ---
 
 If you want to build a document processing pipeline like this without starting from scratch, [NEO](https://heyneo.so/) can scaffold the full architecture, handle model integration, and get you to a working prototype fast. Check out what we're building at heyneo.so.
+
+---
+
+## Try NEO in Your IDE
+
+Install the NEO extension to bring AI-powered development directly into your workflow:
+
+- **VS Code**: [NEO in VS Code](https://marketplace.visualstudio.com/items?itemName=NeoResearchInc.heyneo)
+- **Cursor**: [NEO in Cursor](cursor:extension/NeoResearchInc.heyneo)
+
+---

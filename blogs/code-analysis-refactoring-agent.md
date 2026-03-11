@@ -11,6 +11,9 @@ github: https://github.com/dakshjain-1616/Code-Agent-Analysis-and-Refactoring-to
 
 [View the code on GitHub](https://github.com/dakshjain-1616/Code-Agent-Analysis-and-Refactoring-tool)
 
+![Pipeline Architecture](/images/diagrams/code-analysis-refactoring-agent.png)
+
+
 Code quality degrades over time. Deadlines happen, requirements change, and the codebase that made sense six months ago has accumulated enough patches that the original structure is barely recognizable. Manual refactoring is slow, inconsistent, and easy to deprioritize.
 
 We built an agent that handles this automatically. It analyzes, refactors, validates, and commits changes without human intervention. Here's how it works.
@@ -98,3 +101,14 @@ IDE integration would let developers see the agent's analysis inline as they wri
 ---
 
 If you want an autonomous code quality system for your engineering team, [NEO](https://heyneo.so/) builds production-ready agents like this. Visit heyneo.so to learn more.
+
+---
+
+## Try NEO in Your IDE
+
+Install the NEO extension to bring AI-powered development directly into your workflow:
+
+- **VS Code**: [NEO in VS Code](https://marketplace.visualstudio.com/items?itemName=NeoResearchInc.heyneo)
+- **Cursor**: [NEO in Cursor](cursor:extension/NeoResearchInc.heyneo)
+
+---

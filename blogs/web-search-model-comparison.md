@@ -11,6 +11,8 @@ github: https://github.com/dakshjain-1616/SearchModel-Comparison
 
 [View the code on GitHub](https://github.com/dakshjain-1616/SearchModel-Comparison)
 
+![Pipeline Architecture](/images/diagrams/web-search-model-comparison.png)
+
 Which AI model is better at answering search queries? The question sounds simple. The answer depends entirely on what you mean by "better." Faster? More accurate? More recent? Better cited? More concise?
 
 Different models have different strengths. The model that wins on factual accuracy might lose on source recency. The model with the best citations might give verbose answers that bury the key point. Understanding these tradeoffs requires a structured comparison, not a handful of manual tests.
@@ -96,3 +98,14 @@ On factual recency, the gap between models with and without web search is large.
 If you're building AI-powered search, research tools, or information retrieval systems and want to make evidence-based model selection decisions, NEO builds the evaluation infrastructure and production pipelines that support those decisions.
 
 See more of our work at [heyneo.so](https://heyneo.so/).
+
+---
+
+## Try NEO in Your IDE
+
+Install the NEO extension to bring AI-powered development directly into your workflow:
+
+- **VS Code**: [NEO in VS Code](https://marketplace.visualstudio.com/items?itemName=NeoResearchInc.heyneo)
+- **Cursor**: [NEO in Cursor](cursor:extension/NeoResearchInc.heyneo)
+
+---

@@ -11,6 +11,8 @@ github: https://github.com/abhishekgandhi-neo/Low-Latency-CPU-Based-Voice-Assist
 
 [View the code on GitHub](https://github.com/abhishekgandhi-neo/Low-Latency-CPU-Based-Voice-Assistant)
 
+![Pipeline Architecture](/images/diagrams/cpu-tts-streaming-llm-assistant.png)
+
 Most voice assistants feel sluggish. You ask a question, wait two or three seconds, and then speech finally starts playing. That gap is the difference between a system that feels alive and one that feels like a demo. We set out to close it, and the result is a CPU-based voice assistant that achieves 1.25 seconds time-to-first-audio (TTFA) without a GPU.
 
 ## Why CPU-Only?
@@ -72,3 +74,14 @@ Performance benchmarking across hardware configurations was part of the process 
 If you're working on voice-enabled applications and want to skip the infrastructure work, NEO builds complete, production-tested ML pipelines from scratch: voice AI, streaming inference, CPU-optimized deployments.
 
 See what we're building at [heyneo.so](https://heyneo.so/).
+
+---
+
+## Try NEO in Your IDE
+
+Install the NEO extension to bring AI-powered development directly into your workflow:
+
+- **VS Code**: [NEO in VS Code](https://marketplace.visualstudio.com/items?itemName=NeoResearchInc.heyneo)
+- **Cursor**: [NEO in Cursor](cursor:extension/NeoResearchInc.heyneo)
+
+---

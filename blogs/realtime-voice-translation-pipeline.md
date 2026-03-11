@@ -11,6 +11,9 @@ github: https://github.com/dakshjain-1616/Real-time-Voice-Translation-Pipeline
 
 [View the code on GitHub](https://github.com/dakshjain-1616/Real-time-Voice-Translation-Pipeline)
 
+![Pipeline Architecture](/images/diagrams/realtime-voice-translation-pipeline.png)
+
+
 Latency is everything in voice applications. Once you cross two seconds of delay between someone speaking and hearing a translated response, the interaction stops feeling natural. It becomes a transaction. The goal with this pipeline was to stay well under that threshold while keeping the system practical to deploy.
 
 We hit 1.3 seconds end-to-end. Here's how.
@@ -95,3 +98,12 @@ The architecture is modular. The main extension points are: adding WebSocket sup
 ---
 
 If you want to build a voice AI pipeline like this without handling all the model integration and latency optimization yourself, [NEO](https://heyneo.so/) can take you from requirements to working system. See what autonomous ML engineering looks like at heyneo.so.
+
+---
+
+## Try NEO in Your IDE
+
+Install the NEO extension to bring AI-powered development directly into your workflow:
+
+- **VS Code**: [NEO in VS Code](https://marketplace.visualstudio.com/items?itemName=NeoResearchInc.heyneo)
+- **Cursor**: [NEO in Cursor](cursor:extension/NeoResearchInc.heyneo)

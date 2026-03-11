@@ -11,6 +11,8 @@ github: https://github.com/dakshjain-1616/New-Hire-OnBoarding-Tool
 
 [View the code on GitHub](https://github.com/dakshjain-1616/New-Hire-OnBoarding-Tool)
 
+![Pipeline Architecture](/images/diagrams/new-hire-onboarding-tool.png)
+
 Every new hire triggers the same checklist. Create the email account. Add them to Jira. Set up Slack. Schedule the first one-on-ones. Send the welcome email. It's ten to thirty minutes of work per person that happens dozens of times a year. It's manual, it's repetitive, and it breaks in predictable ways when someone forgets a step.
 
 We built a configuration-driven onboarding engine that handles all of it. One JSON file describes your company's setup. One command provisions the new hire across every system.
@@ -72,3 +74,14 @@ There's a broader application. Any workflow that touches multiple enterprise sys
 We built this to run in real environments, not demo environments. The error handling, the dry-run mode, the audit logging, the masked credentials, the parallel execution, the config validation: these aren't afterthoughts. They're what makes the difference between a script and a tool your team can rely on.
 
 That's how NEO approaches every build. If you want to see what production-ready ML and automation engineering looks like across more domains, visit [heyneo.so](https://heyneo.so/).
+
+---
+
+## Try NEO in Your IDE
+
+Install the NEO extension to bring AI-powered development directly into your workflow:
+
+- **VS Code**: [NEO in VS Code](https://marketplace.visualstudio.com/items?itemName=NeoResearchInc.heyneo)
+- **Cursor**: [NEO in Cursor](cursor:extension/NeoResearchInc.heyneo)
+
+---

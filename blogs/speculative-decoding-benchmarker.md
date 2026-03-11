@@ -11,6 +11,9 @@ github: https://github.com/dakshjain-1616/Speculative-Decoding-Bench-marker
 
 [View the code on GitHub](https://github.com/dakshjain-1616/Speculative-Decoding-Bench-marker)
 
+![Pipeline Architecture](/images/diagrams/speculative-decoding-benchmarker.png)
+
+
 Speculative decoding is one of the more interesting ideas in LLM inference optimization. The core insight is straightforward: large target models are slow, but small draft models are fast. If you use a small model to propose several tokens at once, then verify them with the large model in a single forward pass, you can generate tokens faster than sequential generation allows, without changing the output distribution.
 
 The theory is clean. Measuring whether it actually works in practice, for your specific model pair and your specific workload, requires careful benchmarking. That's what we built.
@@ -96,3 +99,14 @@ When you're evaluating whether speculative decoding is worth the added complexit
 This tool gives you clean, reproducible measurements to make those decisions with confidence.
 
 Want NEO to benchmark inference optimization strategies for your specific models and workloads, or build custom evaluation infrastructure for your inference pipeline? Visit [heyneo.so](https://heyneo.so/) to get started.
+
+---
+
+## Try NEO in Your IDE
+
+Install the NEO extension to bring AI-powered development directly into your workflow:
+
+- **VS Code**: [NEO in VS Code](https://marketplace.visualstudio.com/items?itemName=NeoResearchInc.heyneo)
+- **Cursor**: [NEO in Cursor](cursor:extension/NeoResearchInc.heyneo)
+
+---

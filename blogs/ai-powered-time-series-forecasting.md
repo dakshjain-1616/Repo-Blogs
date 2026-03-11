@@ -11,6 +11,8 @@ github: https://github.com/dakshjain-1616/AI-Powered-Time-Series-Forecasting
 
 [View the code on GitHub](https://github.com/dakshjain-1616/AI-Powered-Time-Series-Forecasting)
 
+![Pipeline Architecture](/images/diagrams/ai-powered-time-series-forecasting.png)
+
 Time series forecasting has a usability problem. The models are capable. Getting them to run requires a data science background, the right libraries, carefully shaped input data, and enough domain knowledge to interpret the output. Most people who would benefit from forecasting can't access it because the tooling is too technical.
 
 We built ChronoSight to change that. Ask a question in plain language. Get a forecast with confidence bands and trend analysis. No data science background required.
@@ -89,3 +91,14 @@ It's less appropriate when you have abundant historical data, domain-specific pa
 Building a production-ready forecasting application means integrating model inference, data pipelines, APIs, and frontend visualization into a system that holds together under real conditions. That's full-stack ML engineering. It's what NEO does.
 
 See what we're building at [heyneo.so](https://heyneo.so/).
+
+---
+
+## Try NEO in Your IDE
+
+Install the NEO extension to bring AI-powered development directly into your workflow:
+
+- **VS Code**: [NEO in VS Code](https://marketplace.visualstudio.com/items?itemName=NeoResearchInc.heyneo)
+- **Cursor**: [NEO in Cursor](cursor:extension/NeoResearchInc.heyneo)
+
+---

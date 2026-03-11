@@ -11,6 +11,8 @@ github: https://github.com/dakshjain-1616/Quantisation-Awareness-training
 
 [View the code on GitHub](https://github.com/dakshjain-1616/Quantisation-Awareness-training)
 
+![Pipeline Architecture](/images/diagrams/quantization-aware-training.png)
+
 Deploying neural networks to edge devices is a genuine engineering challenge. The model that works great on your training server is often too large and too slow for a mobile device or a Raspberry Pi. Quantization is one of the most practical tools for closing that gap, and this pipeline shows exactly how to do it with MobileNetV2.
 
 We compressed a 23.5MB model down to 2.6MB. That's a 9.08x reduction. Accuracy dropped by 3.8%. For most edge deployment scenarios, that trade-off is worth making.
@@ -92,3 +94,14 @@ We recorded a full walkthrough of the quantization pipeline, showing the trainin
 ---
 
 Building an edge ML pipeline that covers training, quantization, and deployment involves a lot of moving pieces. [NEO](https://heyneo.so/) handles this end-to-end. Visit heyneo.so to see how we approach production ML engineering.
+
+---
+
+## Try NEO in Your IDE
+
+Install the NEO extension to bring AI-powered development directly into your workflow:
+
+- **VS Code**: [NEO in VS Code](https://marketplace.visualstudio.com/items?itemName=NeoResearchInc.heyneo)
+- **Cursor**: [NEO in Cursor](cursor:extension/NeoResearchInc.heyneo)
+
+---

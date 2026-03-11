@@ -11,6 +11,9 @@ github: https://github.com/abhishekgandhi-neo/llm_council_by_neo
 
 [View the code on GitHub](https://github.com/abhishekgandhi-neo/llm_council_by_neo)
 
+![Pipeline Architecture](/images/diagrams/llm-council.png)
+
+
 Single-model outputs have a ceiling. No matter how good GPT-4 or Claude gets, they still hallucinate, they still get overconfident on edge cases, and they still reflect the biases baked into their training data. The fix isn't always a bigger model. Sometimes it's more models, working together.
 
 That's what LLM Council is. A minimal, production-usable framework that queries multiple language models concurrently, then synthesizes or votes across their responses to produce a better final answer. The core is roughly 200 lines of Python, and it ships with two consensus strategies depending on your use case.
@@ -77,3 +80,12 @@ We also found that council size matters less than council diversity. Three model
 LLM Council is open source. The core is small enough to read in an afternoon, modify easily, and integrate into any Python project. If you're building applications where answer quality matters and hallucinations carry cost, it's worth adding to your stack.
 
 Want NEO to build something like this for your specific domain or integrate multi-model consensus into your existing pipeline? Visit [heyneo.so](https://heyneo.so/) to see what we can ship for you.
+
+---
+
+## Try NEO in Your IDE
+
+Install the NEO extension to bring AI-powered development directly into your workflow:
+
+- **VS Code**: [NEO in VS Code](https://marketplace.visualstudio.com/items?itemName=NeoResearchInc.heyneo)
+- **Cursor**: [NEO in Cursor](cursor:extension/NeoResearchInc.heyneo)

@@ -11,6 +11,8 @@ github: https://github.com/dakshjain-1616/MOSS-TTS-CPU-Optimized-Inference-Pipel
 
 [View the code on GitHub](https://github.com/dakshjain-1616/MOSS-TTS-CPU-Optimized-Inference-Pipeline)
 
+![Pipeline Architecture](/images/diagrams/moss-tts-cpu-optimized-inference.png)
+
 GPU access is expensive. For organizations running inference on-premises, or teams prototyping before committing to cloud GPU costs, the ability to run large models on CPU hardware can be the difference between shipping something and waiting for budget approval.
 
 MOSS-TTS is an 8.4-billion-parameter text-to-speech model. Most production TTS deployments assume GPU acceleration. We wanted to know whether it was possible to run this model on CPU hardware at all, and if so, which quantization strategy produced the best tradeoff between memory usage, load time, and audio quality.
@@ -68,3 +70,14 @@ Running 8.4B parameter TTS models on CPU hardware is possible with the right qua
 This principle applies beyond MOSS-TTS. Any multi-component model architecture with distinct processing stages can potentially benefit from component-selective quantization. The key is identifying which components are sensitive to numerical precision and protecting those while compressing the rest.
 
 If you want NEO to build optimized inference pipelines for large models on your specific hardware constraints, or to evaluate quantization strategies for your deployment environment, visit [heyneo.so](https://heyneo.so/).
+
+---
+
+## Try NEO in Your IDE
+
+Install the NEO extension to bring AI-powered development directly into your workflow:
+
+- **VS Code**: [NEO in VS Code](https://marketplace.visualstudio.com/items?itemName=NeoResearchInc.heyneo)
+- **Cursor**: [NEO in Cursor](cursor:extension/NeoResearchInc.heyneo)
+
+---

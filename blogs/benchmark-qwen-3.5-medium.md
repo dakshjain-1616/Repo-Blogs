@@ -11,6 +11,8 @@ github: https://github.com/dakshjain-1616/Benchmark-Qwen-3.5-Medium-Edition
 
 [View the code on GitHub](https://github.com/dakshjain-1616/Benchmark-Qwen-3.5-Medium-Edition)
 
+![Pipeline Architecture](/images/diagrams/benchmark-qwen-3.5-medium.png)
+
 Picking a model for production used to mean a simple choice: pay for GPT-4 quality or accept lower quality from cheaper alternatives. That tradeoff has shifted. Medium-scale models have gotten significantly better, and the cost gap between them and frontier models has stayed large.
 
 We ran a structured benchmark to quantify exactly how much that tradeoff has changed. The goal was a fair, multi-dimensional comparison: not just accuracy, but speed, cost, and efficiency per unit of compute. We ran 350 concurrent tests across 7 models, covering 5 task categories, with 50 distinct prompts designed to be genuinely challenging.
@@ -76,3 +78,14 @@ This entire benchmark, including prompt design, concurrent test execution, metri
 That's what autonomous ML engineering looks like in practice: systematic, fast, and documented.
 
 If you want NEO to run model selection benchmarks for your specific workload or build evaluation infrastructure to track model performance over time, visit [heyneo.so](https://heyneo.so/).
+
+---
+
+## Try NEO in Your IDE
+
+Install the NEO extension to bring AI-powered development directly into your workflow:
+
+- **VS Code**: [NEO in VS Code](https://marketplace.visualstudio.com/items?itemName=NeoResearchInc.heyneo)
+- **Cursor**: [NEO in Cursor](cursor:extension/NeoResearchInc.heyneo)
+
+---

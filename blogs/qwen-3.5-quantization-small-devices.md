@@ -11,6 +11,8 @@ github: https://github.com/dakshjain-1616/Qwen-3.5-Quantisation-for-small-device
 
 [View the code on GitHub](https://github.com/dakshjain-1616/Qwen-3.5-Quantisation-for-small-devices-)
 
+![Pipeline Architecture](/images/diagrams/qwen-3.5-quantization-small-devices.png)
+
 The original Qwen3.5-2B model weighs in at 3.6GB. A Raspberry Pi 4 has 4GB of RAM total, and you need most of that just to run the operating system. Getting a capable language model onto resource-constrained hardware means making aggressive tradeoffs, and making them intelligently.
 
 We worked through the quantization process for Qwen3.5-2B and produced three GGUF variants tuned specifically for edge deployment. The smallest gets the model down to 873MB. All three run on hardware that costs under $100.
@@ -86,3 +88,14 @@ For edge use cases, that's usually fine. Most embedded applications don't need t
 Edge deployment is a real ML engineering problem. Getting a model to fit, run efficiently, and produce useful output on hardware with strict resource limits requires careful choices at every step. Optimization at this level is core to what NEO builds.
 
 Find out what we're building at [heyneo.so](https://heyneo.so/).
+
+---
+
+## Try NEO in Your IDE
+
+Install the NEO extension to bring AI-powered development directly into your workflow:
+
+- **VS Code**: [NEO in VS Code](https://marketplace.visualstudio.com/items?itemName=NeoResearchInc.heyneo)
+- **Cursor**: [NEO in Cursor](cursor:extension/NeoResearchInc.heyneo)
+
+---
