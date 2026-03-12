@@ -17,7 +17,7 @@ github: https://github.com/dakshjain-1616/CarbonAwareModelTraining
 
 > Training machine learning models is expensive — not just in compute costs, but in carbon. Large training runs can produce hundreds of kilograms of CO2 depending on where and when they run, and most teams simply ignore this. There's no standard tooling to schedule training around cleaner energy windows or to measure emissions as a first-class metric alongside accuracy and loss.
 
-The result is a PyTorch training pipeline that monitors real-time grid carbon intensity, schedules training during cleaner energy windows, and tracks emissions throughout the run. On MNIST with an RTX 3090, NEO achieved a **43.2% CO2 reduction** while keeping accuracy **within 0.3%** of baseline.
+NEO built a PyTorch training pipeline that monitors real-time grid carbon intensity, schedules training during cleaner energy windows, and tracks emissions throughout the run. On MNIST with an RTX 3090, it achieved a **43.2% CO2 reduction** while keeping accuracy **within 0.3%** of baseline.
 
 ## The Core Insight: Timing Matters
 
