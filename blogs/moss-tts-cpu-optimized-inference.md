@@ -9,7 +9,13 @@ github: https://github.com/dakshjain-1616/MOSS-TTS-CPU-Optimized-Inference-Pipel
 
 # Running an 8.4B Parameter TTS Model on CPU: How We Optimized MOSS-TTS Without a GPU
 
-[View the code on GitHub](https://github.com/dakshjain-1616/MOSS-TTS-CPU-Optimized-Inference-Pipeline)
+<a href="https://github.com/dakshjain-1616/MOSS-TTS-CPU-Optimized-Inference-Pipeline" target="_blank" style="display:flex;align-items:center;gap:14px;padding:16px 20px;border:1px solid #30363d;border-radius:10px;background:#0d1117;color:#e6edf3;text-decoration:none;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;margin:20px 0;width:fit-content;max-width:480px;transition:border-color 0.2s;">
+  <svg width="22" height="22" viewBox="0 0 16 16" fill="#e6edf3" xmlns="http://www.w3.org/2000/svg"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+  <div>
+    <div style="font-weight:600;font-size:14px;color:#e6edf3;">dakshjain-1616/MOSS-TTS-CPU-Optimized-Inference-Pipeline</div>
+    <div style="font-size:12px;color:#8b949e;margin-top:3px;">View on GitHub →</div>
+  </div>
+</a>
 
 ![Pipeline Architecture](../public/images/diagrams/moss-tts-cpu-optimized-inference.png)
 
@@ -25,9 +31,9 @@ The short answer: yes, it runs on CPU, and selective quantization is the right a
 
 We ran experiments across three inference configurations on a 10-core CPU with 58GB of available RAM.
 
-**Standard fp32** loads the model at full 32-bit floating point precision. No compression, no approximation. This is the baseline for audio quality, and it delivered the highest fidelity output in our testing. The cost is memory: 33GB peak usage. Load time was also the longest of the three approaches. For environments where audio quality is the primary constraint and memory is available, fp32 is the reliable choice.
+**Standard fp32** loads the model at full 32-bit floating point precision. No compression, no approximation. This is the baseline for audio quality, and it delivered the highest fidelity output in our testing. The cost is memory: **33GB peak usage**. Load time was also the longest of the three approaches. For environments where audio quality is the primary constraint and memory is available, fp32 is the reliable choice.
 
-**Selective quantization** applies INT8 compression only to the language model component of the architecture, leaving the acoustic components at higher precision. This is where things got interesting. Memory dropped to approximately 26GB peak, a 21% reduction compared to fp32. Load time came in at 7.24 seconds. Audio quality remained essentially indistinguishable from fp32 in our evaluations. The LM component handles text processing, where slight numerical approximations matter less. The acoustic generation components, where quantization artifacts are more audible, stay at full precision.
+**Selective quantization** applies INT8 compression only to the language model component of the architecture, leaving the acoustic components at higher precision. This is where things got interesting. Memory dropped to approximately **26GB peak**, a **21% reduction** compared to fp32. Load time came in at **7.24 seconds**. Audio quality remained essentially indistinguishable from fp32 in our evaluations. The LM component handles text processing, where slight numerical approximations matter less. The acoustic generation components, where quantization artifacts are more audible, stay at full precision.
 
 **Full INT8 quantization** applies compression across the entire model. We attempted this, but it exceeded available memory during the weight transformation process. The transformation itself requires holding both the original and quantized weights in memory simultaneously, pushing peak usage beyond what our test hardware could support. Full INT8 is not viable for this model on standard hardware configurations.
 

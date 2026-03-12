@@ -9,7 +9,13 @@ github: https://github.com/Dakshjain1604/LLM-consistency-Monitor
 
 # LLM Consistency Monitor: Testing Whether Your Model Gives the Same Answer Twice
 
-[View the code on GitHub](https://github.com/Dakshjain1604/LLM-consistency-Monitor)
+<a href="https://github.com/Dakshjain1604/LLM-consistency-Monitor" target="_blank" style="display:flex;align-items:center;gap:14px;padding:16px 20px;border:1px solid #30363d;border-radius:10px;background:#0d1117;color:#e6edf3;text-decoration:none;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;margin:20px 0;width:fit-content;max-width:480px;transition:border-color 0.2s;">
+  <svg width="22" height="22" viewBox="0 0 16 16" fill="#e6edf3" xmlns="http://www.w3.org/2000/svg"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+  <div>
+    <div style="font-weight:600;font-size:14px;color:#e6edf3;">Dakshjain1604/LLM-consistency-Monitor</div>
+    <div style="font-size:12px;color:#8b949e;margin-top:3px;">View on GitHub →</div>
+  </div>
+</a>
 
 ![Pipeline Architecture](../public/images/diagrams/llm-consistency-monitor.png)
 
@@ -21,9 +27,9 @@ NEO built a tool specifically to surface it before you ship.
 
 ## What the Consistency Monitor Does
 
-The pipeline runs four steps. First, it takes your question and generates 20 semantically identical paraphrases. These are questions that ask the same thing but with different vocabulary, sentence structure, and phrasing. Then it sends all 20 variants to the model concurrently and collects every response. Then it analyzes those responses using embeddings and clustering to identify whether they are semantically consistent or whether the model is giving substantively different answers to what is nominally the same question.
+The pipeline runs four steps. First, it takes your question and generates **20 semantically identical paraphrases**. These are questions that ask the same thing but with different vocabulary, sentence structure, and phrasing. Then it sends all 20 variants to the model concurrently and collects every response. Then it analyzes those responses using embeddings and clustering to identify whether they are semantically consistent or whether the model is giving substantively different answers to what is nominally the same question.
 
-The output is a consistency score from 0 to 100, plus an interactive HTML report with visualizations.
+The output is a consistency score from **0 to 100**, plus an interactive HTML report with visualizations.
 
 ## The Analysis Pipeline
 
@@ -61,7 +67,7 @@ Batch mode lets you test multiple questions from a JSON file in a single run, wh
 
 The HTML report includes a similarity heatmap across all 20 responses, cluster distribution charts, latency analysis, and prompt engineering suggestions based on where inconsistency was detected.
 
-A score of 80% or above generally indicates the model is consistent enough for production use on that question type. Below that, the report points to which phrasing variants are causing divergence, giving you concrete direction for prompt refinement.
+A score of **80% or above** generally indicates the model is consistent enough for production use on that question type. Below that, the report points to which phrasing variants are causing divergence, giving you concrete direction for prompt refinement.
 
 ## Who Needs This
 
@@ -69,7 +75,7 @@ Any team running a customer-facing LLM application on factual content. Legal res
 
 It is also useful during model evaluation and selection. Before you commit to a particular model or fine-tune for a specific domain, running consistency testing across your target question types tells you whether the model's reliability profile fits your requirements.
 
-The full pipeline runs in 60 to 120 seconds on typical hardware and uses approximately 2GB of memory. It is fast enough to run as part of a pre-deployment evaluation workflow.
+The full pipeline runs in **60 to 120 seconds** on typical hardware and uses approximately **2GB of memory**. It is fast enough to run as part of a pre-deployment evaluation workflow.
 
 ---
 

@@ -9,7 +9,13 @@ github: https://github.com/abhishekgandhi-neo/llm_council_by_neo
 
 # LLM Council: How NEO Built a Multi-Model Consensus Engine in ~200 Lines of Python
 
-[View the code on GitHub](https://github.com/abhishekgandhi-neo/llm_council_by_neo)
+<a href="https://github.com/abhishekgandhi-neo/llm_council_by_neo" target="_blank" style="display:flex;align-items:center;gap:14px;padding:16px 20px;border:1px solid #30363d;border-radius:10px;background:#0d1117;color:#e6edf3;text-decoration:none;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;margin:20px 0;width:fit-content;max-width:480px;transition:border-color 0.2s;">
+  <svg width="22" height="22" viewBox="0 0 16 16" fill="#e6edf3" xmlns="http://www.w3.org/2000/svg"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+  <div>
+    <div style="font-weight:600;font-size:14px;color:#e6edf3;">abhishekgandhi-neo/llm_council_by_neo</div>
+    <div style="font-size:12px;color:#8b949e;margin-top:3px;">View on GitHub →</div>
+  </div>
+</a>
 
 ![Pipeline Architecture](../public/images/diagrams/llm-council.png)
 
@@ -23,7 +29,7 @@ LLM Council is a minimal, production-usable framework that queries multiple lang
 
 Think about how expert panels work. A single doctor can miss a diagnosis. Three doctors reviewing the same case independently, then comparing notes, are much harder to fool. LLMs operate on a similar principle. Each model has different training data, different RLHF tuning, different failure modes. When they agree, you can be more confident. When they diverge, that divergence itself is informative.
 
-Our benchmarks confirmed this. Single GPT-4 queries scored 7.2/10 quality with a 12% hallucination rate across our test set. Running the same queries through the Council's synthesis approach pushed that to 8.4/10 quality with only a 4% hallucination rate. That's a meaningful improvement without any fine-tuning or prompt hacking.
+Our benchmarks confirmed this. Single GPT-4 queries scored **7.2/10** quality with a **12% hallucination rate** across our test set. Running the same queries through the Council's synthesis approach pushed that to **8.4/10** quality with only a **4% hallucination rate**. That's a meaningful improvement without any fine-tuning or prompt hacking.
 
 ## The Architecture: Small Core, Serious Capability
 
@@ -31,7 +37,7 @@ The entire framework depends on only two libraries: OpenAI and Pydantic. We kept
 
 Under the hood, we use `asyncio.gather()` to fire off all model queries simultaneously. Total latency approximates the slowest model in the council, not the sum of all response times. If you're querying four models and the slowest takes 3 seconds, you wait 3 seconds total, not 12. That makes the Council practical for real applications, not just offline experiments.
 
-We integrated with OpenRouter, which gives us access to 200+ models through a single API. You can run a council of GPT-4o, Claude 3.5 Sonnet, Gemini 1.5 Pro, and Llama 3.1 70B in one shot. Mix providers freely.
+We integrated with OpenRouter, which gives us access to **200+ models** through a single API. You can run a council of GPT-4o, Claude 3.5 Sonnet, Gemini 1.5 Pro, and Llama 3.1 70B in one shot. Mix providers freely.
 
 ## Two Consensus Strategies
 
@@ -45,13 +51,13 @@ Both approaches handle failure gracefully. If one model times out or throws an e
 
 ## Real Use Cases
 
-**Research and analysis**: When you need a thorough answer to a complex question, synthesis across three or four strong models produces outputs that are noticeably more balanced and accurate than any single model alone.
+**Research and analysis:** When you need a thorough answer to a complex question, synthesis across three or four strong models produces outputs that are noticeably more balanced and accurate than any single model alone.
 
-**Fact verification**: Use voting across a large council to check whether a statement is widely agreed upon or contested across models.
+**Fact verification:** Use voting across a large council to check whether a statement is widely agreed upon or contested across models.
 
-**Production AI features**: Applications where hallucinations carry real cost (medical, legal, financial) benefit from the reduced error rate of consensus-based generation.
+**Production AI features:** Applications where hallucinations carry real cost (medical, legal, financial) benefit from the reduced error rate of consensus-based generation.
 
-**Red teaming**: Disagreement across models is a signal. If your council splits 50/50 on an answer, that's a flag worth investigating before shipping.
+**Red teaming:** Disagreement across models is a signal. If your council splits 50/50 on an answer, that's a flag worth investigating before shipping.
 
 ## Getting Started
 

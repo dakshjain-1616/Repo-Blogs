@@ -9,7 +9,13 @@ github: https://github.com/abhishekgandhi-neo/MCP_Optimization_Suggestion_Agent_
 
 # Automating MCP Server Discovery: The NEO Optimization and Suggestion Agent
 
-[View the code on GitHub](https://github.com/abhishekgandhi-neo/MCP_Optimization_Suggestion_Agent_By_NEO)
+<a href="https://github.com/abhishekgandhi-neo/MCP_Optimization_Suggestion_Agent_By_NEO" target="_blank" style="display:flex;align-items:center;gap:14px;padding:16px 20px;border:1px solid #30363d;border-radius:10px;background:#0d1117;color:#e6edf3;text-decoration:none;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;margin:20px 0;width:fit-content;max-width:480px;transition:border-color 0.2s;">
+  <svg width="22" height="22" viewBox="0 0 16 16" fill="#e6edf3" xmlns="http://www.w3.org/2000/svg"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+  <div>
+    <div style="font-weight:600;font-size:14px;color:#e6edf3;">abhishekgandhi-neo/MCP_Optimization_Suggestion_Agent_By_NEO</div>
+    <div style="font-size:12px;color:#8b949e;margin-top:3px;">View on GitHub →</div>
+  </div>
+</a>
 
 ![Pipeline Architecture](../public/images/diagrams/mcp-optimization-suggestion-agent.png)
 
@@ -17,7 +23,7 @@ github: https://github.com/abhishekgandhi-neo/MCP_Optimization_Suggestion_Agent_
 
 > If you've spent time configuring Model Context Protocol servers, you know the routine: search GitHub, filter through dozens of repos of varying quality, read each README, figure out if the tool actually fits your use case, edit JSON by hand, break something, fix it, repeat. It's tedious work that takes 30+ minutes per setup — and the MCP ecosystem changes fast enough that any static list of recommendations goes stale within weeks.
 
-NEO automated it. The MCP Optimization and Suggestion Agent does what you'd normally spend 30+ minutes doing: it researches available MCP servers across the web, reasons about which ones fit your needs, and either generates a tailored configuration from scratch or analyzes and improves your existing setup. The whole research cycle completes in 8 to 12 seconds.
+NEO automated it. The MCP Optimization and Suggestion Agent does what you'd normally spend **30+ minutes** doing: it researches available MCP servers across the web, reasons about which ones fit your needs, and either generates a tailored configuration from scratch or analyzes and improves your existing setup. The whole research cycle completes in **8 to 12 seconds**.
 
 ## What the Agent Actually Does
 
@@ -33,7 +39,7 @@ Both modes produce structured, usable outputs. Not vague suggestions. Actual JSO
 
 NEO built this on four distinct modules that chain together cleanly.
 
-The **research module** handles web filtering. It queries live sources, not a static database, so it finds recently published servers that wouldn't appear in a hardcoded list. It applies filtering logic to suppress false positives, achieving roughly 90% precision in relevance filtering. When you ask for MCP servers that handle database access, you get database tools, not a random assortment.
+The **research module** handles web filtering. It queries live sources, not a static database, so it finds recently published servers that wouldn't appear in a hardcoded list. It applies filtering logic to suppress false positives, achieving roughly **90% precision** in relevance filtering. When you ask for MCP servers that handle database access, you get database tools, not a random assortment.
 
 The **AI agent module** takes the raw research and applies structured reasoning. It evaluates server quality, checks compatibility, and weighs tradeoffs between options. Raw search results are noise; the agent layer turns them into prioritized recommendations.
 

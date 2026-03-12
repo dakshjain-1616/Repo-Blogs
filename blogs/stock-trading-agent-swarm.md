@@ -9,7 +9,13 @@ github: https://github.com/dakshjain-1616/Stock-trading-Agent-Swarm
 
 # Stock Trading Agent Swarm: How NEO Coordinated 10 Specialized Agents on a Simulated Portfolio
 
-[View the code on GitHub](https://github.com/dakshjain-1616/Stock-trading-Agent-Swarm)
+<a href="https://github.com/dakshjain-1616/Stock-trading-Agent-Swarm" target="_blank" style="display:flex;align-items:center;gap:14px;padding:16px 20px;border:1px solid #30363d;border-radius:10px;background:#0d1117;color:#e6edf3;text-decoration:none;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;margin:20px 0;width:fit-content;max-width:480px;transition:border-color 0.2s;">
+  <svg width="22" height="22" viewBox="0 0 16 16" fill="#e6edf3" xmlns="http://www.w3.org/2000/svg"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+  <div>
+    <div style="font-weight:600;font-size:14px;color:#e6edf3;">dakshjain-1616/Stock-trading-Agent-Swarm</div>
+    <div style="font-size:12px;color:#8b949e;margin-top:3px;">View on GitHub →</div>
+  </div>
+</a>
 
 ![Pipeline Architecture](../public/images/diagrams/stock-trading-agent-swarm.png)
 
@@ -17,7 +23,7 @@ github: https://github.com/dakshjain-1616/Stock-trading-Agent-Swarm
 
 > Multi-agent systems are easy to talk about and hard to actually build. Coordination overhead, message ordering, deadlocks, agents that step on each other's decisions — most implementations that look clean in architecture diagrams get messy fast when you wire them together. The challenge isn't any single piece; it's building coordination patterns that stay coherent as agents multiply and interact under real conditions.
 
-NEO autonomously built a 10-agent trading simulation to work through these problems in a domain that makes the coordination challenges concrete. Ten specialized agents, an asynchronous message bus, $1M in simulated capital, and 250 days of real S&P 500 data to test against. The result was +4.62% returns, 86 executed trades, and a system that blocked 26 risky positions before they went through.
+NEO autonomously built a 10-agent trading simulation to work through these problems in a domain that makes the coordination challenges concrete. Ten specialized agents, an asynchronous message bus, $1M in simulated capital, and 250 days of real S&P 500 data to test against. The result was **+4.62% returns**, **86 executed trades**, and a system that blocked **26 risky positions** before they went through.
 
 This is an educational simulation, not trading advice. But the engineering is real.
 
@@ -57,13 +63,13 @@ This design also makes the system extensible. Adding a new agent type means subs
 
 ## Simulation Results
 
-On $1M in simulated capital across 250 days of S&P 500 data:
+On **$1M** in simulated capital across **250 days** of S&P 500 data:
 
-- Total return: +4.62%
-- Executed trades: 86
-- Order approval rate: 86.9%
-- Positions blocked by risk managers: 26
-- Stop-losses triggered: 20
+- **Total return: +4.62%**
+- **Executed trades: 86**
+- **Order approval rate: 86.9%**
+- **Positions blocked by risk managers: 26**
+- **Stop-losses triggered: 20**
 
 The 86.9% approval rate tells you that the risk layer is active and filtering, not rubber-stamping orders. 13% of submitted orders were rejected, which reflects real risk management behavior rather than a system that passes everything through.
 
@@ -85,7 +91,13 @@ NEO built this as a simulation because trading makes the coordination challenges
 
 We recorded the full swarm running through a live simulation, with the message bus logs and per-agent trade activity visible in real time.
 
-**[Watch on YouTube](https://youtu.be/2c9pnt5i7jU)**
+<a href="https://youtu.be/2c9pnt5i7jU" target="_blank" style="display:block;max-width:560px;margin:20px 0;border-radius:12px;overflow:hidden;border:1px solid #30363d;position:relative;cursor:pointer;text-decoration:none;">
+  <img src="https://img.youtube.com/vi/2c9pnt5i7jU/maxresdefault.jpg" alt="Watch on YouTube" style="width:100%;display:block;">
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(0,0,0,0.72);border-radius:50%;width:68px;height:68px;display:flex;align-items:center;justify-content:center;">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
+  </div>
+  <div style="position:absolute;bottom:12px;left:16px;background:rgba(0,0,0,0.7);color:#fff;font-size:12px;padding:4px 10px;border-radius:4px;font-family:sans-serif;">▶ Watch on YouTube</div>
+</a>
 
 ---
 

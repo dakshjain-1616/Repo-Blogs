@@ -9,7 +9,13 @@ github: https://github.com/Dakshjain1604/AI-Powered-Drug-Repurposing-Platform
 
 # Building a Drug Repurposing Research Platform with AI and Live Reasoning Traces
 
-[View the code on GitHub](https://github.com/Dakshjain1604/AI-Powered-Drug-Repurposing-Platform)
+<a href="https://github.com/Dakshjain1604/AI-Powered-Drug-Repurposing-Platform" target="_blank" style="display:flex;align-items:center;gap:14px;padding:16px 20px;border:1px solid #30363d;border-radius:10px;background:#0d1117;color:#e6edf3;text-decoration:none;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;margin:20px 0;width:fit-content;max-width:480px;transition:border-color 0.2s;">
+  <svg width="22" height="22" viewBox="0 0 16 16" fill="#e6edf3" xmlns="http://www.w3.org/2000/svg"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+  <div>
+    <div style="font-weight:600;font-size:14px;color:#e6edf3;">Dakshjain1604/AI-Powered-Drug-Repurposing-Platform</div>
+    <div style="font-size:12px;color:#8b949e;margin-top:3px;">View on GitHub →</div>
+  </div>
+</a>
 
 ![Pipeline Architecture](../public/images/diagrams/ai-powered-drug-repurposing-platform.png)
 
@@ -21,7 +27,7 @@ NEO autonomously built BioScript to do exactly that: mine current scientific lit
 
 ## What the Platform Does
 
-BioScript pulls 50 to 100 recent abstracts from PubMed, parses them for drug mentions, validates each candidate against an FDA approval database, and then scores them across a curated set of biological pathways. The output is a full report with visualizations, experimental protocols, and a live log of every reasoning step the system took.
+BioScript pulls **50 to 100 recent abstracts** from PubMed, parses them for drug mentions, validates each candidate against an FDA approval database, and then scores them across a curated set of biological pathways. The output is a full report with visualizations, experimental protocols, and a live log of every reasoning step the system took.
 
 That last part deserves attention. The live reasoning trace is a real-time, timestamped log of the AI's decision-making process. You can watch it work. Each extraction, each scoring decision, each hypothesis gets surfaced as it happens. That's not just useful for debugging. It's useful for building trust in a domain where treating the system as a black box is not an option.
 
@@ -31,9 +37,9 @@ The platform breaks into seven core modules.
 
 **Literature Retrieval** handles PubMed queries using Biopython. We pull structured abstracts with metadata so downstream modules have clean input to work with.
 
-**Candidate Extraction** uses GPT-4o-mini with a structured prompting approach. The model reads each abstract and identifies drug mentions, then flags which ones are worth tracking based on disease relevance. FDA validation runs against a local cache of 30+ approved drugs, which keeps API calls down during repeated analysis sessions.
+**Candidate Extraction** uses GPT-4o-mini with a structured prompting approach. The model reads each abstract and identifies drug mentions, then flags which ones are worth tracking based on disease relevance. FDA validation runs against a local cache of **30+ approved drugs**, which keeps API calls down during repeated analysis sessions.
 
-**Pathway Scoring** is where the core scientific judgment happens. NEO built a set of eight curated fibrotic pathways, things like TGF-beta signaling, inflammation cascades, and collagen synthesis pathways. Each candidate gets scored 0 to 100 based on how many relevant pathway interactions appear in the literature. This is a weighted scoring system informed by what the abstracts actually say, not a rigid rule engine.
+**Pathway Scoring** is where the core scientific judgment happens. NEO built a set of **eight curated fibrotic pathways**, things like TGF-beta signaling, inflammation cascades, and collagen synthesis pathways. Each candidate gets scored **0 to 100** based on how many relevant pathway interactions appear in the literature. This is a weighted scoring system informed by what the abstracts actually say, not a rigid rule engine.
 
 **Molecular Visualization** uses stmol and PubChem's API to render interactive 3D structures. You can rotate, zoom, and inspect property details for each candidate directly in the browser. This matters for researchers who need to think about binding geometry, not just pathway scores.
 
@@ -47,7 +53,7 @@ The Streamlit interface ties everything together into a dashboard that doesn't r
 
 ## What 35 Development Cycles Produces
 
-This project took 35 iterative development cycles to reach production quality. That number is worth mentioning not as a boast but as a data point: roughly 3,500 lines of code covering seven distinct modules, three API integrations, and a complete reporting pipeline. Each cycle tightened the scoring logic, improved the prompt structure, or hardened the error handling.
+This project took **35 iterative development cycles** to reach production quality. That number is worth mentioning not as a boast but as a data point: roughly **3,500 lines of code** covering seven distinct modules, three API integrations, and a complete reporting pipeline. Each cycle tightened the scoring logic, improved the prompt structure, or hardened the error handling.
 
 The iterative process is how you get a system that handles edge cases. Abstracts with ambiguous drug names. PubChem lookups that return multiple compound matches. Pathway scores that need normalization across different abstract volumes. These aren't problems you anticipate on day one.
 

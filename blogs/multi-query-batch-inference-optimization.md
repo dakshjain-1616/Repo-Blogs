@@ -9,7 +9,13 @@ github: https://github.com/dakshjain-1616/Multi-Query-Batch-Inference-Optimizati
 
 # 15x Throughput Improvement: Batch Inference Optimization for Mistral-7B on CPU
 
-[View the code on GitHub](https://github.com/dakshjain-1616/Multi-Query-Batch-Inference-Optimization)
+<a href="https://github.com/dakshjain-1616/Multi-Query-Batch-Inference-Optimization" target="_blank" style="display:flex;align-items:center;gap:14px;padding:16px 20px;border:1px solid #30363d;border-radius:10px;background:#0d1117;color:#e6edf3;text-decoration:none;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;margin:20px 0;width:fit-content;max-width:480px;transition:border-color 0.2s;">
+  <svg width="22" height="22" viewBox="0 0 16 16" fill="#e6edf3" xmlns="http://www.w3.org/2000/svg"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+  <div>
+    <div style="font-weight:600;font-size:14px;color:#e6edf3;">dakshjain-1616/Multi-Query-Batch-Inference-Optimization</div>
+    <div style="font-size:12px;color:#8b949e;margin-top:3px;">View on GitHub →</div>
+  </div>
+</a>
 
 ![Pipeline Architecture](../public/images/diagrams/multi-query-batch-inference-optimization.png)
 
@@ -17,7 +23,7 @@ github: https://github.com/dakshjain-1616/Multi-Query-Batch-Inference-Optimizati
 
 > The simplest way to serve an LLM is to process one request at a time: receive request, run inference, return result, repeat. This works fine for a single user but falls apart under any real load — every request in the queue waits for the entire current generation to complete before it even starts. For CPU deployments specifically, where individual token generation is meaningfully slower than GPU, this naive approach produces a baseline of just 1.2 requests per second.
 
-NEO built a Mistral-7B inference server that achieves 18.7 requests per second on CPU — a 15.6x improvement. Here's how we got there.
+NEO built a Mistral-7B inference server that achieves **18.7 requests per second** on CPU — a **15.6x improvement**. Here's how we got there.
 
 ## Architecture: Five Components
 
@@ -44,15 +50,15 @@ Not all requests are equal. An interactive user waiting for a response has diffe
 - Interactive requests get priority scheduling with a target latency under 500ms
 - Batch requests run in background slots and accept longer wait times
 
-This lets the server handle mixed workloads correctly. The actual median interactive response time we measured is 165ms, well under the 500ms target.
+This lets the server handle mixed workloads correctly. The actual median interactive response time we measured is **165ms**, well under the **500ms** target.
 
 ### Block-Based KV Cache Management
 
 The key-value cache is the main memory bottleneck in LLM inference. Standard implementations allocate the full maximum sequence length for each request upfront, wasting memory for short sequences and limiting concurrency.
 
-We use a block-based allocation scheme where KV cache is allocated in fixed-size blocks and expanded dynamically as a sequence grows. This achieves 72% memory reduction compared to the naive approach, which directly translates to higher concurrency.
+We use a block-based allocation scheme where KV cache is allocated in fixed-size blocks and expanded dynamically as a sequence grows. This achieves **72% memory reduction** compared to the naive approach, which directly translates to higher concurrency.
 
-With efficient KV cache management, the server handles 8 concurrent requests using 6.8GB of memory.
+With efficient KV cache management, the server handles **8 concurrent requests** using **6.8GB of memory**.
 
 ### Structured Output Engine
 
