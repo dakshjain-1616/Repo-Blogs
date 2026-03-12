@@ -110,6 +110,6 @@ NEO built a three-stage code refactoring agent where AST analysis, LLM-powered s
 Install the NEO extension to bring AI-powered development directly into your workflow:
 
 - **VS Code**: [NEO in VS Code](https://marketplace.visualstudio.com/items?itemName=NeoResearchInc.heyneo)
-- **Cursor**: [**Install NEO for Cursor →**](cursor:extension/NeoResearchInc.heyneo)
+- **Cursor**: [**Install NEO for Cursor →**](cursor://extension/NeoResearchInc.heyneo)
 
 ---

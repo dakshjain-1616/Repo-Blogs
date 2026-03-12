@@ -88,6 +88,6 @@ NEO built a 350-test LLM benchmark where empirical cost-performance tradeoffs ac
 Install the NEO extension to bring AI-powered development directly into your workflow:
 
 - **VS Code**: [NEO in VS Code](https://marketplace.visualstudio.com/items?itemName=NeoResearchInc.heyneo)
-- **Cursor**: [**Install NEO for Cursor →**](cursor:extension/NeoResearchInc.heyneo)
+- **Cursor**: [**Install NEO for Cursor →**](cursor://extension/NeoResearchInc.heyneo)
 
 ---

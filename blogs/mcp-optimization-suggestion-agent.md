@@ -86,4 +86,4 @@ NEO built an MCP optimization agent where live web research and structured AI re
 Install the NEO extension to bring AI-powered development directly into your workflow:
 
 - **VS Code**: [NEO in VS Code](https://marketplace.visualstudio.com/items?itemName=NeoResearchInc.heyneo)
-- **Cursor**: [**Install NEO for Cursor →**](cursor:extension/NeoResearchInc.heyneo)
+- **Cursor**: [**Install NEO for Cursor →**](cursor://extension/NeoResearchInc.heyneo)
