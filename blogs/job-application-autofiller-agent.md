@@ -17,7 +17,7 @@ github: https://github.com/Dakshjain1604/Job-Application-AutoFiller-Agent
 
 > Job hunting is repetitive by design. Copy your resume details into a form. Write a cover letter. Submit. Repeat forty times. The process is structured enough that a machine should handle it — but no existing tool closes the full loop from discovery through submission, with cover letters that actually reference specific company context rather than generic templates.
 
-AutoCareer is an autonomous job application agent. It reads your resume, finds relevant listings, decides whether you're a good fit, writes a tailored cover letter, and submits the application. The whole thing runs without you sitting at a keyboard.
+NEO built AutoCareer — an autonomous job application agent that reads your resume, finds relevant listings, decides whether you're a good fit, writes a tailored cover letter, and submits the application. The whole thing runs without you sitting at a keyboard.
 
 ## How the Pipeline Works
 

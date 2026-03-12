@@ -17,7 +17,7 @@ github: https://github.com/dakshjain-1616/Embedding-Evaluator
 
 > Embeddings fail quietly. A model's vector representations can look reasonable in aggregate while hiding structural problems that hurt retrieval quality, clustering accuracy, or downstream classification performance. When retrieval results seem semantically wrong or a fine-tuned model underperforms relative to baseline, the problem is frequently in the vector space — but most teams have no systematic way to inspect it.
 
-EmbedAudit is a CLI tool that automates that inspection. Feed it text, vocabulary, CSV data, or pre-computed `.npy` files, and it runs a systematic audit: dimensionality reduction, clustering, anomaly detection, and a structured report with recommendations.
+NEO built EmbedAudit — a CLI tool that automates that inspection. Feed it text, vocabulary, CSV data, or pre-computed `.npy` files, and it runs a systematic audit: dimensionality reduction, clustering, anomaly detection, and a structured report with recommendations.
 
 ## The Five Semantic Checks
 

@@ -17,7 +17,7 @@ github: https://github.com/dakshjain-1616/Quantisation-Awareness-training
 
 > Deploying neural networks to edge devices is a genuine engineering challenge. The model that works great on your training server is often too large and too slow for a mobile device or a Raspberry Pi. Naive post-training quantization can cause accuracy drops of 10-20% on some models, leaving teams stuck between a model that's too big to deploy and one that's too degraded to use.
 
-Quantization-aware training (QAT) addresses this by simulating quantization during training, so the model learns to be robust to the precision reduction before it's actually applied. NEO compressed a **23.5MB** model down to **2.6MB** — a **9.08x reduction** — with only a **3.8% accuracy drop**.
+NEO applied quantization-aware training (QAT) to solve this — simulating quantization during training so the model learns to be robust to precision reduction before it's actually applied. The result: a **23.5MB** model compressed down to **2.6MB** — a **9.08x reduction** — with only a **3.8% accuracy drop**.
 
 ## Why Quantization Works
 

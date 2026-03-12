@@ -17,7 +17,7 @@ github: https://github.com/dakshjain-1616/Speculative-Decoding-Bench-marker
 
 > Speculative decoding promises faster inference by using a small draft model to propose tokens that a large target model then verifies in a single forward pass. The theory is clean. But whether it actually delivers speedup for your specific model pair and workload depends on how well your draft model predicts the target model's outputs — and that's not something you can determine from theory alone. Without careful benchmarking, you're either leaving speedup on the table or adding complexity for no gain.
 
-The Speculative Decoding Benchmarker is a production-grade tool that runs controlled experiments across draft and target model pairs, measures both generation quality and latency across multiple percentiles, and produces structured reports with actionable recommendations.
+NEO built the Speculative Decoding Benchmarker — a production-grade tool that runs controlled experiments across draft and target model pairs, measures both generation quality and latency across multiple percentiles, and produces structured reports with actionable recommendations.
 
 ## What Gets Measured
 

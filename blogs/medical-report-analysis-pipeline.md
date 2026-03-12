@@ -17,7 +17,7 @@ github: https://github.com/dakshjain-1616/Medical-Report-Analysis-Pipeline
 
 > Medical AI is a different category of engineering problem. The technical challenges are real, but compliance and security requirements add a layer of complexity that doesn't exist in most other ML domains. You're not just building a system that works — you're building one that maintains the privacy and security guarantees patient data requires, with audit trails that satisfy regulators and HIPAA controls that must be enforced server-side, not just in the UI.
 
-This is a research and educational implementation of a medical imaging analysis pipeline. It is not FDA-approved for clinical diagnosis and should not be used as such in clinical settings. What it is, is a careful demonstration of how to build this kind of system correctly from a security and architecture standpoint.
+NEO built this as a research and educational implementation of a medical imaging analysis pipeline. It is not FDA-approved for clinical diagnosis and should not be used as such in clinical settings. What it is, is a careful demonstration of how to build this kind of system correctly from a security and architecture standpoint.
 
 ## Security Architecture First
 

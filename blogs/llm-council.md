@@ -17,7 +17,7 @@ github: https://github.com/abhishekgandhi-neo/llm_council_by_neo
 
 > Single-model outputs have a ceiling. No matter how good GPT-4 or Claude gets, they still hallucinate, still get overconfident on edge cases, and still reflect biases baked into their training data. The fix isn't always a bigger model — but most teams have no practical way to leverage multiple models together, so they accept the limitations of a single provider.
 
-LLM Council is a minimal, production-usable framework that queries multiple language models concurrently, then synthesizes or votes across their responses to produce a better final answer. The core is roughly 200 lines of Python, and it ships with two consensus strategies depending on your use case.
+NEO built LLM Council — a minimal, production-usable framework that queries multiple language models concurrently, then synthesizes or votes across their responses to produce a better final answer. The core is roughly 200 lines of Python, and it ships with two consensus strategies depending on your use case.
 
 ## Why Multi-Model Consensus Works
 
