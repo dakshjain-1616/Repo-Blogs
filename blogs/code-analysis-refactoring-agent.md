@@ -13,8 +13,9 @@ github: https://github.com/dakshjain-1616/Code-Agent-Analysis-and-Refactoring-to
 
 ![Pipeline Architecture](../public/images/diagrams/code-analysis-refactoring-agent.png)
 
+## The Problem
 
-Code quality degrades over time. Deadlines happen, requirements change, and the codebase that made sense six months ago has accumulated enough patches that the original structure is barely recognizable. Manual refactoring is slow, inconsistent, and easy to deprioritize.
+> Code quality degrades over time. Deadlines happen, requirements change, and the codebase that made sense six months ago has accumulated enough patches that the original structure is barely recognizable. Manual refactoring is slow, inconsistent, and easy to deprioritize — leaving teams with technical debt that compounds until it becomes a real bottleneck.
 
 NEO autonomously built an agent that handles this automatically. It analyzes, refactors, validates, and commits changes without human intervention. Here's how it works.
 
@@ -100,7 +101,7 @@ IDE integration would let developers see the agent's analysis inline as they wri
 
 ---
 
-If you want an autonomous code quality system for your engineering team, [NEO](https://heyneo.so/) builds production-ready agents like this. Visit heyneo.so to learn more.
+NEO built a three-stage code refactoring agent where AST analysis, LLM-powered suggestions, and test validation work together to reduce cyclomatic complexity by 35% without breaking existing functionality. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---
 
@@ -109,6 +110,6 @@ If you want an autonomous code quality system for your engineering team, [NEO](h
 Install the NEO extension to bring AI-powered development directly into your workflow:
 
 - **VS Code**: [NEO in VS Code](https://marketplace.visualstudio.com/items?itemName=NeoResearchInc.heyneo)
-- **Cursor**: [NEO in Cursor](cursor:extension/NeoResearchInc.heyneo)
+- **Cursor**: [**Install NEO for Cursor →**](cursor:extension/NeoResearchInc.heyneo)
 
 ---

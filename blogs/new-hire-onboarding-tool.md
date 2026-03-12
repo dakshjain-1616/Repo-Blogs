@@ -13,7 +13,9 @@ github: https://github.com/dakshjain-1616/New-Hire-OnBoarding-Tool
 
 ![Pipeline Architecture](../public/images/diagrams/new-hire-onboarding-tool.png)
 
-Every new hire triggers the same checklist. Create the email account. Add them to Jira. Set up Slack. Schedule the first one-on-ones. Send the welcome email. It's ten to thirty minutes of work per person that happens dozens of times a year. It's manual, it's repetitive, and it breaks in predictable ways when someone forgets a step.
+## The Problem
+
+> Every new hire triggers the same checklist. Create the email account. Add them to Jira. Set up Slack. Schedule the first one-on-ones. Send the welcome email. It's ten to thirty minutes of manual work per person that happens dozens of times a year — and it breaks in predictable ways when someone forgets a step or executes them out of order, leaving new hires without access to critical systems on their first day.
 
 NEO autonomously built a configuration-driven onboarding engine that handles all of it. One JSON file describes your company's setup. One command provisions the new hire across every system.
 
@@ -73,7 +75,7 @@ There's a broader application. Any workflow that touches multiple enterprise sys
 
 NEO built this to run in real environments, not demo environments. The error handling, the dry-run mode, the audit logging, the masked credentials, the parallel execution, the config validation: these aren't afterthoughts. They're what makes the difference between a script and a tool your team can rely on.
 
-That's how NEO, a fully autonomous AI engineer, approaches every build. If you want to see what production-ready ML and automation engineering looks like across more domains, visit [heyneo.so](https://heyneo.so/).
+NEO built a configuration-driven new hire onboarding engine where parallel provisioning across G Suite, Jira, Slack, Calendar, and Gmail completes in under 2 minutes with full audit logging and zero missed steps. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---
 
@@ -82,6 +84,6 @@ That's how NEO, a fully autonomous AI engineer, approaches every build. If you w
 Install the NEO extension to bring AI-powered development directly into your workflow:
 
 - **VS Code**: [NEO in VS Code](https://marketplace.visualstudio.com/items?itemName=NeoResearchInc.heyneo)
-- **Cursor**: [NEO in Cursor](cursor:extension/NeoResearchInc.heyneo)
+- **Cursor**: [**Install NEO for Cursor →**](cursor:extension/NeoResearchInc.heyneo)
 
 ---

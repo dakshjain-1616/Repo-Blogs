@@ -13,9 +13,11 @@ github: https://github.com/dakshjain-1616/Spec-To-Ship
 
 ![Pipeline Architecture](../public/images/diagrams/spec-to-ship-multiagent.png)
 
-The gap between "we have a spec" and "we have working code" is where most engineering time disappears. Writing the spec is fast. Implementing it, writing tests for it, and reviewing it for security issues takes most of the sprint. NEO autonomously built a system to close that gap.
+## The Problem
 
-Spec-to-Ship is a multi-agent pipeline that takes a feature idea as input and outputs tested, production-ready TypeScript code. No manual implementation steps. No separate test-writing pass. The whole thing runs automatically.
+> The gap between "we have a spec" and "we have working code" is where most engineering time disappears. Writing the spec is fast. Implementing it, writing tests for it, and reviewing it for security issues takes most of the sprint. For well-defined features with clear acceptance criteria, most of that work is mechanical — translating specs into code following established patterns — yet it consumes senior engineering time that could be spent on harder problems.
+
+NEO autonomously built a system to close that gap. Spec-to-Ship is a multi-agent pipeline that takes a feature idea as input and outputs tested, production-ready TypeScript code. No manual implementation steps. No separate test-writing pass.
 
 ## Five Agents, One Pipeline
 
@@ -76,7 +78,7 @@ Multi-agent pipelines like this one are a better fit for mechanical implementati
 
 ## Production ML Engineering at Scale
 
-If you want to build automated engineering pipelines, code generation systems, or multi-agent workflows for your team, NEO, your autonomous AI agent, builds exactly this. See what's possible at [heyneo.so](https://heyneo.so/).
+NEO built a spec-to-ship multi-agent pipeline where a plain-language feature description automatically becomes typed TypeScript code, Vitest test suites, and a security audit—produced by five specialized agents working in sequence. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---
 
@@ -85,6 +87,6 @@ If you want to build automated engineering pipelines, code generation systems, o
 Install the NEO extension to bring AI-powered development directly into your workflow:
 
 - **VS Code**: [NEO in VS Code](https://marketplace.visualstudio.com/items?itemName=NeoResearchInc.heyneo)
-- **Cursor**: [NEO in Cursor](cursor:extension/NeoResearchInc.heyneo)
+- **Cursor**: [**Install NEO for Cursor →**](cursor:extension/NeoResearchInc.heyneo)
 
 ---

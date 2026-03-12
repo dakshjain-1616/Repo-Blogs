@@ -13,7 +13,11 @@ github: https://github.com/abhishekgandhi-neo/Low-Latency-CPU-Based-Voice-Assist
 
 ![Pipeline Architecture](../public/images/diagrams/cpu-tts-streaming-llm-assistant.png)
 
-Most voice assistants feel sluggish. You ask a question, wait two or three seconds, and then speech finally starts playing. That gap is the difference between a system that feels alive and one that feels like a demo. NEO autonomously built a CPU-based voice assistant that achieves 1.25 seconds time-to-first-audio (TTFA) without a GPU.
+## The Problem
+
+> Most voice assistants feel sluggish. You ask a question, wait two or three seconds, and then speech finally starts playing. That gap is the difference between a system that feels alive and one that feels like a demo. The problem is architectural: most TTS pipelines wait for a complete sentence before synthesizing audio, stacking sequential delays that compound into noticeable lag — especially on CPU hardware where GPU acceleration isn't available.
+
+NEO autonomously built a CPU-based voice assistant that achieves 1.25 seconds time-to-first-audio (TTFA) without a GPU.
 
 ## Why CPU-Only?
 
@@ -71,9 +75,7 @@ Performance benchmarking across hardware configurations was part of the process 
 
 ## Build Voice AI That Actually Responds
 
-If you're working on voice-enabled applications and want to skip the infrastructure work, NEO, your autonomous AI agent, builds complete, production-tested ML pipelines from scratch: voice AI, streaming inference, CPU-optimized deployments.
-
-See what we're building at [heyneo.so](https://heyneo.so/).
+NEO built a CPU-based voice assistant where sub-sentence streaming and a multi-threaded pipeline deliver 1.25-second time-to-first-audio without any GPU hardware. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---
 
@@ -82,6 +84,6 @@ See what we're building at [heyneo.so](https://heyneo.so/).
 Install the NEO extension to bring AI-powered development directly into your workflow:
 
 - **VS Code**: [NEO in VS Code](https://marketplace.visualstudio.com/items?itemName=NeoResearchInc.heyneo)
-- **Cursor**: [NEO in Cursor](cursor:extension/NeoResearchInc.heyneo)
+- **Cursor**: [**Install NEO for Cursor →**](cursor:extension/NeoResearchInc.heyneo)
 
 ---

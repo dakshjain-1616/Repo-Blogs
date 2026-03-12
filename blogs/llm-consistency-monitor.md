@@ -13,11 +13,11 @@ github: https://github.com/Dakshjain1604/LLM-consistency-Monitor
 
 ![Pipeline Architecture](../public/images/diagrams/llm-consistency-monitor.png)
 
-Here is a question worth asking before you ship any LLM application: if a user asks the same thing in two slightly different ways, does the model give the same answer?
+## The Problem
 
-Most teams do not test this. They write a set of example prompts, check that the responses look good, and deploy. The problem is that LLMs are stochastic systems with real sensitivity to phrasing. The same question, rephrased or reworded, can produce meaningfully different answers. For factual queries especially, that inconsistency is a reliability problem.
+> LLMs are stochastic systems with real sensitivity to phrasing. The same question, rephrased or reworded, can produce meaningfully different answers. Most teams never test this — they write a set of example prompts, check that the responses look good, and deploy. For factual queries especially, that inconsistency is a reliability problem that only surfaces after users encounter it in production.
 
-NEO built a tool specifically to surface it.
+NEO built a tool specifically to surface it before you ship.
 
 ## What the Consistency Monitor Does
 
@@ -73,9 +73,7 @@ The full pipeline runs in 60 to 120 seconds on typical hardware and uses approxi
 
 ---
 
-Reliability is more than accuracy on a benchmark. It includes consistency. NEO, your autonomous AI agent, builds evaluation tools measuring what matters in production.
-
-See more at [heyneo.so](https://heyneo.so).
+NEO built an LLM consistency monitor where semantic clustering across 20 paraphrased variants exposes answer instability before it reaches users in production. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---
 
@@ -84,6 +82,6 @@ See more at [heyneo.so](https://heyneo.so).
 Install the NEO extension to bring AI-powered development directly into your workflow:
 
 - **VS Code**: [NEO in VS Code](https://marketplace.visualstudio.com/items?itemName=NeoResearchInc.heyneo)
-- **Cursor**: [NEO in Cursor](cursor:extension/NeoResearchInc.heyneo)
+- **Cursor**: [**Install NEO for Cursor →**](cursor:extension/NeoResearchInc.heyneo)
 
 ---

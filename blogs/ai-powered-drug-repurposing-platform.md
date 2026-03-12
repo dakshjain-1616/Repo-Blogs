@@ -13,8 +13,9 @@ github: https://github.com/Dakshjain1604/AI-Powered-Drug-Repurposing-Platform
 
 ![Pipeline Architecture](../public/images/diagrams/ai-powered-drug-repurposing-platform.png)
 
+## The Problem
 
-Drug discovery is slow and expensive. Repurposing approved drugs is a different problem. The candidates already have safety profiles. The question is whether the mechanism fits a new disease context. That's a question a well-designed AI system can help answer.
+> Drug discovery is slow and expensive. Developing a new drug from scratch takes over a decade and billions of dollars. Repurposing approved drugs sidesteps the safety profile problem — those candidates are already validated. But identifying which approved drugs might work against a new disease context requires mining hundreds of recent abstracts, cross-referencing pathway databases, and synthesizing evidence that no single researcher can track manually.
 
 NEO autonomously built BioScript to do exactly that: mine current scientific literature, extract viable drug candidates, score them against known disease pathways, and generate structured research reports. The focus is fibrotic diseases, but the architecture generalizes.
 
@@ -60,7 +61,7 @@ Secondary use cases include pharmaceutical analysts tracking the competitive lan
 
 The design principle we returned to throughout development was transparency. An AI system making biomedical claims needs to be interrogable. The live reasoning trace isn't a nice-to-have. It's a requirement for any context where a researcher needs to know why the system ranked a particular candidate.
 
-BioScript is one example of what happens when you apply rigorous ML engineering to a domain problem with real stakes. NEO, your autonomous AI agent, builds systems like this. If you want to see what that process looks like, visit [heyneo.so](https://heyneo.so/).
+NEO built a drug repurposing research platform where live reasoning traces and transparent AI decision-making are built into the system, not bolted on as an afterthought. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---
 
@@ -69,4 +70,4 @@ BioScript is one example of what happens when you apply rigorous ML engineering 
 Install the NEO extension to bring AI-powered development directly into your workflow:
 
 - **VS Code**: [NEO in VS Code](https://marketplace.visualstudio.com/items?itemName=NeoResearchInc.heyneo)
-- **Cursor**: [NEO in Cursor](cursor:extension/NeoResearchInc.heyneo)
+- **Cursor**: [**Install NEO for Cursor →**](cursor:extension/NeoResearchInc.heyneo)

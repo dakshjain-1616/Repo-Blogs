@@ -13,13 +13,15 @@ github: https://github.com/gauravvij/llm-evaluator
 
 ![Pipeline Architecture](../public/images/diagrams/llm-evaluator-tool.png)
 
-Choosing the right LLM for a production task is harder than it looks. Leaderboard rankings tell you how models perform on academic benchmarks. They tell you very little about how a model will perform on your specific task, with your input distribution, evaluated against criteria that matter to your use case.
+## The Problem
+
+> Choosing the right LLM for a production task is harder than it looks. Leaderboard rankings tell you how models perform on academic benchmarks — they tell you very little about how a model will perform on your specific task, with your input distribution, evaluated against criteria that matter to your use case. The standard workaround is manual testing: pick a few models, write some test prompts, read the outputs, form an opinion. This doesn't scale, and it's too subjective to repeat reliably.
 
 NEO built a tool that answers the actual question: given a task description, which model performs best on that task?
 
 ## The Problem with Manual Evaluation
 
-The standard approach is to pick a few models, manually write some test prompts, run them, read the outputs, and form an opinion. This works for early exploration. It doesn't scale. Manual evaluation is slow, subjective, and expensive to repeat when your task requirements change or new models are released.
+Manual evaluation is slow, subjective, and expensive to repeat when your task requirements change or new models are released.
 
 You also end up with selection bias. Humans evaluate LLM outputs inconsistently, especially across multiple dimensions simultaneously. You might notice factual errors but miss subtle hallucinations. You might prefer a confident-sounding response over an accurate but hedged one.
 
@@ -93,9 +95,7 @@ The goal of this tool is to make continuous evaluation cheap and systematic enou
 
 ## Build Reliable AI Systems
 
-If you're building production ML systems and need help with evaluation infrastructure, model selection, or end-to-end pipeline design, this is what we do at NEO.
-
-Learn more at [heyneo.so](https://heyneo.so/).
+NEO built an automated LLM evaluator where a Judge LLM scores candidates across five dimensions—accuracy, hallucination, grounding, tool-calling, and clarity—and outputs a ranked shortlist with an optimized system prompt. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---
 
@@ -104,6 +104,6 @@ Learn more at [heyneo.so](https://heyneo.so/).
 Install the NEO extension to bring AI-powered development directly into your workflow:
 
 - **VS Code**: [NEO in VS Code](https://marketplace.visualstudio.com/items?itemName=NeoResearchInc.heyneo)
-- **Cursor**: [NEO in Cursor](cursor:extension/NeoResearchInc.heyneo)
+- **Cursor**: [**Install NEO for Cursor →**](cursor:extension/NeoResearchInc.heyneo)
 
 ---

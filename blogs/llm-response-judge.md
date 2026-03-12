@@ -13,10 +13,9 @@ github: https://github.com/Dakshjain1604/LLM-response-Judge
 
 ![Pipeline Architecture](../public/images/diagrams/llm-response-judge.png)
 
+## The Problem
 
-Manual evaluation of LLM responses does not scale. You might review 50 responses carefully and build a good intuition for quality. But when you have 500, or 5,000, or you want to run evaluation continuously as part of a deployment pipeline, manual review breaks down.
-
-The standard alternatives are weak metrics like ROUGE or BLEU scores, which measure surface overlap and miss semantic quality entirely, or expensive human annotation pipelines with slow turnaround times.
+> Manual evaluation of LLM responses does not scale. You might review 50 responses carefully and build a good intuition for quality. But when you have 500, or 5,000, or you want to run evaluation continuously as part of a deployment pipeline, manual review breaks down. The standard alternatives — ROUGE or BLEU scores — measure surface overlap and miss semantic quality entirely, while human annotation pipelines are slow and expensive.
 
 NEO built a better option: an automated evaluation system that uses an LLM as a judge, with customizable weighted rubrics, per-criterion scoring, and justifications you can actually inspect.
 
@@ -72,9 +71,7 @@ Content moderation and compliance review are adjacent uses. Configure the rubric
 
 ---
 
-Evaluation is what separates systems that work in demos from systems that work in production. NEO, your autonomous AI agent, builds evaluation infrastructure alongside the models.
-
-Find out more at [heyneo.so](https://heyneo.so).
+NEO built an LLM response judge where customizable weighted rubrics and per-criterion justifications make automated quality evaluation actionable, not just a score. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---
 
@@ -83,6 +80,6 @@ Find out more at [heyneo.so](https://heyneo.so).
 Install the NEO extension to bring AI-powered development directly into your workflow:
 
 - **VS Code**: [NEO in VS Code](https://marketplace.visualstudio.com/items?itemName=NeoResearchInc.heyneo)
-- **Cursor**: [NEO in Cursor](cursor:extension/NeoResearchInc.heyneo)
+- **Cursor**: [**Install NEO for Cursor →**](cursor:extension/NeoResearchInc.heyneo)
 
 ---

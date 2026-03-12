@@ -13,15 +13,11 @@ github: https://github.com/dakshjain-1616/Multi-Model-Invoice-OCR-Pipeline
 
 ![Pipeline Architecture](../public/images/diagrams/multi-model-invoice-ocr-pipeline.png)
 
-Invoice processing is one of those problems that sounds simple until you're staring at 50 different invoice formats from 50 different vendors, each with its own layout quirks. Template-based systems break almost immediately. Rule-based parsers require constant maintenance. We needed something smarter.
+## The Problem
+
+> Invoice processing sounds simple until you're staring at 50 different invoice formats from 50 different vendors, each with its own layout quirks. Template-based systems break almost immediately. Rule-based parsers require constant maintenance. Standard OCR tools read text fine — but "April 15, 2024" could be an invoice date, a due date, or a service period, and "$4,200.00" could be a subtotal, a line item, or a total. Without structure-aware extraction, you're left doing post-processing guesswork on financial data where errors have real consequences.
 
 NEO built a two-stage pipeline that fuses vision-based OCR with specialized entity extraction, and the results are strong enough for production.
-
-## The Core Problem with Invoice OCR
-
-Most OCR tools are good at reading text. The hard part is understanding what that text means in context. "April 15, 2024" could be an invoice date, a due date, or a service period. "$4,200.00" could be a subtotal, a line item, or a total amount due. Without structure-aware extraction, you're left doing post-processing guesswork.
-
-We wanted a system that reads invoices the way a human accountant would: understanding the semantic role of each piece of information, not just its position on the page.
 
 ## Two-Stage Architecture
 
@@ -83,7 +79,7 @@ We're also experimenting with streaming outputs so that partial results are avai
 
 ---
 
-If you want to build a document processing pipeline like this without starting from scratch, [NEO](https://heyneo.so/) can scaffold the full architecture, handle model integration, and get you to a working prototype fast. Check out what we're building at heyneo.so.
+NEO built a multi-model invoice OCR pipeline where GLM-4.5V vision understanding and fine-tuned BERT entity extraction combine to achieve 95%+ accuracy across any invoice format, with confidence scores that flag uncertain extractions rather than passing bad data downstream. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---
 
@@ -92,6 +88,6 @@ If you want to build a document processing pipeline like this without starting f
 Install the NEO extension to bring AI-powered development directly into your workflow:
 
 - **VS Code**: [NEO in VS Code](https://marketplace.visualstudio.com/items?itemName=NeoResearchInc.heyneo)
-- **Cursor**: [NEO in Cursor](cursor:extension/NeoResearchInc.heyneo)
+- **Cursor**: [**Install NEO for Cursor →**](cursor:extension/NeoResearchInc.heyneo)
 
 ---

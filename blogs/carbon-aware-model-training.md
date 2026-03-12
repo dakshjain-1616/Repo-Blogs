@@ -13,8 +13,9 @@ github: https://github.com/dakshjain-1616/CarbonAwareModelTraining
 
 ![Pipeline Architecture](../public/images/diagrams/carbon-aware-model-training.png)
 
+## The Problem
 
-Training machine learning models is expensive. Not just in compute costs, but in carbon. Large training runs can produce hundreds of kilograms of CO2 depending on where and when they run. Most teams simply ignore this. We decided to take it seriously and build tooling around it.
+> Training machine learning models is expensive — not just in compute costs, but in carbon. Large training runs can produce hundreds of kilograms of CO2 depending on where and when they run, and most teams simply ignore this. There's no standard tooling to schedule training around cleaner energy windows or to measure emissions as a first-class metric alongside accuracy and loss.
 
 The result is a PyTorch training pipeline that monitors real-time grid carbon intensity, schedules training during cleaner energy windows, and tracks emissions throughout the run. On MNIST with an RTX 3090, we achieved a 43.2% CO2 reduction while keeping accuracy within 0.3% of baseline.
 
@@ -82,9 +83,7 @@ We put together a video walkthrough of the pipeline in action, showing the carbo
 
 ---
 
-NEO, your autonomous AI agent, builds ML systems accounting for the full cost of what they do. Carbon is part of that cost.
-
-See more at [heyneo.so](https://heyneo.so).
+NEO built a carbon-aware model training pipeline where grid carbon intensity and emissions tracking are first-class training metrics, not afterthoughts—delivering a 43% CO2 reduction without sacrificing accuracy. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---
 
@@ -93,4 +92,4 @@ See more at [heyneo.so](https://heyneo.so).
 Install the NEO extension to bring AI-powered development directly into your workflow:
 
 - **VS Code**: [NEO in VS Code](https://marketplace.visualstudio.com/items?itemName=NeoResearchInc.heyneo)
-- **Cursor**: [NEO in Cursor](cursor:extension/NeoResearchInc.heyneo)
+- **Cursor**: [**Install NEO for Cursor →**](cursor:extension/NeoResearchInc.heyneo)

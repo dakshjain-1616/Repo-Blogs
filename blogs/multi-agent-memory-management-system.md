@@ -13,13 +13,11 @@ github: https://github.com/abhishekgandhi-neo/Multi-Agent_Memory_Management_Syst
 
 ![Pipeline Architecture](../public/images/diagrams/multi-agent-memory-management-system.png)
 
-Context windows are finite. LLMs forget. These two facts combine to create one of the most frustrating problems in production agent development: maintaining coherent, accurate behavior across long conversations or multi-step workflows.
+## The Problem
 
-The naive fix is truncation. Keep the last N turns, discard the rest. Simple to implement, terrible in practice. The information you discard might be exactly what the agent needs three steps later. You've traded predictable behavior for a smaller token bill.
+> Context windows are finite and LLMs forget. The naive fix is truncation — keep the last N turns, discard the rest. Simple to implement, terrible in practice: the information you discard might be exactly what the agent needs three steps later. The other naive fix is dumping everything into context, which works until costs spike, latency climbs, and you hit the context limit anyway. There's no good off-the-shelf solution between these two extremes.
 
-The other naive fix is to dump everything into context. No truncation, full history, always. This works until it doesn't. Costs spike, latency climbs, and eventually you hit the context limit anyway.
-
-NEO autonomously built the Multi-Agent Memory Management System to find a better path between these two extremes. The result is a 3-tier memory architecture that cuts token usage by 35 to 45 percent while maintaining 87% semantic recall accuracy across 25-turn conversations.
+NEO autonomously built the Multi-Agent Memory Management System to find a better path. The result is a 3-tier memory architecture that cuts token usage by 35 to 45 percent while maintaining 87% semantic recall accuracy across 25-turn conversations.
 
 ## The 3-Tier Architecture
 
@@ -90,7 +88,7 @@ Long-running agent sessions are the obvious target. Customer support bots, resea
 
 It's also valuable for multi-session systems where a user interacts with an agent across multiple days or weeks. Persistent cold storage means the agent can recall relevant context from previous sessions without bloating every new conversation with historical data.
 
-If you want NEO to integrate intelligent memory management into your agent system or optimize your existing context handling, visit [heyneo.so](https://heyneo.so/) to see what we can build together.
+NEO built a 3-tier memory management system for LLM agents where semantic retrieval from cold storage replaces naive truncation, cutting token usage by 35–45% while maintaining 87% recall accuracy. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---
 
@@ -99,6 +97,6 @@ If you want NEO to integrate intelligent memory management into your agent syste
 Install the NEO extension to bring AI-powered development directly into your workflow:
 
 - **VS Code**: [NEO in VS Code](https://marketplace.visualstudio.com/items?itemName=NeoResearchInc.heyneo)
-- **Cursor**: [NEO in Cursor](cursor:extension/NeoResearchInc.heyneo)
+- **Cursor**: [**Install NEO for Cursor →**](cursor:extension/NeoResearchInc.heyneo)
 
 ---

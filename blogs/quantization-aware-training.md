@@ -13,17 +13,17 @@ github: https://github.com/dakshjain-1616/Quantisation-Awareness-training
 
 ![Pipeline Architecture](../public/images/diagrams/quantization-aware-training.png)
 
-Deploying neural networks to edge devices is a genuine engineering challenge. The model that works great on your training server is often too large and too slow for a mobile device or a Raspberry Pi. Quantization is one of the most practical tools for closing that gap, and this pipeline shows exactly how to do it with MobileNetV2.
+## The Problem
 
-We compressed a 23.5MB model down to 2.6MB. That's a 9.08x reduction. Accuracy dropped by 3.8%. For most edge deployment scenarios, that trade-off is worth making.
+> Deploying neural networks to edge devices is a genuine engineering challenge. The model that works great on your training server is often too large and too slow for a mobile device or a Raspberry Pi. Naive post-training quantization can cause accuracy drops of 10-20% on some models, leaving teams stuck between a model that's too big to deploy and one that's too degraded to use.
+
+Quantization-aware training (QAT) addresses this by simulating quantization during training, so the model learns to be robust to the precision reduction before it's actually applied. We compressed a 23.5MB model down to 2.6MB — a 9.08x reduction — with only a 3.8% accuracy drop.
 
 ## Why Quantization Works
 
 Neural networks are typically trained with 32-bit floating point weights (4 bytes per parameter). Research has consistently shown that you can represent weights with much lower precision, 8-bit integers instead of 32-bit floats, without losing much predictive capability.
 
 INT8 quantization cuts the memory footprint by roughly 4x on weights alone. It also enables faster inference on hardware with optimized INT8 compute paths, which includes most modern mobile chips and microcontrollers. Reduced memory bandwidth requirements matter significantly on constrained devices.
-
-The challenge is that naive post-training quantization can cause accuracy drops of 10-20% on some models. Quantization-aware training (QAT) addresses this by simulating quantization during training, so the model learns to be robust to the precision reduction before it's actually applied.
 
 ## The Implementation
 
@@ -93,7 +93,7 @@ We recorded a full walkthrough of the quantization pipeline, showing the trainin
 
 ---
 
-Building an edge ML pipeline that covers training, quantization, and deployment involves a lot of moving pieces. [NEO](https://heyneo.so/) handles this end-to-end. Visit heyneo.so to see how we approach production ML engineering.
+NEO built a quantization-aware training pipeline where MobileNetV2 is compressed 9x for edge deployment—from 23.5MB to 2.6MB—with only a 3.8% accuracy drop, ready to run on Android, iOS, and Raspberry Pi. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---
 
@@ -102,6 +102,6 @@ Building an edge ML pipeline that covers training, quantization, and deployment 
 Install the NEO extension to bring AI-powered development directly into your workflow:
 
 - **VS Code**: [NEO in VS Code](https://marketplace.visualstudio.com/items?itemName=NeoResearchInc.heyneo)
-- **Cursor**: [NEO in Cursor](cursor:extension/NeoResearchInc.heyneo)
+- **Cursor**: [**Install NEO for Cursor →**](cursor:extension/NeoResearchInc.heyneo)
 
 ---

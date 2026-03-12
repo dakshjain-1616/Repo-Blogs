@@ -13,8 +13,9 @@ github: https://github.com/gauravvij/GithubRepoAgent
 
 ![Pipeline Architecture](../public/images/diagrams/query-github-repo-agent.png)
 
+## The Problem
 
-Reading a codebase you've never seen before is slow work. You clone the repo, start scanning files, try to figure out what connects to what, and spend the first hour just building a mental model before you can answer a single real question. It's tedious, and it shouldn't be.
+> Reading a codebase you've never seen before is slow work. You clone the repo, start scanning files, try to figure out what connects to what, and spend the first hour just building a mental model before you can answer a single real question. For engineers onboarding to new projects, reviewing unfamiliar libraries, or conducting technical due diligence, this is a significant time sink with no good tooling solution.
 
 NEO autonomously built an agent that does this for you. Point it at any public GitHub repository, and within minutes you can ask questions in plain language and get real answers.
 
@@ -70,9 +71,7 @@ This is where developer tooling is going. Less grep, more Q&A.
 
 ## Build Your Own Code Intelligence Tools
 
-If you're building developer productivity tools, internal code search, or documentation automation and want a production-ready ML pipeline underneath, this is what NEO builds.
-
-Explore more at [heyneo.so](https://heyneo.so/).
+NEO built a conversational GitHub repo agent where a map-reduce pipeline distills any public codebase into an architectural understanding you can query in plain language, replacing hours of manual code reading. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---
 
@@ -81,4 +80,4 @@ Explore more at [heyneo.so](https://heyneo.so/).
 Install the NEO extension to bring AI-powered development directly into your workflow:
 
 - **VS Code**: [NEO in VS Code](https://marketplace.visualstudio.com/items?itemName=NeoResearchInc.heyneo)
-- **Cursor**: [NEO in Cursor](cursor:extension/NeoResearchInc.heyneo)
+- **Cursor**: [**Install NEO for Cursor →**](cursor:extension/NeoResearchInc.heyneo)

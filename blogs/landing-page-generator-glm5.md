@@ -13,9 +13,11 @@ github: https://github.com/dakshjain-1616/GLA5-Landing-Page-tool
 
 ![Pipeline Architecture](../public/images/diagrams/landing-page-generator-glm5.png)
 
-Most code generation tools produce snippets. They give you a component, a function, a starting point you then spend an hour wiring together. NEO autonomously built something different: a tool that takes a product description and returns a complete, deployable landing page. No assembly required.
+## The Problem
 
-Ship-It does that. One CLI command, one HTML file, live preview at localhost:8080.
+> Most code generation tools produce snippets. They give you a component, a function, a starting point you then spend an hour wiring together. For landing pages specifically, that means wrestling with CSS frameworks, JavaScript dependencies, and responsive layout issues — all before you've validated whether the idea is worth building.
+
+NEO autonomously built Ship-It: one CLI command, one HTML file, live preview at localhost:8080. No assembly required.
 
 ## Why GLM5
 
@@ -74,7 +76,7 @@ The single-file output makes deployment trivial. Upload to S3, drop it in a CDN,
 
 The principle behind Ship-It is that good tooling should produce complete, usable artifacts, not starting points. The multi-agent approach with GLM5 gets you there for landing pages. The same architecture applies to other structured code generation tasks where the output needs to meet multiple quality criteria simultaneously.
 
-NEO, your autonomous AI agent, builds tools like this because ML engineering should produce things that work, not things that require significant additional effort to become useful. See more at [heyneo.so](https://heyneo.so/).
+NEO built a multi-agent landing page generator where a single CLI command produces a complete, self-contained HTML file—validated for accessibility, SEO, and responsive layout—with no assembly required. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---
 
@@ -83,6 +85,6 @@ NEO, your autonomous AI agent, builds tools like this because ML engineering sho
 Install the NEO extension to bring AI-powered development directly into your workflow:
 
 - **VS Code**: [NEO in VS Code](https://marketplace.visualstudio.com/items?itemName=NeoResearchInc.heyneo)
-- **Cursor**: [NEO in Cursor](cursor:extension/NeoResearchInc.heyneo)
+- **Cursor**: [**Install NEO for Cursor →**](cursor:extension/NeoResearchInc.heyneo)
 
 ---

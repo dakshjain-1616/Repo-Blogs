@@ -13,7 +13,9 @@ github: https://github.com/dakshjain-1616/Adversarial-Robustness-Probe
 
 ![Pipeline Architecture](../public/images/diagrams/adversarial-robustness-probe.png)
 
-A model that works on your test set may not work on data that's been slightly modified. Typos, paraphrasing, noise injection, small pixel perturbations: these are the kinds of inputs that expose the gap between benchmark performance and real-world reliability. That gap matters if your model is making decisions with consequences.
+## The Problem
+
+> A model that works on your test set may not work on data that's been slightly modified. Typos, paraphrasing, noise injection, small pixel perturbations: these are the kinds of inputs that expose the gap between benchmark performance and real-world reliability. Most teams never measure this gap before shipping — and when models make decisions with consequences, that omission has real costs.
 
 Adversarial Probe is a stress-testing framework for NLP and vision models. It applies seven attack categories, measures how often predictions change under each attack, and produces a structured report you can share with engineering or compliance teams.
 
@@ -75,7 +77,7 @@ The report format is designed for sharing. Engineering teams can use it to prior
 
 Running adversarial probes during development, not just after, changes how you approach model improvement. When you can see exactly which attack types cause the most flip rate increase, you can target data augmentation and training changes at those specific weaknesses. The probe becomes a feedback loop, not just an evaluation tool.
 
-That's how we think about evaluation tooling at NEO: it should inform the build process, not just report on the finished product. If you want to see more of how we approach ML engineering end-to-end, visit [heyneo.so](https://heyneo.so/).
+NEO built an adversarial robustness probe where model stress-testing across seven attack types is part of the build process, not a post-deployment afterthought. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---
 
@@ -84,6 +86,6 @@ That's how we think about evaluation tooling at NEO: it should inform the build 
 Install the NEO extension to bring AI-powered development directly into your workflow:
 
 - **VS Code**: [NEO in VS Code](https://marketplace.visualstudio.com/items?itemName=NeoResearchInc.heyneo)
-- **Cursor**: [NEO in Cursor](cursor:extension/NeoResearchInc.heyneo)
+- **Cursor**: [**Install NEO for Cursor →**](cursor:extension/NeoResearchInc.heyneo)
 
 ---

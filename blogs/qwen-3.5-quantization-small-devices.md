@@ -13,9 +13,11 @@ github: https://github.com/dakshjain-1616/Qwen-3.5-Quantisation-for-small-device
 
 ![Pipeline Architecture](../public/images/diagrams/qwen-3.5-quantization-small-devices.png)
 
-The original Qwen3.5-2B model weighs in at 3.6GB. A Raspberry Pi 4 has 4GB of RAM total, and you need most of that just to run the operating system. Getting a capable language model onto resource-constrained hardware means making aggressive tradeoffs, and making them intelligently.
+## The Problem
 
-We worked through the quantization process for Qwen3.5-2B and produced three GGUF variants tuned specifically for edge deployment. The smallest gets the model down to 873MB. All three run on hardware that costs under $100.
+> The original Qwen3.5-2B model weighs in at 3.6GB. A Raspberry Pi 4 has 4GB of RAM total, and you need most of that just to run the operating system. Most quantization approaches reduce weights uniformly and accept large quality losses at aggressive compression levels — leaving engineers without a viable path to run capable language models on hardware that costs under $100.
+
+We worked through the quantization process for Qwen3.5-2B using K-quantization from llama.cpp, which takes an importance-aware approach: weights with more influence on model output are compressed less aggressively. The result: three GGUF variants down to 873MB, all running on sub-$100 hardware.
 
 ## What K-Quantization Actually Does
 
@@ -85,9 +87,7 @@ For edge use cases, that's usually fine. Most embedded applications don't need t
 
 ## Bringing ML to Constrained Hardware
 
-Edge deployment is a real ML engineering problem. Getting a model to fit, run efficiently, and produce useful output on hardware with strict resource limits requires careful choices at every step. Optimization at this level is core to what NEO builds.
-
-Find out what we're building at [heyneo.so](https://heyneo.so/).
+NEO built an extreme quantization pipeline for Qwen 3.5 where importance-aware K-quantization produces three GGUF variants under 1.15GB that run at 8–12 tokens per second on a Raspberry Pi 4—no cloud, no GPU, no compromise on usability. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---
 
@@ -96,6 +96,6 @@ Find out what we're building at [heyneo.so](https://heyneo.so/).
 Install the NEO extension to bring AI-powered development directly into your workflow:
 
 - **VS Code**: [NEO in VS Code](https://marketplace.visualstudio.com/items?itemName=NeoResearchInc.heyneo)
-- **Cursor**: [NEO in Cursor](cursor:extension/NeoResearchInc.heyneo)
+- **Cursor**: [**Install NEO for Cursor →**](cursor:extension/NeoResearchInc.heyneo)
 
 ---

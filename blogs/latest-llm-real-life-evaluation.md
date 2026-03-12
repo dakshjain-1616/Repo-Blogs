@@ -13,8 +13,9 @@ github: https://github.com/dakshjain-1616/Latest-LLMs-Real-Life-Task-Evaluation
 
 ![Pipeline Architecture](../public/images/diagrams/latest-llm-real-life-evaluation.png)
 
+## The Problem
 
-Model leaderboards are everywhere. Most of them measure performance on academic benchmarks designed years ago, optimized by training teams to look good, and increasingly disconnected from what actually matters when you're building something real.
+> Model leaderboards are everywhere. Most of them measure performance on academic benchmarks designed years ago, optimized by training teams to look good, and increasingly disconnected from what actually matters when you're building something real. Teams making production model decisions deserve benchmarks built on the tasks they actually run — not on tasks designed to make models look impressive.
 
 NEO took a different approach. Instead of synthetic academic tasks, NEO built a platform that evaluates models on the kinds of tasks developers and engineers actually give them: writing Flask routes, generating valid JSON schemas, solving multi-step logic problems, and retrieving specific facts buried in 32,000-token documents.
 
@@ -85,7 +86,7 @@ Third-party benchmarks tell you how models performed on someone else's tasks, ev
 
 Running your own benchmark on your own task distribution gives you data that's actually predictive of how a model will perform in your production environment.
 
-NEO built this platform to make that straightforward. If you want NEO to run model evaluations tailored to your specific use case or build custom evaluation infrastructure for your team, visit [heyneo.so](https://heyneo.so/).
+NEO built an async LLM benchmarking platform where 150+ real-world tasks across coding, structured output, reasoning, and long-context retrieval give teams model performance data that actually predicts production behavior. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---
 
@@ -94,6 +95,6 @@ NEO built this platform to make that straightforward. If you want NEO to run mod
 Install the NEO extension to bring AI-powered development directly into your workflow:
 
 - **VS Code**: [NEO in VS Code](https://marketplace.visualstudio.com/items?itemName=NeoResearchInc.heyneo)
-- **Cursor**: [NEO in Cursor](cursor:extension/NeoResearchInc.heyneo)
+- **Cursor**: [**Install NEO for Cursor →**](cursor:extension/NeoResearchInc.heyneo)
 
 ---

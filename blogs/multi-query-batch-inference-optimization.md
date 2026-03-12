@@ -13,16 +13,11 @@ github: https://github.com/dakshjain-1616/Multi-Query-Batch-Inference-Optimizati
 
 ![Pipeline Architecture](../public/images/diagrams/multi-query-batch-inference-optimization.png)
 
+## The Problem
 
-Running LLMs in production on CPU hardware sounds like a bad idea until you realize that for many applications, the economics make sense and the latency requirements are achievable. GPU instances are expensive. Not every organization has the budget or the need for dedicated GPU infrastructure.
+> The simplest way to serve an LLM is to process one request at a time: receive request, run inference, return result, repeat. This works fine for a single user but falls apart under any real load — every request in the queue waits for the entire current generation to complete before it even starts. For CPU deployments specifically, where individual token generation is meaningfully slower than GPU, this naive approach produces a baseline of just 1.2 requests per second.
 
-NEO built a Mistral-7B inference server that achieves 18.7 requests per second on CPU, compared to a naive sequential baseline of 1.2 requests per second. That's a 15.6x improvement. Here's how we got there.
-
-## The Problem with Naive LLM Serving
-
-The simplest way to serve an LLM is to process one request at a time: receive request, run inference, return result, repeat. This works fine for a single user but falls apart under any real load. Every request in the queue waits for the entire current generation to complete before it even starts.
-
-The GPU serving world has developed well-established solutions for this problem, primarily continuous batching and KV cache sharing. Our challenge was adapting these techniques for CPU deployment, where the memory and compute constraints are different.
+NEO built a Mistral-7B inference server that achieves 18.7 requests per second on CPU — a 15.6x improvement. Here's how we got there.
 
 ## Architecture: Five Components
 
@@ -96,7 +91,7 @@ Structured output support is increasingly important as LLMs get integrated into 
 
 ---
 
-If you're building production LLM serving infrastructure, [NEO](https://heyneo.so/) can handle the optimization work and get you to production-ready performance fast. See what we're building at heyneo.so.
+NEO built a Mistral-7B inference server where continuous batching, priority scheduling, and block-based KV cache management together deliver a 15.6x throughput improvement over sequential processing on commodity CPU hardware. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---
 
@@ -105,6 +100,6 @@ If you're building production LLM serving infrastructure, [NEO](https://heyneo.s
 Install the NEO extension to bring AI-powered development directly into your workflow:
 
 - **VS Code**: [NEO in VS Code](https://marketplace.visualstudio.com/items?itemName=NeoResearchInc.heyneo)
-- **Cursor**: [NEO in Cursor](cursor:extension/NeoResearchInc.heyneo)
+- **Cursor**: [**Install NEO for Cursor →**](cursor:extension/NeoResearchInc.heyneo)
 
 ---

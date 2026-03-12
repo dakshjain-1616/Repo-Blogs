@@ -13,12 +13,11 @@ github: https://github.com/dakshjain-1616/Speculative-Decoding-Bench-marker
 
 ![Pipeline Architecture](../public/images/diagrams/speculative-decoding-benchmarker.png)
 
+## The Problem
 
-Speculative decoding is one of the more interesting ideas in LLM inference optimization. The core insight is straightforward: large target models are slow, but small draft models are fast. If you use a small model to propose several tokens at once, then verify them with the large model in a single forward pass, you can generate tokens faster than sequential generation allows, without changing the output distribution.
+> Speculative decoding promises faster inference by using a small draft model to propose tokens that a large target model then verifies in a single forward pass. The theory is clean. But whether it actually delivers speedup for your specific model pair and workload depends on how well your draft model predicts the target model's outputs — and that's not something you can determine from theory alone. Without careful benchmarking, you're either leaving speedup on the table or adding complexity for no gain.
 
-The theory is clean. Measuring whether it actually works in practice, for your specific model pair and your specific workload, requires careful benchmarking. That's what NEO built.
-
-The Speculative Decoding Benchmarker is a production-grade tool that runs controlled experiments across draft and target model pairs, measures both generation quality and latency across multiple percentiles, and produces structured reports with actionable recommendations. It's built on top of DeepMind's speculative decoding research and HuggingFace's transformer infrastructure.
+The Speculative Decoding Benchmarker is a production-grade tool that runs controlled experiments across draft and target model pairs, measures both generation quality and latency across multiple percentiles, and produces structured reports with actionable recommendations.
 
 ## What Gets Measured
 
@@ -98,7 +97,7 @@ When you're evaluating whether speculative decoding is worth the added complexit
 
 This tool gives you clean, reproducible measurements to make those decisions with confidence.
 
-Want NEO to benchmark inference optimization strategies for your specific models and workloads, or build custom evaluation infrastructure for your inference pipeline? Visit [heyneo.so](https://heyneo.so/) to get started.
+NEO built a speculative decoding benchmarker where BLEU, ROUGE-L, and BERTScore quality metrics combine with percentile latency measurements and adaptive gamma recommendations to give teams the data needed to determine whether speculative decoding actually helps their specific model pair. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---
 
@@ -107,6 +106,6 @@ Want NEO to benchmark inference optimization strategies for your specific models
 Install the NEO extension to bring AI-powered development directly into your workflow:
 
 - **VS Code**: [NEO in VS Code](https://marketplace.visualstudio.com/items?itemName=NeoResearchInc.heyneo)
-- **Cursor**: [NEO in Cursor](cursor:extension/NeoResearchInc.heyneo)
+- **Cursor**: [**Install NEO for Cursor →**](cursor:extension/NeoResearchInc.heyneo)
 
 ---

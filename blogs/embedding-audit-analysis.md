@@ -13,8 +13,9 @@ github: https://github.com/dakshjain-1616/Embedding-Evaluator
 
 ![Pipeline Architecture](../public/images/diagrams/embedding-audit-analysis.png)
 
+## The Problem
 
-Embeddings fail quietly. A model's vector representations can look reasonable in aggregate while hiding structural problems that hurt retrieval quality, clustering accuracy, or downstream classification performance. The only way to catch those problems is to look directly at the embedding space.
+> Embeddings fail quietly. A model's vector representations can look reasonable in aggregate while hiding structural problems that hurt retrieval quality, clustering accuracy, or downstream classification performance. When retrieval results seem semantically wrong or a fine-tuned model underperforms relative to baseline, the problem is frequently in the vector space — but most teams have no systematic way to inspect it.
 
 EmbedAudit is a CLI tool that automates that inspection. Feed it text, vocabulary, CSV data, or pre-computed `.npy` files, and it runs a systematic audit: dimensionality reduction, clustering, anomaly detection, and a structured report with recommendations.
 
@@ -74,7 +75,7 @@ We put together a full CLI walkthrough showing EmbedAudit running on a real voca
 
 ---
 
-If you want to see what systematic ML tooling looks like across other domains, visit [heyneo.so](https://heyneo.so/).
+NEO built a semantic embedding audit tool where UMAP, HDBSCAN, and five targeted checks surface outliers, polarity mismatches, and global collapse before they silently degrade downstream retrieval quality. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---
 
@@ -83,6 +84,6 @@ If you want to see what systematic ML tooling looks like across other domains, v
 Install the NEO extension to bring AI-powered development directly into your workflow:
 
 - **VS Code**: [NEO in VS Code](https://marketplace.visualstudio.com/items?itemName=NeoResearchInc.heyneo)
-- **Cursor**: [NEO in Cursor](cursor:extension/NeoResearchInc.heyneo)
+- **Cursor**: [**Install NEO for Cursor →**](cursor:extension/NeoResearchInc.heyneo)
 
 ---

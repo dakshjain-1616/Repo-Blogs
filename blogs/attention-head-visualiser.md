@@ -13,8 +13,9 @@ github: https://github.com/dakshjain-1616/Attention-Head-Visualiser
 
 ![Pipeline Architecture](../public/images/diagrams/attention-head-visualiser.png)
 
+## The Problem
 
-Transformer models are full of attention heads, and most of them don't get studied individually. The default assumption is that they collectively handle something useful, but identifying what specific heads are doing requires careful analysis that most teams skip.
+> Transformer models are full of attention heads, and most of them don't get studied individually. The default assumption is that they collectively handle something useful, but identifying what specific heads are doing requires careful analysis that most teams skip. Without this understanding, diagnosing unexpected model behavior, improving task-specific performance, or explaining model decisions becomes guesswork.
 
 NEO autonomously built the Attention Head Visualiser to automate that analysis for GPT-2 models. It classifies every head into one of four behavior types, scores each head's confidence in that classification, and produces interactive reports you can explore without writing any code.
 
@@ -72,9 +73,7 @@ The six-module codebase covers model loading, behavior scoring, visualization ge
 
 Most people who use transformer models treat the attention mechanism as a black box. That's fine for many applications. But when you need to diagnose unexpected behavior, improve performance on specific task types, or explain model decisions to stakeholders, knowing what the individual heads are doing is genuinely useful.
 
-The Attention Head Visualiser makes that knowledge accessible without requiring you to implement the analysis yourself. NEO, your autonomous AI agent, builds interpretability tools like this because good ML engineering includes understanding what you've built.
-
-See more at [heyneo.so](https://heyneo.so/).
+NEO built an attention head visualiser where every GPT-2 head is automatically classified into copying, induction, previous-token, or retrieval behavior—making transformer internals inspectable, not opaque. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---
 
@@ -83,6 +82,6 @@ See more at [heyneo.so](https://heyneo.so/).
 Install the NEO extension to bring AI-powered development directly into your workflow:
 
 - **VS Code**: [NEO in VS Code](https://marketplace.visualstudio.com/items?itemName=NeoResearchInc.heyneo)
-- **Cursor**: [NEO in Cursor](cursor:extension/NeoResearchInc.heyneo)
+- **Cursor**: [**Install NEO for Cursor →**](cursor:extension/NeoResearchInc.heyneo)
 
 ---

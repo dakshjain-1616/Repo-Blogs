@@ -13,9 +13,9 @@ github: https://github.com/dakshjain-1616/SearchModel-Comparison
 
 ![Pipeline Architecture](../public/images/diagrams/web-search-model-comparison.png)
 
-Which AI model is better at answering search queries? The question sounds simple. The answer depends entirely on what you mean by "better." Faster? More accurate? More recent? Better cited? More concise?
+## The Problem
 
-Different models have different strengths. The model that wins on factual accuracy might lose on source recency. The model with the best citations might give verbose answers that bury the key point. Understanding these tradeoffs requires a structured comparison, not a handful of manual tests.
+> Which AI model is better at answering search queries? The question sounds simple, but the answer depends entirely on what you mean by "better" — faster, more accurate, more recent, better cited, more concise? Different models have different strengths, and a handful of manual tests can't reveal them. Without structured comparison across multiple quality dimensions, teams building search applications are making model selection decisions based on intuition rather than evidence.
 
 NEO built SearchLens to make that comparison systematic and reproducible.
 
@@ -95,9 +95,7 @@ On factual recency, the gap between models with and without web search is large.
 
 ## Build Search-Aware AI Systems
 
-If you're building AI-powered search, research tools, or information retrieval systems and want to make evidence-based model selection decisions, NEO, your autonomous AI agent, builds the evaluation infrastructure and production pipelines that support those decisions.
-
-See more of our work at [heyneo.so](https://heyneo.so/).
+NEO built a web search model benchmarking platform where a seven-criterion weighted rubric across nine API providers replaces gut-feel model selection with reproducible, task-specific evidence. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---
 
@@ -106,6 +104,6 @@ See more of our work at [heyneo.so](https://heyneo.so/).
 Install the NEO extension to bring AI-powered development directly into your workflow:
 
 - **VS Code**: [NEO in VS Code](https://marketplace.visualstudio.com/items?itemName=NeoResearchInc.heyneo)
-- **Cursor**: [NEO in Cursor](cursor:extension/NeoResearchInc.heyneo)
+- **Cursor**: [**Install NEO for Cursor →**](cursor:extension/NeoResearchInc.heyneo)
 
 ---

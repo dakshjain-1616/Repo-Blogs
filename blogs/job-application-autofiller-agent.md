@@ -13,8 +13,9 @@ github: https://github.com/Dakshjain1604/Job-Application-AutoFiller-Agent
 
 ![Pipeline Architecture](../public/images/diagrams/job-application-autofiller-agent.png)
 
+## The Problem
 
-Job hunting is repetitive by design. Copy your resume details into a form. Write a cover letter. Submit. Repeat forty times. The process is structured enough that a machine should handle it. So NEO built one.
+> Job hunting is repetitive by design. Copy your resume details into a form. Write a cover letter. Submit. Repeat forty times. The process is structured enough that a machine should handle it — but no existing tool closes the full loop from discovery through submission, with cover letters that actually reference specific company context rather than generic templates.
 
 AutoCareer is an autonomous job application agent. It reads your resume, finds relevant listings, decides whether you're a good fit, writes a tailored cover letter, and submits the application. The whole thing runs without you sitting at a keyboard.
 
@@ -70,7 +71,7 @@ Second, the review checkpoints in the form automation aren't a courtesy feature.
 
 AutoCareer works best as a starting point. The scoring logic is extensible, the scraper can target new boards, and the RAG pipeline is general enough to handle different document types.
 
-NEO, your autonomous AI agent, builds production-ready ML pipelines and agent systems across a wide range of domains — job automation is one example of what that looks like in practice. Start at [heyneo.so](https://heyneo.so/).
+NEO built an end-to-end job application agent where RAG-powered cover letter generation, semantic fit scoring, and form automation close the full loop from discovery to submission. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---
 
@@ -79,4 +80,4 @@ NEO, your autonomous AI agent, builds production-ready ML pipelines and agent sy
 Install the NEO extension to bring AI-powered development directly into your workflow:
 
 - **VS Code**: [NEO in VS Code](https://marketplace.visualstudio.com/items?itemName=NeoResearchInc.heyneo)
-- **Cursor**: [NEO in Cursor](cursor:extension/NeoResearchInc.heyneo)
+- **Cursor**: [**Install NEO for Cursor →**](cursor:extension/NeoResearchInc.heyneo)

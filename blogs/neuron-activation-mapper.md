@@ -13,17 +13,11 @@ github: https://github.com/dakshjain-1616/Neuron-Activation-Mapper
 
 ![Pipeline Architecture](../public/images/diagrams/neuron-activation-mapper.png)
 
-Neural networks learn representations we didn't explicitly program. Somewhere inside a language model, there are neurons that respond specifically to royalty-related tokens. Others fire consistently on negations. Others track grammatical tense. These aren't metaphors. They're measurable, testable properties of the network's internal activations.
+## The Problem
 
-NeuroLens automates the process of finding those neurons, validating that they actually encode the concept rather than just correlating with it, and presenting the results in a format that's useful for both research and engineering decisions.
+> Neural networks learn representations we didn't explicitly program — neurons that respond to royalty-related tokens, neurons that fire on negations, neurons that track grammatical tense. These are measurable properties, but identifying them manually is tedious enough that most teams skip it entirely. The result: we deploy models we don't fully understand, and when they fail in unexpected ways, we lack the mechanistic picture to diagnose why.
 
-## The Core Problem
-
-Identifying concept-encoding neurons manually is tedious. You define a concept, construct probe examples, run forward passes, record activations, and then analyze the patterns across thousands of neurons across dozens of layers. Each step is straightforward, but the full process is time-consuming enough that most teams skip it entirely.
-
-The result is that we deploy models we don't fully understand. When they fail in unexpected ways, we lack the mechanistic picture to diagnose why.
-
-NeuroLens compresses that workflow into a single tool invocation. You define the concept, specify the model, and get a scored list of candidate neurons with confidence metrics and interactive visualizations.
+NeuroLens automates the process of finding those neurons, validating that they actually encode the concept rather than just correlating with it, and presenting the results in a format useful for both research and engineering decisions.
 
 ## How Neuron Discovery Works
 
@@ -79,7 +73,7 @@ NeuroLens doesn't solve interpretability. But it makes one important part of it,
 
 NEO built this because the gap between ML engineering and ML understanding needs to close. Tools that make internal model analysis accessible are part of how that happens.
 
-Explore more of what NEO, your autonomous AI agent, builds at [heyneo.so](https://heyneo.so/).
+NEO built a neuron activation mapper where selectivity scoring and causal ablation turn the question "which neurons encode this concept?" from a manual research exercise into an automated, reproducible analysis. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---
 
@@ -88,6 +82,6 @@ Explore more of what NEO, your autonomous AI agent, builds at [heyneo.so](https:
 Install the NEO extension to bring AI-powered development directly into your workflow:
 
 - **VS Code**: [NEO in VS Code](https://marketplace.visualstudio.com/items?itemName=NeoResearchInc.heyneo)
-- **Cursor**: [NEO in Cursor](cursor:extension/NeoResearchInc.heyneo)
+- **Cursor**: [**Install NEO for Cursor →**](cursor:extension/NeoResearchInc.heyneo)
 
 ---

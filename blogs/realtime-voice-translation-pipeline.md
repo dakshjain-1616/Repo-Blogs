@@ -13,14 +13,13 @@ github: https://github.com/dakshjain-1616/Real-time-Voice-Translation-Pipeline
 
 ![Pipeline Architecture](../public/images/diagrams/realtime-voice-translation-pipeline.png)
 
+## The Problem
 
-Latency is everything in voice applications. Once you cross two seconds of delay between someone speaking and hearing a translated response, the interaction stops feeling natural. It becomes a transaction. The goal with this pipeline was to stay well under that threshold while keeping the system practical to deploy.
+> Latency is everything in voice applications. Once you cross two seconds of delay between someone speaking and hearing a translated response, the interaction stops feeling natural — it becomes a transaction. The common trap in building voice translation systems is stacking components that each add meaningful delay: if your speech-to-text takes 1.5 seconds, translation takes 0.8 seconds, and TTS adds 1.2 seconds, you've already lost before users even notice the quality.
 
 We hit 1.3 seconds end-to-end. Here's how.
 
 ## Designing for Low Latency
-
-The common trap in building voice translation systems is stacking components that each add meaningful delay. If your speech-to-text takes 1.5 seconds, your translation takes another 0.8 seconds, and your TTS adds 1.2 seconds, you've already lost. Each stage needs to be lean.
 
 We made specific model choices at each stage to keep the pipeline fast without sacrificing quality.
 
@@ -97,7 +96,7 @@ The architecture is modular. The main extension points are: adding WebSocket sup
 
 ---
 
-If you want to build a voice AI pipeline like this without handling all the model integration and latency optimization yourself, [NEO](https://heyneo.so/) can take you from requirements to working system. See what autonomous ML engineering looks like at heyneo.so.
+NEO built a real-time voice translation pipeline where deliberate model choices at every stage—Whisper Tiny, MarianMT, Edge-TTS—deliver end-to-end speech-to-speech translation in 1.3 seconds without sacrificing output quality. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---
 
@@ -106,4 +105,4 @@ If you want to build a voice AI pipeline like this without handling all the mode
 Install the NEO extension to bring AI-powered development directly into your workflow:
 
 - **VS Code**: [NEO in VS Code](https://marketplace.visualstudio.com/items?itemName=NeoResearchInc.heyneo)
-- **Cursor**: [NEO in Cursor](cursor:extension/NeoResearchInc.heyneo)
+- **Cursor**: [**Install NEO for Cursor →**](cursor:extension/NeoResearchInc.heyneo)

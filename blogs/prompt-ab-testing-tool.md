@@ -13,16 +13,11 @@ github: https://github.com/Dakshjain1604/Prompt-AB-testing-Tool
 
 ![Pipeline Architecture](../public/images/diagrams/prompt-ab-testing-tool.png)
 
+## The Problem
 
-Prompt engineering often works like this: someone writes a system prompt, tests it on a handful of examples, decides it looks good, and ships it. Then the next person who touches it rewrites it based on intuition. Nobody actually knows whether the new version is better or worse.
+> Prompt engineering often works like this: someone writes a system prompt, tests it on a handful of examples, decides it looks good, and ships it. Then the next person who touches it rewrites it based on intuition. Nobody actually knows whether the new version is better or worse. Running 20 queries manually and comparing outputs is slow, subjective, and statistically meaningless at small sample sizes — teams regularly ship prompt changes that perform better on the 20 examples they tested and worse on the actual production input distribution.
 
 NEO built a tool to fix that. It runs proper statistical A/B tests on prompts, scores response quality using an LLM judge, tracks latency and token costs, and produces a full report you can actually make decisions from.
-
-## The Core Problem
-
-The issue is not that people do not care about prompt quality. They do. The issue is that "better" is hard to measure without infrastructure to do it systematically. Running 20 queries manually and comparing the outputs is slow, subjective, and statistically meaningless at small sample sizes.
-
-You need a consistent scoring rubric, a large enough sample to detect real differences, and statistics that tell you whether an observed improvement is likely to hold up or might just be noise.
 
 ## How the Testing Pipeline Works
 
@@ -39,8 +34,6 @@ Effect sizes and confidence intervals come standard. A percentage improvement nu
 ### Statistical Tests
 
 The framework uses independent t-tests with a 0.05 significance threshold and calculates 95% confidence intervals around the difference between variants. If the p-value is above 0.05, the tool tells you there is not enough evidence to conclude the prompts differ in quality, and you should keep what you have rather than chasing noise.
-
-This matters more than it sounds. Without statistical testing, teams regularly ship prompt changes that perform better on the 20 examples they tested and worse on the actual distribution of production inputs.
 
 ### Performance and Cost Tracking
 
@@ -70,9 +63,7 @@ This is what systematic prompt evaluation looks like.
 
 ---
 
-NEO, your autonomous AI agent, builds the infrastructure turning ML intuition into measured decisions. Prompt quality is measurable. NEO built the tool that measures it.
-
-More at [heyneo.so](https://heyneo.so).
+NEO built a prompt A/B testing tool where t-tests, Cohen's d effect sizes, and LLM quality scoring replace intuition-driven prompt decisions with statistically grounded evidence. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---
 
@@ -81,6 +72,6 @@ More at [heyneo.so](https://heyneo.so).
 Install the NEO extension to bring AI-powered development directly into your workflow:
 
 - **VS Code**: [NEO in VS Code](https://marketplace.visualstudio.com/items?itemName=NeoResearchInc.heyneo)
-- **Cursor**: [NEO in Cursor](cursor:extension/NeoResearchInc.heyneo)
+- **Cursor**: [**Install NEO for Cursor →**](cursor:extension/NeoResearchInc.heyneo)
 
 ---

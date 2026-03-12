@@ -13,16 +13,15 @@ github: https://github.com/dakshjain-1616/Table-Extraction-from-Financial-Docume
 
 ![Pipeline Architecture](../public/images/diagrams/table-extraction-financial-documents.png)
 
+## The Problem
 
-Financial documents are dense. Balance sheets, income statements, cash flow tables, broker confirmations. They're all structured around tabular data, but getting that data into a usable format has historically required either manual entry or brittle template-based parsers.
+> Financial documents are dense with tabular data — balance sheets, income statements, cash flow tables, broker confirmations. Getting that data into a usable format has historically required either manual entry or brittle template-based parsers that break whenever a vendor changes their invoice format. A misread number in a financial document isn't an inconvenience; it's a compliance risk or an accounting error.
 
-NEO autonomously built a pipeline that handles this automatically. It detects tables, extracts cell-level text, reconstructs the structure, and validates the output. Here's how it works.
+NEO autonomously built a pipeline that handles this automatically. It detects tables, extracts cell-level text, reconstructs the structure, and validates the output with explicit uncertainty signaling.
 
 ## The Challenge with Financial Tables
 
 Financial tables are harder than they look. You're dealing with scanned documents at varying resolutions, PDFs generated from different software systems, rotated pages, header rows spanning multiple columns, and cells containing formatted numbers with thousands separators, currency symbols, and parenthetical negatives.
-
-The stakes are high. A misread number in a financial document isn't an inconvenience. It's a compliance risk or an accounting error.
 
 Our system handles this complexity while being explicit about uncertainty. Every output includes confidence scores, and anomalies are flagged rather than silently passed through.
 
@@ -86,7 +85,7 @@ Analysts who previously spent hours manually transcribing tables can run this pi
 
 ---
 
-Want to build a financial document extraction system like this? [NEO](https://heyneo.so/) handles the architecture, model selection, and integration work. Visit heyneo.so to see what autonomous ML engineering looks like in practice.
+NEO built a financial table extraction pipeline where Microsoft Table Transformer detection, TrOCR cell-level OCR, and numerical consistency validation together deliver 96%+ accuracy on PDFs and scanned documents with explicit uncertainty signaling rather than silent errors. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---
 
@@ -95,4 +94,4 @@ Want to build a financial document extraction system like this? [NEO](https://he
 Install the NEO extension to bring AI-powered development directly into your workflow:
 
 - **VS Code**: [NEO in VS Code](https://marketplace.visualstudio.com/items?itemName=NeoResearchInc.heyneo)
-- **Cursor**: [NEO in Cursor](cursor:extension/NeoResearchInc.heyneo)
+- **Cursor**: [**Install NEO for Cursor →**](cursor:extension/NeoResearchInc.heyneo)

@@ -13,15 +13,11 @@ github: https://github.com/dakshjain-1616/Prompt-Injection-Defence-System
 
 ![Pipeline Architecture](../public/images/diagrams/prompt-injection-defense-system.png)
 
-Security for large language models remains an unsolved problem in most production systems. The standard approach is to bolt on a basic content filter and call it done. We took a different approach: a proper, layered defense system that treats prompt injection as a first-class threat, tested against over 1,000 adversarial scenarios.
+## The Problem
 
-The result: 98.9% overall detection accuracy, a 0.4% false positive rate, and sub-200ms latency. Here is what NEO built and why it matters.
+> Prompt injection attacks are not theoretical. Attackers craft inputs designed to override a model's system instructions, switch its operating persona, or extract sensitive information it was trained to protect. The standard approach — bolt on a basic content filter and call it done — fails against novel attack variants, because pattern matching alone can't keep up with the attack surface. For agentic systems that take real-world actions, a successful injection isn't just an annoyance: it's a direct security vulnerability.
 
-## The Problem with LLM Security Today
-
-Prompt injection attacks are not theoretical. Attackers craft inputs designed to override a model's system instructions, switch its operating persona, or extract sensitive information it was trained to protect. Instruction override attacks, role-switching attacks, jailbreaks that use fictional framing or encoded text. The attack surface is wide.
-
-A single content filter does not cut it. Pattern matching alone fails against novel attack variants. You need depth.
+We took a different approach: a proper, layered defense system that treats prompt injection as a first-class threat, tested against over 1,000 adversarial scenarios. The result: 98.9% overall detection accuracy, a 0.4% false positive rate, and sub-200ms latency.
 
 ## Three Layers of Defense
 
@@ -79,9 +75,7 @@ Integrations with REST APIs and monitoring dashboards are on the roadmap so secu
 
 ---
 
-If you are building an LLM application and need a defense system that holds up under adversarial testing, NEO, your autonomous AI agent, builds this infrastructure, designing with real threat models, not best-guess safety filters.
-
-Check out what else we are working on at [heyneo.so](https://heyneo.so).
+NEO built a prompt injection defense system where three independent layers—input sanitization, constitutional AI evaluation, and ML-powered output validation—achieve 98.9% detection accuracy at a 0.4% false positive rate, making it deployable in production without blocking legitimate traffic. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---
 
@@ -90,6 +84,6 @@ Check out what else we are working on at [heyneo.so](https://heyneo.so).
 Install the NEO extension to bring AI-powered development directly into your workflow:
 
 - **VS Code**: [NEO in VS Code](https://marketplace.visualstudio.com/items?itemName=NeoResearchInc.heyneo)
-- **Cursor**: [NEO in Cursor](cursor:extension/NeoResearchInc.heyneo)
+- **Cursor**: [**Install NEO for Cursor →**](cursor:extension/NeoResearchInc.heyneo)
 
 ---

@@ -13,15 +13,11 @@ github: https://github.com/dakshjain-1616/AB-testing-tool
 
 ![Pipeline Architecture](../public/images/diagrams/ab-testing-framework-llm.png)
 
-Most A/B testing frameworks are built for two things: websites and simple binary outcomes. Click or no-click. Convert or bounce. LLM evaluation is a different problem. You might be comparing three prompt templates, two model sizes, and a fine-tuned variant all at once. You need statistics that actually handle that.
+## The Problem
+
+> Most A/B testing frameworks are built for binary outcomes: click or no-click, convert or bounce. LLM evaluation is fundamentally different. When testing multiple prompt templates, model sizes, and fine-tuned variants simultaneously, running pairwise t-tests inflates your false positive rate — test five variants and you have ten simultaneous tests, each with a 5% chance of a spurious result. Standard tooling simply wasn't built for this.
 
 NEO autonomously built a multi-variant testing framework from the ground up, designed specifically for ML systems. It supports N variants simultaneously, uses proper statistical corrections for multiple comparisons, and adds under 0.5ms of routing overhead per request.
-
-## The Problem with Naive A/B Testing for LLMs
-
-When you test more than two variants, running pairwise t-tests between every combination is statistically wrong. It inflates your false positive rate. Test five variants with pairwise comparisons and you have ten tests running simultaneously, each with a 5% chance of a false positive. The probability that at least one of those is spurious climbs fast.
-
-This is a known problem in statistics, and it has known solutions. We applied them.
 
 ## How the Framework Works
 
@@ -75,7 +71,7 @@ That is the difference between shipping a hunch and shipping a measured improvem
 
 ---
 
-NEO, your autonomous AI agent, builds ML infrastructure where rigorous evaluation is a first-class concern, not an afterthought. See what else NEO ships at [heyneo.so](https://heyneo.so/).
+NEO built a multi-variant LLM testing framework where rigorous statistical evaluation—ANOVA, Bonferroni correction, effect sizes—is a first-class concern, not an afterthought. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---
 
@@ -84,6 +80,6 @@ NEO, your autonomous AI agent, builds ML infrastructure where rigorous evaluatio
 Install the NEO extension to bring AI-powered development directly into your workflow:
 
 - **VS Code**: [NEO in VS Code](https://marketplace.visualstudio.com/items?itemName=NeoResearchInc.heyneo)
-- **Cursor**: [NEO in Cursor](cursor:extension/NeoResearchInc.heyneo)
+- **Cursor**: [**Install NEO for Cursor →**](cursor:extension/NeoResearchInc.heyneo)
 
 ---
