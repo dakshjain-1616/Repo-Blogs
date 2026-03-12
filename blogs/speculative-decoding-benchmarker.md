@@ -16,7 +16,7 @@ github: https://github.com/dakshjain-1616/Speculative-Decoding-Bench-marker
 
 Speculative decoding is one of the more interesting ideas in LLM inference optimization. The core insight is straightforward: large target models are slow, but small draft models are fast. If you use a small model to propose several tokens at once, then verify them with the large model in a single forward pass, you can generate tokens faster than sequential generation allows, without changing the output distribution.
 
-The theory is clean. Measuring whether it actually works in practice, for your specific model pair and your specific workload, requires careful benchmarking. That's what we built.
+The theory is clean. Measuring whether it actually works in practice, for your specific model pair and your specific workload, requires careful benchmarking. That's what NEO built.
 
 The Speculative Decoding Benchmarker is a production-grade tool that runs controlled experiments across draft and target model pairs, measures both generation quality and latency across multiple percentiles, and produces structured reports with actionable recommendations. It's built on top of DeepMind's speculative decoding research and HuggingFace's transformer infrastructure.
 
@@ -42,7 +42,7 @@ The optimal gamma depends on how well your draft model predicts the target model
 
 ## Three Ways to Use It
 
-We built three access modes because different workflows need different interfaces.
+NEO built three access modes because different workflows need different interfaces.
 
 **CLI** is the fastest path to results. Specify your draft model, target model, test parameters, and output format, and you get a report. No code required.
 
@@ -82,7 +82,7 @@ Configuration accepts environment variables, YAML or JSON config files, or direc
 
 ## Code Quality Standards
 
-We built this with the same standards we'd apply to production ML infrastructure. The test suite runs via pytest. Code formatting uses Black. Import organization uses isort. Type checking uses mypy. Linting uses flake8. Pre-commit hooks automate all of these checks so they run before every commit.
+NEO built this with the same standards applied to production ML infrastructure. The test suite runs via pytest. Code formatting uses Black. Import organization uses isort. Type checking uses mypy. Linting uses flake8. Pre-commit hooks automate all of these checks so they run before every commit.
 
 This matters because benchmarking code that's hard to trust produces results that are hard to trust. If the measurement tool itself is unreliable, your benchmark data is unreliable.
 

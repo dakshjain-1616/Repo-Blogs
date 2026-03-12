@@ -19,7 +19,7 @@ The naive fix is truncation. Keep the last N turns, discard the rest. Simple to 
 
 The other naive fix is to dump everything into context. No truncation, full history, always. This works until it doesn't. Costs spike, latency climbs, and eventually you hit the context limit anyway.
 
-We built the Multi-Agent Memory Management System to find a better path between these two extremes. The result is a 3-tier memory architecture that cuts token usage by 35 to 45 percent while maintaining 87% semantic recall accuracy across 25-turn conversations.
+NEO autonomously built the Multi-Agent Memory Management System to find a better path between these two extremes. The result is a 3-tier memory architecture that cuts token usage by 35 to 45 percent while maintaining 87% semantic recall accuracy across 25-turn conversations.
 
 ## The 3-Tier Architecture
 

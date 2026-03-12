@@ -1,6 +1,6 @@
 ---
 title: "15x Throughput Improvement: Batch Inference Optimization for Mistral-7B on CPU"
-description: "How we built a production Mistral-7B inference server with continuous batching, priority scheduling, and KV cache optimization to achieve 15.6x throughput improvement and 165ms median latency on commodity CPU hardware."
+description: "How NEO built a production Mistral-7B inference server with continuous batching, priority scheduling, and KV cache optimization to achieve 15.6x throughput improvement and 165ms median latency on commodity CPU hardware."
 date: "2026-03-09"
 tags: ["inference optimization", "batch inference", "Mistral-7B", "LLM serving", "continuous batching", "KV cache", "FastAPI", "LLM optimization"]
 slug: "multi-query-batch-inference-optimization"
@@ -16,7 +16,7 @@ github: https://github.com/dakshjain-1616/Multi-Query-Batch-Inference-Optimizati
 
 Running LLMs in production on CPU hardware sounds like a bad idea until you realize that for many applications, the economics make sense and the latency requirements are achievable. GPU instances are expensive. Not every organization has the budget or the need for dedicated GPU infrastructure.
 
-We built a Mistral-7B inference server that achieves 18.7 requests per second on CPU, compared to a naive sequential baseline of 1.2 requests per second. That's a 15.6x improvement. Here's how we got there.
+NEO built a Mistral-7B inference server that achieves 18.7 requests per second on CPU, compared to a naive sequential baseline of 1.2 requests per second. That's a 15.6x improvement. Here's how we got there.
 
 ## The Problem with Naive LLM Serving
 

@@ -1,5 +1,5 @@
 ---
-title: "We Built a CLI That Generates Production-Ready Landing Pages Using GLM5"
+title: "NEO Built a CLI That Generates Production-Ready Landing Pages Using GLM5"
 description: "NEO built Ship-It, a GPU-accelerated CLI tool that uses GLM5 and a multi-agent pipeline to generate complete, self-contained landing pages from a single command, with live preview and interactive editing."
 date: 2026-03-09
 tags: ["landing page generator", "GLM5", "multi-agent system", "GPU inference", "code generation", "CLI tool", "transformer models"]
@@ -7,13 +7,13 @@ slug: landing-page-generator-glm5
 github: https://github.com/dakshjain-1616/GLA5-Landing-Page-tool
 ---
 
-# We Built a CLI That Generates Production-Ready Landing Pages Using GLM5
+# NEO Built a CLI That Generates Production-Ready Landing Pages Using GLM5
 
 [View the code on GitHub](https://github.com/dakshjain-1616/GLA5-Landing-Page-tool)
 
 ![Pipeline Architecture](../public/images/diagrams/landing-page-generator-glm5.png)
 
-Most code generation tools produce snippets. They give you a component, a function, a starting point you then spend an hour wiring together. We wanted something different: a tool that takes a product description and returns a complete, deployable landing page. No assembly required.
+Most code generation tools produce snippets. They give you a component, a function, a starting point you then spend an hour wiring together. NEO autonomously built something different: a tool that takes a product description and returns a complete, deployable landing page. No assembly required.
 
 Ship-It does that. One CLI command, one HTML file, live preview at localhost:8080.
 
@@ -74,7 +74,7 @@ The single-file output makes deployment trivial. Upload to S3, drop it in a CDN,
 
 The principle behind Ship-It is that good tooling should produce complete, usable artifacts, not starting points. The multi-agent approach with GLM5 gets you there for landing pages. The same architecture applies to other structured code generation tasks where the output needs to meet multiple quality criteria simultaneously.
 
-We build tools like this at NEO because we think ML engineering should produce things that work, not things that require significant additional effort to become useful. See more of what we build at [heyneo.so](https://heyneo.so/).
+NEO, your autonomous AI agent, builds tools like this because ML engineering should produce things that work, not things that require significant additional effort to become useful. See more at [heyneo.so](https://heyneo.so/).
 
 ---
 

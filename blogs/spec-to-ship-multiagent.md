@@ -1,6 +1,6 @@
 ---
 title: "Spec to Ship: A Multi-Agent Pipeline That Turns Feature Ideas into Production Code"
-description: "We built a five-agent engineering pipeline that takes a plain-language feature spec and produces typed TypeScript code, test suites, and a security audit, automatically."
+description: "NEO autonomously built a five-agent engineering pipeline that takes a plain-language feature spec and produces typed TypeScript code, test suites, and a security audit, automatically."
 date: 2026-03-09
 tags: ["multi-agent", "AI engineering", "code generation", "TypeScript", "automated testing", "LLM pipeline", "software development"]
 slug: spec-to-ship-multiagent
@@ -13,7 +13,7 @@ github: https://github.com/dakshjain-1616/Spec-To-Ship
 
 ![Pipeline Architecture](../public/images/diagrams/spec-to-ship-multiagent.png)
 
-The gap between "we have a spec" and "we have working code" is where most engineering time disappears. Writing the spec is fast. Implementing it, writing tests for it, and reviewing it for security issues takes most of the sprint. We built a system to close that gap.
+The gap between "we have a spec" and "we have working code" is where most engineering time disappears. Writing the spec is fast. Implementing it, writing tests for it, and reviewing it for security issues takes most of the sprint. NEO autonomously built a system to close that gap.
 
 Spec-to-Ship is a multi-agent pipeline that takes a feature idea as input and outputs tested, production-ready TypeScript code. No manual implementation steps. No separate test-writing pass. The whole thing runs automatically.
 
@@ -41,7 +41,7 @@ The result is that each stage produces noticeably better output than a single-pr
 
 ## Reliability Under Real Conditions
 
-Production systems fail in predictable ways. Rate limits hit. JSON parsing fails on unexpected model output. Long-running jobs time out. We built explicit handling for all of these.
+Production systems fail in predictable ways. Rate limits hit. JSON parsing fails on unexpected model output. Long-running jobs time out. NEO built explicit handling for all of these.
 
 Exponential backoff retry logic handles rate limits automatically. The system waits, then retries with increasing delays to avoid hammering the API. JSON parsing failures trigger automatic recovery, re-prompting the model with clearer output constraints. The entire pipeline has a 20-minute timeout limit so runaway jobs don't accumulate.
 
@@ -76,9 +76,7 @@ Multi-agent pipelines like this one are a better fit for mechanical implementati
 
 ## Production ML Engineering at Scale
 
-If you want to build automated engineering pipelines, code generation systems, or multi-agent workflows for your team, NEO builds exactly this. See what we're working on at [heyneo.so](https://heyneo.so/).
-
-See what's possible at [heyneo.so](https://heyneo.so/).
+If you want to build automated engineering pipelines, code generation systems, or multi-agent workflows for your team, NEO, your autonomous AI agent, builds exactly this. See what's possible at [heyneo.so](https://heyneo.so/).
 
 ---
 

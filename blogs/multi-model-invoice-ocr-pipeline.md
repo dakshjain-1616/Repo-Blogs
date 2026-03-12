@@ -1,6 +1,6 @@
 ---
 title: "Building a Multi-Model Invoice OCR Pipeline with Vision Transformers and BERT"
-description: "How we built a production-ready invoice OCR pipeline that combines GLM-4.5V vision transformers with a fine-tuned BERT model to extract vendors, amounts, and line items with 95%+ accuracy across any invoice format."
+description: "How NEO built a production-ready invoice OCR pipeline that combines GLM-4.5V vision transformers with a fine-tuned BERT model to extract vendors, amounts, and line items with 95%+ accuracy across any invoice format."
 date: "2026-03-09"
 tags: ["OCR", "invoice processing", "BERT", "vision transformer", "document AI", "NLP", "machine learning pipeline"]
 slug: "multi-model-invoice-ocr-pipeline"
@@ -15,7 +15,7 @@ github: https://github.com/dakshjain-1616/Multi-Model-Invoice-OCR-Pipeline
 
 Invoice processing is one of those problems that sounds simple until you're staring at 50 different invoice formats from 50 different vendors, each with its own layout quirks. Template-based systems break almost immediately. Rule-based parsers require constant maintenance. We needed something smarter.
 
-We built a two-stage pipeline that fuses vision-based OCR with specialized entity extraction, and the results are strong enough for production.
+NEO built a two-stage pipeline that fuses vision-based OCR with specialized entity extraction, and the results are strong enough for production.
 
 ## The Core Problem with Invoice OCR
 

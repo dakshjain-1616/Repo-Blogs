@@ -16,7 +16,7 @@ github: https://github.com/dakshjain-1616/Attention-Head-Visualiser
 
 Transformer models are full of attention heads, and most of them don't get studied individually. The default assumption is that they collectively handle something useful, but identifying what specific heads are doing requires careful analysis that most teams skip.
 
-We built the Attention Head Visualiser to automate that analysis for GPT-2 models. It classifies every head into one of four behavior types, scores each head's confidence in that classification, and produces interactive reports you can explore without writing any code.
+NEO autonomously built the Attention Head Visualiser to automate that analysis for GPT-2 models. It classifies every head into one of four behavior types, scores each head's confidence in that classification, and produces interactive reports you can explore without writing any code.
 
 ## Four Head Behaviors
 
@@ -72,9 +72,9 @@ The six-module codebase covers model loading, behavior scoring, visualization ge
 
 Most people who use transformer models treat the attention mechanism as a black box. That's fine for many applications. But when you need to diagnose unexpected behavior, improve performance on specific task types, or explain model decisions to stakeholders, knowing what the individual heads are doing is genuinely useful.
 
-The Attention Head Visualiser makes that knowledge accessible without requiring you to implement the analysis yourself. We build interpretability tools like this because we think good ML engineering includes understanding what you've built.
+The Attention Head Visualiser makes that knowledge accessible without requiring you to implement the analysis yourself. NEO, your autonomous AI agent, builds interpretability tools like this because good ML engineering includes understanding what you've built.
 
-See more of what we build at [heyneo.so](https://heyneo.so/).
+See more at [heyneo.so](https://heyneo.so/).
 
 ---
 

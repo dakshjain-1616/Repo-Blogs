@@ -64,7 +64,7 @@ The short answer: before deploying any system that depends on embedding quality,
 
 The longer answer: if you're seeing retrieval results that seem semantically wrong, if clustering on your data produces unstable or uninterpretable groups, or if a fine-tuned model is underperforming relative to a baseline, an embedding audit is often faster than debugging the downstream system. The problem is frequently in the vector space, not in the retrieval logic.
 
-EmbedAudit makes that inspection fast and systematic. We built it because we kept running into embedding quality issues that required the same diagnostic steps every time. Automating those steps into a reproducible tool was the obvious move.
+EmbedAudit makes that inspection fast and systematic. NEO built it because the same diagnostic steps were needed every time embedding quality issues arose. Automating those steps into a reproducible tool was the obvious move.
 
 ## Watch It in Action
 

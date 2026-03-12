@@ -1,13 +1,13 @@
 ---
-title: "Automated LLM Evaluation: How We Built a Tool to Find the Best Model for Any Task"
-description: "We built an LLM evaluator that automatically generates test cases, benchmarks candidate models, and uses a Judge LLM to rank them with an optimized system prompt for your specific task."
+title: "Automated LLM Evaluation: How NEO Built a Tool to Find the Best Model for Any Task"
+description: "NEO built an LLM evaluator that automatically generates test cases, benchmarks candidate models, and uses a Judge LLM to rank them with an optimized system prompt for your specific task."
 date: 2026-03-09
 tags: ["LLM evaluation", "model selection", "benchmarking", "Judge LLM", "AI tooling", "prompt optimization", "machine learning"]
 slug: llm-evaluator-tool
 github: https://github.com/gauravvij/llm-evaluator
 ---
 
-# Automated LLM Evaluation: How We Built a Tool to Find the Best Model for Any Task
+# Automated LLM Evaluation: How NEO Built a Tool to Find the Best Model for Any Task
 
 [View the code on GitHub](https://github.com/gauravvij/llm-evaluator)
 
@@ -15,7 +15,7 @@ github: https://github.com/gauravvij/llm-evaluator
 
 Choosing the right LLM for a production task is harder than it looks. Leaderboard rankings tell you how models perform on academic benchmarks. They tell you very little about how a model will perform on your specific task, with your input distribution, evaluated against criteria that matter to your use case.
 
-We built a tool that answers the actual question: given a task description, which model performs best on that task?
+NEO built a tool that answers the actual question: given a task description, which model performs best on that task?
 
 ## The Problem with Manual Evaluation
 

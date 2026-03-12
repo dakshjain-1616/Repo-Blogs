@@ -18,7 +18,7 @@ Manual evaluation of LLM responses does not scale. You might review 50 responses
 
 The standard alternatives are weak metrics like ROUGE or BLEU scores, which measure surface overlap and miss semantic quality entirely, or expensive human annotation pipelines with slow turnaround times.
 
-We built a better option: an automated evaluation system that uses an LLM as a judge, with customizable weighted rubrics, per-criterion scoring, and justifications you can actually inspect.
+NEO built a better option: an automated evaluation system that uses an LLM as a judge, with customizable weighted rubrics, per-criterion scoring, and justifications you can actually inspect.
 
 ## How the Evaluation System Works
 
@@ -32,7 +32,7 @@ Each criterion gets an individual score with a written justification explaining 
 
 The stack is a React frontend with a FastAPI backend. The frontend handles file uploads, rubric configuration, and report display. The backend handles LLM calls, scoring logic, and result formatting.
 
-We built it with Docker from the start, so deployment is straightforward in containerized environments.
+NEO built it with Docker from the start, so deployment is straightforward in containerized environments.
 
 ### Model Provider Flexibility
 
@@ -72,7 +72,7 @@ Content moderation and compliance review are adjacent uses. Configure the rubric
 
 ---
 
-Evaluation is what separates systems that work in demos from systems that work in production. NEO builds the evaluation infrastructure alongside the models.
+Evaluation is what separates systems that work in demos from systems that work in production. NEO, your autonomous AI agent, builds evaluation infrastructure alongside the models.
 
 Find out more at [heyneo.so](https://heyneo.so).
 

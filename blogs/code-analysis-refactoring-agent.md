@@ -1,6 +1,6 @@
 ---
 title: "Building an Autonomous Code Analysis and Refactoring Agent with LLM-Powered Improvements"
-description: "How we built a three-stage code refactoring agent that combines AST parsing, pylint, and LLM-powered suggestions to achieve 35% complexity reduction and 98% detection rate for code smells across large Python codebases."
+description: "How NEO built a three-stage code refactoring agent that combines AST parsing, pylint, and LLM-powered suggestions to achieve 35% complexity reduction and 98% detection rate for code smells across large Python codebases."
 date: "2026-03-09"
 tags: ["code refactoring", "static analysis", "AST", "LLM", "Ollama", "code quality", "autonomous agent", "Python", "cyclomatic complexity"]
 slug: "code-analysis-refactoring-agent"
@@ -16,7 +16,7 @@ github: https://github.com/dakshjain-1616/Code-Agent-Analysis-and-Refactoring-to
 
 Code quality degrades over time. Deadlines happen, requirements change, and the codebase that made sense six months ago has accumulated enough patches that the original structure is barely recognizable. Manual refactoring is slow, inconsistent, and easy to deprioritize.
 
-We built an agent that handles this automatically. It analyzes, refactors, validates, and commits changes without human intervention. Here's how it works.
+NEO autonomously built an agent that handles this automatically. It analyzes, refactors, validates, and commits changes without human intervention. Here's how it works.
 
 ## Three-Stage Architecture
 

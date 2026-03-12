@@ -24,7 +24,7 @@ Electrical grids are not constant. Carbon intensity varies based on what energy 
 
 Training a model at the right time costs the same compute but produces significantly less carbon. The problem is that most training pipelines do not know or care about grid state. They run whenever you submit the job.
 
-We built a scheduler that checks carbon intensity before starting a training run and can delay the start until conditions improve.
+NEO built a scheduler that checks carbon intensity before starting a training run and can delay the start until conditions improve.
 
 ## Three Optimization Strategies Working Together
 
@@ -82,7 +82,7 @@ We put together a video walkthrough of the pipeline in action, showing the carbo
 
 ---
 
-NEO builds ML systems that account for the full cost of what they do. Carbon is part of that cost.
+NEO, your autonomous AI agent, builds ML systems accounting for the full cost of what they do. Carbon is part of that cost.
 
 See more at [heyneo.so](https://heyneo.so).
 

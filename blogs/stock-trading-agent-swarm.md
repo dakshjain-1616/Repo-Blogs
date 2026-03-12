@@ -1,5 +1,5 @@
 ---
-title: "Stock Trading Agent Swarm: How We Coordinated 10 Specialized Agents on a Simulated Portfolio"
+title: "Stock Trading Agent Swarm: How NEO Coordinated 10 Specialized Agents on a Simulated Portfolio"
 description: "NEO built a multi-agent trading simulation with 10 specialized agents coordinating over an async message bus, achieving +4.62% returns across 250 days of S&P 500 data with an 86.9% order approval rate."
 date: 2026-03-09
 tags: [multi-agent systems, trading simulation, agent swarm, async messaging, Python, financial AI]
@@ -7,7 +7,7 @@ slug: stock-trading-agent-swarm
 github: https://github.com/dakshjain-1616/Stock-trading-Agent-Swarm
 ---
 
-# Stock Trading Agent Swarm: How We Coordinated 10 Specialized Agents on a Simulated Portfolio
+# Stock Trading Agent Swarm: How NEO Coordinated 10 Specialized Agents on a Simulated Portfolio
 
 [View the code on GitHub](https://github.com/dakshjain-1616/Stock-trading-Agent-Swarm)
 
@@ -15,7 +15,7 @@ github: https://github.com/dakshjain-1616/Stock-trading-Agent-Swarm
 
 Multi-agent systems are easy to talk about and hard to actually build. Coordination overhead, message ordering, deadlocks, agents that step on each other's decisions. Most implementations that look clean in architecture diagrams get messy fast when you wire them together.
 
-We built a 10-agent trading simulation to work through these problems in a domain that makes the coordination challenges concrete. Ten specialized agents, an asynchronous message bus, $1M in simulated capital, and 250 days of real S&P 500 data to test against. The result was +4.62% returns, 86 executed trades, and a system that blocked 26 risky positions before they went through.
+NEO autonomously built a 10-agent trading simulation to work through these problems in a domain that makes the coordination challenges concrete. Ten specialized agents, an asynchronous message bus, $1M in simulated capital, and 250 days of real S&P 500 data to test against. The result was +4.62% returns, 86 executed trades, and a system that blocked 26 risky positions before they went through.
 
 This is an educational simulation, not trading advice. But the engineering is real.
 
@@ -77,7 +77,7 @@ The value of building this simulation is not the specific returns. It is the arc
 
 These patterns apply to much more than trading. Any domain where you need multiple specialized agents working on a shared problem, making decisions that affect each other, can benefit from this architecture. The message bus, the separation of roles, the risk validation gate. These are general solutions.
 
-We built this as a simulation because trading makes the coordination challenges obvious. Real money on the line means poor coordination has immediate, measurable consequences.
+NEO built this as a simulation because trading makes the coordination challenges obvious. Real money on the line means poor coordination has immediate, measurable consequences.
 
 ## Watch It in Action
 
@@ -87,7 +87,7 @@ We recorded the full swarm running through a live simulation, with the message b
 
 ---
 
-NEO builds multi-agent systems for real ML problems. The patterns that make a trading swarm work are the same patterns that power production agent pipelines.
+NEO, your autonomous AI agent, builds multi-agent systems for real ML problems. The patterns that make a trading swarm work are the same patterns that power production agent pipelines.
 
 See what we are building at [heyneo.so](https://heyneo.so).
 

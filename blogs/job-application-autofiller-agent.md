@@ -1,5 +1,5 @@
 ---
-title: "We Built an AI Agent That Fills Out Job Applications End-to-End"
+title: "NEO Built an AI Agent That Fills Out Job Applications End-to-End"
 description: "NEO built AutoCareer, an autonomous job application agent that parses resumes, scrapes listings, scores candidate fit, generates cover letters, and fills out application forms using RAG and Selenium."
 date: 2026-03-09
 tags: ["autonomous agent", "job application automation", "RAG", "LangChain", "Selenium", "FAISS", "NLP"]
@@ -7,14 +7,14 @@ slug: job-application-autofiller-agent
 github: https://github.com/Dakshjain1604/Job-Application-AutoFiller-Agent
 ---
 
-# We Built an AI Agent That Fills Out Job Applications End-to-End
+# NEO Built an AI Agent That Fills Out Job Applications End-to-End
 
 [View the code on GitHub](https://github.com/Dakshjain1604/Job-Application-AutoFiller-Agent)
 
 ![Pipeline Architecture](../public/images/diagrams/job-application-autofiller-agent.png)
 
 
-Job hunting is repetitive by design. Copy your resume details into a form. Write a cover letter. Submit. Repeat forty times. The process is structured enough that a machine should handle it. So we built one.
+Job hunting is repetitive by design. Copy your resume details into a form. Write a cover letter. Submit. Repeat forty times. The process is structured enough that a machine should handle it. So NEO built one.
 
 AutoCareer is an autonomous job application agent. It reads your resume, finds relevant listings, decides whether you're a good fit, writes a tailored cover letter, and submits the application. The whole thing runs without you sitting at a keyboard.
 
@@ -28,7 +28,7 @@ We start by converting the candidate's PDF resume into vector embeddings using S
 
 ### Job Discovery
 
-The scraper pulls listings from LinkedIn and Greenhouse. We built anti-bot handling in from the start using Playwright, because naive scrapers get blocked within minutes. Rate limiting, session rotation, and realistic browser fingerprinting are all part of the default configuration.
+The scraper pulls listings from LinkedIn and Greenhouse. NEO built anti-bot handling in from the start using Playwright, because naive scrapers get blocked within minutes. Rate limiting, session rotation, and realistic browser fingerprinting are all part of the default configuration.
 
 ### Candidate Fit Scoring
 
@@ -40,7 +40,7 @@ This is where the RAG pipeline matters most. Before writing the cover letter, th
 
 ### Form Automation
 
-Selenium handles the form-filling step. We built in review checkpoints so the candidate can inspect what's about to be submitted before it goes through. There's also a dry-run mode that walks through the entire flow without actually submitting anything. Both features exist because blind automation on job applications is a bad idea.
+Selenium handles the form-filling step. NEO built in review checkpoints so the candidate can inspect what's about to be submitted before it goes through. There's also a dry-run mode that walks through the entire flow without actually submitting anything. Both features exist because blind automation on job applications is a bad idea.
 
 ### Application History
 
@@ -70,7 +70,7 @@ Second, the review checkpoints in the form automation aren't a courtesy feature.
 
 AutoCareer works best as a starting point. The scoring logic is extensible, the scraper can target new boards, and the RAG pipeline is general enough to handle different document types.
 
-If you want to see what NEO builds when given a problem like this, start at [heyneo.so](https://heyneo.so/). We build production-ready ML pipelines and agent systems across a wide range of domains, and job automation is one example of what structured AI engineering looks like in practice.
+NEO, your autonomous AI agent, builds production-ready ML pipelines and agent systems across a wide range of domains — job automation is one example of what that looks like in practice. Start at [heyneo.so](https://heyneo.so/).
 
 ---
 

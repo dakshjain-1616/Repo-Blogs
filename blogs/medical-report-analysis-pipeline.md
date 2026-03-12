@@ -19,7 +19,7 @@ This is a research and educational implementation of a medical imaging analysis 
 
 ## Security Architecture First
 
-We designed the security architecture before writing a line of model code. In healthcare AI, this is the right order of operations.
+NEO designed the security architecture before writing a line of model code. In healthcare AI, this is the right order of operations.
 
 The system runs as a FastAPI HTTPS server with TLS 1.3 for all in-transit communication. At-rest data uses AES-128 encryption in CBC mode with HMAC via Fernet. DICOM images undergo tag scrubbing to remove patient identifiers, and any pixel-level text embedded in images gets masked before data reaches the model inference stages.
 

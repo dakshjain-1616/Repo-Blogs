@@ -1,6 +1,6 @@
 ---
 title: "Real-Time Voice Translation Pipeline with Sub-2-Second Latency"
-description: "How we built a production voice translation system using Whisper, MarianMT, and Edge-TTS that delivers end-to-end speech-to-speech translation in 1.3 seconds across English, Spanish, French, and German."
+description: "How NEO built a production voice translation system using Whisper, MarianMT, and Edge-TTS that delivers end-to-end speech-to-speech translation in 1.3 seconds across English, Spanish, French, and German."
 date: "2026-03-09"
 tags: ["voice translation", "speech-to-text", "Whisper", "MarianMT", "Edge-TTS", "real-time AI", "voice AI", "NLP pipeline"]
 slug: "realtime-voice-translation-pipeline"

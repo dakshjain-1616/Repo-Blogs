@@ -1,5 +1,5 @@
 ---
-title: "LLM Council: How We Built a Multi-Model Consensus Engine in ~200 Lines of Python"
+title: "LLM Council: How NEO Built a Multi-Model Consensus Engine in ~200 Lines of Python"
 description: "LLM Council is a lightweight async framework that queries multiple LLMs simultaneously and synthesizes their responses into higher-quality, lower-hallucination answers. Built by NEO."
 date: 2026-03-09
 tags: [llm, multi-model, consensus, openrouter, async, hallucination-reduction, ai-engineering]
@@ -7,7 +7,7 @@ slug: llm-council
 github: https://github.com/abhishekgandhi-neo/llm_council_by_neo
 ---
 
-# LLM Council: How We Built a Multi-Model Consensus Engine in ~200 Lines of Python
+# LLM Council: How NEO Built a Multi-Model Consensus Engine in ~200 Lines of Python
 
 [View the code on GitHub](https://github.com/abhishekgandhi-neo/llm_council_by_neo)
 

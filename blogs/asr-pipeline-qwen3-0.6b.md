@@ -15,7 +15,7 @@ github: https://github.com/dakshjain-1616/ASR-pipeline-using-Qwen3-ASR-0.6B---BY
 
 Full-size automatic speech recognition models are not always practical. A 1B+ parameter model may run fine on a cloud server with dedicated GPU capacity, but deploy it to an edge device or a resource-constrained environment and you run into problems fast. The memory footprint alone rules it out for many real deployments.
 
-We built an ASR pipeline around Qwen3-ASR-0.6B, a 0.6 billion parameter model that requires only about 3GB of storage. It transcribes speech accurately, handles multiple audio formats, and runs on GPU or CPU depending on what is available. We wrapped it in three different interfaces so it fits however you want to use it.
+NEO autonomously built an ASR pipeline around Qwen3-ASR-0.6B, a 0.6 billion parameter model that requires only about 3GB of storage. It transcribes speech accurately, handles multiple audio formats, and runs on GPU or CPU depending on what is available. NEO wrapped it in three different interfaces so it fits however you want to use it.
 
 ## Why 0.6B Parameters Is a Feature, Not a Compromise
 
@@ -23,7 +23,7 @@ The instinct when picking a model is to reach for the largest one available. Mor
 
 A 0.6B model fits into memory on devices where a 7B or 13B model simply cannot run. It loads faster. It costs less per inference. And for speech recognition specifically, where the task is well-defined and the input is structured audio rather than open-ended text generation, a smaller well-trained model can match a much larger general model on the transcription task.
 
-The Qwen3-ASR-0.6B model was designed for this. We built the surrounding pipeline to make it production-deployable.
+The Qwen3-ASR-0.6B model was designed for this. NEO built the surrounding pipeline to make it production-deployable.
 
 ## The Pipeline Architecture
 
@@ -42,7 +42,7 @@ For a 60-second voice note, GPU processing finishes in under 30 seconds. CPU tak
 
 ### Three Interface Options
 
-We built three ways to interact with the pipeline because different use cases genuinely need different interfaces.
+NEO built three ways to interact with the pipeline because different use cases genuinely need different interfaces.
 
 **Web Interface (Streamlit)**: Browser-based recording and file upload. Transcriptions are saved automatically. This is the right choice for non-technical users or for demos. One important design decision: audio recording happens in the browser, which means no server-side audio hardware requirements. You can deploy this on a headless server and users record from their own devices.
 
@@ -78,7 +78,7 @@ We recorded a live demo of the ASR pipeline transcribing audio through the Strea
 
 ---
 
-NEO builds AI systems that work at the edges of what is possible, literally and figuratively. An ASR pipeline that fits on a device rather than requiring a cloud call is a better answer for many problems.
+NEO, your autonomous AI agent, builds AI systems working at the edges of what is possible, literally and figuratively. An ASR pipeline that fits on a device rather than requiring a cloud call is a better answer for many problems.
 
 Explore more at [heyneo.so](https://heyneo.so).
 

@@ -1,6 +1,6 @@
 ---
 title: "Query Any GitHub Repo with a Conversational AI Agent"
-description: "We built a terminal-styled AI agent that clones any public GitHub repository, analyzes its architecture using a map-reduce pipeline, and lets you ask questions about the codebase in plain language."
+description: "NEO built a terminal-styled AI agent that clones any public GitHub repository, analyzes its architecture using a map-reduce pipeline, and lets you ask questions about the codebase in plain language."
 date: 2026-03-09
 tags: ["AI agent", "GitHub", "code analysis", "RAG", "map-reduce", "LLM", "developer tools"]
 slug: query-github-repo-agent
@@ -16,7 +16,7 @@ github: https://github.com/gauravvij/GithubRepoAgent
 
 Reading a codebase you've never seen before is slow work. You clone the repo, start scanning files, try to figure out what connects to what, and spend the first hour just building a mental model before you can answer a single real question. It's tedious, and it shouldn't be.
 
-We built an agent that does this for you. Point it at any public GitHub repository, and within minutes you can ask questions in plain language and get real answers.
+NEO autonomously built an agent that does this for you. Point it at any public GitHub repository, and within minutes you can ask questions in plain language and get real answers.
 
 ## What It Actually Does
 

@@ -77,9 +77,9 @@ The argument for mechanistic interpretability used to be mostly academic. That's
 
 NeuroLens doesn't solve interpretability. But it makes one important part of it, finding and validating concept-encoding neurons, fast enough to be part of a regular development workflow rather than a specialized research exercise.
 
-We built this because we think the gap between ML engineering and ML understanding needs to close. Tools that make internal model analysis accessible are part of how that happens.
+NEO built this because the gap between ML engineering and ML understanding needs to close. Tools that make internal model analysis accessible are part of how that happens.
 
-Explore more of what NEO builds at [heyneo.so](https://heyneo.so/).
+Explore more of what NEO, your autonomous AI agent, builds at [heyneo.so](https://heyneo.so/).
 
 ---
 

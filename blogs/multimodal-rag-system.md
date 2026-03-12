@@ -1,6 +1,6 @@
 ---
 title: "Building a Multimodal RAG System That Retrieves Text, Images, and Tables Together"
-description: "How we built a production multimodal RAG system using CLIP embeddings and ChromaDB to retrieve across text, images, and tables with 0.030s retrieval latency and 60%+ cross-modal accuracy."
+description: "How NEO built a production multimodal RAG system using CLIP embeddings and ChromaDB to retrieve across text, images, and tables with 0.030s retrieval latency and 60%+ cross-modal accuracy."
 date: "2026-03-09"
 tags: ["RAG", "multimodal RAG", "CLIP", "ChromaDB", "retrieval augmented generation", "vector search", "multimodal AI", "semantic search"]
 slug: "multimodal-rag-system"
@@ -17,7 +17,7 @@ Most RAG systems handle text. Send in a query, retrieve the relevant text chunks
 
 Technical documentation has diagrams. Financial reports have tables. Product databases have images. If your retrieval system can only handle text, a large portion of your knowledge base is unsearchable.
 
-We built a retrieval system that handles all three modalities through a single unified embedding space. Here's the architecture.
+NEO autonomously built a retrieval system that handles all three modalities through a single unified embedding space. Here's the architecture.
 
 ## The Core Problem: Unified Embeddings Across Modalities
 

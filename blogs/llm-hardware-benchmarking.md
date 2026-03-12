@@ -1,6 +1,6 @@
 ---
 title: "Benchmarking Qwen 3.5 Models Across Quantization Formats on a Single GPU"
-description: "We built a configurable benchmarking suite that measures tokens per second, latency, and memory usage across six Qwen 3.5 model variants and three quantization formats on a single 48GB GPU."
+description: "NEO built a configurable benchmarking suite that measures tokens per second, latency, and memory usage across six Qwen 3.5 model variants and three quantization formats on a single 48GB GPU."
 date: 2026-03-09
 tags: ["LLM benchmarking", "Qwen", "GPU", "quantization", "GPTQ", "BF16", "FP8", "hardware performance", "model evaluation"]
 slug: llm-hardware-benchmarking
@@ -15,7 +15,7 @@ github: https://github.com/gauravvij/llm-hardware-benchmarking
 
 Everyone has opinions about which quantization format is "best." BF16 preserves quality. INT4 saves memory. FP8 is faster on the right hardware. But these claims are made in the abstract, without reference to specific models, specific hardware, or specific workloads.
 
-We built a benchmarking suite to produce concrete numbers. Point it at your hardware, configure the models and formats you care about, and get measured throughput, latency, and memory consumption across all combinations.
+NEO built a benchmarking suite to produce concrete numbers. Point it at your hardware, configure the models and formats you care about, and get measured throughput, latency, and memory consumption across all combinations.
 
 ## What the Suite Measures
 
@@ -79,7 +79,7 @@ Benchmarking before you commit to a configuration catches these mistakes before 
 
 ## GPU Selection and Optimization
 
-If you're evaluating hardware for an LLM deployment or optimizing an existing one for cost-performance, empirical benchmarking is where good decisions start. NEO builds and optimizes ML inference systems end-to-end: model selection, hardware configuration, production deployment.
+If you're evaluating hardware for an LLM deployment or optimizing an existing one for cost-performance, empirical benchmarking is where good decisions start. NEO, your autonomous AI agent, builds and optimizes ML inference systems end-to-end: model selection, hardware configuration, production deployment.
 
 Explore what we build at [heyneo.so](https://heyneo.so/).
 

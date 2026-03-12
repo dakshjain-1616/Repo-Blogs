@@ -16,7 +16,7 @@ github: https://github.com/Dakshjain1604/Prompt-AB-testing-Tool
 
 Prompt engineering often works like this: someone writes a system prompt, tests it on a handful of examples, decides it looks good, and ships it. Then the next person who touches it rewrites it based on intuition. Nobody actually knows whether the new version is better or worse.
 
-We built a tool to fix that. It runs proper statistical A/B tests on prompts, scores response quality using an LLM judge, tracks latency and token costs, and produces a full report you can actually make decisions from.
+NEO built a tool to fix that. It runs proper statistical A/B tests on prompts, scores response quality using an LLM judge, tracks latency and token costs, and produces a full report you can actually make decisions from.
 
 ## The Core Problem
 
@@ -70,7 +70,7 @@ This is what systematic prompt evaluation looks like.
 
 ---
 
-NEO builds the infrastructure that turns ML intuition into measured decisions. Prompt quality is measurable. We built the tool that measures it.
+NEO, your autonomous AI agent, builds the infrastructure turning ML intuition into measured decisions. Prompt quality is measurable. NEO built the tool that measures it.
 
 More at [heyneo.so](https://heyneo.so).
 

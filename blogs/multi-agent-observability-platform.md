@@ -17,7 +17,7 @@ You can't debug what you can't see. That's true for distributed systems, and it'
 
 Standard observability tools weren't designed for this. Datadog tracks infrastructure. Prometheus tracks metrics. Neither tells you that your retrieval agent looped 47 times, or that your summarization step cost $2.80 on a query that should have cost $0.04, or that Agent B is making the same decision regardless of what Agent A passes it.
 
-We built the Multi-Agent Observability Platform to fill that gap. It's self-hosted, production-ready, and designed specifically for the failure modes that show up in agent-based AI systems.
+NEO autonomously built the Multi-Agent Observability Platform to fill that gap. It's self-hosted, production-ready, and designed specifically for the failure modes that show up in agent-based AI systems.
 
 ## What This Platform Tracks
 

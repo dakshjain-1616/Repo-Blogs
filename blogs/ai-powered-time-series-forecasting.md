@@ -1,6 +1,6 @@
 ---
 title: "Natural Language Time Series Forecasting with Google's TimesFM Model"
-description: "We built ChronoSight, a full-stack forecasting application that lets you query time series data in plain language using Google's TimesFM-2.5-200M zero-shot forecasting model."
+description: "NEO built ChronoSight, a full-stack forecasting application that lets you query time series data in plain language using Google's TimesFM-2.5-200M zero-shot forecasting model."
 date: 2026-03-09
 tags: ["time series forecasting", "TimesFM", "zero-shot", "FastAPI", "React", "financial forecasting", "AI forecasting", "machine learning"]
 slug: ai-powered-time-series-forecasting
@@ -15,7 +15,7 @@ github: https://github.com/dakshjain-1616/AI-Powered-Time-Series-Forecasting
 
 Time series forecasting has a usability problem. The models are capable. Getting them to run requires a data science background, the right libraries, carefully shaped input data, and enough domain knowledge to interpret the output. Most people who would benefit from forecasting can't access it because the tooling is too technical.
 
-We built ChronoSight to change that. Ask a question in plain language. Get a forecast with confidence bands and trend analysis. No data science background required.
+NEO autonomously built ChronoSight to change that. Ask a question in plain language. Get a forecast with confidence bands and trend analysis. No data science background required.
 
 ## The Model Underneath
 

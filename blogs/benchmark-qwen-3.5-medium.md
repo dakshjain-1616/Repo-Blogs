@@ -21,7 +21,7 @@ The results were clearer than we expected.
 
 ## How the Benchmark Was Structured
 
-Designing fair benchmarks is harder than it looks. Generic prompts favor well-known models that have been overfit to common benchmarks. We built 50 distinct prompts specifically to avoid tasks the models have likely memorized, focusing instead on novel variations of common problem types.
+Designing fair benchmarks is harder than it looks. Generic prompts favor well-known models that have been overfit to common benchmarks. NEO built 50 distinct prompts specifically to avoid tasks the models have likely memorized, focusing instead on novel variations of common problem types.
 
 The five task categories covered coding challenges, logical reasoning, factual accuracy, creative generation, and instruction following. Each category tests different model capabilities, and the spread was intentional: a model that excels at coding but struggles with instruction following is a different tool than a balanced performer.
 

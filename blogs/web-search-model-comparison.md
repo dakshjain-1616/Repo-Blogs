@@ -1,6 +1,6 @@
 ---
 title: "Comparing AI Models on Web Search Tasks: A Systematic Benchmarking Approach"
-description: "We built SearchLens, a configuration-driven platform that benchmarks any two AI models across standardized web search tasks using a weighted 7-criterion rubric with support for nine API providers."
+description: "NEO built SearchLens, a configuration-driven platform that benchmarks any two AI models across standardized web search tasks using a weighted 7-criterion rubric with support for nine API providers."
 date: 2026-03-09
 tags: ["AI benchmarking", "web search", "model comparison", "Gemini", "GPT-4o", "LLM evaluation", "search AI"]
 slug: web-search-model-comparison
@@ -17,7 +17,7 @@ Which AI model is better at answering search queries? The question sounds simple
 
 Different models have different strengths. The model that wins on factual accuracy might lose on source recency. The model with the best citations might give verbose answers that bury the key point. Understanding these tradeoffs requires a structured comparison, not a handful of manual tests.
 
-We built SearchLens to make that comparison systematic and reproducible.
+NEO built SearchLens to make that comparison systematic and reproducible.
 
 ## The Benchmarking Framework
 
@@ -95,7 +95,7 @@ On factual recency, the gap between models with and without web search is large.
 
 ## Build Search-Aware AI Systems
 
-If you're building AI-powered search, research tools, or information retrieval systems and want to make evidence-based model selection decisions, NEO builds the evaluation infrastructure and production pipelines that support those decisions.
+If you're building AI-powered search, research tools, or information retrieval systems and want to make evidence-based model selection decisions, NEO, your autonomous AI agent, builds the evaluation infrastructure and production pipelines that support those decisions.
 
 See more of our work at [heyneo.so](https://heyneo.so/).
 

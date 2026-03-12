@@ -1,5 +1,5 @@
 ---
-title: "How We Built a Prompt Injection Defense System with 98.9% Detection Accuracy"
+title: "How NEO Built a Prompt Injection Defense System with 98.9% Detection Accuracy"
 description: "NEO built a production-ready, multi-layer prompt injection defense system that detects adversarial LLM attacks with 98.9% accuracy and under 200ms latency. Here's how it works."
 date: 2026-03-09
 tags: [prompt injection, LLM security, AI safety, adversarial attacks, toxic-bert, constitutional AI]
@@ -7,7 +7,7 @@ slug: prompt-injection-defense-system
 github: https://github.com/dakshjain-1616/Prompt-Injection-Defence-System
 ---
 
-# How We Built a Prompt Injection Defense System with 98.9% Detection Accuracy
+# How NEO Built a Prompt Injection Defense System with 98.9% Detection Accuracy
 
 [View the code on GitHub](https://github.com/dakshjain-1616/Prompt-Injection-Defence-System)
 
@@ -15,7 +15,7 @@ github: https://github.com/dakshjain-1616/Prompt-Injection-Defence-System
 
 Security for large language models remains an unsolved problem in most production systems. The standard approach is to bolt on a basic content filter and call it done. We took a different approach: a proper, layered defense system that treats prompt injection as a first-class threat, tested against over 1,000 adversarial scenarios.
 
-The result: 98.9% overall detection accuracy, a 0.4% false positive rate, and sub-200ms latency. Here is what we built and why it matters.
+The result: 98.9% overall detection accuracy, a 0.4% false positive rate, and sub-200ms latency. Here is what NEO built and why it matters.
 
 ## The Problem with LLM Security Today
 
@@ -25,11 +25,11 @@ A single content filter does not cut it. Pattern matching alone fails against no
 
 ## Three Layers of Defense
 
-We designed the system around three independent defensive layers, each catching a different class of attack.
+NEO designed the system around three independent defensive layers, each catching a different class of attack.
 
 ### Layer 1: Input Sanitization
 
-The first layer runs pattern recognition across the raw input before it ever reaches the model. We built a rule set targeting known injection signatures: phrases that attempt to override instructions, attempts to access system prompts, and common jailbreak templates. This layer is fast. It adds almost no latency because it runs before any model inference.
+The first layer runs pattern recognition across the raw input before it ever reaches the model. NEO built a rule set targeting known injection signatures: phrases that attempt to override instructions, attempts to access system prompts, and common jailbreak templates. This layer is fast. It adds almost no latency because it runs before any model inference.
 
 Known attack patterns are caught here. Novel patterns pass through to the next layer.
 
@@ -79,7 +79,7 @@ Integrations with REST APIs and monitoring dashboards are on the roadmap so secu
 
 ---
 
-If you are building an LLM application and need a defense system that holds up under adversarial testing, NEO builds this infrastructure. We design with real threat models, not best-guess safety filters.
+If you are building an LLM application and need a defense system that holds up under adversarial testing, NEO, your autonomous AI agent, builds this infrastructure, designing with real threat models, not best-guess safety filters.
 
 Check out what else we are working on at [heyneo.so](https://heyneo.so).
 

@@ -16,7 +16,7 @@ github: https://github.com/dakshjain-1616/Latest-LLMs-Real-Life-Task-Evaluation
 
 Model leaderboards are everywhere. Most of them measure performance on academic benchmarks designed years ago, optimized by training teams to look good, and increasingly disconnected from what actually matters when you're building something real.
 
-We took a different approach. Instead of synthetic academic tasks, we built a platform that evaluates models on the kinds of tasks developers and engineers actually give them: writing Flask routes, generating valid JSON schemas, solving multi-step logic problems, and retrieving specific facts buried in 32,000-token documents.
+NEO took a different approach. Instead of synthetic academic tasks, NEO built a platform that evaluates models on the kinds of tasks developers and engineers actually give them: writing Flask routes, generating valid JSON schemas, solving multi-step logic problems, and retrieving specific facts buried in 32,000-token documents.
 
 The result is a modular, async benchmarking platform that covers 150+ tasks across ten categories, runs evaluations in parallel, and produces structured reports with accuracy, latency, cost, and per-category breakdowns.
 
@@ -85,7 +85,7 @@ Third-party benchmarks tell you how models performed on someone else's tasks, ev
 
 Running your own benchmark on your own task distribution gives you data that's actually predictive of how a model will perform in your production environment.
 
-We built this platform to make that straightforward. If you want NEO to run model evaluations tailored to your specific use case or build custom evaluation infrastructure for your team, visit [heyneo.so](https://heyneo.so/).
+NEO built this platform to make that straightforward. If you want NEO to run model evaluations tailored to your specific use case or build custom evaluation infrastructure for your team, visit [heyneo.so](https://heyneo.so/).
 
 ---
 

@@ -16,7 +16,7 @@ github: https://github.com/abhishekgandhi-neo/MCP_Optimization_Suggestion_Agent_
 
 If you've spent time configuring Model Context Protocol servers, you know the routine. Search GitHub. Filter through dozens of repos of varying quality. Read each README. Figure out if the tool actually fits your use case. Edit JSON by hand. Break something. Fix it. Repeat.
 
-It's tedious, time-consuming work. So we automated it.
+It's tedious, time-consuming work. So NEO automated it.
 
 The MCP Optimization and Suggestion Agent does what you'd normally spend 30+ minutes doing: it researches available MCP servers across the web, reasons about which ones fit your needs, and either generates a tailored configuration from scratch or analyzes and improves your existing setup. The whole research cycle completes in 8 to 12 seconds.
 
@@ -32,7 +32,7 @@ Both modes produce structured, usable outputs. Not vague suggestions. Actual JSO
 
 ## The Technical Architecture
 
-We built this on four distinct modules that chain together cleanly.
+NEO built this on four distinct modules that chain together cleanly.
 
 The **research module** handles web filtering. It queries live sources, not a static database, so it finds recently published servers that wouldn't appear in a hardcoded list. It applies filtering logic to suppress false positives, achieving roughly 90% precision in relevance filtering. When you ask for MCP servers that handle database access, you get database tools, not a random assortment.
 

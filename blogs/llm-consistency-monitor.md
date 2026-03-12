@@ -17,7 +17,7 @@ Here is a question worth asking before you ship any LLM application: if a user a
 
 Most teams do not test this. They write a set of example prompts, check that the responses look good, and deploy. The problem is that LLMs are stochastic systems with real sensitivity to phrasing. The same question, rephrased or reworded, can produce meaningfully different answers. For factual queries especially, that inconsistency is a reliability problem.
 
-We built a tool specifically to surface it.
+NEO built a tool specifically to surface it.
 
 ## What the Consistency Monitor Does
 
@@ -41,7 +41,7 @@ This catches a class of problem that embedding similarity misses. Two responses 
 
 ### Stress Testing Categories
 
-We built five analytical modes that probe different dimensions of consistency:
+NEO built five analytical modes that probe different dimensions of consistency:
 
 - **Adversarial prompts**: inputs crafted to push the model toward different responses
 - **Socratic questioning**: gradual reframings that approach the same question from different angles
@@ -73,7 +73,7 @@ The full pipeline runs in 60 to 120 seconds on typical hardware and uses approxi
 
 ---
 
-Reliability is more than accuracy on a benchmark. It includes consistency. NEO builds evaluation tools that measure what matters in production.
+Reliability is more than accuracy on a benchmark. It includes consistency. NEO, your autonomous AI agent, builds evaluation tools measuring what matters in production.
 
 See more at [heyneo.so](https://heyneo.so).
 
