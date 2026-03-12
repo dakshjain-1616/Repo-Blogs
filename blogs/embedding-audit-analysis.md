@@ -9,13 +9,7 @@ github: https://github.com/dakshjain-1616/Embedding-Evaluator
 
 # EmbedAudit: A CLI Tool for Auditing Semantic Embedding Spaces
 
-<a href="https://github.com/dakshjain-1616/Embedding-Evaluator" target="_blank" style="display:flex;align-items:center;gap:14px;padding:16px 20px;border:1px solid #30363d;border-radius:10px;background:#0d1117;color:#e6edf3;text-decoration:none;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;margin:20px 0;width:fit-content;max-width:480px;transition:border-color 0.2s;">
-  <svg width="22" height="22" viewBox="0 0 16 16" fill="#e6edf3" xmlns="http://www.w3.org/2000/svg"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
-  <div>
-    <div style="font-weight:600;font-size:14px;color:#e6edf3;">dakshjain-1616/Embedding-Evaluator</div>
-    <div style="font-size:12px;color:#8b949e;margin-top:3px;">View on GitHub →</div>
-  </div>
-</a>
+[![View on GitHub](https://img.shields.io/badge/View_on_GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/dakshjain-1616/Embedding-Evaluator)
 
 ![Pipeline Architecture](../public/images/diagrams/embedding-audit-analysis.png)
 
@@ -77,13 +71,7 @@ EmbedAudit makes that inspection fast and systematic. NEO built it because the s
 
 We put together a full CLI walkthrough showing EmbedAudit running on a real vocabulary set, from the initial audit command through to the UMAP cluster map and the final report output.
 
-<a href="https://youtu.be/2YiW3SjyE3c" target="_blank" style="display:block;max-width:560px;margin:20px 0;border-radius:12px;overflow:hidden;border:1px solid #30363d;position:relative;cursor:pointer;text-decoration:none;">
-  <img src="https://img.youtube.com/vi/2YiW3SjyE3c/maxresdefault.jpg" alt="Watch on YouTube" style="width:100%;display:block;">
-  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(0,0,0,0.72);border-radius:50%;width:68px;height:68px;display:flex;align-items:center;justify-content:center;">
-    <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
-  </div>
-  <div style="position:absolute;bottom:12px;left:16px;background:rgba(0,0,0,0.7);color:#fff;font-size:12px;padding:4px 10px;border-radius:4px;font-family:sans-serif;">▶ Watch on YouTube</div>
-</a>
+[![Watch on YouTube](https://img.youtube.com/vi/2YiW3SjyE3c/maxresdefault.jpg)](https://youtu.be/2YiW3SjyE3c)
 
 ---
 
