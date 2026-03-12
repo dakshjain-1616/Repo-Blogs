@@ -100,6 +100,6 @@ NEO built a Mistral-7B inference server where continuous batching, priority sche
 Install the NEO extension to bring AI-powered development directly into your workflow:
 
 - **VS Code**: [NEO in VS Code](https://marketplace.visualstudio.com/items?itemName=NeoResearchInc.heyneo)
-- **Cursor**: [**Install NEO for Cursor →**](cursor://extension/NeoResearchInc.heyneo)
+- **Cursor**: <a href="cursor://extension/NeoResearchInc.heyneo" style="color:#0066FF;font-weight:bold;">Install NEO for Cursor →</a>
 
 ---
