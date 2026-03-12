@@ -31,11 +31,11 @@ The output is a consistency score from **0 to 100**, plus an interactive HTML re
 
 Raw text comparison does not work well for semantic consistency. Two responses can be phrased completely differently and mean the same thing, or can look superficially similar while contradicting each other on key facts.
 
-We use sentence-transformers to convert all 20 responses into embedding vectors that represent their semantic content. Then we run DBSCAN clustering on those vectors. DBSCAN is a density-based clustering algorithm that groups responses with similar semantic content together without requiring you to specify the number of clusters upfront. The distribution of clusters tells you a great deal: a well-consistent model should produce one tight cluster. Multiple clusters indicate the model is giving categorically different answers.
+The monitor uses sentence-transformers to convert all 20 responses into embedding vectors that represent their semantic content. Then it runs DBSCAN clustering on those vectors. DBSCAN is a density-based clustering algorithm that groups responses with similar semantic content together without requiring you to specify the number of clusters upfront. The distribution of clusters tells you a great deal: a well-consistent model should produce one tight cluster. Multiple clusters indicate the model is giving categorically different answers.
 
 ### Fact Extraction and Contradiction Detection
 
-Clustering tells you about surface-level semantic consistency. For deeper analysis, we use the Claude API to extract specific factual claims from each response and flag contradictions.
+Clustering tells you about surface-level semantic consistency. For deeper analysis, the monitor uses the Claude API to extract specific factual claims from each response and flag contradictions.
 
 This catches a class of problem that embedding similarity misses. Two responses might be semantically similar in tone and structure but disagree on a specific fact. The fact extraction step finds that.
 

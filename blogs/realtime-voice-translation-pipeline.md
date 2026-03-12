@@ -17,11 +17,11 @@ github: https://github.com/dakshjain-1616/Real-time-Voice-Translation-Pipeline
 
 > Latency is everything in voice applications. Once you cross two seconds of delay between someone speaking and hearing a translated response, the interaction stops feeling natural — it becomes a transaction. The common trap in building voice translation systems is stacking components that each add meaningful delay: if your speech-to-text takes 1.5 seconds, translation takes 0.8 seconds, and TTS adds 1.2 seconds, you've already lost before users even notice the quality.
 
-We hit **1.3 seconds** end-to-end. Here's how.
+NEO hit **1.3 seconds** end-to-end. Here's how.
 
 ## Designing for Low Latency
 
-We made specific model choices at each stage to keep the pipeline fast without sacrificing quality.
+NEO made specific model choices at each stage to keep the pipeline fast without sacrificing quality.
 
 ## Pipeline Architecture
 
@@ -29,19 +29,19 @@ The system chains four components: audio preprocessing, speech recognition, neur
 
 ### Audio Preprocessing
 
-We use Librosa for audio handling specifically because it works without an FFmpeg dependency. This matters for deployment. FFmpeg is a system-level dependency that creates friction in containerized environments. Librosa handles resampling, normalization, and format conversion entirely in Python.
+NEO uses Librosa for audio handling specifically because it works without an FFmpeg dependency. This matters for deployment. FFmpeg is a system-level dependency that creates friction in containerized environments. Librosa handles resampling, normalization, and format conversion entirely in Python.
 
-The preprocessing stage also handles noise robustness. We've tested against background noise, varying microphone quality, and recordings made in non-ideal acoustic environments. The pipeline degrades gracefully rather than failing hard.
+The preprocessing stage also handles noise robustness. NEO has tested against background noise, varying microphone quality, and recordings made in non-ideal acoustic environments. The pipeline degrades gracefully rather than failing hard.
 
 ### Speech-to-Text with Whisper Tiny
 
-We chose Whisper Tiny for the STT stage. This is a deliberate trade-off. Whisper Large produces better transcriptions, but the latency cost is too high for real-time use. Whisper Tiny completes the STT stage in **0.4 seconds** and achieves a word error rate **below 0.10** on clean audio, which is sufficient for the languages and use cases we're targeting.
+NEO chose Whisper Tiny for the STT stage. This is a deliberate trade-off. Whisper Large produces better transcriptions, but the latency cost is too high for real-time use. Whisper Tiny completes the STT stage in **0.4 seconds** and achieves a word error rate **below 0.10** on clean audio, which is sufficient for the target languages and use cases.
 
 For applications where accuracy matters more than latency, swapping in a larger Whisper variant is a one-line config change.
 
 ### Neural Machine Translation with MarianMT
 
-Translation runs through MarianMT transformer models. We load a separate model per language pair, which costs some memory but keeps translation inference to 0.3 seconds per request. The models cover English, Spanish, French, and German, handling four of the most common translation pairs in business and travel contexts.
+Translation runs through MarianMT transformer models. NEO loads a separate model per language pair, which costs some memory but keeps translation inference to 0.3 seconds per request. The models cover English, Spanish, French, and German, handling four of the most common translation pairs in business and travel contexts.
 
 MarianMT is well-suited here because the models are compact, inference is fast on CPU, and translation quality is competitive with much larger models for common language pairs.
 

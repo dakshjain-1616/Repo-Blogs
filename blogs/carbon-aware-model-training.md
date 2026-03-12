@@ -17,7 +17,7 @@ github: https://github.com/dakshjain-1616/CarbonAwareModelTraining
 
 > Training machine learning models is expensive — not just in compute costs, but in carbon. Large training runs can produce hundreds of kilograms of CO2 depending on where and when they run, and most teams simply ignore this. There's no standard tooling to schedule training around cleaner energy windows or to measure emissions as a first-class metric alongside accuracy and loss.
 
-The result is a PyTorch training pipeline that monitors real-time grid carbon intensity, schedules training during cleaner energy windows, and tracks emissions throughout the run. On MNIST with an RTX 3090, we achieved a **43.2% CO2 reduction** while keeping accuracy **within 0.3%** of baseline.
+The result is a PyTorch training pipeline that monitors real-time grid carbon intensity, schedules training during cleaner energy windows, and tracks emissions throughout the run. On MNIST with an RTX 3090, NEO achieved a **43.2% CO2 reduction** while keeping accuracy **within 0.3%** of baseline.
 
 ## The Core Insight: Timing Matters
 
@@ -37,15 +37,15 @@ This alone accounts for most of the emissions reduction. Shifting training from 
 
 ### Gradient Accumulation
 
-We combined carbon-aware scheduling with gradient accumulation, a memory optimization that lets you train with effectively larger batch sizes without proportionally larger GPU memory requirements.
+NEO combined carbon-aware scheduling with gradient accumulation, a memory optimization that lets you train with effectively larger batch sizes without proportionally larger GPU memory requirements.
 
-The technique processes smaller mini-batches sequentially, accumulates their gradients, and only performs the weight update after accumulating gradients across what would have been the full batch. This reduces peak GPU memory usage by **45-60%** in our tests, without meaningfully affecting the loss landscape the optimizer sees.
+The technique processes smaller mini-batches sequentially, accumulates their gradients, and only performs the weight update after accumulating gradients across what would have been the full batch. This reduces peak GPU memory usage by **45-60%** in NEO's tests, without meaningfully affecting the loss landscape the optimizer sees.
 
 This matters for carbon efficiency in a practical way. A smaller memory footprint means you can train on less expensive, more power-efficient hardware without degrading accuracy. It also enables mixed precision (FP16) training more reliably, which reduces power draw further.
 
 ### Continuous Emissions Tracking
 
-We integrated CodeCarbon throughout the training loop. It monitors CO2 emissions, energy consumption, and power draw in real time. At the end of each run, it generates a JSON-formatted report comparing the optimized run against a baseline.
+NEO integrated CodeCarbon throughout the training loop. It monitors CO2 emissions, energy consumption, and power draw in real time. At the end of each run, it generates a JSON-formatted report comparing the optimized run against a baseline.
 
 This is the piece most sustainability-focused teams are missing. You cannot improve what you do not measure. CodeCarbon makes the carbon cost of a training run a first-class metric alongside accuracy and loss.
 
@@ -77,7 +77,7 @@ Longer term, as energy costs and carbon pricing become more significant factors 
 
 ## Watch It in Action
 
-We put together a video walkthrough of the pipeline in action, showing the carbon intensity scheduler, gradient accumulation, and the live CodeCarbon emissions readout.
+NEO put together a video walkthrough of the pipeline in action, showing the carbon intensity scheduler, gradient accumulation, and the live CodeCarbon emissions readout.
 
 [![Watch on YouTube](https://img.youtube.com/vi/71Se6aNaWTM/maxresdefault.jpg)](https://youtu.be/71Se6aNaWTM)
 

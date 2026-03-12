@@ -27,7 +27,7 @@ The platform captures four categories of data that matter for multi-agent debugg
 
 **Cost tracking**: Real-time cost calculations per agent, per session, and per workflow run. Costs are computed against OpenRouter's model pricing and updated continuously. When a workflow runs $10 over budget, you know which agent and which model caused it.
 
-**Anomaly detection**: This is where the platform goes beyond metrics dashboards. We detect specific failure patterns common in agent workflows: infinite loops where an agent calls itself or a peer repeatedly without making progress, performance degradation where latency spikes beyond expected bounds, and decision drift where an agent's outputs stop correlating with its inputs.
+**Anomaly detection**: This is where the platform goes beyond metrics dashboards. NEO detects specific failure patterns common in agent workflows: infinite loops where an agent calls itself or a peer repeatedly without making progress, performance degradation where latency spikes beyond expected bounds, and decision drift where an agent's outputs stop correlating with its inputs.
 
 **LLM-generated analysis**: Raw metrics are useful, but interpreting them takes time. The platform uses an LLM to generate natural-language workflow summaries and optimization suggestions. Instead of reading 200 rows of trace data, you get a paragraph explaining what happened and what to investigate.
 

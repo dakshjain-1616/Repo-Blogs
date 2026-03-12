@@ -25,9 +25,9 @@ The agent works in three distinct stages. Each one has a clear responsibility, a
 
 ### Stage 1: Static Analysis
 
-Before changing anything, the agent needs to understand what's wrong. We run four complementary analysis tools against the codebase:
+Before changing anything, the agent needs to understand what's wrong. The agent runs four complementary analysis tools against the codebase:
 
-**AST parsing** gives us the structural view: function lengths, nesting depth, argument counts, class hierarchies. The Python abstract syntax tree lets us compute these metrics programmatically without executing any code.
+**AST parsing** provides the structural view: function lengths, nesting depth, argument counts, class hierarchies. The Python abstract syntax tree enables computing these metrics programmatically without executing any code.
 
 **Pylint** catches a wide range of issues: undefined variables, unused imports, inconsistent naming, missing documentation, and hundreds of other code quality rules.
 
@@ -41,7 +41,7 @@ Running all four together gives comprehensive coverage. On codebases over **10,0
 
 Static analysis tells you what's wrong. An LLM can tell you how to fix it in context.
 
-We send identified issues to a local Ollama instance running the deepseek-coder model. The key word is "local": model inference runs entirely on your machine, so your code never leaves your infrastructure. For many organizations, this is a hard requirement.
+The agent sends identified issues to a local Ollama instance running the deepseek-coder model. The key word is "local": model inference runs entirely on your machine, so your code never leaves your infrastructure. For many organizations, this is a hard requirement.
 
 The LLM receives the function or class with the identified issues, along with surrounding context to understand how the code is used. It generates refactored code that addresses the specific problems flagged by the static analysis stage.
 
@@ -59,7 +59,7 @@ All refactoring work happens on isolated git branches. You can review what the a
 
 ## Performance on Real Codebases
 
-We measured these results on codebases of **10,000+ lines**:
+NEO measured these results on codebases of **10,000+ lines**:
 
 - **Cyclomatic complexity detection rate: 98%**
 - **Refactoring success rate: 85-95%** across different code smell types

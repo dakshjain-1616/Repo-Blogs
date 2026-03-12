@@ -17,7 +17,7 @@ github: https://github.com/dakshjain-1616/Quantisation-Awareness-training
 
 > Deploying neural networks to edge devices is a genuine engineering challenge. The model that works great on your training server is often too large and too slow for a mobile device or a Raspberry Pi. Naive post-training quantization can cause accuracy drops of 10-20% on some models, leaving teams stuck between a model that's too big to deploy and one that's too degraded to use.
 
-Quantization-aware training (QAT) addresses this by simulating quantization during training, so the model learns to be robust to the precision reduction before it's actually applied. We compressed a **23.5MB** model down to **2.6MB** — a **9.08x reduction** — with only a **3.8% accuracy drop**.
+Quantization-aware training (QAT) addresses this by simulating quantization during training, so the model learns to be robust to the precision reduction before it's actually applied. NEO compressed a **23.5MB** model down to **2.6MB** — a **9.08x reduction** — with only a **3.8% accuracy drop**.
 
 ## Why Quantization Works
 
@@ -29,25 +29,25 @@ INT8 quantization cuts the memory footprint by roughly 4x on weights alone. It a
 
 ### Data and Model Setup
 
-We work with CIFAR-10 resized to 224x224 pixels to match MobileNetV2's expected input dimensions. MobileNetV2 is initialized with ImageNet pretrained weights, giving the model a strong starting point before fine-tuning on CIFAR-10.
+The pipeline uses CIFAR-10 resized to 224x224 pixels to match MobileNetV2's expected input dimensions. MobileNetV2 is initialized with ImageNet pretrained weights, giving the model a strong starting point before fine-tuning on CIFAR-10.
 
 Fine-tuning runs for 8 epochs. This is enough to adapt the pretrained weights to the new dataset while preserving the general visual features learned from ImageNet.
 
 ### Calibration
 
-Quantization-aware training requires a calibration dataset: a representative sample of input data used to determine the optimal scaling factors for mapping floating-point values to the INT8 range. We use **200 representative samples** for calibration.
+Quantization-aware training requires a calibration dataset: a representative sample of input data used to determine the optimal scaling factors for mapping floating-point values to the INT8 range. NEO uses **200 representative samples** for calibration.
 
 The calibration step is critical. The scaling factors it produces determine how well the quantized model approximates the full-precision model's behavior. Too few calibration samples and the scaling is poorly estimated. Too many and you're spending compute on diminishing returns. 200 samples is a reliable default for most vision tasks.
 
 ### INT8 Quantization with TFLite
 
-We convert the calibrated model to TensorFlow Lite format with full INT8 quantization. "Full INT8" means both weights and activations are quantized, as opposed to weight-only quantization which leaves activations in floating point.
+NEO converts the calibrated model to TensorFlow Lite format with full INT8 quantization. "Full INT8" means both weights and activations are quantized, as opposed to weight-only quantization which leaves activations in floating point.
 
 The output is a `.tflite` file at 2.59MB.
 
 ### A Practical Note on Tooling
 
-During development, we initially tried TensorFlow's native quantization toolkit for the conversion step and hit API compatibility issues with the specific TF version in use. We pivoted to post-training quantization instead, which proved more stable and produced comparable results. This kind of tooling friction is common in the quantization space, where APIs are still evolving. The lesson is to have a fallback approach ready and to test the output model thoroughly regardless of which conversion path you use.
+During development, NEO initially tried TensorFlow's native quantization toolkit for the conversion step and hit API compatibility issues with the specific TF version in use. NEO pivoted to post-training quantization instead, which proved more stable and produced comparable results. This kind of tooling friction is common in the quantization space, where APIs are still evolving. The lesson is to have a fallback approach ready and to test the output model thoroughly regardless of which conversion path you use.
 
 ## Results
 
@@ -87,7 +87,7 @@ This pipeline integrates naturally into CI/CD workflows: train, quantize, evalua
 
 ## Watch It in Action
 
-We recorded a full walkthrough of the quantization pipeline, showing the training run, conversion step, and the final model size comparison live.
+NEO recorded a full walkthrough of the quantization pipeline, showing the training run, conversion step, and the final model size comparison live.
 
 [![Watch on YouTube](https://img.youtube.com/vi/Z9W2gTu-Ekc/maxresdefault.jpg)](https://youtu.be/Z9W2gTu-Ekc)
 

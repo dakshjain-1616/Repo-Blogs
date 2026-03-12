@@ -31,15 +31,15 @@ Routing overhead is under 0.5ms. It is not a bottleneck.
 
 ### Async Metric Collection
 
-Metric logging is fully asynchronous. We use a queue-based system so logging never blocks the request path. Total logging overhead stays **under 1ms** per request. In high-throughput production environments, non-blocking collection is not optional.
+Metric logging is fully asynchronous. NEO uses a queue-based system so logging never blocks the request path. Total logging overhead stays **under 1ms** per request. In high-throughput production environments, non-blocking collection is not optional.
 
-We track response quality scores, latency, token usage, and any custom metrics you define per experiment.
+NEO tracks response quality scores, latency, token usage, and any custom metrics you define per experiment.
 
 ### Statistical Analysis
 
-This is where the framework earns its keep. For continuous metrics across N variants, we run one-way ANOVA first. If that test shows a statistically significant difference somewhere in the group, we move to pairwise comparisons with Bonferroni correction.
+This is where the framework earns its keep. For continuous metrics across N variants, the framework runs one-way ANOVA first. If that test shows a statistically significant difference somewhere in the group, it moves to pairwise comparisons with Bonferroni correction.
 
-Bonferroni correction adjusts the significance threshold for each individual test based on the total number of comparisons being made. It keeps the family-wise error rate under control. For categorical outcomes, we use Chi-Square tests with the same correction applied.
+Bonferroni correction adjusts the significance threshold for each individual test based on the total number of comparisons being made. It keeps the family-wise error rate under control. For categorical outcomes, Chi-Square tests with the same correction are applied.
 
 Every result comes with confidence intervals and effect sizes, not just p-values. A statistically significant result with a tiny effect size might not be worth shipping.
 

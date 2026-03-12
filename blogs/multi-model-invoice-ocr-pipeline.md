@@ -25,7 +25,7 @@ The pipeline operates in two sequential stages, each specialized for a different
 
 ### Stage 1: Vision-Based Text Extraction with GLM-4.5V
 
-We use GLM-4.5V via OpenRouter for the initial OCR pass. Unlike traditional OCR engines, vision transformers process the entire document layout holistically. They capture spatial relationships between elements, understand table structures, and maintain document semantics during extraction.
+The pipeline uses GLM-4.5V via OpenRouter for the initial OCR pass. Unlike traditional OCR engines, vision transformers process the entire document layout holistically. They capture spatial relationships between elements, understand table structures, and maintain document semantics during extraction.
 
 This matters because an invoice isn't just a list of text tokens. The proximity of a number to a label, the visual hierarchy of sections, the grouping of line items in a table: all of these carry meaning. GLM-4.5V handles this naturally.
 
@@ -33,7 +33,7 @@ OpenRouter's pricing model keeps costs reasonable for high-volume processing, wh
 
 ### Stage 2: Entity Classification with Fine-Tuned BERT
 
-Raw extracted text still needs to be mapped to structured fields. We fine-tuned a BERT model specifically for invoice entity recognition, training it to classify and extract:
+Raw extracted text still needs to be mapped to structured fields. NEO fine-tuned a BERT model specifically for invoice entity recognition, training it to classify and extract:
 
 - Vendor name and address
 - Invoice number and date
@@ -45,7 +45,7 @@ Beyond classification, the model outputs a confidence score for each identified 
 
 ## Performance on Real Invoice Data
 
-We benchmarked the pipeline across a diverse set of invoice samples covering different industries, layouts, and document quality levels. The results:
+NEO benchmarked the pipeline across a diverse set of invoice samples covering different industries, layouts, and document quality levels. The results:
 
 - **Vendor identification: 0.95 F1-score**
 - **Invoice number extraction: 0.96 F1-score**
@@ -57,7 +57,7 @@ The amount extraction score is particularly meaningful because financial accurac
 
 Single-model approaches force a trade-off: great OCR with mediocre entity understanding, or a large multimodal model that handles everything but costs more to run and is harder to fine-tune.
 
-Our two-stage design lets each model do what it does best. GLM-4.5V handles the visual complexity of document understanding. The fine-tuned BERT handles domain-specific semantic classification. You can also swap out either component independently if a better model emerges for one of the stages.
+The two-stage design lets each model do what it does best. GLM-4.5V handles the visual complexity of document understanding. The fine-tuned BERT handles domain-specific semantic classification. You can also swap out either component independently if a better model emerges for one of the stages.
 
 ## Practical Deployment
 
@@ -69,13 +69,13 @@ Requirements are minimal: Python 3.10+, an OpenRouter API key (available free at
 
 The same architecture works for any structured document extraction task: purchase orders, receipts, contracts, shipping manifests. If the document type has consistent field semantics even when layouts vary, this two-stage approach handles it well.
 
-We've also applied variations of this pipeline to expense report processing, customs documentation, and vendor statement reconciliation.
+NEO has also applied variations of this pipeline to expense report processing, customs documentation, and vendor statement reconciliation.
 
 ## What's Next
 
 The natural extension is a feedback loop where corrected extractions from human reviewers feed back into the fine-tuning dataset. Over time, the BERT model improves on the specific document types your organization processes most often.
 
-We're also experimenting with streaming outputs so that partial results are available before the full pipeline completes, useful for interactive applications where users want to see extraction in progress.
+NEO is also experimenting with streaming outputs so that partial results are available before the full pipeline completes, useful for interactive applications where users want to see extraction in progress.
 
 ---
 

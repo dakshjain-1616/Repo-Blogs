@@ -74,7 +74,7 @@ The architecture is modular enough to extend. Speaker identification, real-time 
 
 ## Watch It in Action
 
-We recorded a live demo of the ASR pipeline transcribing audio through the Streamlit interface and the CLI. Seeing the 0.6B model run on CPU makes the edge deployment story concrete.
+NEO recorded a live demo of the ASR pipeline transcribing audio through the Streamlit interface and the CLI. Seeing the 0.6B model run on CPU makes the edge deployment story concrete.
 
 [![Watch on YouTube](https://img.youtube.com/vi/Fn-jEt5wLmw/maxresdefault.jpg)](https://youtu.be/Fn-jEt5wLmw)
 

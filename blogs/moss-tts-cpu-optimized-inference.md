@@ -17,19 +17,19 @@ github: https://github.com/dakshjain-1616/MOSS-TTS-CPU-Optimized-Inference-Pipel
 
 > GPU access is expensive. For organizations running inference on-premises, or teams prototyping before committing to cloud GPU costs, the ability to run large models on CPU hardware can be the difference between shipping something and waiting for budget approval. MOSS-TTS is an 8.4-billion-parameter text-to-speech model — most production TTS deployments assume GPU acceleration, and no off-the-shelf approach existed for CPU deployment with acceptable memory usage.
 
-We wanted to know whether it was possible to run this model on CPU hardware at all, and if so, which quantization strategy produced the best tradeoff between memory usage, load time, and audio quality.
+NEO set out to determine whether it was possible to run this model on CPU hardware at all, and if so, which quantization strategy produced the best tradeoff between memory usage, load time, and audio quality.
 
 The short answer: yes, it runs on CPU, and selective quantization is the right approach.
 
-## The Three Approaches We Tested
+## The Three Approaches NEO Tested
 
-We ran experiments across three inference configurations on a 10-core CPU with 58GB of available RAM.
+NEO ran experiments across three inference configurations on a 10-core CPU with 58GB of available RAM.
 
-**Standard fp32** loads the model at full 32-bit floating point precision. No compression, no approximation. This is the baseline for audio quality, and it delivered the highest fidelity output in our testing. The cost is memory: **33GB peak usage**. Load time was also the longest of the three approaches. For environments where audio quality is the primary constraint and memory is available, fp32 is the reliable choice.
+**Standard fp32** loads the model at full 32-bit floating point precision. No compression, no approximation. This is the baseline for audio quality, and it delivered the highest fidelity output in testing. The cost is memory: **33GB peak usage**. Load time was also the longest of the three approaches. For environments where audio quality is the primary constraint and memory is available, fp32 is the reliable choice.
 
-**Selective quantization** applies INT8 compression only to the language model component of the architecture, leaving the acoustic components at higher precision. This is where things got interesting. Memory dropped to approximately **26GB peak**, a **21% reduction** compared to fp32. Load time came in at **7.24 seconds**. Audio quality remained essentially indistinguishable from fp32 in our evaluations. The LM component handles text processing, where slight numerical approximations matter less. The acoustic generation components, where quantization artifacts are more audible, stay at full precision.
+**Selective quantization** applies INT8 compression only to the language model component of the architecture, leaving the acoustic components at higher precision. This is where things got interesting. Memory dropped to approximately **26GB peak**, a **21% reduction** compared to fp32. Load time came in at **7.24 seconds**. Audio quality remained essentially indistinguishable from fp32 in NEO's evaluations. The LM component handles text processing, where slight numerical approximations matter less. The acoustic generation components, where quantization artifacts are more audible, stay at full precision.
 
-**Full INT8 quantization** applies compression across the entire model. We attempted this, but it exceeded available memory during the weight transformation process. The transformation itself requires holding both the original and quantized weights in memory simultaneously, pushing peak usage beyond what our test hardware could support. Full INT8 is not viable for this model on standard hardware configurations.
+**Full INT8 quantization** applies compression across the entire model. NEO attempted this, but it exceeded available memory during the weight transformation process. The transformation itself requires holding both the original and quantized weights in memory simultaneously, pushing peak usage beyond what the test hardware could support. Full INT8 is not viable for this model on standard hardware configurations.
 
 ## Why Selective Quantization Is the Right Call
 
@@ -43,7 +43,7 @@ Load time at 7.24 seconds is acceptable for most deployment patterns. If you're 
 
 The pipeline is built with modularity as a core principle. The inference component and the benchmarking component are separate, meaning you can swap in different quantization strategies or model variants without rewriting the benchmarking logic.
 
-Thread configuration is set automatically based on detected CPU core count. On our 10-core test system, this produced efficient utilization without manual tuning. The system forces Float32 precision at the framework level for the components where fp32 is required, working around compatibility issues that arise when running large multi-component models outside their expected GPU environment.
+Thread configuration is set automatically based on detected CPU core count. On the 10-core test system, this produced efficient utilization without manual tuning. The system forces Float32 precision at the framework level for the components where fp32 is required, working around compatibility issues that arise when running large multi-component models outside their expected GPU environment.
 
 Comprehensive logging is built in throughout. Performance measurements are captured at each stage of the pipeline, giving you visibility into where time is actually spent during inference. You can't optimize what you can't measure.
 

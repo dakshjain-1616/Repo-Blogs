@@ -23,7 +23,7 @@ NEO autonomously built a pipeline that handles this automatically. It detects ta
 
 Financial tables are harder than they look. You're dealing with scanned documents at varying resolutions, PDFs generated from different software systems, rotated pages, header rows spanning multiple columns, and cells containing formatted numbers with thousands separators, currency symbols, and parenthetical negatives.
 
-Our system handles this complexity while being explicit about uncertainty. Every output includes confidence scores, and anomalies are flagged rather than silently passed through.
+The system handles this complexity while being explicit about uncertainty. Every output includes confidence scores, and anomalies are flagged rather than silently passed through.
 
 ## Pipeline Architecture
 
@@ -31,29 +31,29 @@ The extraction process runs through six stages, each handling a specific part of
 
 ### Document Preprocessing with OpenCV
 
-Before any ML model sees the document, we clean it up. OpenCV handles noise reduction, contrast enhancement, and deskewing. Documents scanned at a slight angle get rotated back. Documents with speckling or compression artifacts get smoothed.
+Before any ML model sees the document, NEO cleans it up. OpenCV handles noise reduction, contrast enhancement, and deskewing. Documents scanned at a slight angle get rotated back. Documents with speckling or compression artifacts get smoothed.
 
 This preprocessing step has a significant effect on downstream accuracy. A table detector trained on clean images will underperform on degraded scans without input normalization.
 
 ### Table Detection with Microsoft Table Transformer
 
-We use Microsoft's Table Transformer model to locate table boundaries within the document. This model was trained specifically on document images and understands the visual structure of tables including borders, ruling lines, and the absence of explicit borders in borderless tables.
+NEO uses Microsoft's Table Transformer model to locate table boundaries within the document. This model was trained specifically on document images and understands the visual structure of tables including borders, ruling lines, and the absence of explicit borders in borderless tables.
 
 The model outputs bounding boxes for each detected table and classifies structural elements: column headers, row headers, and data cells. This structural understanding is what lets us reconstruct tables correctly rather than extracting text in reading order.
 
-Our pipeline achieves **96.3% table detection accuracy** across the documents we've tested.
+The pipeline achieves **96.3% table detection accuracy** across the documents NEO has tested.
 
 ### Cell-Level OCR with TrOCR
 
-Once we have the table structure, we crop each cell and run TrOCR against it. TrOCR is a transformer-based OCR model that handles handwriting, printed text, and the mixed-quality text common in scanned financial documents.
+Once the table structure is identified, NEO crops each cell and runs TrOCR against it. TrOCR is a transformer-based OCR model that handles handwriting, printed text, and the mixed-quality text common in scanned financial documents.
 
-We achieve **98.5% average OCR confidence** across tested datasets. The cell-by-cell approach keeps OCR errors isolated: a bad read on one cell doesn't corrupt adjacent cells.
+The pipeline achieves **98.5% average OCR confidence** across tested datasets. The cell-by-cell approach keeps OCR errors isolated: a bad read on one cell doesn't corrupt adjacent cells.
 
 ### Data Reconstruction and Validation
 
-After OCR, we reconstruct the full table structure using bounding box coordinates from the Table Transformer output. Row and column assignments are computed from spatial overlap, with light heuristics to handle merged cells.
+After OCR, NEO reconstructs the full table structure using bounding box coordinates from the Table Transformer output. Row and column assignments are computed from spatial overlap, with light heuristics to handle merged cells.
 
-The validation layer checks for numerical consistency. Totals should equal the sum of their rows. Year-over-year columns should have the same number of rows. Percentage columns should stay within expected ranges. When something fails validation, we flag it with a specific error type rather than passing bad output downstream.
+The validation layer checks for numerical consistency. Totals should equal the sum of their rows. Year-over-year columns should have the same number of rows. Percentage columns should stay within expected ranges. When something fails validation, the pipeline flags it with a specific error type rather than passing bad output downstream.
 
 Cell extraction precision is **94.7%**, with average processing speed at **3.2 seconds per page**.
 
@@ -69,7 +69,7 @@ The JSON output is particularly useful for downstream applications. You get the 
 
 ## Multi-Format Input Support
 
-We handle PDFs, scanned document images, and raster formats (PNG, TIFF, JPEG) through the same pipeline. PDFs with embedded text layers get text extracted directly for cells where possible, using OCR only as a fallback for image-only PDFs. This improves accuracy and speed for digitally-generated documents.
+The pipeline handles PDFs, scanned document images, and raster formats (PNG, TIFF, JPEG). PDFs with embedded text layers get text extracted directly for cells where possible, using OCR only as a fallback for image-only PDFs. This improves accuracy and speed for digitally-generated documents.
 
 ## Deployment
 

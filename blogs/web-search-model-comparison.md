@@ -85,7 +85,7 @@ This is especially true for search applications, where the definition of a "good
 
 ## Choosing Models for Search Applications
 
-The patterns we've observed running these comparisons:
+The patterns NEO has observed running these comparisons:
 
 Models with native web search (Google, OpenAI) tend to win on source recency and current news categories. Their retrieval pipeline is tighter. For time-sensitive queries, this advantage is often decisive.
 

@@ -83,7 +83,7 @@ NEO built this as a simulation because trading makes the coordination challenges
 
 ## Watch It in Action
 
-We recorded the full swarm running through a live simulation, with the message bus logs and per-agent trade activity visible in real time.
+NEO recorded the full swarm running through a live simulation, with the message bus logs and per-agent trade activity visible in real time.
 
 [![Watch on YouTube](https://img.youtube.com/vi/2c9pnt5i7jU/maxresdefault.jpg)](https://youtu.be/2c9pnt5i7jU)
 

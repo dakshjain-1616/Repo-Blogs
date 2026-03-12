@@ -17,7 +17,7 @@ github: https://github.com/dakshjain-1616/Prompt-Injection-Defence-System
 
 > Prompt injection attacks are not theoretical. Attackers craft inputs designed to override a model's system instructions, switch its operating persona, or extract sensitive information it was trained to protect. The standard approach — bolt on a basic content filter and call it done — fails against novel attack variants, because pattern matching alone can't keep up with the attack surface. For agentic systems that take real-world actions, a successful injection isn't just an annoyance: it's a direct security vulnerability.
 
-We took a different approach: a proper, layered defense system that treats prompt injection as a first-class threat, tested against over **1,000 adversarial scenarios**. The result: **98.9% overall detection accuracy**, a **0.4% false positive rate**, and **sub-200ms latency**.
+NEO took a different approach: a proper, layered defense system that treats prompt injection as a first-class threat, tested against over **1,000 adversarial scenarios**. The result: **98.9% overall detection accuracy**, a **0.4% false positive rate**, and **sub-200ms latency**.
 
 ## Three Layers of Defense
 
@@ -37,13 +37,13 @@ This catches adversarial inputs that are syntactically novel but semantically da
 
 ### Layer 3: ML-Powered Output Validation
 
-The third layer evaluates model outputs using `toxic-bert`, a fine-tuned BERT model for toxicity classification. Even if a malicious input slips through the first two layers, this layer checks whether the output itself contains harmful content before it reaches the user. We scored 98% accuracy on toxicity classification using this model alone.
+The third layer evaluates model outputs using `toxic-bert`, a fine-tuned BERT model for toxicity classification. Even if a malicious input slips through the first two layers, this layer checks whether the output itself contains harmful content before it reaches the user. NEO scored 98% accuracy on toxicity classification using this model alone.
 
 This is the backstop. Outputs are scored, and anything above the toxicity threshold is blocked and logged.
 
 ## Performance in Production
 
-We tested the full pipeline across 1,000+ adversarial scenarios, covering every major attack category in current research.
+NEO tested the full pipeline across 1,000+ adversarial scenarios, covering every major attack category in current research.
 
 - **Instruction override attacks: 100% detection rate**
 - **Role-switching attacks: 100% detection rate**
@@ -55,7 +55,7 @@ That false positive rate matters as much as the detection rate. A defense system
 
 ## Deployment
 
-We ship this with Docker configuration built for security hardening. The container runs as a non-root user, mounts the filesystem read-only, and enforces resource limits. Kubernetes deployment specs are included for teams running at enterprise scale.
+NEO ships this with Docker configuration built for security hardening. The container runs as a non-root user, mounts the filesystem read-only, and enforces resource limits. Kubernetes deployment specs are included for teams running at enterprise scale.
 
 Setup requires Python 3.12+ and a free HuggingFace account to pull the toxicity model. The automated setup scripts handle environment configuration on both macOS/Linux and Windows.
 
@@ -69,7 +69,7 @@ Medical platforms, legal document tools, financial advisory systems. Any domain 
 
 ## What is Next
 
-The current system is extensible. We are working on adding semantic similarity analysis to catch paraphrased attacks that share meaning but not surface form, and custom detection rules for domain-specific attack patterns.
+The current system is extensible. NEO is working on adding semantic similarity analysis to catch paraphrased attacks that share meaning but not surface form, and custom detection rules for domain-specific attack patterns.
 
 Integrations with REST APIs and monitoring dashboards are on the roadmap so security teams can observe attack patterns over time, not just block them in the moment.
 

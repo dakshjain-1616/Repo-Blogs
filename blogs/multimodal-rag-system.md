@@ -25,7 +25,7 @@ The fundamental challenge in multimodal retrieval is comparing a text query agai
 
 CLIP solves this. OpenAI's Contrastive Language-Image Pretraining model was trained to align image and text representations in a shared embedding space. An image of a bar chart and a text description of that chart end up close to each other in CLIP's embedding space, even though they're completely different data types.
 
-We use CLIP ViT-B/32 to produce **512-dimensional embeddings** for all three modalities. Every piece of content in the knowledge base, whether a paragraph of text, a photograph, or a spreadsheet, gets embedded into the same 512-dimensional space. Retrieval becomes straightforward: embed the query, find the nearest neighbors.
+NEO uses CLIP ViT-B/32 to produce **512-dimensional embeddings** for all three modalities. Every piece of content in the knowledge base, whether a paragraph of text, a photograph, or a spreadsheet, gets embedded into the same 512-dimensional space. Retrieval becomes straightforward: embed the query, find the nearest neighbors.
 
 ## Ingestion Pipeline
 
@@ -33,7 +33,7 @@ The ingestion system handles three modality-specific processing paths that all f
 
 ### Text Processing
 
-Text documents in PDF, DOCX, and TXT format go through recursive chunking. We split documents into overlapping chunks of configurable size, preserving paragraph boundaries where possible. Each chunk gets embedded with CLIP's text encoder and stored with metadata: source document, page number, chunk index, and the original text.
+Text documents in PDF, DOCX, and TXT format go through recursive chunking. NEO splits documents into overlapping chunks of configurable size, preserving paragraph boundaries where possible. Each chunk gets embedded with CLIP's text encoder and stored with metadata: source document, page number, chunk index, and the original text.
 
 Overlapping chunks ensure that content near chunk boundaries doesn't get split in ways that lose context.
 
@@ -45,7 +45,7 @@ The final embedding is the CLIP visual embedding, but the OCR text gets stored a
 
 ### Table Processing
 
-Tables from CSV, XLSX, and JSON files get processed through schema extraction. We extract column names, data types, sample values, and any header information. This structured description of the table's content gets embedded with CLIP's text encoder, because describing what a table contains is fundamentally a language task.
+Tables from CSV, XLSX, and JSON files get processed through schema extraction. NEO extracts column names, data types, sample values, and any header information. This structured description of the table's content gets embedded with CLIP's text encoder, because describing what a table contains is fundamentally a language task.
 
 This approach lets a text query like "customer churn by region" find a relevant CSV file based on the semantic match between the query and the table's schema description.
 
@@ -53,13 +53,13 @@ This approach lets a text query like "customer churn by region" find a relevant 
 
 All embeddings go into ChromaDB with HNSW (Hierarchical Navigable Small World) indexing. HNSW is an approximate nearest neighbor algorithm that trades a small amount of recall for significant speed. It's the standard choice for production vector databases: you might miss 1-2% of relevant results, but retrieval is 10-100x faster than exact search.
 
-We apply L2 normalization to all embeddings before storage. This means cosine similarity and dot product similarity give equivalent results, and the HNSW index can use whichever is faster.
+NEO applies L2 normalization to all embeddings before storage. This means cosine similarity and dot product similarity give equivalent results, and the HNSW index can use whichever is faster.
 
 The result: **0.030 second** retrieval latency with **33 queries per second** average throughput. The retrieval step doesn't meaningfully add to end-to-end query latency.
 
 ## Cross-Modal Retrieval
 
-The cross-modal accuracy we report is **60%+** for text-to-image retrieval. When you submit a text query, more than 60% of the time the most visually relevant image appears in the top retrieved results.
+The cross-modal accuracy NEO reports is **60%+** for text-to-image retrieval. When you submit a text query, more than 60% of the time the most visually relevant image appears in the top retrieved results.
 
 For a baseline of random retrieval, that number would be close to zero. 60%+ reflects the quality of CLIP's shared embedding space for cross-modal matching.
 
@@ -89,7 +89,7 @@ The clear use cases are: technical documentation with lots of diagrams, product 
 
 ## What's Next
 
-The main extension we're working on is better table understanding. The current approach treats tables as described text, which misses numerical relationships within the data. A table-specific embedding model that understands row/column structure would improve retrieval for analytical queries.
+The main extension NEO is working on is better table understanding. The current approach treats tables as described text, which misses numerical relationships within the data. A table-specific embedding model that understands row/column structure would improve retrieval for analytical queries.
 
 Video is the other obvious modality to add. The CLIP architecture extends to video through frame-level sampling, though the indexing and retrieval patterns need adjustment for temporal content.
 

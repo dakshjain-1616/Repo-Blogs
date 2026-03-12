@@ -25,17 +25,17 @@ The result is a modular, async benchmarking platform that covers **150+ tasks** 
 
 The task library is organized into ten categories, but a few deserve particular attention because they reveal model capability differences that don't show up on standard benchmarks.
 
-**Coding** is the largest category at **40 tasks**. We focus on Flask and FastAPI development challenges because they test practical web development knowledge, not just algorithmic problem solving. Can the model write a working authentication middleware? Can it handle a complex route with query parameter validation? Algorithm challenges are also included, but the web framework tasks are where we see the most differentiation between models.
+**Coding** is the largest category at **40 tasks**. NEO focuses on Flask and FastAPI development challenges because they test practical web development knowledge, not just algorithmic problem solving. Can the model write a working authentication middleware? Can it handle a complex route with query parameter validation? Algorithm challenges are also included, but the web framework tasks are where the most differentiation between models shows up.
 
-**Structured output** runs **25 tasks** centered on JSON Schema compliance and format adherence. This matters enormously for production use. An LLM that writes a beautiful explanation but produces invalid JSON is useless in an automated pipeline. We test strict schema compliance, not approximate formatting.
+**Structured output** runs **25 tasks** centered on JSON Schema compliance and format adherence. This matters enormously for production use. An LLM that writes a beautiful explanation but produces invalid JSON is useless in an automated pipeline. NEO tests strict schema compliance, not approximate formatting.
 
 **Reasoning** covers **20 tasks** involving multi-step logic and complex problem-solving. These are constructed to require more than pattern matching. Models that have memorized solutions to common problems struggle when the problem structure is slightly unfamiliar.
 
-**Long-context** is our most technically demanding category at **8 tasks**, but each task is substantial. We embed target facts in documents over **32,000 tokens** and ask models to retrieve specific information accurately. This directly tests real-world use cases like document Q&A, contract analysis, and codebase understanding.
+**Long-context** is the most technically demanding category at **8 tasks**, but each task is substantial. NEO embeds target facts in documents over **32,000 tokens** and asks models to retrieve specific information accurately. This directly tests real-world use cases like document Q&A, contract analysis, and codebase understanding.
 
 ## How Scoring Works
 
-We use four scoring methods, applied based on task type.
+NEO uses four scoring methods, applied based on task type.
 
 **Exact matching** handles factual questions and structured outputs where the correct answer is unambiguous. Either the model produced the right output or it didn't.
 
@@ -68,11 +68,11 @@ Results export to Markdown for human reading, JSON for programmatic analysis, an
 
 ## What the Results Actually Show
 
-We won't publish a definitive ranking here because model performance changes with every new release. What we can say is that the results consistently challenge assumptions.
+NEO won't publish a definitive ranking here because model performance changes with every new release. What the results consistently show is that assumptions get challenged.
 
 Models that dominate academic benchmarks don't always win on practical coding tasks. Some models that look expensive per token are actually cheaper per correct answer because their accuracy is higher. Long-context performance varies more dramatically between models than most summary comparisons suggest.
 
-The structured output category is where we see the most surprising failures. Models that perform impressively on reasoning tasks sometimes produce malformed JSON on straightforward schema compliance tasks. If you're building systems that depend on reliable structured output, test specifically for it.
+The structured output category is where the most surprising failures appear. Models that perform impressively on reasoning tasks sometimes produce malformed JSON on straightforward schema compliance tasks. If you're building systems that depend on reliable structured output, test specifically for it.
 
 ## Providers Supported
 

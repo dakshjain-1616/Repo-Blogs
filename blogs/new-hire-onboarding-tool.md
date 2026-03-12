@@ -43,7 +43,7 @@ This means the same codebase runs for a ten-person startup and a five-hundred-pe
 
 ### Parallel Execution with Thread-Safe State
 
-Running Phase 1 and Phase 2 in parallel cuts provisioning time, but it introduces concurrency complexity. We used thread-safe state management to track completion signals between phases. Each phase writes its result to a shared state object. Downstream phases read from that object before starting. No polling loops, no arbitrary sleep calls.
+Running Phase 1 and Phase 2 in parallel cuts provisioning time, but it introduces concurrency complexity. NEO used thread-safe state management to track completion signals between phases. Each phase writes its result to a shared state object. Downstream phases read from that object before starting. No polling loops, no arbitrary sleep calls.
 
 ### Error Resilience by Design
 

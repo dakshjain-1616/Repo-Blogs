@@ -31,13 +31,13 @@ Quality evaluation runs across three complementary metrics.
 
 Together, these three give you a complete picture: surface similarity, structural similarity, and semantic equivalence.
 
-For latency, we measure across percentiles rather than just averaging. **P50** latency tells you the typical case. **P95** and **P99** tell you about tail behavior, which matters for production systems where outlier latency can break SLA agreements.
+For latency, NEO measures across percentiles rather than just averaging. **P50** latency tells you the typical case. **P95** and **P99** tell you about tail behavior, which matters for production systems where outlier latency can break SLA agreements.
 
 ## Adaptive Gamma Recommendations
 
 Gamma is the number of tokens the draft model proposes per speculative step. Too low and you don't get much speedup. Too high and the target model spends more time rejecting bad proposals than it would have spent generating tokens directly.
 
-The optimal gamma depends on how well your draft model predicts the target model's outputs on your specific prompt distribution. We measure this empirically and include adaptive gamma recommendations in the benchmark report. Instead of guessing or using a hardcoded default, you get a data-driven recommendation for your specific model pair and workload.
+The optimal gamma depends on how well your draft model predicts the target model's outputs on your specific prompt distribution. NEO measures this empirically and includes adaptive gamma recommendations in the benchmark report. Instead of guessing or using a hardcoded default, you get a data-driven recommendation for your specific model pair and workload.
 
 ## Three Ways to Use It
 

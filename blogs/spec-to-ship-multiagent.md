@@ -15,7 +15,7 @@ github: https://github.com/dakshjain-1616/Spec-To-Ship
 
 ## The Problem
 
-> The gap between "we have a spec" and "we have working code" is where most engineering time disappears. Writing the spec is fast. Implementing it, writing tests for it, and reviewing it for security issues takes most of the sprint. For well-defined features with clear acceptance criteria, most of that work is mechanical — translating specs into code following established patterns — yet it consumes senior engineering time that could be spent on harder problems.
+> The gap between having a spec and having working code is where most engineering time disappears. Writing the spec is fast. Implementing it, writing tests for it, and reviewing it for security issues takes most of the sprint. For well-defined features with clear acceptance criteria, most of that work is mechanical — translating specs into code following established patterns — yet it consumes senior engineering time that could be spent on harder problems.
 
 NEO autonomously built a system to close that gap. Spec-to-Ship is a multi-agent pipeline that takes a feature idea as input and outputs tested, production-ready TypeScript code. No manual implementation steps. No separate test-writing pass.
 

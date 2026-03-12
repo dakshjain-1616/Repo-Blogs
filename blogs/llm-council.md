@@ -23,19 +23,19 @@ LLM Council is a minimal, production-usable framework that queries multiple lang
 
 Think about how expert panels work. A single doctor can miss a diagnosis. Three doctors reviewing the same case independently, then comparing notes, are much harder to fool. LLMs operate on a similar principle. Each model has different training data, different RLHF tuning, different failure modes. When they agree, you can be more confident. When they diverge, that divergence itself is informative.
 
-Our benchmarks confirmed this. Single GPT-4 queries scored **7.2/10** quality with a **12% hallucination rate** across our test set. Running the same queries through the Council's synthesis approach pushed that to **8.4/10** quality with only a **4% hallucination rate**. That's a meaningful improvement without any fine-tuning or prompt hacking.
+NEO's benchmarks confirmed this. Single GPT-4 queries scored **7.2/10** quality with a **12% hallucination rate** across the test set. Running the same queries through the Council's synthesis approach pushed that to **8.4/10** quality with only a **4% hallucination rate**. That's a meaningful improvement without any fine-tuning or prompt hacking.
 
 ## The Architecture: Small Core, Serious Capability
 
-The entire framework depends on only two libraries: OpenAI and Pydantic. We kept it that way intentionally. Heavy frameworks introduce hidden complexity, and hidden complexity breaks in production.
+The entire framework depends on only two libraries: OpenAI and Pydantic. NEO kept it that way intentionally. Heavy frameworks introduce hidden complexity, and hidden complexity breaks in production.
 
-Under the hood, we use `asyncio.gather()` to fire off all model queries simultaneously. Total latency approximates the slowest model in the council, not the sum of all response times. If you're querying four models and the slowest takes 3 seconds, you wait 3 seconds total, not 12. That makes the Council practical for real applications, not just offline experiments.
+Under the hood, NEO uses `asyncio.gather()` to fire off all model queries simultaneously. Total latency approximates the slowest model in the council, not the sum of all response times. If you're querying four models and the slowest takes 3 seconds, you wait 3 seconds total, not 12. That makes the Council practical for real applications, not just offline experiments.
 
-We integrated with OpenRouter, which gives us access to **200+ models** through a single API. You can run a council of GPT-4o, Claude 3.5 Sonnet, Gemini 1.5 Pro, and Llama 3.1 70B in one shot. Mix providers freely.
+NEO integrated with OpenRouter, which gives access to **200+ models** through a single API. You can run a council of GPT-4o, Claude 3.5 Sonnet, Gemini 1.5 Pro, and Llama 3.1 70B in one shot. Mix providers freely.
 
 ## Two Consensus Strategies
 
-We shipped two approaches because different tasks need different aggregation logic.
+NEO shipped two approaches because different tasks need different aggregation logic.
 
 **Synthesis** uses a judge model to read all responses and produce a unified answer. The judge understands nuance, can weigh conflicting information, and produces coherent prose. This works best for open-ended questions, complex reasoning, and anything where "correct" isn't a single word or number.
 
@@ -68,13 +68,13 @@ response = await council.query("Explain the tradeoffs between RLHF and DPO for a
 
 Error handling, retries, and timeouts are built in. You don't need to write defensive wrappers around each model call.
 
-## What We Learned Building This
+## What NEO Learned Building This
 
 The biggest insight was that synthesis quality depends heavily on the judge model. A weak judge that just concatenates responses adds little value. A strong judge explicitly prompted to find agreement, flag conflicts, and synthesize coherently makes a real difference.
 
 Voting, by contrast, degrades gracefully even with weaker models in the mix. Majority signal is robust to outliers.
 
-We also found that council size matters less than council diversity. Three models with different architectures and training regimes outperform five models from the same provider family.
+NEO also found that council size matters less than council diversity. Three models with different architectures and training regimes outperform five models from the same provider family.
 
 ## Try It
 

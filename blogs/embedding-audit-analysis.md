@@ -69,7 +69,7 @@ EmbedAudit makes that inspection fast and systematic. NEO built it because the s
 
 ## Watch It in Action
 
-We put together a full CLI walkthrough showing EmbedAudit running on a real vocabulary set, from the initial audit command through to the UMAP cluster map and the final report output.
+NEO put together a full CLI walkthrough showing EmbedAudit running on a real vocabulary set, from the initial audit command through to the UMAP cluster map and the final report output.
 
 [![Watch on YouTube](https://img.youtube.com/vi/2YiW3SjyE3c/maxresdefault.jpg)](https://youtu.be/2YiW3SjyE3c)
 

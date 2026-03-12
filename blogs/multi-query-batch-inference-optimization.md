@@ -17,7 +17,7 @@ github: https://github.com/dakshjain-1616/Multi-Query-Batch-Inference-Optimizati
 
 > The simplest way to serve an LLM is to process one request at a time: receive request, run inference, return result, repeat. This works fine for a single user but falls apart under any real load — every request in the queue waits for the entire current generation to complete before it even starts. For CPU deployments specifically, where individual token generation is meaningfully slower than GPU, this naive approach produces a baseline of just 1.2 requests per second.
 
-NEO built a Mistral-7B inference server that achieves **18.7 requests per second** on CPU — a **15.6x improvement**. Here's how we got there.
+NEO built a Mistral-7B inference server that achieves **18.7 requests per second** on CPU — a **15.6x improvement**. Here's how NEO got there.
 
 ## Architecture: Five Components
 
@@ -39,18 +39,18 @@ For CPU inference, where individual token generation is slower than on GPU, this
 
 ### Priority-Based Scheduler
 
-Not all requests are equal. An interactive user waiting for a response has different latency requirements than a background batch job. We implemented a two-tier queue:
+Not all requests are equal. An interactive user waiting for a response has different latency requirements than a background batch job. NEO implemented a two-tier queue:
 
 - Interactive requests get priority scheduling with a target latency under 500ms
 - Batch requests run in background slots and accept longer wait times
 
-This lets the server handle mixed workloads correctly. The actual median interactive response time we measured is **165ms**, well under the **500ms** target.
+This lets the server handle mixed workloads correctly. The actual median interactive response time NEO measured is **165ms**, well under the **500ms** target.
 
 ### Block-Based KV Cache Management
 
 The key-value cache is the main memory bottleneck in LLM inference. Standard implementations allocate the full maximum sequence length for each request upfront, wasting memory for short sequences and limiting concurrency.
 
-We use a block-based allocation scheme where KV cache is allocated in fixed-size blocks and expanded dynamically as a sequence grows. This achieves **72% memory reduction** compared to the naive approach, which directly translates to higher concurrency.
+NEO uses a block-based allocation scheme where KV cache is allocated in fixed-size blocks and expanded dynamically as a sequence grows. This achieves **72% memory reduction** compared to the naive approach, which directly translates to higher concurrency.
 
 With efficient KV cache management, the server handles **8 concurrent requests** using **6.8GB of memory**.
 
@@ -58,7 +58,7 @@ With efficient KV cache management, the server handles **8 concurrent requests**
 
 One specific user need that affects infrastructure design is structured output: requests where the response must be valid JSON matching a specific schema. Naive approaches generate text and then validate it, which produces invalid output and requires retries.
 
-We use GBNF grammar-constrained decoding to guarantee valid JSON output at generation time. The grammar specifies the valid token sequence for any JSON value matching the target schema, and the decoder only produces tokens that keep the sequence valid. The overhead compared to raw text generation is only 4.61%.
+NEO uses GBNF grammar-constrained decoding to guarantee valid JSON output at generation time. The grammar specifies the valid token sequence for any JSON value matching the target schema, and the decoder only produces tokens that keep the sequence valid. The overhead compared to raw text generation is only 4.61%.
 
 ## Performance Numbers
 
@@ -76,7 +76,7 @@ The baseline is sequential processing on the same hardware. The 15.6x improvemen
 
 Minimum specs: Python 3.8+, 16GB RAM, 4+ CPU cores. The server includes installation scripts and quick-start examples.
 
-For production deployments, we recommend:
+For production deployments, NEO recommends:
 - Pre-loading the model before the server starts accepting traffic
 - Setting the batch timeout based on your latency requirements (shorter timeout = lower latency, lower throughput)
 - Monitoring the KV cache utilization metric exposed by the server to tune block sizes for your request distribution

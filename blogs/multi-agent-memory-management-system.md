@@ -23,7 +23,7 @@ NEO autonomously built the Multi-Agent Memory Management System to find a better
 
 **Hot context** holds the last N conversation turns in full fidelity. This is always-present, always-accurate, zero-retrieval-cost memory. Recent exchanges stay exactly as they happened.
 
-**Cold storage** is a SQLite + ChromaDB backed store for older conversation history. Rather than discarding past turns, we embed them as vectors and persist them. When the agent needs something from earlier in the conversation, semantic search retrieves it in **80 to 96 milliseconds**.
+**Cold storage** is a SQLite + ChromaDB backed store for older conversation history. Rather than discarding past turns, NEO embeds them as vectors and persists them. When the agent needs something from earlier in the conversation, semantic search retrieves it in **80 to 96 milliseconds**.
 
 **Automatic summarization** bridges the two. When conversation history exceeds a threshold, the Consolidation Agent generates a compressed summary and stores it in cold storage. The full verbatim text isn't needed, but the semantic content is preserved and retrievable.
 
@@ -39,7 +39,7 @@ The **Storage Agent** manages the persistence layer. SQLite holds structured con
 
 Simple truncation loses information permanently. This approach never discards anything; it changes how information is stored and accessed. The efficiency gain comes from not loading every historical turn into the context window on every request. You load what's relevant.
 
-The 87% semantic recall figure comes from benchmarks across 50 simulated 25-turn conversations. We measured whether the system could retrieve relevant past context when needed. 87% accuracy with sub-100ms retrieval latency is competitive with much more complex retrieval-augmented generation setups.
+The 87% semantic recall figure comes from benchmarks across 50 simulated 25-turn conversations. NEO measured whether the system could retrieve relevant past context when needed. 87% accuracy with sub-100ms retrieval latency is competitive with much more complex retrieval-augmented generation setups.
 
 The 35 to 45 percent token reduction means real cost savings at scale. If you're running thousands of agent sessions per day, cutting token consumption by 40% cuts your inference costs by roughly the same amount.
 
@@ -51,7 +51,7 @@ For development and testing, there's a mock mode that works without any API keys
 
 ## Performance at a Glance
 
-From our benchmark suite across **50 simulated conversations**:
+From NEO's benchmark suite across **50 simulated conversations**:
 
 - **Average retrieval latency: 80 to 96ms**
 - **Semantic recall accuracy: ~87%**

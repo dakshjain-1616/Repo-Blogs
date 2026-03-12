@@ -29,7 +29,7 @@ That last part deserves attention. The live reasoning trace is a real-time, time
 
 The platform breaks into seven core modules.
 
-**Literature Retrieval** handles PubMed queries using Biopython. We pull structured abstracts with metadata so downstream modules have clean input to work with.
+**Literature Retrieval** handles PubMed queries using Biopython. NEO pulls structured abstracts with metadata so downstream modules have clean input to work with.
 
 **Candidate Extraction** uses GPT-4o-mini with a structured prompting approach. The model reads each abstract and identifies drug mentions, then flags which ones are worth tracking based on disease relevance. FDA validation runs against a local cache of **30+ approved drugs**, which keeps API calls down during repeated analysis sessions.
 
@@ -41,7 +41,7 @@ The platform breaks into seven core modules.
 
 ## Three External APIs, One Coherent Interface
 
-BioScript integrates PubMed, OpenAI, and PubChem. Coordinating three external APIs in a single research workflow creates obvious failure points. We handled this by building local caching for FDA drug data and structuring API calls to fail gracefully rather than halting the pipeline. If PubChem is slow, the visualization degrades but the scoring still runs.
+BioScript integrates PubMed, OpenAI, and PubChem. Coordinating three external APIs in a single research workflow creates obvious failure points. NEO handled this by building local caching for FDA drug data and structuring API calls to fail gracefully rather than halting the pipeline. If PubChem is slow, the visualization degrades but the scoring still runs.
 
 The Streamlit interface ties everything together into a dashboard that doesn't require any ML background to operate. A bench researcher who has never touched a transformer model can run a query, read the reasoning trace, and interpret the results.
 
@@ -59,7 +59,7 @@ Secondary use cases include pharmaceutical analysts tracking the competitive lan
 
 ## AI Research Tools Should Show Their Work
 
-The design principle we returned to throughout development was transparency. An AI system making biomedical claims needs to be interrogable. The live reasoning trace isn't a nice-to-have. It's a requirement for any context where a researcher needs to know why the system ranked a particular candidate.
+The design principle NEO returned to throughout development was transparency. An AI system making biomedical claims needs to be interrogable. The live reasoning trace isn't a nice-to-have. It's a requirement for any context where a researcher needs to know why the system ranked a particular candidate.
 
 NEO built a drug repurposing research platform where live reasoning traces and transparent AI decision-making are built into the system, not bolted on as an afterthought. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 

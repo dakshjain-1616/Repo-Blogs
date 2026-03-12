@@ -25,7 +25,7 @@ The system is composed of six tightly integrated modules, each handling a distin
 
 ### Resume Parsing and Indexing
 
-We start by converting the candidate's PDF resume into vector embeddings using SentenceTransformers. Those embeddings get indexed with FAISS, which enables fast semantic retrieval when matching against job descriptions. This isn't keyword matching. It's meaning-level comparison, so a resume that mentions "model deployment" still surfaces for roles asking for "MLOps experience."
+The pipeline starts by converting the candidate's PDF resume into vector embeddings using SentenceTransformers. Those embeddings get indexed with FAISS, which enables fast semantic retrieval when matching against job descriptions. This isn't keyword matching. It's meaning-level comparison, so a resume that mentions "model deployment" still surfaces for roles asking for "MLOps experience."
 
 ### Job Discovery
 
@@ -33,7 +33,7 @@ The scraper pulls listings from LinkedIn and Greenhouse. NEO built anti-bot hand
 
 ### Candidate Fit Scoring
 
-Each listing gets a fit score from **0 to 100**. The base scoring uses keyword alignment between the job description and the resume embedding. When higher-confidence reasoning is needed, we pipe the job description and resume into GPT-4 for structured analysis. The GPT-4 path is optional and controlled by a config flag, so you're not making API calls for every listing if you don't need to.
+Each listing gets a fit score from **0 to 100**. The base scoring uses keyword alignment between the job description and the resume embedding. When higher-confidence reasoning is needed, the system pipes the job description and resume into GPT-4 for structured analysis. The GPT-4 path is optional and controlled by a config flag, so you're not making API calls for every listing if you don't need to.
 
 ### Cover Letter Generation
 
@@ -61,11 +61,11 @@ Recruiting platforms could run this internally to auto-populate candidate profil
 
 The modular architecture makes it straightforward to swap components. Want to replace FAISS with Pinecone for production scale? That's one module. Want to add Indeed or Lever to the scraper? Same deal.
 
-## What We Paid Attention To
+## What NEO Paid Attention To
 
 Two things stood out during development. First, cover letter quality depends heavily on the RAG context. A letter written with real company information reads differently than one generated from the job description alone. The retrieval step is not optional if you want output that doesn't sound generic.
 
-Second, the review checkpoints in the form automation aren't a courtesy feature. They're load-bearing. An agent that submits without human review creates a trust problem that's hard to recover from. We kept those checkpoints in the default flow.
+Second, the review checkpoints in the form automation aren't a courtesy feature. They're load-bearing. An agent that submits without human review creates a trust problem that's hard to recover from. NEO kept those checkpoints in the default flow.
 
 ## Build Your Own Automation
 

@@ -35,7 +35,7 @@ NEO built it with Docker from the start, so deployment is straightforward in con
 
 ### Model Provider Flexibility
 
-The system supports **Anthropic Claude** (which we recommend for evaluation tasks due to its instruction-following reliability), **OpenAI GPT-4**, **Google Gemini**, **OpenRouter** for access to a wider model selection, and local **Ollama** deployments for teams that need fully on-premises evaluation.
+The system supports **Anthropic Claude** (recommended for evaluation tasks due to its instruction-following reliability), **OpenAI GPT-4**, **Google Gemini**, **OpenRouter** for access to a wider model selection, and local **Ollama** deployments for teams that need fully on-premises evaluation.
 
 Provider selection happens in the interface. You can switch models mid-experiment to compare how different judges score the same responses, which is useful for understanding judge reliability.
 
@@ -63,7 +63,7 @@ For teams running continuous evaluation, this creates a feedback loop. Evaluate 
 
 ## Use Cases
 
-Customer support quality assurance is the primary use case we designed around. You have agents and responses, and you want to know if the quality meets your standards across the full distribution. This handles that at scale.
+Customer support quality assurance is the primary use case NEO designed around. You have agents and responses, and you want to know if the quality meets your standards across the full distribution. This handles that at scale.
 
 It also fits well into model evaluation workflows. Before deploying a new model or fine-tune, run your evaluation dataset through the judge and compare the score distributions against your current production model.
 

@@ -17,7 +17,7 @@ github: https://github.com/dakshjain-1616/Qwen-3.5-Quantisation-for-small-device
 
 > The original Qwen3.5-2B model weighs in at **3.6GB**. A Raspberry Pi 4 has 4GB of RAM total, and you need most of that just to run the operating system. Most quantization approaches reduce weights uniformly and accept large quality losses at aggressive compression levels — leaving engineers without a viable path to run capable language models on hardware that costs under $100.
 
-We worked through the quantization process for Qwen3.5-2B using K-quantization from llama.cpp, which takes an importance-aware approach: weights with more influence on model output are compressed less aggressively. The result: three GGUF variants down to 873MB, all running on sub-$100 hardware.
+NEO worked through the quantization process for Qwen3.5-2B using K-quantization from llama.cpp, which takes an importance-aware approach: weights with more influence on model output are compressed less aggressively. The result: three GGUF variants down to 873MB, all running on sub-$100 hardware.
 
 ## What K-Quantization Actually Does
 
@@ -25,7 +25,7 @@ Most quantization approaches reduce every weight uniformly. K-quantization from 
 
 The result is that you lose less quality per bit than uniform quantization. At Q4 precision you're typically losing 4-8% of full-precision performance on reasoning tasks. At Q2 you lose more, but for many edge applications the degradation is acceptable.
 
-The "K" variants (K_S, K_M) use different block sizes and mixing strategies. K_S prioritizes smaller file size at some quality cost. K_M balances the two. For this project we focused on K_S variants at Q4 and Q3, plus Q2_K for the most constrained deployments.
+The "K" variants (K_S, K_M) use different block sizes and mixing strategies. K_S prioritizes smaller file size at some quality cost. K_M balances the two. For this project NEO focused on K_S variants at Q4 and Q3, plus Q2_K for the most constrained deployments.
 
 ## The Three Model Variants
 
@@ -51,7 +51,7 @@ On Raspberry Pi Zero (single-core ARM11): **1-2 tokens per second**. Slow for co
 
 On Raspberry Pi 4 (quad-core Cortex-A72): **8-12 tokens per second**. This is genuinely interactive. At 10 tokens per second, a 100-token response completes in ten seconds. Not instant, but acceptable for many embedded applications.
 
-Context window is technically 32K tokens, but in practice we recommend 2K contexts on edge hardware. Larger contexts require more memory for the KV cache, and the Pi 4 doesn't have headroom to spare.
+Context window is technically 32K tokens, but in practice NEO recommends 2K contexts on edge hardware. Larger contexts require more memory for the KV cache, and the Pi 4 doesn't have headroom to spare.
 
 ## Deployment Options
 

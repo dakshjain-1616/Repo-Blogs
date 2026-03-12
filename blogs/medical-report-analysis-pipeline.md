@@ -35,7 +35,7 @@ Once a study enters the system, it goes through a defined sequence of stages.
 
 ### Ingestion and Preprocessing
 
-DICOM files are the standard format for medical imaging. We ingest them through a process that first strips identifying metadata, then normalizes pixel values, resizes images to the target resolution, and applies windowing appropriate to the imaging modality (different window levels matter for bone vs. soft tissue in CT scans, for example).
+DICOM files are the standard format for medical imaging. The pipeline ingests them through a process that first strips identifying metadata, then normalizes pixel values, resizes images to the target resolution, and applies windowing appropriate to the imaging modality (different window levels matter for bone vs. soft tissue in CT scans, for example).
 
 GPU acceleration (tested on Tesla V100 hardware) is available for this stage when throughput is a priority.
 
@@ -61,7 +61,7 @@ End-to-end processing time for a typical study runs between **33 and 97 seconds*
 
 There's a difference between claiming HIPAA compliance and architecting a system to support it. A few specific implementation details matter:
 
-The audit logging system needs to record enough information to reconstruct what happened to any piece of data, but not so much that the logs themselves become a PHI exposure risk. We log access events, processing events, and export events with user identifiers and timestamps, but not the patient data itself.
+The audit logging system needs to record enough information to reconstruct what happened to any piece of data, but not so much that the logs themselves become a PHI exposure risk. NEO logs access events, processing events, and export events with user identifiers and timestamps, but not the patient data itself.
 
 De-identification needs to cover both metadata and pixel content. DICOM tags are the obvious target, but medical images sometimes have patient information burned into the pixel data (printed on the image by the modality). Pixel-level text masking catches this.
 

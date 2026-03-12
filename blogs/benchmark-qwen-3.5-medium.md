@@ -17,9 +17,9 @@ github: https://github.com/dakshjain-1616/Benchmark-Qwen-3.5-Medium-Edition
 
 > Picking a model for production used to mean a simple choice: pay for GPT-4 quality or accept lower quality from cheaper alternatives. But as medium-scale models improve rapidly while the cost gap stays large, teams need empirical data — not vendor claims — to make the right tradeoff. Without structured benchmarking across real tasks, you're guessing.
 
-We ran a structured benchmark to quantify exactly how much that tradeoff has changed. The goal was a fair, multi-dimensional comparison: not just accuracy, but speed, cost, and efficiency per unit of compute. We ran 350 concurrent tests across 7 models, covering 5 task categories, with 50 distinct prompts designed to be genuinely challenging.
+NEO ran a structured benchmark to quantify exactly how much that tradeoff has changed. The goal was a fair, multi-dimensional comparison: not just accuracy, but speed, cost, and efficiency per unit of compute. NEO ran 350 concurrent tests across 7 models, covering 5 task categories, with 50 distinct prompts designed to be genuinely challenging.
 
-The results were clearer than we expected.
+The results were clearer than expected.
 
 ## How the Benchmark Was Structured
 
@@ -27,19 +27,19 @@ Designing fair benchmarks is harder than it looks. Generic prompts favor well-kn
 
 The five task categories covered **coding challenges**, **logical reasoning**, **factual accuracy**, **creative generation**, and **instruction following**. Each category tests different model capabilities, and the spread was intentional: a model that excels at coding but struggles with instruction following is a different tool than a balanced performer.
 
-We ran 350 total tests by distributing the 50 prompts across 7 models. All tests ran concurrently, which gave us consistent timing data unaffected by load variation. Live metric tracking captured token throughput and cost throughout the run.
+NEO ran 350 total tests by distributing the 50 prompts across 7 models. All tests ran concurrently, which gave consistent timing data unaffected by load variation. Live metric tracking captured token throughput and cost throughout the run.
 
-## What We Measured
+## What NEO Measured
 
-Standard accuracy benchmarks miss most of what matters for production decisions. We used an efficiency metric that combines four factors: accuracy on the task, token generation speed in tokens per second, cost per thousand tokens, and parameter count as a proxy for computational efficiency.
+Standard accuracy benchmarks miss most of what matters for production decisions. NEO used an efficiency metric that combines four factors: accuracy on the task, token generation speed in tokens per second, cost per thousand tokens, and parameter count as a proxy for computational efficiency.
 
 The efficiency score rewards models that deliver correct answers, fast, cheaply. A model that scores 98% accuracy at 5x the cost and 0.1x the speed of a cheaper alternative isn't actually better for most production workloads.
 
-Cost data came from live token consumption during the benchmark run, not published estimates. This matters because actual token counts vary with model behavior. Verbose models with similar accuracy to terse models cost more in practice.
+Cost data came from live token consumption during NEO's benchmark run, not published estimates. This matters because actual token counts vary with model behavior. Verbose models with similar accuracy to terse models cost more in practice.
 
 ## The Qwen 3.5 Medium Result
 
-The standout finding was Qwen 3.5 Medium's performance on coding tasks. We measured **466.9x better efficiency** than GPT-4 Turbo on that category. That number warrants unpacking.
+The standout finding was Qwen 3.5 Medium's performance on coding tasks. NEO measured **466.9x better efficiency** than GPT-4 Turbo on that category. That number warrants unpacking.
 
 Qwen 3.5 Medium ran at **51.1 tokens per second**. The cost per thousand tokens is a fraction of GPT-4 Turbo's price. On accuracy, it matched GPT-4 Turbo closely enough on coding tasks that the difference was within noise. Combine those three factors into an efficiency score and the gap is enormous.
 
@@ -57,9 +57,9 @@ The practical question for any deployment decision is: which category do my actu
 
 ## Anomaly Detection During the Run
 
-One of the more interesting aspects of running concurrent tests is catching unexpected patterns in real time. We identified several instances where smaller models exceeded expected performance benchmarks, overperforming the capability predictions based on parameter count and published scores.
+One of the more interesting aspects of running concurrent tests is catching unexpected patterns in real time. NEO identified several instances where smaller models exceeded expected performance benchmarks, overperforming the capability predictions based on parameter count and published scores.
 
-We also caught the inverse: cases where models that perform well on published leaderboards underperformed on our specific task distribution. This reinforces the value of task-specific benchmarking. Leaderboard scores reflect performance on a specific distribution of evaluation tasks. Your production distribution may be quite different.
+NEO also caught the inverse: cases where models that perform well on published leaderboards underperformed on NEO's specific task distribution. This reinforces the value of task-specific benchmarking. Leaderboard scores reflect performance on a specific distribution of evaluation tasks. Your production distribution may be quite different.
 
 ## Practical Guidance for Model Selection
 

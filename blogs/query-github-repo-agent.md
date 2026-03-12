@@ -31,7 +31,7 @@ Multi-turn conversations work too. You can drill into a topic across several exc
 
 ## The Map-Reduce Pipeline
 
-Large codebases don't fit in a single LLM context window. A 200,000-line monorepo can't be handed to the model as a single input. We needed a way to analyze code at scale without losing information.
+Large codebases don't fit in a single LLM context window. A 200,000-line monorepo can't be handed to the model as a single input. NEO needed a way to analyze code at scale without losing information.
 
 The solution is a map-reduce pipeline. The codebase gets chunked into manageable pieces. Each chunk is processed in parallel, producing a summary. Those summaries are hierarchically merged, with later reduction stages combining intermediate results until a single coherent analysis emerges.
 

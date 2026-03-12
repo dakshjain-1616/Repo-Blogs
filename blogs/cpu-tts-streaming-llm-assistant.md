@@ -23,13 +23,13 @@ NEO autonomously built a CPU-based voice assistant that achieves **1.25 seconds*
 
 GPU-based inference has real advantages, but also real constraints: cost, availability, driver complexity, and portability. Many production deployments run on CPU instances. Edge deployments almost always do. If you want a voice assistant that works reliably across diverse hardware, you need to solve the CPU performance problem.
 
-That's the design constraint we started from. Everything in this system is optimized for CPU execution.
+That's the design constraint NEO started from. Everything in this system is optimized for CPU execution.
 
 ## The Core Insight: Sub-Sentence Streaming
 
 Most TTS pipelines wait for a complete sentence before synthesizing audio. That seems logical, but it introduces unnecessary latency. The sentence has to finish generating, then synthesis starts, then audio plays. Each step is sequential.
 
-We changed this by triggering audio synthesis at punctuation boundaries, specifically commas and semicolons, rather than waiting for full stops. Combined with a 25-character look-ahead buffer, the system can start producing audio mid-sentence without the output sounding choppy or unnatural. The look-ahead gives enough context to preserve natural prosody even when working with partial text.
+NEO changed this by triggering audio synthesis at punctuation boundaries, specifically commas and semicolons, rather than waiting for full stops. Combined with a 25-character look-ahead buffer, the system can start producing audio mid-sentence without the output sounding choppy or unnatural. The look-ahead gives enough context to preserve natural prosody even when working with partial text.
 
 This single architectural decision pushes TTFA down to **1.25 seconds**. Without it, you're looking at **1.8 to 2.5 seconds** under comparable conditions.
 
@@ -48,7 +48,7 @@ These stages run concurrently. Synthesis starts on the first chunk while the LLM
 
 The TTS model itself is **under 100MB**. That compares favorably with alternatives like **Piper** and **Sherpa-ONNX**, which frequently exceed 150MB. Smaller models load faster, use less memory, and have lower inference overhead per chunk.
 
-We run inference through ONNX Runtime, tuned specifically for Windows systems with high core counts. Thread affinity and parallelism settings matter significantly here. Default ONNX configurations are often conservative. After benchmarking different thread configurations, we settled on settings that keep CPU utilization high and cache misses low during the hot synthesis loop.
+NEO runs inference through ONNX Runtime, tuned specifically for Windows systems with high core counts. Thread affinity and parallelism settings matter significantly here. Default ONNX configurations are often conservative. After benchmarking different thread configurations, NEO settled on settings that keep CPU utilization high and cache misses low during the hot synthesis loop.
 
 ## Getting It Running
 
@@ -67,11 +67,11 @@ This system is well-suited for any context where voice interaction is needed wit
 
 The 1.25-second TTFA is fast enough that users perceive the response as immediate. That threshold matters. Below roughly 1.5 seconds, interaction feels conversational. Above it, it feels like waiting.
 
-## What We Learned
+## What NEO Learned
 
-Building this exposed several things we didn't anticipate. Windows-specific ONNX compatibility issues required significant debugging. Audio queue management under high CPU load needed careful tuning to avoid pops and dropouts. The 25-character look-ahead value wasn't arbitrary; it came from empirical testing across a range of TTS edge cases where prosody broke down at smaller values.
+Building this exposed several things NEO didn't anticipate. Windows-specific ONNX compatibility issues required significant debugging. Audio queue management under high CPU load needed careful tuning to avoid pops and dropouts. The 25-character look-ahead value wasn't arbitrary; it came from empirical testing across a range of TTS edge cases where prosody broke down at smaller values.
 
-Performance benchmarking across hardware configurations was part of the process throughout. The numbers we cite (1.25s TTFA, sub-100MB model) are measured, not estimated.
+Performance benchmarking across hardware configurations was part of the process throughout. The numbers cited (1.25s TTFA, sub-100MB model) are measured, not estimated.
 
 ## Build Voice AI That Actually Responds
 
