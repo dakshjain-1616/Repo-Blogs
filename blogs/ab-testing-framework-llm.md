@@ -31,9 +31,9 @@ Routing overhead is under 0.5ms. It is not a bottleneck.
 
 ### Async Metric Collection
 
-Metric logging is fully asynchronous. NEO uses a queue-based system so logging never blocks the request path. Total logging overhead stays **under 1ms** per request. In high-throughput production environments, non-blocking collection is not optional.
+Metric logging is fully asynchronous. The system uses a queue-based design so logging never blocks the request path. Total logging overhead stays **under 1ms** per request. In high-throughput production environments, non-blocking collection is not optional.
 
-NEO tracks response quality scores, latency, token usage, and any custom metrics you define per experiment.
+The system tracks response quality scores, latency, token usage, and any custom metrics you define per experiment.
 
 ### Statistical Analysis
 

@@ -29,7 +29,7 @@ That last part deserves attention. The live reasoning trace is a real-time, time
 
 The platform breaks into seven core modules.
 
-**Literature Retrieval** handles PubMed queries using Biopython. NEO pulls structured abstracts with metadata so downstream modules have clean input to work with.
+**Literature Retrieval** handles PubMed queries using Biopython. The pipeline pulls structured abstracts with metadata so downstream modules have clean input to work with.
 
 **Candidate Extraction** uses GPT-4o-mini with a structured prompting approach. The model reads each abstract and identifies drug mentions, then flags which ones are worth tracking based on disease relevance. FDA validation runs against a local cache of **30+ approved drugs**, which keeps API calls down during repeated analysis sessions.
 

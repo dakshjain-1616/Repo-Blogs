@@ -35,13 +35,13 @@ Fine-tuning runs for 8 epochs. This is enough to adapt the pretrained weights to
 
 ### Calibration
 
-Quantization-aware training requires a calibration dataset: a representative sample of input data used to determine the optimal scaling factors for mapping floating-point values to the INT8 range. NEO uses **200 representative samples** for calibration.
+Quantization-aware training requires a calibration dataset: a representative sample of input data used to determine the optimal scaling factors for mapping floating-point values to the INT8 range. The pipeline uses **200 representative samples** for calibration.
 
 The calibration step is critical. The scaling factors it produces determine how well the quantized model approximates the full-precision model's behavior. Too few calibration samples and the scaling is poorly estimated. Too many and you're spending compute on diminishing returns. 200 samples is a reliable default for most vision tasks.
 
 ### INT8 Quantization with TFLite
 
-NEO converts the calibrated model to TensorFlow Lite format with full INT8 quantization. "Full INT8" means both weights and activations are quantized, as opposed to weight-only quantization which leaves activations in floating point.
+The pipeline converts the calibrated model to TensorFlow Lite format with full INT8 quantization. "Full INT8" means both weights and activations are quantized, as opposed to weight-only quantization which leaves activations in floating point.
 
 The output is a `.tflite` file at 2.59MB.
 

@@ -31,11 +31,11 @@ NEO ran 350 total tests by distributing the 50 prompts across 7 models. All test
 
 ## What NEO Measured
 
-Standard accuracy benchmarks miss most of what matters for production decisions. NEO used an efficiency metric that combines four factors: accuracy on the task, token generation speed in tokens per second, cost per thousand tokens, and parameter count as a proxy for computational efficiency.
+Standard accuracy benchmarks miss most of what matters for production decisions. The benchmark used an efficiency metric that combines four factors: accuracy on the task, token generation speed in tokens per second, cost per thousand tokens, and parameter count as a proxy for computational efficiency.
 
 The efficiency score rewards models that deliver correct answers, fast, cheaply. A model that scores 98% accuracy at 5x the cost and 0.1x the speed of a cheaper alternative isn't actually better for most production workloads.
 
-Cost data came from live token consumption during NEO's benchmark run, not published estimates. This matters because actual token counts vary with model behavior. Verbose models with similar accuracy to terse models cost more in practice.
+Cost data came from live token consumption during the benchmark run, not published estimates. This matters because actual token counts vary with model behavior. Verbose models with similar accuracy to terse models cost more in practice.
 
 ## The Qwen 3.5 Medium Result
 
@@ -59,7 +59,7 @@ The practical question for any deployment decision is: which category do my actu
 
 One of the more interesting aspects of running concurrent tests is catching unexpected patterns in real time. NEO identified several instances where smaller models exceeded expected performance benchmarks, overperforming the capability predictions based on parameter count and published scores.
 
-NEO also caught the inverse: cases where models that perform well on published leaderboards underperformed on NEO's specific task distribution. This reinforces the value of task-specific benchmarking. Leaderboard scores reflect performance on a specific distribution of evaluation tasks. Your production distribution may be quite different.
+NEO also caught the inverse: cases where models that perform well on published leaderboards underperformed on the benchmark's specific task distribution. This reinforces the value of task-specific benchmarking. Leaderboard scores reflect performance on a specific distribution of evaluation tasks. Your production distribution may be quite different.
 
 ## Practical Guidance for Model Selection
 

@@ -31,13 +31,13 @@ The extraction process runs through six stages, each handling a specific part of
 
 ### Document Preprocessing with OpenCV
 
-Before any ML model sees the document, NEO cleans it up. OpenCV handles noise reduction, contrast enhancement, and deskewing. Documents scanned at a slight angle get rotated back. Documents with speckling or compression artifacts get smoothed.
+Before any ML model sees the document, the pipeline cleans it up. OpenCV handles noise reduction, contrast enhancement, and deskewing. Documents scanned at a slight angle get rotated back. Documents with speckling or compression artifacts get smoothed.
 
 This preprocessing step has a significant effect on downstream accuracy. A table detector trained on clean images will underperform on degraded scans without input normalization.
 
 ### Table Detection with Microsoft Table Transformer
 
-NEO uses Microsoft's Table Transformer model to locate table boundaries within the document. This model was trained specifically on document images and understands the visual structure of tables including borders, ruling lines, and the absence of explicit borders in borderless tables.
+The pipeline uses Microsoft's Table Transformer model to locate table boundaries within the document. This model was trained specifically on document images and understands the visual structure of tables including borders, ruling lines, and the absence of explicit borders in borderless tables.
 
 The model outputs bounding boxes for each detected table and classifies structural elements: column headers, row headers, and data cells. This structural understanding is what lets us reconstruct tables correctly rather than extracting text in reading order.
 
@@ -45,13 +45,13 @@ The pipeline achieves **96.3% table detection accuracy** across the documents NE
 
 ### Cell-Level OCR with TrOCR
 
-Once the table structure is identified, NEO crops each cell and runs TrOCR against it. TrOCR is a transformer-based OCR model that handles handwriting, printed text, and the mixed-quality text common in scanned financial documents.
+Once the table structure is identified, the pipeline crops each cell and runs TrOCR against it. TrOCR is a transformer-based OCR model that handles handwriting, printed text, and the mixed-quality text common in scanned financial documents.
 
 The pipeline achieves **98.5% average OCR confidence** across tested datasets. The cell-by-cell approach keeps OCR errors isolated: a bad read on one cell doesn't corrupt adjacent cells.
 
 ### Data Reconstruction and Validation
 
-After OCR, NEO reconstructs the full table structure using bounding box coordinates from the Table Transformer output. Row and column assignments are computed from spatial overlap, with light heuristics to handle merged cells.
+After OCR, the pipeline reconstructs the full table structure using bounding box coordinates from the Table Transformer output. Row and column assignments are computed from spatial overlap, with light heuristics to handle merged cells.
 
 The validation layer checks for numerical consistency. Totals should equal the sum of their rows. Year-over-year columns should have the same number of rows. Percentage columns should stay within expected ranges. When something fails validation, the pipeline flags it with a specific error type rather than passing bad output downstream.
 

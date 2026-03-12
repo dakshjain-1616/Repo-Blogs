@@ -48,7 +48,7 @@ These stages run concurrently. Synthesis starts on the first chunk while the LLM
 
 The TTS model itself is **under 100MB**. That compares favorably with alternatives like **Piper** and **Sherpa-ONNX**, which frequently exceed 150MB. Smaller models load faster, use less memory, and have lower inference overhead per chunk.
 
-NEO runs inference through ONNX Runtime, tuned specifically for Windows systems with high core counts. Thread affinity and parallelism settings matter significantly here. Default ONNX configurations are often conservative. After benchmarking different thread configurations, NEO settled on settings that keep CPU utilization high and cache misses low during the hot synthesis loop.
+The system runs inference through ONNX Runtime, tuned specifically for Windows systems with high core counts. Thread affinity and parallelism settings matter significantly here. Default ONNX configurations are often conservative. After benchmarking different thread configurations, NEO settled on settings that keep CPU utilization high and cache misses low during the hot synthesis loop.
 
 ## Getting It Running
 

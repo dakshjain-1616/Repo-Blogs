@@ -29,9 +29,9 @@ The system chains four components: audio preprocessing, speech recognition, neur
 
 ### Audio Preprocessing
 
-NEO uses Librosa for audio handling specifically because it works without an FFmpeg dependency. This matters for deployment. FFmpeg is a system-level dependency that creates friction in containerized environments. Librosa handles resampling, normalization, and format conversion entirely in Python.
+The pipeline uses Librosa for audio handling specifically because it works without an FFmpeg dependency. This matters for deployment. FFmpeg is a system-level dependency that creates friction in containerized environments. Librosa handles resampling, normalization, and format conversion entirely in Python.
 
-The preprocessing stage also handles noise robustness. NEO has tested against background noise, varying microphone quality, and recordings made in non-ideal acoustic environments. The pipeline degrades gracefully rather than failing hard.
+The preprocessing stage also handles noise robustness. The pipeline has been tested against background noise, varying microphone quality, and recordings made in non-ideal acoustic environments. The pipeline degrades gracefully rather than failing hard.
 
 ### Speech-to-Text with Whisper Tiny
 
@@ -41,7 +41,7 @@ For applications where accuracy matters more than latency, swapping in a larger 
 
 ### Neural Machine Translation with MarianMT
 
-Translation runs through MarianMT transformer models. NEO loads a separate model per language pair, which costs some memory but keeps translation inference to 0.3 seconds per request. The models cover English, Spanish, French, and German, handling four of the most common translation pairs in business and travel contexts.
+Translation runs through MarianMT transformer models. The pipeline loads a separate model per language pair, which costs some memory but keeps translation inference to 0.3 seconds per request. The models cover English, Spanish, French, and German, handling four of the most common translation pairs in business and travel contexts.
 
 MarianMT is well-suited here because the models are compact, inference is fast on CPU, and translation quality is competitive with much larger models for common language pairs.
 

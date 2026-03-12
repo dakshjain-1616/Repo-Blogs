@@ -61,7 +61,7 @@ End-to-end processing time for a typical study runs between **33 and 97 seconds*
 
 There's a difference between claiming HIPAA compliance and architecting a system to support it. A few specific implementation details matter:
 
-The audit logging system needs to record enough information to reconstruct what happened to any piece of data, but not so much that the logs themselves become a PHI exposure risk. NEO logs access events, processing events, and export events with user identifiers and timestamps, but not the patient data itself.
+The audit logging system needs to record enough information to reconstruct what happened to any piece of data, but not so much that the logs themselves become a PHI exposure risk. The system logs access events, processing events, and export events with user identifiers and timestamps, but not the patient data itself.
 
 De-identification needs to cover both metadata and pixel content. DICOM tags are the obvious target, but medical images sometimes have patient information burned into the pixel data (printed on the image by the modality). Pixel-level text masking catches this.
 

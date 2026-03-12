@@ -21,7 +21,7 @@ NEO autonomously built Ship-It: one CLI command, one HTML file, live preview at 
 
 ## Why GLM5
 
-GLM5 is a GPU-accelerated transformer model well-suited for structured code generation tasks. It produces coherent HTML with embedded CSS and JavaScript in a single pass, without the context fragmentation you get from smaller models. NEO runs it locally with CUDA, which means no API calls, no rate limits, and no data leaving your machine.
+GLM5 is a GPU-accelerated transformer model well-suited for structured code generation tasks. It produces coherent HTML with embedded CSS and JavaScript in a single pass, without the context fragmentation you get from smaller models. Ship-It runs it locally with CUDA, which means no API calls, no rate limits, and no data leaving your machine.
 
 The model comes in three size configurations. The smallest requires about **512 MB of VRAM**, the medium (default) sits around **1 GB**, and the large variant uses up to **2 GB**. Most development machines with a modern GPU can run the medium configuration without issue. The tool monitors VRAM usage in real time and warns if you're approaching limits.
 

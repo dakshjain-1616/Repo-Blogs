@@ -23,7 +23,7 @@ NEO autonomously built the Multi-Agent Memory Management System to find a better
 
 **Hot context** holds the last N conversation turns in full fidelity. This is always-present, always-accurate, zero-retrieval-cost memory. Recent exchanges stay exactly as they happened.
 
-**Cold storage** is a SQLite + ChromaDB backed store for older conversation history. Rather than discarding past turns, NEO embeds them as vectors and persists them. When the agent needs something from earlier in the conversation, semantic search retrieves it in **80 to 96 milliseconds**.
+**Cold storage** is a SQLite + ChromaDB backed store for older conversation history. Rather than discarding past turns, the system embeds them as vectors and persists them. When the agent needs something from earlier in the conversation, semantic search retrieves it in **80 to 96 milliseconds**.
 
 **Automatic summarization** bridges the two. When conversation history exceeds a threshold, the Consolidation Agent generates a compressed summary and stores it in cold storage. The full verbatim text isn't needed, but the semantic content is preserved and retrievable.
 
