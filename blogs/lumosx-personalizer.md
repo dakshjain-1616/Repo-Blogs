@@ -1,0 +1,77 @@
+---
+title: "LumosX Personalizer: AI-Generated Intro Videos at Scale"
+description: "NEO built an AI pipeline that generates personalized 30-60 second intro videos from user profile data, automating script writing, TTS narration, music selection, and video assembly end-to-end."
+date: 2026-03-23
+tags: [video-generation, TTS, AI-pipeline, personalization, multimedia, automation]
+slug: lumosx-personalizer
+github: https://github.com/dakshjain-1616/lumosx-personalizer
+---
+
+# LumosX Personalizer: AI-Generated Intro Videos at Scale
+
+[![View on GitHub](https://img.shields.io/badge/View_on_GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/dakshjain-1616/lumosx-personalizer)
+
+![Pipeline Architecture](../public/images/diagrams/lumosx-personalizer.png)
+
+## The Problem
+
+> Every professional wants a polished personal brand video, but producing one requires a videographer, a scriptwriter, a voice actor, and a music licensor — a process that costs thousands of dollars and takes weeks. For platforms that need to generate profile videos at scale — recruiting sites, professional networks, course creators — manual production is simply not viable. The gap between "no video" and "a good video" has historically required human creative labor that doesn't scale.
+
+NEO built LumosX Personalizer, an AI pipeline that takes user data — name, role, achievements, style preferences — and produces a 30-60 second personalized intro video fully automatically. The pipeline generates the script, narrates it with voice synthesis, selects and mixes background music, and assembles the final video without any human creative involvement.
+
+## Pipeline Overview
+
+LumosX Personalizer is a sequential AI pipeline with five distinct stages, each powered by specialized models and services. The design is intentionally modular — each stage can be swapped or upgraded independently as better models become available.
+
+The pipeline accepts a structured user profile as input: a JSON object containing name, professional role, key achievements (as a list), industry, preferred tone (professional, casual, energetic, calm), target audience, and optional style keywords. From this input alone, it produces a complete MP4 file ready for distribution.
+
+## Stage 1: Script Generation
+
+The script generation stage uses an instruction-tuned LLM with a specialized prompt template designed for short-form personal introduction scripts. The template enforces a three-act structure suited to 30-60 second videos: a hook that establishes who the person is, a body that highlights their most compelling achievement, and a call to action appropriate for their target audience.
+
+NEO invested significant prompt engineering effort in this stage because script quality propagates through the entire pipeline. A bad script produces a bad video regardless of how good the downstream components are. The prompt template includes constraints on sentence length (shorter sentences work better with TTS), forbidden phrase patterns (corporate jargon that sounds hollow when spoken aloud), and pacing markers that cue the downstream voice synthesis stage about intended delivery speed.
+
+The system generates three script variants per user and scores them on estimated speaking duration (targeting the specified length bracket), keyword density from the user's profile data, and an originality metric that penalizes formulaic phrasing. The highest-scoring variant advances to the narration stage.
+
+## Stage 2: Voice Synthesis
+
+LumosX Personalizer uses a neural TTS model to narrate the script. The voice selection system maps the user's preferred tone to a voice profile from a library of 24 pre-characterized voices, chosen for naturalness, clarity, and appropriate demographic representation.
+
+The TTS stage does more than produce raw audio. NEO added a prosody adjustment layer that processes the marked-up script and applies pacing, emphasis, and pause insertion based on punctuation and explicit pacing markers from the script generation stage. This prevents the robotic flat delivery that characterizes naive TTS integration — the synthesized narration includes natural breathing pauses at sentence boundaries, slight emphasis on key achievement nouns, and a measured pace that avoids both rushed and plodding delivery.
+
+Audio post-processing applies a gentle EQ curve that boosts mid-range frequencies (the vocal presence band at 2-4kHz) and rolls off low-end rumble. A de-esser reduces harsh sibilance that TTS voices occasionally produce. The final narration audio is normalized to -16 LUFS, the standard loudness target for digital video narration.
+
+## Stage 3: Background Music Selection
+
+Music selection is handled by a matching algorithm that scores a licensed music library against the user's tone and industry profile. The library contains 320 tracks across 12 mood categories, all licensed for commercial use.
+
+The matching algorithm uses embeddings trained on music metadata — tempo, key, energy level, instrument composition, and mood labels — to find tracks that complement the voice tone and professional context. An energetic startup founder in technology gets a different soundtrack than a calm academic in healthcare, even if both select "professional" as their tone preference.
+
+Track length is a key constraint. The selected track is either trimmed or extended (using a looping seam detection algorithm that finds musically coherent loop points) to match the narration duration plus a configurable intro and outro buffer. The music is then ducked under the narration using automated gain control that follows the narration volume envelope, ensuring the voice always sits clearly above the music.
+
+## Stage 4: Visual Assembly
+
+The visual layer composites a sequence of slides behind the narration. Each slide corresponds to a paragraph or major beat of the script and uses a template system that places the user's name, role, and relevant achievement text against a branded background.
+
+Background visuals are selected from a categorized stock library using the same embedding-based matching as the music stage. Industry keywords from the user profile — "healthcare," "fintech," "education" — map to visual categories that produce contextually appropriate backgrounds without requiring manual curation per user.
+
+Transitions between slides use smooth crossfades timed to the narration pacing markers. NEO implemented an audio-reactive timing system that adjusts transition timing to avoid cutting mid-syllable, which produces a more polished final output than frame-count-based transitions.
+
+## Stage 5: Final Assembly and Rendering
+
+The final stage composites audio and video, burns in captions (generated from the script with synchronized timing), applies a color grade, and renders to H.264 MP4 at 1080p. The rendering pipeline uses FFmpeg with hardware acceleration, producing a finished file in approximately 45 seconds on a modern machine — fast enough to be practical for batch generation.
+
+At scale, the pipeline supports batch processing with a queue system. A deployment generating 1,000 personalized videos processes them at roughly 80 videos per hour on a single GPU machine, making large-scale rollouts feasible without exotic infrastructure.
+
+NEO built a fully automated video personalization pipeline that delivers professional-quality intro videos at the speed and cost of software rather than production. See what else NEO ships at [heyneo.so](https://heyneo.so/).
+
+---
+
+## Try NEO in Your IDE
+
+Install the NEO extension to bring AI-powered development directly into your workflow:
+
+- **VS Code**: [NEO in VS Code](https://marketplace.visualstudio.com/items?itemName=NeoResearchInc.heyneo)
+- **Cursor**: <a href="cursor://extension/NeoResearchInc.heyneo" style="color:#0066FF;font-weight:bold;">Install NEO for Cursor →</a>
+
+---
