@@ -61,39 +61,27 @@ Running both models against all five seed bugs via OpenRouter's live API produce
 
 GPT-5.4 Nano wins on compilability (70% vs 28%) and verbosity (0.90 vs 0.45). Both models score comparably on correctness, above 99%, meaning both understand the failure modes. The deciding factor is whether the model produces a complete, runnable sketch or a partial response with gaps.
 
-## How to Build This
+## How to Build This with NEO
 
-Clone the repo, create a virtual environment, and install dependencies:
+Open NEO in VS Code or Cursor and describe what you want to build. A good starting prompt for this project:
+
+> "Build a head-to-head LLM benchmark that tests NVIDIA Nemotron 3 Super (120B) and OpenAI GPT-5.4 Nano on five real Arduino firmware bugs via OpenRouter: I2C bus hang, dtostrf buffer overflow, Timer1/Timer2 register conflict, WDT misfire during EEPROM write, and millis() drift inside an ISR. Score each response 0.0-1.0 using a weighted formula of compilability (0.40, checks for void setup/loop, no TODO stubs, at least one #include), correctness (0.40, keyword matching per bug), and verbosity (0.20, word count 100-500, numbered lists, hardware debugging vocabulary). Write results to JSON and render an HTML report with per-bug breakdowns and side-by-side response diffs."
+
+<a href="https://heyneo.so/dashboard?section=new-chat&prompt=Build%20a%20head-to-head%20LLM%20benchmark%20that%20tests%20NVIDIA%20Nemotron%203%20Super%20%28120B%29%20and%20OpenAI%20GPT-5.4%20Nano%20on%20five%20real%20Arduino%20firmware%20bugs%20via%20OpenRouter%3A%20I2C%20bus%20hang%2C%20dtostrf%20buffer%20overflow%2C%20Timer1%2FTimer2%20register%20conflict%2C%20WDT%20misfire%20during%20EEPROM%20write%2C%20and%20millis%28%29%20drift%20inside%20an%20ISR.%20Score%20each%20response%200.0-1.0%20using%20a%20weighted%20formula%20of%20compilability%20%280.40%2C%20checks%20for%20void%20setup%2Floop%2C%20no%20TODO%20stubs%2C%20at%20least%20one%20%23include%29%2C%20correctness%20%280.40%2C%20keyword%20matching%20per%20bug%29%2C%20and%20verbosity%20%280.20%2C%20word%20count%20100-500%2C%20numbered%20lists%2C%20hardware%20debugging%20vocabulary%29.%20Write%20results%20to%20JSON%20and%20render%20an%20HTML%20report%20with%20per-bug%20breakdowns%20and%20side-by-side%20response%20diffs." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
+
+NEO generates the project structure and core implementation. From there you iterate — ask it to add a mock mode that runs without an API key in seconds, add `--workers` flag support to parallelize both model calls per bug, or extend the correctness scorer with additional keyword sets for new bug categories.
+
+To run the finished project:
 
 ```bash
 git clone https://github.com/dakshjain-1616/nemotron3-super-vs-gpt54-nano
 cd nemotron3-super-vs-gpt54-nano
 python3 -m venv .venv && source .venv/bin/activate
 pip3 install -r requirements.txt
-```
-
-Run in mock mode to see the benchmark in action without an API key:
-
-```bash
 python3 -m nemotron_bench.battle --mock --count 5
 ```
 
-This completes in seconds and writes `results/battle_results.json` and `results/battle_report.html`. Open the HTML file in a browser to see the full leaderboard with per-bug breakdowns and side-by-side response diffs.
-
-To run against real APIs via OpenRouter with a single key for both models:
-
-```bash
-export OPENROUTER_API_KEY=sk-or-...
-python3 -m nemotron_bench.battle --count 5 --workers 2 --output-dir results/live/
-```
-
-Use `--workers` to parallelize model calls and cut wall-clock time. With two workers, each bug sends requests to both models simultaneously.
-
-To run the full test suite:
-
-```bash
-python3 -m pytest
-```
+Open `results/battle_report.html` to see the leaderboard with per-bug score breakdowns and side-by-side response diffs without spending any API credits.
 
 NEO built this benchmark to measure exactly where large and small LLMs differ on embedded systems debugging, producing reproducible scores across compilability, correctness, and verbosity. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 

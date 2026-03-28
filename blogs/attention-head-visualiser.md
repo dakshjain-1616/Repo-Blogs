@@ -73,46 +73,26 @@ The six-module codebase covers model loading, behavior scoring, visualization ge
 
 Most people who use transformer models treat the attention mechanism as a black box. That's fine for many applications. But when you need to diagnose unexpected behavior, improve performance on specific task types, or explain model decisions to stakeholders, knowing what the individual heads are doing is genuinely useful.
 
-## How to Build This
+## How to Build This with NEO
 
-Python 3.8+ is required, along with PyTorch 2.2+ and transformers 4.36+. Clone the repo and install:
+Open NEO in VS Code or Cursor and describe what you want to build. A good starting prompt for this project:
+
+> "Build a GPT-2 attention head analysis tool in Python using PyTorch and HuggingFace transformers. For each attention head across all layers, run vectorized scoring functions to classify it as a copying head, induction head, previous-token head, or retrieval head — with a confidence score between 0 and 1. Support all four GPT-2 variants (124M to 1.5B) and auto-detect CUDA, MPS, or CPU. Generate an interactive HTML report with per-head heatmaps, head passport cards showing behavior type and confidence, and layer-level summary statistics. Expose a CLI with flags for input text, model size, behavior filter, entity spans for retrieval detection, and top-k output limiting."
+
+<a href="https://heyneo.so/dashboard?section=new-chat&prompt=Build%20a%20GPT-2%20attention%20head%20analysis%20tool%20in%20Python%20using%20PyTorch%20and%20HuggingFace%20transformers.%20For%20each%20attention%20head%20across%20all%20layers%2C%20run%20vectorized%20scoring%20functions%20to%20classify%20it%20as%20a%20copying%20head%2C%20induction%20head%2C%20previous-token%20head%2C%20or%20retrieval%20head%20%E2%80%94%20with%20a%20confidence%20score%20between%200%20and%201.%20Support%20all%20four%20GPT-2%20variants%20%28124M%20to%201.5B%29%20and%20auto-detect%20CUDA%2C%20MPS%2C%20or%20CPU.%20Generate%20an%20interactive%20HTML%20report%20with%20per-head%20heatmaps%2C%20head%20passport%20cards%20showing%20behavior%20type%20and%20confidence%2C%20and%20layer-level%20summary%20statistics.%20Expose%20a%20CLI%20with%20flags%20for%20input%20text%2C%20model%20size%2C%20behavior%20filter%2C%20entity%20spans%20for%20retrieval%20detection%2C%20and%20top-k%20output%20limiting." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
+
+NEO generates the project structure and core implementation from that. From there you iterate — ask it to implement the induction head scoring function that measures how often a head attends to the token following the previous occurrence of the current token, build out the head passport card layout with compact attention pattern thumbnails, or add a before/after comparison mode for analyzing fine-tuning effects on head behavior distributions. Each request builds on what's already there without re-explaining the context.
+
+To run the finished project:
 
 ```bash
 git clone https://github.com/dakshjain-1616/Attention-Head-Visualiser.git
 cd Attention-Head-Visualiser
-python3 -m venv venv
-source venv/bin/activate
 pip install -r requirements.txt
+python attn_probe.py --text "The Eiffel Tower is in Paris" --model gpt2-medium --output report.html
 ```
 
-Run the probe on a piece of text and generate an HTML report:
-
-```bash
-python attn_probe.py \
-  --text "The Eiffel Tower is in Paris" \
-  --model gpt2-medium \
-  --output report.html
-```
-
-The model downloads from HuggingFace on first run (about 1.5GB for gpt2-medium). Scoring takes under 10 seconds on GPU and a bit longer on CPU. Open `report.html` in any browser.
-
-To detect induction heads specifically:
-
-```bash
-python attn_probe.py --text "a b c a b" --behavior induction
-```
-
-To analyze retrieval heads for a named entity, pass the `--entity` flag:
-
-```bash
-python attn_probe.py \
-  --text "Romeo and Juliet was written by Shakespeare" \
-  --model gpt2-medium \
-  --behavior retrieval \
-  --entity "Romeo and Juliet"
-```
-
-The report contains heatmaps for every head, head passport cards with behavior classification and confidence scores, and layer-level summary statistics. Use `--top_k 5` to limit output to the five heads with the highest confidence score for each behavior type.
+Open `report.html` in any browser to see heatmaps for every head, behavior classifications with confidence scores, and layer-level summary statistics.
 
 NEO built an attention head visualiser where every GPT-2 head is automatically classified into copying, induction, previous-token, or retrieval behavior—making transformer internals inspectable, not opaque. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 

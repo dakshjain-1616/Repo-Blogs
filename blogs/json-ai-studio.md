@@ -63,38 +63,26 @@ The cleaning mode addresses a common data engineering problem: JSON data from ex
 
 JSON AI Studio's cleaning mode profiles the document (or document set) and identifies inconsistencies. It then proposes a set of normalization operations: coerce `"null"` strings to actual null, standardize date formats to ISO 8601, fill missing required arrays with empty arrays. Each proposed operation is shown with the count of affected records before it is applied.
 
-## How to Build This
+## How to Build This with NEO
 
-Clone and install:
+Open NEO in VS Code or Cursor and describe what you want to build. A good starting prompt for this project:
+
+> "Build a web-based JSON editor called JSON AI Studio with a Flask/Gradio backend and split-pane interface. Features: real-time JSON Schema validation on every keystroke with inline error messages showing the exact property path and type mismatch (not just line numbers); AI schema inference that handles type disambiguation (date strings get format: date-time), enum detection for low-cardinality string fields, and required field inference across multiple sample documents; natural language query translation to JSONPath and JMESPath with results highlighted in the source document; a transformation pipeline mode that takes natural-language instructions, generates discrete transformation steps the user can review and reorder, and exports as Python or jq; bulk transformation across a directory of JSON files with per-file success/failure reporting; and a data cleaning mode that profiles inconsistencies and proposes normalization operations with affected record counts. Use OpenRouter with claude-sonnet-4 as default. Add a Fixer tab that repairs malformed JSON using demjson3 first and Claude as fallback."
+
+<a href="https://heyneo.so/dashboard?section=new-chat&prompt=Build%20a%20web-based%20JSON%20editor%20called%20JSON%20AI%20Studio%20with%20a%20Flask%2FGradio%20backend%20and%20split-pane%20interface.%20Features%3A%20real-time%20JSON%20Schema%20validation%20on%20every%20keystroke%20with%20inline%20error%20messages%20showing%20the%20exact%20property%20path%20and%20type%20mismatch%20%28not%20just%20line%20numbers%29%3B%20AI%20schema%20inference%20that%20handles%20type%20disambiguation%20%28date%20strings%20get%20format%3A%20date-time%29%2C%20enum%20detection%20for%20low-cardinality%20string%20fields%2C%20and%20required%20field%20inference%20across%20multiple%20sample%20documents%3B%20natural%20language%20query%20translation%20to%20JSONPath%20and%20JMESPath%20with%20results%20highlighted%20in%20the%20source%20document%3B%20a%20transformation%20pipeline%20mode%20that%20takes%20natural-language%20instructions%2C%20generates%20discrete%20transformation%20steps%20the%20user%20can%20review%20and%20reorder%2C%20and%20exports%20as%20Python%20or%20jq%3B%20bulk%20transformation%20across%20a%20directory%20of%20JSON%20files%20with%20per-file%20success%2Ffailure%20reporting%3B%20and%20a%20data%20cleaning%20mode%20that%20profiles%20inconsistencies%20and%20proposes%20normalization%20operations%20with%20affected%20record%20counts.%20Use%20OpenRouter%20with%20claude-sonnet-4%20as%20default.%20Add%20a%20Fixer%20tab%20that%20repairs%20malformed%20JSON%20using%20demjson3%20first%20and%20Claude%20as%20fallback." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
+
+NEO generates the project structure and core implementation from that. From there you iterate — ask it to add the Visualizer tab that renders any JSON/YAML/CSV as an interactive node-graph, add JSONPath and JMESPath side-by-side support with automatic format selection based on user preference, or add the bulk transformation CLI companion that accepts glob patterns for local file sets. Each request builds on what's already there.
+
+To run the finished project:
 
 ```bash
 git clone https://github.com/dakshjain-1616/JSON-AI-Studio
 cd JSON-AI-Studio
-python -m venv venv
-source venv/bin/activate
 pip install -r requirements.txt
-```
-
-Configure your OpenRouter API key (the tool uses `anthropic/claude-sonnet-4` by default):
-
-```bash
-mkdir -p ~/.config/openrouter
-echo '{"api_key": "sk-or-..."}' > ~/.config/openrouter/config
-```
-
-Or set it as an environment variable:
-
-```bash
-export OPENROUTER_API_KEY="sk-or-..."
-```
-
-Start the server:
-
-```bash
 python server.py
 ```
 
-Open `http://localhost:7860` in your browser. Paste any JSON, YAML, or CSV document into the editor. The Visualizer tab renders it as an interactive node-graph. The AI Chat tab lets you query the loaded data in plain English. The Transformer tab takes a natural-language instruction and applies it to the data, showing a unified diff before and after. The Schema Gen tab infers a JSON Schema from the document with an optional AI explanation. The Fixer tab repairs malformed JSON using demjson3 first and Claude as fallback for cases that rule-based parsing cannot handle.
+Open `http://localhost:7860` and paste any JSON document — the AI Chat tab queries it in plain English, the Transformer tab shows a diff before applying any change, and the Schema Gen tab infers a full JSON Schema with an AI explanation.
 
 NEO built JSON AI Studio to remove the friction from the JSON manipulation tasks that slow down data work and API integration every day. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 

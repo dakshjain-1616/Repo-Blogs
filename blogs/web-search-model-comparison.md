@@ -95,9 +95,17 @@ On factual recency, the gap between models with and without web search is large.
 
 ## Build Search-Aware AI Systems
 
-## How to Build This
+## How to Build This with NEO
 
-Clone the repo and install dependencies:
+Open NEO in VS Code or Cursor and describe what you want to build. A good starting prompt for this project:
+
+> "Build a Python benchmarking platform that runs head-to-head comparisons between any two AI models on web search tasks. Score each response on a seven-criterion weighted rubric: factual accuracy 25%, source recency 20%, source diversity 15%, answer depth 15%, citation quality 10%, conciseness 10%, disambiguation 5%. Support nine API providers (OpenAI, Google, Anthropic, and others) configured through a single config.json file. Run comparisons via CLI for single queries, batch mode from a JSON task file, or leaderboard mode for cumulative tracking. Generate bar charts, win/loss distribution charts, per-category comparisons, and a seven-axis radar diagram. Declare a winner only when the margin exceeds 0.5 points."
+
+<a href="https://heyneo.so/dashboard?section=new-chat&prompt=Build%20a%20Python%20benchmarking%20platform%20that%20runs%20head-to-head%20comparisons%20between%20any%20two%20AI%20models%20on%20web%20search%20tasks.%20Score%20each%20response%20on%20a%20seven-criterion%20weighted%20rubric%3A%20factual%20accuracy%2025%25%2C%20source%20recency%2020%25%2C%20source%20diversity%2015%25%2C%20answer%20depth%2015%25%2C%20citation%20quality%2010%25%2C%20conciseness%2010%25%2C%20disambiguation%205%25.%20Support%20nine%20API%20providers%20%28OpenAI%2C%20Google%2C%20Anthropic%2C%20and%20others%29%20configured%20through%20a%20single%20config.json%20file.%20Run%20comparisons%20via%20CLI%20for%20single%20queries%2C%20batch%20mode%20from%20a%20JSON%20task%20file%2C%20or%20leaderboard%20mode%20for%20cumulative%20tracking.%20Generate%20bar%20charts%2C%20win%2Floss%20distribution%20charts%2C%20per-category%20comparisons%2C%20and%20a%20seven-axis%20radar%20diagram.%20Declare%20a%20winner%20only%20when%20the%20margin%20exceeds%200.5%20points." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
+
+NEO generates the rubric scorer, provider adapter layer, batch runner, and chart generation. From there you iterate -- ask it to add six task categories (factual recency, current news, technical documentation, historical facts, comparative analysis, specialized knowledge) to the standard benchmark task file, add a `--leaderboard` mode that appends results to a history file and tracks rankings over time, or add a per-criterion breakdown table alongside the radar diagram.
+
+To run the finished project:
 
 ```bash
 git clone https://github.com/dakshjain-1616/SearchModel-Comparison
@@ -105,38 +113,13 @@ cd SearchModel-Comparison
 pip install -r requirements.txt
 ```
 
-Create a `.env` file with the API keys for the providers you want to benchmark:
-
-```bash
-OPENAI_API_KEY=sk-...
-GOOGLE_API_KEY=AIza...
-ANTHROPIC_API_KEY=sk-ant-...
-```
-
-Edit `config.json` to specify the two models to compare:
-
-```json
-{
-  "model_a": { "provider": "openai", "model_id": "gpt-4o" },
-  "model_b": { "provider": "google", "model_id": "gemini-2.0-flash" }
-}
-```
-
-Run a single query comparison:
-
-```bash
-python compare.py --query "What is the current Fed funds rate?"
-```
-
-Run a full batch benchmark across all six task categories:
+Add your API keys to `.env`, edit `config.json` to set the two models to compare, then:
 
 ```bash
 python compare.py --batch ./tasks/standard_benchmark.json --output ./results/run_001.json
 ```
 
-The `tasks/` directory includes a standard benchmark task file. You can write your own by following the JSON schema documented there.
-
-Results are written to the output path as structured JSON and as a set of charts in `./results/charts/`: bar charts for overall weighted scores, a win/loss distribution chart, per-category bar charts, and a radar diagram showing rubric criterion performance across all seven dimensions. Open `./results/charts/index.html` in a browser to view all charts together.
+Open `./results/charts/index.html` to see all charts -- giving you reproducible, task-specific evidence for model selection decisions instead of gut feel.
 
 NEO built a web search model benchmarking platform where a seven-criterion weighted rubric across nine API providers replaces gut-feel model selection with reproducible, task-specific evidence. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 

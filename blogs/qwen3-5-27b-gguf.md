@@ -50,53 +50,26 @@ This detection is read-only. The pipeline never changes its quantization targets
 
 A **dry-run mode** skips all GPU operations and model downloads. It validates the pipeline configuration, checks that `llama.cpp` binaries are present, and prints what would run. Dry-run mode is how you test CI configuration without paying for GPU time.
 
-## How to Build This
+## How to Build This with NEO
 
-Install llama.cpp from source following the official instructions for your platform, then set the path:
+Open NEO in VS Code or Cursor and describe what you want to build. A good starting prompt for this project:
 
-```bash
-export LLAMA_CPP_PATH=/path/to/llama.cpp
-export HF_TOKEN=hf_...
-```
+> "Build a CI-ready quantization pipeline for Qwen3.5-27B using llama.cpp that benchmarks eight GGUF formats in a single run: F16, Q8_0, Q6_K, Q5_K_M, Q4_K_M, Q4_0, Q3_K_M, and Q2_K. After quantizing each format, run a benchmark against the fp16 baseline and exit non-zero if any format degrades accuracy by more than a configurable threshold (default 5%). Log all results to JSONL, one entry per format per run. Add GPU VRAM detection that recommends the optimal format before running. Include a --check-regression flag that reads historical JSONL and flags formats that previously passed but now fail. Add dry-run mode that validates llama.cpp binary presence and pipeline config without downloading models or using GPU."
 
-Clone and install:
+<a href="https://heyneo.so/dashboard?section=new-chat&prompt=Build%20a%20CI-ready%20quantization%20pipeline%20for%20Qwen3.5-27B%20using%20llama.cpp%20that%20benchmarks%20eight%20GGUF%20formats%20in%20a%20single%20run%3A%20F16%2C%20Q8_0%2C%20Q6_K%2C%20Q5_K_M%2C%20Q4_K_M%2C%20Q4_0%2C%20Q3_K_M%2C%20and%20Q2_K.%20After%20quantizing%20each%20format%2C%20run%20a%20benchmark%20against%20the%20fp16%20baseline%20and%20exit%20non-zero%20if%20any%20format%20degrades%20accuracy%20by%20more%20than%20a%20configurable%20threshold%20%28default%205%25%29.%20Log%20all%20results%20to%20JSONL%2C%20one%20entry%20per%20format%20per%20run.%20Add%20GPU%20VRAM%20detection%20that%20recommends%20the%20optimal%20format%20before%20running.%20Include%20a%20--check-regression%20flag%20that%20reads%20historical%20JSONL%20and%20flags%20formats%20that%20previously%20passed%20but%20now%20fail.%20Add%20dry-run%20mode%20that%20validates%20llama.cpp%20binary%20presence%20and%20pipeline%20config%20without%20downloading%20models%20or%20using%20GPU." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
+
+NEO generates the project structure and core implementation. From there you iterate — ask it to add a `--formats` flag that accepts a subset of the eight formats so CI jobs can target specific variants, add Markdown table output comparing size and accuracy across all formats, or add a GitHub Actions workflow template that wires the pipeline into automated quality gating on every config change.
+
+To run the finished project:
 
 ```bash
 git clone https://github.com/dakshjain-1616/qwen3-5-27b-gguf
 cd qwen3-5-27b-gguf
 pip install -r requirements.txt
-```
-
-Run the quick start demo without a GPU or model download:
-
-```bash
 python examples/01_quick_start.py
 ```
 
-For the full pipeline on real hardware:
-
-```bash
-python pipeline.py \
-  --model qwen3.5-27b \
-  --formats Q4_K_M Q5_K_M Q8_0 \
-  --threshold 0.05 \
-  --output-dir outputs/
-```
-
-The pipeline writes two GGUF files to `outputs/` and a JSONL benchmark log. To check for regressions against a previous run:
-
-```bash
-python pipeline.py --check-regression --history benchmark_history.jsonl
-```
-
-Run the test suite to verify the installation:
-
-```bash
-pytest tests/ -q
-# 155 passed
-```
-
-The pre-quantized GGUF files for Qwen3.5-27B are available on HuggingFace at `daksh-neo/qwen3-5-27b-gguf` if you want to skip the quantization step and go directly to inference.
+The quick start runs without a GPU or model download. For real hardware, run `pipeline.py` with your target formats and a `--threshold 0.05` quality gate.
 
 NEO built a CI-ready quantization pipeline for Qwen3.5-27B that shrinks the model from 54GB to 16GB with automated quality gating on every format. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 

@@ -95,42 +95,26 @@ Video is the other obvious modality to add. The CLIP architecture extends to vid
 
 ---
 
-## How to Build This
+## How to Build This with NEO
 
-Clone the repo and install dependencies:
+Open NEO in VS Code or Cursor and describe what you want to build. A good starting prompt for this project:
+
+> "Build a multimodal RAG system using CLIP ViT-B/32 and ChromaDB that ingests PDFs, images (PNG/JPG/TIFF), and spreadsheets (CSV/XLSX) into a shared 512-dimensional embedding space. Use Tesseract OCR to extract text from images, convert tables to schema descriptions for CLIP's text encoder, store all embeddings with HNSW indexing in ChromaDB, and serve a Streamlit UI with drag-and-drop ingestion and a chat query panel that shows retrieved content with modality labels and similarity scores."
+
+<a href="https://heyneo.so/dashboard?section=new-chat&prompt=Build%20a%20multimodal%20RAG%20system%20using%20CLIP%20ViT-B%2F32%20and%20ChromaDB%20that%20ingests%20PDFs%2C%20images%20%28PNG%2FJPG%2FTIFF%29%2C%20and%20spreadsheets%20%28CSV%2FXLSX%29%20into%20a%20shared%20512-dimensional%20embedding%20space.%20Use%20Tesseract%20OCR%20to%20extract%20text%20from%20images%2C%20convert%20tables%20to%20schema%20descriptions%20for%20CLIP%27s%20text%20encoder%2C%20store%20all%20embeddings%20with%20HNSW%20indexing%20in%20ChromaDB%2C%20and%20serve%20a%20Streamlit%20UI%20with%20drag-and-drop%20ingestion%20and%20a%20chat%20query%20panel%20that%20shows%20retrieved%20content%20with%20modality%20labels%20and%20similarity%20scores." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
+
+NEO generates the project structure and core implementation. From there you iterate — ask it to add a Python CLI for batch ingestion and retrieval, tune the HNSW index parameters for sub-50ms retrieval latency, or add structured logging with per-query latency and modality distribution metrics.
+
+To run the finished project:
 
 ```bash
 git clone https://github.com/dakshjain-1616/Multi-Model-RAG
 cd Multi-Model-RAG
 pip install -r requirements.txt
-```
-
-The system requires Python 3.9 or later. Tesseract OCR must be installed separately for image text extraction:
-
-```bash
-# Ubuntu/Debian
-sudo apt-get install tesseract-ocr
-
-# macOS
-brew install tesseract
-```
-
-CLIP model weights download automatically on first use. Start the Streamlit web interface:
-
-```bash
 streamlit run app.py
 ```
 
-Open `localhost:8501` in a browser. Use the file upload panel to ingest documents into the knowledge base: drag in PDFs, images (PNG, JPG, TIFF), and spreadsheets (CSV, XLSX). Ingestion runs in the background. Once complete, submit a query in the chat panel.
-
-To use the CLI for batch ingestion:
-
-```bash
-python ingest.py --path ./docs/ --types pdf,png,csv
-python query.py --query "quarterly revenue by region"
-```
-
-Query results include the retrieved content, the modality it came from (text chunk, image, or table), and the similarity score. Cross-modal retrieval is automatic: a text query will return relevant images and tables alongside text chunks, ranked by embedding distance in the shared CLIP space.
+Open `localhost:8501`, drag in PDFs, images, and spreadsheets to populate the knowledge base, then query across all three modalities at once.
 
 NEO built a multimodal RAG system where CLIP embeddings unify text, images, and tables into a single retrievable space—delivering 0.030-second latency and 60%+ cross-modal accuracy on queries that text-only systems simply cannot answer. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 

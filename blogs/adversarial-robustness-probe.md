@@ -77,54 +77,26 @@ The report format is designed for sharing. Engineering teams can use it to prior
 
 Running adversarial probes during development, not just after, changes how you approach model improvement. When you can see exactly which attack types cause the most flip rate increase, you can target data augmentation and training changes at those specific weaknesses. The probe becomes a feedback loop, not just an evaluation tool.
 
-## How to Build This
+## How to Build This with NEO
 
-Clone the repo and install dependencies. Python 3.8+ is required; a GPU is recommended but not required.
+Open NEO in VS Code or Cursor and describe what you want to build. A good starting prompt for this project:
+
+> "Build an adversarial robustness testing framework in Python for HuggingFace NLP and torchvision models. Apply seven attack types: typo injection, paraphrasing, character noise, token deletion, semantic drift, structural attacks, and FGSM pixel perturbations for vision. Compute a flip rate metric per attack — the percentage of inputs where the model's prediction changes — and grade overall robustness A through F. Generate an interactive HTML report with per-attack heatmaps and per-example breakdowns. Run all inference locally with no external API calls."
+
+<a href="https://heyneo.so/dashboard?section=new-chat&prompt=Build%20an%20adversarial%20robustness%20testing%20framework%20in%20Python%20for%20HuggingFace%20NLP%20and%20torchvision%20models.%20Apply%20seven%20attack%20types%3A%20typo%20injection%2C%20paraphrasing%2C%20character%20noise%2C%20token%20deletion%2C%20semantic%20drift%2C%20structural%20attacks%2C%20and%20FGSM%20pixel%20perturbations%20for%20vision.%20Compute%20a%20flip%20rate%20metric%20per%20attack%20%E2%80%94%20the%20percentage%20of%20inputs%20where%20the%20model%27s%20prediction%20changes%20%E2%80%94%20and%20grade%20overall%20robustness%20A%20through%20F.%20Generate%20an%20interactive%20HTML%20report%20with%20per-attack%20heatmaps%20and%20per-example%20breakdowns.%20Run%20all%20inference%20locally%20with%20no%20external%20API%20calls." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
+
+NEO generates the project structure and core implementation from that. From there you iterate — ask it to add the FGSM gradient-based attack for vision models, build out the A-F grading scale with configurable thresholds, or add a CI/CD integration mode that returns a non-zero exit code when flip rates exceed a limit. Each request builds on what's already there without re-explaining the context.
+
+To run the finished project:
 
 ```bash
 git clone https://github.com/dakshjain-1616/Adversarial-Robustness-Probe.git
 cd Adversarial-Robustness-Probe
 pip install -r requirements.txt
+python src/cli.py --model distilbert-base-uncased-finetuned-sst-2-english --task sentiment --input data/sentiment_examples.txt --attacks all --output reports/report.html
 ```
 
-Run a stress test on a sentiment classifier with typo attacks:
-
-```bash
-python src/cli.py \
-  --model distilbert-base-uncased-finetuned-sst-2-english \
-  --task sentiment \
-  --input data/sentiment_examples.txt \
-  --attacks typo \
-  --intensity medium \
-  --output reports/sentiment_typo_report.html
-```
-
-For a vision model, swap the task and modality flags:
-
-```bash
-python src/cli.py \
-  --model resnet18 \
-  --task image_classification \
-  --input data/images/ \
-  --attacks pixel_noise \
-  --modality vision \
-  --output reports/resnet_report.html
-```
-
-To run all seven attack types at once with explanations and causal analysis:
-
-```bash
-python src/cli.py \
-  --model distilbert-base-uncased-finetuned-sst-2-english \
-  --task sentiment \
-  --input data/sentiment_examples.txt \
-  --attacks all \
-  --explain \
-  --causal \
-  --seed 42
-```
-
-The output is an HTML report at the path you specified. Open it in any browser to see flip rates by attack type, confidence change distributions, and per-example breakdowns. The letter grade (A through F) summarizes overall robustness at the top of the report.
+Open `reports/report.html` in a browser to see flip rates by attack type, confidence change distributions, and the overall robustness grade.
 
 NEO built an adversarial robustness probe where model stress-testing across seven attack types is part of the build process, not a post-deployment afterthought. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 

@@ -110,7 +110,17 @@ coding         count=3   avg_depth=0.8120  avg_steps=8.3
 
 Coding samples score highest on depth, reflecting the more structured step-by-step nature of algorithm problems.
 
-## How to Build This
+## How to Build This with NEO
+
+Open NEO in VS Code or Cursor and describe what you want to build. A good starting prompt for this project:
+
+> "Build a DeepSeek-R1-style reasoning distillation pipeline for Mistral Small 3.1 22B using Unsloth and LoRA r=64. The pipeline should handle Mistral's [INST]/[/INST] chat format correctly, automatically mask all instruction tokens to labels=-100 so training is response-only, configure LoRA on q_proj/k_proj/v_proj/o_proj/gate_proj/up_proj/down_proj with rank 64 and alpha 128, train in 4-bit NF4 to fit a single RTX 4090, then export the merged model to GGUF Q4_K_M targeting 13.5 GB. Include a DRY_RUN=1 mode that validates config, masking stats, and GGUF size estimates without GPU hardware."
+
+<a href="https://heyneo.so/dashboard?section=new-chat&prompt=Build%20a%20DeepSeek-R1-style%20reasoning%20distillation%20pipeline%20for%20Mistral%20Small%203.1%2022B%20using%20Unsloth%20and%20LoRA%20r%3D64.%20The%20pipeline%20should%20handle%20Mistral%27s%20%5BINST%5D%2F%5B%2FINST%5D%20chat%20format%20correctly%2C%20automatically%20mask%20all%20instruction%20tokens%20to%20labels%3D-100%20so%20training%20is%20response-only%2C%20configure%20LoRA%20on%20q_proj%2Fk_proj%2Fv_proj%2Fo_proj%2Fgate_proj%2Fup_proj%2Fdown_proj%20with%20rank%2064%20and%20alpha%20128%2C%20train%20in%204-bit%20NF4%20to%20fit%20a%20single%20RTX%204090%2C%20then%20export%20the%20merged%20model%20to%20GGUF%20Q4_K_M%20targeting%2013.5%20GB.%20Include%20a%20DRY_RUN%3D1%20mode%20that%20validates%20config%2C%20masking%20stats%2C%20and%20GGUF%20size%20estimates%20without%20GPU%20hardware." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
+
+NEO generates the project structure and core implementation. From there you iterate: ask it to implement the token masking logic with labels=-100 assignment for instruction spans, add the GGUF export command with Q4_K_M quantization and Hub push support, or build the ReasoningQualityEvaluator that measures depth scores and step counts per domain. Each follow-up builds on what's already there.
+
+To train yourself (RTX 4090 or A100 required), or use the released model directly:
 
 **To run training yourself**, clone the repo and install:
 
@@ -165,19 +175,7 @@ output = llm("[INST] Why does ice float? [/INST] <think>", max_tokens=1024, stop
 print(output["choices"][0]["text"])
 ```
 
-Try a dry run without GPU or API key:
-
-```bash
-python demo.py
-# Completes in ~0.11s, shows config, masking stats, quality evaluation, and GGUF size
-```
-
-Run the full test suite (no GPU required):
-
-```bash
-python -m pytest tests/ -v
-# 129 tests covering config, dataset, evaluator, export, and trainer
-```
+Run `python demo.py` first to validate the full pipeline config and masking stats in under a second with no GPU required.
 
 NEO built a complete reasoning distillation pipeline for Mistral 22B that fits training on a single RTX 4090 and inference on the same card. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 

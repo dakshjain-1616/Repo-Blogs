@@ -85,39 +85,25 @@ The bottleneck now is compliance and validation infrastructure. Systems that get
 
 ---
 
-## How to Build This
+## How to Build This with NEO
 
-You need Python 3.10 or later and Docker. The recommended path is Docker, which bundles the FastAPI HTTPS server, all model dependencies, and the compliance layer into a single startup command. GPU acceleration is optional; the pipeline runs on CPU but slower.
+Open NEO in VS Code or Cursor and describe what you want to build. A good starting prompt for this project:
 
-Clone and install:
+> "Build a HIPAA-compliant medical imaging analysis pipeline as a FastAPI HTTPS server with TLS 1.3. The pipeline should ingest DICOM files, scrub identifying metadata and mask pixel-level text, run MedSAM for anatomical segmentation, pass segmentation output to RadBERT for structured radiology report generation in findings-and-impression format, and produce a multimodal risk assessment that fuses imaging analysis with patient history. All data at rest should use AES-128 Fernet encryption. Every API call must be written to a tamper-proof audit log recording user, action, timestamp, and study ID without including PHI. Implement role-based access control with server-side enforcement and automatic session timeouts."
+
+<a href="https://heyneo.so/dashboard?section=new-chat&prompt=Build%20a%20HIPAA-compliant%20medical%20imaging%20analysis%20pipeline%20as%20a%20FastAPI%20HTTPS%20server%20with%20TLS%201.3.%20The%20pipeline%20should%20ingest%20DICOM%20files%2C%20scrub%20identifying%20metadata%20and%20mask%20pixel-level%20text%2C%20run%20MedSAM%20for%20anatomical%20segmentation%2C%20pass%20segmentation%20output%20to%20RadBERT%20for%20structured%20radiology%20report%20generation%20in%20findings-and-impression%20format%2C%20and%20produce%20a%20multimodal%20risk%20assessment%20that%20fuses%20imaging%20analysis%20with%20patient%20history.%20All%20data%20at%20rest%20should%20use%20AES-128%20Fernet%20encryption.%20Every%20API%20call%20must%20be%20written%20to%20a%20tamper-proof%20audit%20log%20recording%20user%2C%20action%2C%20timestamp%2C%20and%20study%20ID%20without%20including%20PHI.%20Implement%20role-based%20access%20control%20with%20server-side%20enforcement%20and%20automatic%20session%20timeouts." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
+
+NEO generates the project structure and core implementation. From there you iterate: ask it to implement the DICOM ingestion stage with pixel-level text masking alongside tag scrubbing, wire up the MedSAM segmentation stage with optional GPU acceleration, or build the tamper-proof audit logging system that captures PHI-free event records. Each follow-up builds on what's already there.
+
+To run the finished project:
 
 ```bash
 git clone https://github.com/dakshjain-1616/Medical-Report-Analysis-Pipeline
 cd Medical-Report-Analysis-Pipeline
-```
-
-The single-command setup script handles environment initialization, server startup, and compliance verification checks:
-
-```bash
 ./run_pipeline.sh
 ```
 
-If you prefer manual setup outside Docker:
-
-```bash
-pip install -r requirements.txt
-python server.py --host 0.0.0.0 --port 8443 --tls
-```
-
-Once the server is running, submit a DICOM file for analysis via the REST API:
-
-```bash
-curl -X POST https://localhost:8443/analyze \
-  -H "Authorization: Bearer <your-token>" \
-  -F "dicom=@study.dcm"
-```
-
-The pipeline processes the file through ingestion and de-identification, MedSAM segmentation, RadBERT report generation, and multimodal risk assessment. Processing time for a typical study runs 33 to 97 seconds depending on study size and whether GPU acceleration is available. The response is a JSON object containing the segmentation mask paths, the structured radiology report text in standard findings-and-impression format, and the risk assessment output. Every API call is written to the tamper-proof audit log at `logs/audit.log`, which records user, action, timestamp, and study ID without including any PHI.
+Start with a sample DICOM file from the `samples/` directory to verify the full pipeline runs end-to-end, then review `logs/audit.log` to confirm that PHI-free event records are being written correctly for every API call.
 
 NEO built a HIPAA-compliant medical imaging pipeline where MedSAM segmentation, RadBERT report generation, end-to-end encryption, and tamper-proof audit logging are architectural requirements, not optional add-ons. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 

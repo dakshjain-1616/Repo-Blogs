@@ -88,47 +88,26 @@ engine = ReasoningEngine(mode="local")       # llama.cpp GGUF
 engine = ReasoningEngine(mode="mock")        # no key needed
 ```
 
-## How to Build This
+## How to Build This with NEO
 
-Clone the repo and install:
+Open NEO in VS Code or Cursor and describe what you want to build. A good starting prompt for this project:
+
+> "Build a Python library called CoT Surgeon that parses LLM chain-of-thought output into a typed directed acyclic graph. Each node has a type (FACT, REASONING, or CONCLUSION), a confidence score between 0 and 1, and an ID. When a node is edited, recalculate only the downstream subgraph — leave upstream nodes untouched. Track a version counter on every edit, maintain an undo history stack of 20 snapshots, and flag nodes below a configurable confidence threshold. Support three LLM backends in priority order: OpenRouter, local llama.cpp GGUF, and a mock mode with built-in templates. Export graphs as Mermaid diagrams with low-confidence nodes colored distinctly and edited nodes in purple. Provide a Streamlit UI with Single Analysis and Batch Compare tabs."
+
+<a href="https://heyneo.so/dashboard?section=new-chat&prompt=Build%20a%20Python%20library%20called%20CoT%20Surgeon%20that%20parses%20LLM%20chain-of-thought%20output%20into%20a%20typed%20directed%20acyclic%20graph.%20Each%20node%20has%20a%20type%20%28FACT%2C%20REASONING%2C%20or%20CONCLUSION%29%2C%20a%20confidence%20score%20between%200%20and%201%2C%20and%20an%20ID.%20When%20a%20node%20is%20edited%2C%20recalculate%20only%20the%20downstream%20subgraph%20%E2%80%94%20leave%20upstream%20nodes%20untouched.%20Track%20a%20version%20counter%20on%20every%20edit%2C%20maintain%20an%20undo%20history%20stack%20of%2020%20snapshots%2C%20and%20flag%20nodes%20below%20a%20configurable%20confidence%20threshold.%20Support%20three%20LLM%20backends%20in%20priority%20order%3A%20OpenRouter%2C%20local%20llama.cpp%20GGUF%2C%20and%20a%20mock%20mode%20with%20built-in%20templates.%20Export%20graphs%20as%20Mermaid%20diagrams%20with%20low-confidence%20nodes%20colored%20distinctly%20and%20edited%20nodes%20in%20purple.%20Provide%20a%20Streamlit%20UI%20with%20Single%20Analysis%20and%20Batch%20Compare%20tabs." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
+
+NEO generates the project structure and core implementation from that. From there you iterate — ask it to implement the selective recalculation logic that traverses only the affected downstream subgraph, add the undo/redo history stack with configurable depth, or build out the Batch Compare tab that runs multiple prompts in parallel and displays graphs side by side. Each request builds on what's already there without re-explaining the context.
+
+To run the finished project:
 
 ```bash
 git clone https://github.com/dakshjain-1616/cot-surgeon
 cd cot-surgeon
 pip install -r requirements.txt
-```
-
-For the Streamlit UI:
-
-```bash
-pip install streamlit
 streamlit run app.py
 ```
 
-For local llama.cpp inference:
-
-```bash
-pip install llama-cpp-python
-export LLAMA_MODEL_PATH=/path/to/model.gguf
-```
-
-Run the CLI demo:
-
-```bash
-python scripts/demo.py          # auto-detect backend
-python scripts/demo.py --local  # force local llama.cpp
-python scripts/demo.py --batch  # batch comparison demo
-```
-
-The Streamlit interface has two tabs. **Single Analysis** lets you generate a reasoning graph, inspect nodes, edit content, trigger recalculation, and export Mermaid. **Batch Compare** runs multiple prompts in parallel and displays graphs side-by-side, useful for regression testing prompt changes.
-
-Run the test suite:
-
-```bash
-pytest tests/test_reasoning.py -v
-# 104 tests covering node creation, graph construction, confidence scoring,
-# edit / undo / recalculate, Mermaid export, batch analysis, and error handling
-```
+The Single Analysis tab lets you generate a reasoning graph, inspect and edit individual nodes, trigger downstream recalculation, and export to Mermaid. The Batch Compare tab is useful for regression testing prompt changes across multiple reasoning chains.
 
 NEO built a structured reasoning editor that treats LLM chain-of-thought as inspectable, editable, and version-controlled data. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 

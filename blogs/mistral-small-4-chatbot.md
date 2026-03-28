@@ -76,34 +76,28 @@ NEO ran head-to-head benchmarks between Mistral Small 4 and GPT-4o-mini on a sui
 
 The speedup compounds in high-concurrency scenarios. Under a 50-concurrent-user load, Mistral Small 4's throughput advantage grows because the smaller model occupies less GPU memory, allowing more parallel inference batches.
 
-## How to Build This
+## How to Build This with NEO
 
-You need Python 3.10 or later and Node.js 18+ for the web UI. A Mistral API key is required; sign up at [console.mistral.ai](https://console.mistral.ai) to get one.
+Open NEO in VS Code or Cursor and describe what you want to build. A good starting prompt for this project:
 
-Clone and install:
+> "Build a production-ready chatbot using the Mistral Small 4 API with a Python backend and React frontend. The backend should stream tokens to the client using server-sent events with delta objects so time-to-first-token stays under 300ms. Implement sliding window conversation memory with TF-IDF relevance scoring to retain semantically relevant history turns while dropping unrelated ones. Add a system prompt editor with variable interpolation using {{variable}} syntax, a token budget validator that warns before accepting prompts, and a preset library of personas. Expose the chat completions endpoint at /v1/chat/completions following the OpenAI schema so existing clients work by changing only the base URL."
+
+<a href="https://heyneo.so/dashboard?section=new-chat&prompt=Build%20a%20production-ready%20chatbot%20using%20the%20Mistral%20Small%204%20API%20with%20a%20Python%20backend%20and%20React%20frontend.%20The%20backend%20should%20stream%20tokens%20to%20the%20client%20using%20server-sent%20events%20with%20delta%20objects%20so%20time-to-first-token%20stays%20under%20300ms.%20Implement%20sliding%20window%20conversation%20memory%20with%20TF-IDF%20relevance%20scoring%20to%20retain%20semantically%20relevant%20history%20turns%20while%20dropping%20unrelated%20ones.%20Add%20a%20system%20prompt%20editor%20with%20variable%20interpolation%20using%20%7B%7Bvariable%7D%7D%20syntax%2C%20a%20token%20budget%20validator%20that%20warns%20before%20accepting%20prompts%2C%20and%20a%20preset%20library%20of%20personas.%20Expose%20the%20chat%20completions%20endpoint%20at%20%2Fv1%2Fchat%2Fcompletions%20following%20the%20OpenAI%20schema%20so%20existing%20clients%20work%20by%20changing%20only%20the%20base%20URL." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
+
+NEO generates the project structure and core implementation. From there you iterate: ask it to implement the SSE streaming pipeline with stalled-stream reconnection and synthetic completion markers, add the long-term memory key-value store that survives context window limits and session restarts, or build the virtualized message list renderer that stays responsive in long conversations. Each follow-up builds on what's already there.
+
+To run the finished project:
 
 ```bash
 git clone https://github.com/dakshjain-1616/mistral-small-4-chatbot
 cd mistral-small-4-chatbot
 pip install -r requirements.txt
 cd frontend && npm install && cd ..
-```
-
-Set your Mistral API key:
-
-```bash
 export MISTRAL_API_KEY=...
-```
-
-Start the backend and frontend together:
-
-```bash
 python app.py
 ```
 
-Open `http://localhost:3000` in your browser. The chatbot is immediately ready for conversation. The default system prompt is a general-purpose assistant persona. To customize it, click the settings icon in the top right, open the Prompt Editor, and either write your own or pick from the preset library. The editor validates your prompt against the token budget and warns you if the system prompt would crowd out too much conversation context.
-
-Conversation history is managed automatically with sliding window truncation. You can test the long-term memory feature by typing "Please remember that my name is Alex and I prefer concise answers" and then starting a new topic. When you return to a question about format preferences later in the conversation, the chatbot draws the remembered fact from the persistent key-value store rather than the context window. The REST API is available at `http://localhost:8000/v1/chat/completions` and follows the OpenAI chat completions schema, so any OpenAI-compatible client works by changing the base URL and key.
+Open `http://localhost:3000` and test the long-term memory feature by typing "Please remember that my name is Alex" before changing topics - then reference your name later to verify the key-value store retrieval is working.
 
 NEO built a production-ready chatbot that makes Mistral Small 4 accessible to teams who need fast, affordable, high-quality conversational AI. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 

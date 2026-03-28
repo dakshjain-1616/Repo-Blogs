@@ -64,48 +64,26 @@ The tool supports three backends, tried in this order when in auto mode:
 
 This lets you run the full pipeline offline during development and switch to a cloud backend in production without changing application code.
 
-## How to Build This
+## How to Build This with NEO
 
-Clone the repo and install dependencies:
+Open NEO in VS Code or Cursor and describe what you want to build. A good starting prompt for this project:
+
+> "Build a Python library that validates LLM-generated SQL against a live SQLite schema before execution. Score each query 0-100 using a weighted formula: table validity at 50% and column validity at 50%. Return a ValidationResult with trust_score, can_execute boolean, valid/invalid table and column lists, suggested corrections using difflib fuzzy matching for near-miss identifiers, and complexity metrics counting joins, subqueries, and aggregations. Block queries scoring below 50. Support three LLM backends in priority order: local llama.cpp, OpenRouter API, and a mock client for testing. Add a Streamlit UI for interactive querying and history export."
+
+<a href="https://heyneo.so/dashboard?section=new-chat&prompt=Build%20a%20Python%20library%20that%20validates%20LLM-generated%20SQL%20against%20a%20live%20SQLite%20schema%20before%20execution.%20Score%20each%20query%200-100%20using%20a%20weighted%20formula%3A%20table%20validity%20at%2050%25%20and%20column%20validity%20at%2050%25.%20Return%20a%20ValidationResult%20with%20trust_score%2C%20can_execute%20boolean%2C%20valid%2Finvalid%20table%20and%20column%20lists%2C%20suggested%20corrections%20using%20difflib%20fuzzy%20matching%20for%20near-miss%20identifiers%2C%20and%20complexity%20metrics%20counting%20joins%2C%20subqueries%2C%20and%20aggregations.%20Block%20queries%20scoring%20below%2050.%20Support%20three%20LLM%20backends%20in%20priority%20order%3A%20local%20llama.cpp%2C%20OpenRouter%20API%2C%20and%20a%20mock%20client%20for%20testing.%20Add%20a%20Streamlit%20UI%20for%20interactive%20querying%20and%20history%20export." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
+
+NEO generates the EvalEngine, difflib correction logic, backend priority chain, and Streamlit UI. From there you iterate — ask it to add a Northwind sample database for out-of-the-box testing, add per-query execution history with CSV export, or add support for PostgreSQL schemas via SQLAlchemy introspection.
+
+To run the finished project:
 
 ```bash
 git clone https://github.com/dakshjain-1616/sql-trust-lens
 cd sql-trust-lens
 pip install -r requirements.txt
-```
-
-The bundled Northwind dataset provides an 8-table schema ready to query. No additional database setup is needed.
-
-For cloud-based SQL generation, set your API key:
-
-```bash
-export OPENROUTER_API_KEY=sk-or-...
-```
-
-Use the Python API:
-
-```python
-from sql_trust_lens import EvalEngine
-
-engine = EvalEngine()
-result = engine.validate_sql("SELECT name FROM customers WHERE city = 'London'")
-
-print(result.trust_score)        # e.g. 95.0
-print(result.can_execute)        # True
-print(result.suggested_corrections)  # [] if all identifiers valid
-
-if result.can_execute:
-    df = engine.execute_sql(result.sql)
-    print(df.head())
-```
-
-Launch the Streamlit UI for interactive querying, schema browsing, and history export:
-
-```bash
 streamlit run app.py
 ```
 
-The UI shows the trust score, per-identifier validity breakdown, suggested corrections, and query complexity metrics for every submitted query.
+The Streamlit UI opens with the bundled Northwind schema loaded — submit any SQL query and immediately see its trust score, identifier breakdown, and suggested corrections for any mismatched column or table names.
 
 NEO built a SQL validation layer that stops LLM hallucinations before they hit the database. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 

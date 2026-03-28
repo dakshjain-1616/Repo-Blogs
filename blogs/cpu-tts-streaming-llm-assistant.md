@@ -75,31 +75,26 @@ Performance benchmarking across hardware configurations was part of the process 
 
 ## Build Voice AI That Actually Responds
 
-## How to Build This
+## How to Build This with NEO
 
-You need Python 3.12+ and an OpenRouter API key. Clone and install:
+Open NEO in VS Code or Cursor and describe what you want to build. A good starting prompt for this project:
+
+> "Build a CPU-based voice assistant in Python that achieves sub-1.5-second time-to-first-audio without a GPU. Stream tokens from an OpenRouter LLM, split the stream into chunks at comma and semicolon boundaries with a 25-character look-ahead buffer to preserve prosody, and feed each chunk immediately to KittenML's ONNX TTS model (under 100MB). Run a multi-threaded producer-consumer pipeline where LLM inference, TTS synthesis, and audio playback run concurrently. Tune ONNX Runtime thread affinity and parallelism settings for high-core-count Windows CPUs to saturate available threads during synthesis."
+
+<a href="https://heyneo.so/dashboard?section=new-chat&prompt=Build%20a%20CPU-based%20voice%20assistant%20in%20Python%20that%20achieves%20sub-1.5-second%20time-to-first-audio%20without%20a%20GPU.%20Stream%20tokens%20from%20an%20OpenRouter%20LLM%2C%20split%20the%20stream%20into%20chunks%20at%20comma%20and%20semicolon%20boundaries%20with%20a%2025-character%20look-ahead%20buffer%20to%20preserve%20prosody%2C%20and%20feed%20each%20chunk%20immediately%20to%20KittenML%27s%20ONNX%20TTS%20model%20%28under%20100MB%29.%20Run%20a%20multi-threaded%20producer-consumer%20pipeline%20where%20LLM%20inference%2C%20TTS%20synthesis%2C%20and%20audio%20playback%20run%20concurrently.%20Tune%20ONNX%20Runtime%20thread%20affinity%20and%20parallelism%20settings%20for%20high-core-count%20Windows%20CPUs%20to%20saturate%20available%20threads%20during%20synthesis." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
+
+NEO generates the project structure and core implementation from that. From there you iterate — ask it to implement the punctuation boundary chunker with the 25-character look-ahead buffer, tune the ONNX Runtime thread configuration for the hot synthesis loop, or add terminal output showing each chunk as it is synthesized and queued so pipeline stages are visible. Each request builds on what's already there without re-explaining the context.
+
+To run the finished project:
 
 ```bash
 git clone https://github.com/abhishekgandhi-neo/Low-Latency-CPU-Based-Voice-Assistant
 cd Low-Latency-CPU-Based-Voice-Assistant
-python -m venv venv
-venv\Scripts\activate      # Windows
 pip install -r requirements.txt
-```
-
-Create a `.env` file with your OpenRouter key:
-
-```bash
-OPENROUTER_API_KEY=your_key_here
-```
-
-Run the assistant:
-
-```bash
 python voice_assistant_true_streaming.py
 ```
 
-Speak after the prompt appears. The system streams tokens from the LLM through the chunking layer, triggers TTS synthesis at comma and semicolon boundaries, and begins playing audio while the rest of the response is still generating. On a machine with 32 or more CPU cores, ONNX parallelism settings are tuned to saturate the available threads during the hot synthesis loop. First audio should arrive within 1.25 seconds of finishing your question. The terminal shows each chunk as it is synthesized and queued, so you can see the pipeline stages working in parallel.
+Speak after the prompt appears. First audio arrives within 1.25 seconds, and the terminal shows each synthesized chunk as the pipeline stages run in parallel.
 
 NEO built a CPU-based voice assistant where sub-sentence streaming and a multi-threaded pipeline deliver 1.25-second time-to-first-audio without any GPU hardware. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 

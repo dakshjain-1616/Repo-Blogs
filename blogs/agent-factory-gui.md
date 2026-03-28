@@ -57,39 +57,26 @@ Agent Factory GUI covers the standard taxonomy of agent architectures. Single-ag
 
 Hierarchical multi-agent setups are supported through sub-agent nesting. An agent node can itself contain a full pipeline, letting you build supervisor-worker hierarchies where a high-level orchestrator delegates to specialized sub-agents for retrieval, code generation, or domain-specific reasoning. The canvas handles the nesting visually with collapsible group nodes.
 
-## How to Build This
+## How to Build This with NEO
 
-You need Python 3.10+, Node.js 18+, and npm. Clone the repo, then configure your API keys:
+Open NEO in VS Code or Cursor and describe what you want to build. A good starting prompt for this project:
+
+> "Build a drag-and-drop visual canvas for composing AI agent pipelines, with a FastAPI backend and React frontend. Nodes represent LLM providers (OpenAI, Anthropic, Groq, Ollama), tools (web search, code execution, file I/O, SQL), memory backends (buffer, Chroma vector store, summary), and conditional routers. Use typed input/output ports to enforce connection compatibility. Execute workflows in topological order with support for parallel fan-out branches. Show a real-time execution trace panel with full prompt/completion logs. Export the finished pipeline as a self-contained Python module."
+
+<a href="https://heyneo.so/dashboard?section=new-chat&prompt=Build%20a%20drag-and-drop%20visual%20canvas%20for%20composing%20AI%20agent%20pipelines%2C%20with%20a%20FastAPI%20backend%20and%20React%20frontend.%20Nodes%20represent%20LLM%20providers%20%28OpenAI%2C%20Anthropic%2C%20Groq%2C%20Ollama%29%2C%20tools%20%28web%20search%2C%20code%20execution%2C%20file%20I%2FO%2C%20SQL%29%2C%20memory%20backends%20%28buffer%2C%20Chroma%20vector%20store%2C%20summary%29%2C%20and%20conditional%20routers.%20Use%20typed%20input%2Foutput%20ports%20to%20enforce%20connection%20compatibility.%20Execute%20workflows%20in%20topological%20order%20with%20support%20for%20parallel%20fan-out%20branches.%20Show%20a%20real-time%20execution%20trace%20panel%20with%20full%20prompt%2Fcompletion%20logs.%20Export%20the%20finished%20pipeline%20as%20a%20self-contained%20Python%20module." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
+
+NEO generates the project structure and core implementation from that. From there you iterate — ask it to add sub-agent nesting with collapsible group nodes for hierarchical multi-agent setups, build out the batch test mode that runs a JSONL file of test cases and produces a results table, or add Docker-ready export templates. Each request builds on what's already there without re-explaining the context.
+
+To run the finished project:
 
 ```bash
 git clone https://github.com/dakshjain-1616/Agent-Factory-GUI.git
 cd Agent-Factory-GUI
 cp backend/.env.example backend/.env
-```
-
-Edit `backend/.env` and add your credentials:
-
-```
-ANTHROPIC_API_KEY=sk-ant-...
-OPENAI_API_KEY=sk-...
-```
-
-Start the application with the included script, which sets up the Python virtual environment, installs backend dependencies, builds the React frontend, and starts the FastAPI server:
-
-```bash
 bash start.sh
 ```
 
-Open `http://localhost:8000` in your browser. The canvas loads with the component palette on the left. Drag agent, tool, memory, and router nodes onto the canvas, connect them by dragging between ports, and click any node to configure its parameters inline. Hit the Run button to execute the workflow and watch the trace panel update in real time.
-
-For development with hot reload, run the backend and frontend separately:
-
-```bash
-cd backend && source ../venv/bin/activate && uvicorn main:app --reload --port 8000
-cd frontend && npm start
-```
-
-The frontend dev server runs on `http://localhost:3000` and proxies API calls to port 8000 automatically.
+Open `http://localhost:8000` to load the canvas. Drag nodes from the left palette, connect them between typed ports, and click Run to watch the trace panel update live as the pipeline executes.
 
 NEO built Agent Factory GUI to close the gap between architectural ideas and working agent pipelines — draft on the canvas, test interactively, export to production code. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 

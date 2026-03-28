@@ -63,42 +63,26 @@ Every FinTradeBench run is specified by a YAML config file and executed with a s
 
 The combination of config-as-code and deterministic execution means every result is reproducible. Share the config file and the data source specification, and anyone can reproduce the exact same backtest numbers. This matters for reporting results honestly and for debugging when metrics change unexpectedly after a strategy update.
 
-## How to Build This
+## How to Build This with NEO
 
-Clone and install dependencies:
+Open NEO in VS Code or Cursor and describe what you want to build. A good starting prompt for this project:
+
+> "Build a Python CLI tool called FinTradeBench that backtests AI trading strategies against historical OHLCV data from Yahoo Finance, Binance, and CSV files across stocks, crypto, forex, and commodities. The backtest engine should simulate bar-by-bar execution at next-bar open price, model transaction costs including commission, bid-ask spread, and slippage, and support fixed fractional and volatility-targeting position sizing. Compute Sharpe ratio, maximum drawdown, win rate, alpha vs. benchmark, Calmar ratio, and Sortino ratio. Include a comparison mode that runs the strategy against classical technical indicator baselines (moving average crossover, RSI, Bollinger Bands, MACD, momentum) on the same dataset. All runs specified by a YAML config file, results exported as CSV equity curve, JSON metrics, and HTML report."
+
+<a href="https://heyneo.so/dashboard?section=new-chat&prompt=Build%20a%20Python%20CLI%20tool%20called%20FinTradeBench%20that%20backtests%20AI%20trading%20strategies%20against%20historical%20OHLCV%20data%20from%20Yahoo%20Finance%2C%20Binance%2C%20and%20CSV%20files%20across%20stocks%2C%20crypto%2C%20forex%2C%20and%20commodities.%20The%20backtest%20engine%20should%20simulate%20bar-by-bar%20execution%20at%20next-bar%20open%20price%2C%20model%20transaction%20costs%20including%20commission%2C%20bid-ask%20spread%2C%20and%20slippage%2C%20and%20support%20fixed%20fractional%20and%20volatility-targeting%20position%20sizing.%20Compute%20Sharpe%20ratio%2C%20maximum%20drawdown%2C%20win%20rate%2C%20alpha%20vs.%20benchmark%2C%20Calmar%20ratio%2C%20and%20Sortino%20ratio.%20Include%20a%20comparison%20mode%20that%20runs%20the%20strategy%20against%20classical%20technical%20indicator%20baselines%20%28moving%20average%20crossover%2C%20RSI%2C%20Bollinger%20Bands%2C%20MACD%2C%20momentum%29%20on%20the%20same%20dataset.%20All%20runs%20specified%20by%20a%20YAML%20config%20file%2C%20results%20exported%20as%20CSV%20equity%20curve%2C%20JSON%20metrics%2C%20and%20HTML%20report." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
+
+NEO generates the project structure and core implementation from that. From there you iterate — ask it to add signal correlation analysis between the AI strategy and the indicator baseline, add the portfolio-level multi-asset backtesting mode with dynamic rebalancing, or add a persistent leaderboard that accumulates results across runs for tracking strategy performance over time. Each request builds on what's already there.
+
+To run the finished project:
 
 ```bash
 git clone https://github.com/dakshjain-1616/FinTradeBench-CLI
 cd FinTradeBench-CLI
 pip install -r requirements.txt
-```
-
-Add your OpenRouter API key to a `.env` file:
-
-```bash
-cp .env.example .env
-# Edit .env and set OPENROUTER_API_KEY
-```
-
-Run a full benchmark against a specific model:
-
-```bash
-python benchmark.py --model openai/gpt-4o
-```
-
-To try the tool without spending API credits:
-
-```bash
 python benchmark.py --model openai/gpt-4o --dry-run
 ```
 
-To benchmark two models side by side:
-
-```bash
-python benchmark.py --compare openai/gpt-4o deepseek/deepseek-chat
-```
-
-The terminal shows a live progress bar as each of the 65 financial questions is answered, followed by a category breakdown table and per-question results. After the run, a JSON report and an HTML report with animated bar charts are saved automatically. A persistent leaderboard accumulates results across runs, so you can compare model performance over time with `python benchmark.py --leaderboard`.
+The dry run walks through the full evaluation pipeline without spending API credits, then `--compare` runs two models side by side on the same historical dataset.
 
 NEO built FinTradeBench CLI so that evaluating AI trading strategies is as disciplined as evaluating any other machine learning system — data partitioning, cost modeling, risk metrics, and baseline comparison all enforced by the tool. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 

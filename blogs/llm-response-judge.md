@@ -71,40 +71,25 @@ Content moderation and compliance review are adjacent uses. Configure the rubric
 
 ---
 
-## How to Build This
+## How to Build This with NEO
 
-You need Python 3.10 or later for the backend and Node.js 18+ for the frontend. Docker is the recommended path because it handles both together in one command.
+Open NEO in VS Code or Cursor and describe what you want to build. A good starting prompt for this project:
 
-Clone and install:
+> "Build a full-stack LLM response evaluation app with a React frontend and FastAPI backend, deployable via Docker. The app should accept CSV or JSON uploads with question and response columns, let users configure a weighted rubric of custom criteria, then use a configurable judge model (Anthropic Claude, OpenAI, Gemini, OpenRouter, or local Ollama) to score each response per criterion with a written justification. Output a report showing aggregate score, per-criterion breakdown, and written justifications per response, with a demo mode using mock scores that works without any API key."
+
+<a href="https://heyneo.so/dashboard?section=new-chat&prompt=Build%20a%20full-stack%20LLM%20response%20evaluation%20app%20with%20a%20React%20frontend%20and%20FastAPI%20backend%2C%20deployable%20via%20Docker.%20The%20app%20should%20accept%20CSV%20or%20JSON%20uploads%20with%20question%20and%20response%20columns%2C%20let%20users%20configure%20a%20weighted%20rubric%20of%20custom%20criteria%2C%20then%20use%20a%20configurable%20judge%20model%20%28Anthropic%20Claude%2C%20OpenAI%2C%20Gemini%2C%20OpenRouter%2C%20or%20local%20Ollama%29%20to%20score%20each%20response%20per%20criterion%20with%20a%20written%20justification.%20Output%20a%20report%20showing%20aggregate%20score%2C%20per-criterion%20breakdown%2C%20and%20written%20justifications%20per%20response%2C%20with%20a%20demo%20mode%20using%20mock%20scores%20that%20works%20without%20any%20API%20key." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
+
+NEO generates the project structure and core implementation. From there you iterate: ask it to add the per-criterion justification prompt engineering so the judge explains each score, implement the response improvement generator that targets low-scoring dimensions specifically, or wire in the Ollama integration for on-premises evaluation with no data leaving the environment. Each follow-up builds on what's already there.
+
+To run the finished project:
 
 ```bash
 git clone https://github.com/Dakshjain1604/LLM-response-Judge
 cd LLM-response-Judge
-```
-
-With Docker:
-
-```bash
 docker-compose up --build
 ```
 
-Without Docker, start each service manually:
-
-```bash
-# Backend
-cd backend
-pip install -r requirements.txt
-uvicorn main:app --host 0.0.0.0 --port 8000
-
-# Frontend (separate terminal)
-cd frontend
-npm install
-npm start
-```
-
-Open `http://localhost:3000` in your browser. The interface starts in demo mode with mock scores, so you can explore the report format before adding API keys. To enable real evaluation, go to the settings panel and enter your API key for whichever provider you want to use as the judge (Anthropic, OpenAI, Google, or OpenRouter). For on-premises use with no data leaving your environment, point it at a local Ollama instance instead.
-
-Prepare your data as a CSV with `question` and `response` columns, then upload it through the interface. Set your rubric criteria and weights, pick a judge model, and click Run. A batch of 100 responses processes in roughly three minutes. The output report shows an aggregate score, a per-criterion breakdown for every response, and written justifications explaining each score. Responses flagged as low-scoring can be sent through the improvement generator directly from the report view.
+Open `http://localhost:3000`. The app starts in demo mode with mock scores so you can explore the report format immediately. Add your API key in the settings panel when ready to run real evaluations.
 
 NEO built an LLM response judge where customizable weighted rubrics and per-criterion justifications make automated quality evaluation actionable, not just a score. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 

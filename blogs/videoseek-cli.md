@@ -67,67 +67,30 @@ Videoseek CLI is driven by three commands. `videoseek index <source>` transcribe
 
 Output defaults to a human-readable table in the terminal. The `--json` flag emits structured JSON for piping into other tools. The `--open` flag on macOS and Linux attempts to open the video at the matching timestamp directly in the default media player or browser.
 
-## How to Build This
+## How to Build This with NEO
 
-Clone the repo and install dependencies:
+Open NEO in VS Code or Cursor and describe what you want to build. A good starting prompt for this project:
+
+> "Build a Python CLI tool called videoseek with three commands: index, search, and list. The index command accepts a YouTube URL or local video file, extracts audio with yt-dlp/ffmpeg, transcribes with Whisper (local or API), segments the transcript at sentence boundaries into 30-60 second chunks preserving word-level timestamps, embeds each chunk with text-embedding-3-small or local sentence-transformers, and stores embeddings in a FAISS or ChromaDB index with source video metadata. The search command embeds a query and returns top-k results with timestamps, similarity scores, and direct YouTube ?t= URLs. Support multi-video collections in a SQLite metadata store."
+
+<a href="https://heyneo.so/dashboard?section=new-chat&prompt=Build%20a%20Python%20CLI%20tool%20called%20videoseek%20with%20three%20commands%3A%20index%2C%20search%2C%20and%20list.%20The%20index%20command%20accepts%20a%20YouTube%20URL%20or%20local%20video%20file%2C%20extracts%20audio%20with%20yt-dlp%2Fffmpeg%2C%20transcribes%20with%20Whisper%20%28local%20or%20API%29%2C%20segments%20the%20transcript%20at%20sentence%20boundaries%20into%2030-60%20second%20chunks%20preserving%20word-level%20timestamps%2C%20embeds%20each%20chunk%20with%20text-embedding-3-small%20or%20local%20sentence-transformers%2C%20and%20stores%20embeddings%20in%20a%20FAISS%20or%20ChromaDB%20index%20with%20source%20video%20metadata.%20The%20search%20command%20embeds%20a%20query%20and%20returns%20top-k%20results%20with%20timestamps%2C%20similarity%20scores%2C%20and%20direct%20YouTube%20%3Ft%3D%20URLs.%20Support%20multi-video%20collections%20in%20a%20SQLite%20metadata%20store." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
+
+NEO generates the transcription pipeline, embedding and indexing logic, multi-video collection management, and CLI interface. From there you iterate -- ask it to add hybrid BM25 + semantic search with reciprocal rank fusion for better technical term matching, add optional speaker diarization using pyannote.audio with a `--speaker` search filter, or add a `--json` output flag for piping results into other tools.
+
+To run the finished project:
 
 ```bash
 git clone https://github.com/dakshjain-1616/videoseek-cli
 cd videoseek-cli
 pip install -r requirements.txt
-```
-
-You also need `ffmpeg` installed on your system for audio extraction from local video files:
-
-```bash
-# Ubuntu/Debian
-sudo apt-get install ffmpeg
-
-# macOS
-brew install ffmpeg
-```
-
-For YouTube downloads, `yt-dlp` is included in the requirements.
-
-Set your embedding API key if using OpenAI embeddings (the default):
-
-```bash
 export OPENAI_API_KEY=sk-...
-```
-
-To use local embeddings instead, pass `--embedder local` when indexing — this uses `all-MiniLM-L6-v2` via sentence-transformers and requires no API key.
-
-Index a YouTube video:
-
-```bash
 videoseek index https://www.youtube.com/watch?v=dQw4w9WgXcQ
+videoseek search "database migration strategy"
 ```
 
-Index a local file:
+Results show timestamps, similarity scores, and direct `?t=` URLs -- every video you index becomes searchable in natural language with second-level precision.
 
-```bash
-videoseek index ./recordings/architecture-review.mp4
-```
-
-Indexing a two-hour video takes 4 to 8 minutes on CPU with local embeddings, or 1 to 2 minutes with a GPU.
-
-Search your indexed collection:
-
-```bash
-videoseek search "how did they handle database migrations"
-```
-
-Results print to the terminal as a table showing timestamps, similarity scores, and matching text. For YouTube-sourced videos, results include a direct URL with a `?t=` parameter that jumps to the matching moment.
-
-List all indexed videos:
-
-```bash
-videoseek list
-```
-
-Use `--json` on any command to get structured output for piping into other tools.
-
-NEO built Videoseek CLI so that long-form video stops being a knowledge silo — one index command and every recording in your collection becomes instantly searchable with timestamp-accurate results. See what else NEO ships at [heyneo.so](https://heyneo.so/).
+NEO built Videoseek CLI so that long-form video stops being a knowledge silo -- one index command and every recording in your collection becomes instantly searchable with timestamp-accurate results. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---
 

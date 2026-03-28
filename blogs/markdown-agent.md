@@ -77,60 +77,26 @@ With Markdown Agent, the state is `memory.md`. Open it in any editor. Change wha
 
 The dependency surface is also smaller. The core library needs only Python. Adding a local GGUF backend requires `llama-cpp-python`. Adding cloud backends requires `anthropic` or `openai`. No vector database, no graph database, no embedded Redis.
 
-## How to Build This
+## How to Build This with NEO
 
-Clone and install:
+Open NEO in VS Code or Cursor and describe what you want to build. A good starting prompt for this project:
+
+> "Build a stateful Python AI agent that operates entirely on three Markdown files: plan.md (goal, tasks, context, constraints as input), output.md (agent results written after each run), and memory.md (persistent session log appended after each run with timestamp, goal, and summary). The agent should auto-detect its LLM backend in priority order: a GGUF file at LLAMA_MODEL_PATH via llama-cpp-python, Anthropic Claude if ANTHROPIC_API_KEY is set, OpenAI-compatible server if OPENAI_API_KEY is set, or mock mode as fallback. Include a --dry-run flag that prints the prompt and token count without calling any model."
+
+<a href="https://heyneo.so/dashboard?section=new-chat&prompt=Build%20a%20stateful%20Python%20AI%20agent%20that%20operates%20entirely%20on%20three%20Markdown%20files%3A%20plan.md%20%28goal%2C%20tasks%2C%20context%2C%20constraints%20as%20input%29%2C%20output.md%20%28agent%20results%20written%20after%20each%20run%29%2C%20and%20memory.md%20%28persistent%20session%20log%20appended%20after%20each%20run%20with%20timestamp%2C%20goal%2C%20and%20summary%29.%20The%20agent%20should%20auto-detect%20its%20LLM%20backend%20in%20priority%20order%3A%20a%20GGUF%20file%20at%20LLAMA_MODEL_PATH%20via%20llama-cpp-python%2C%20Anthropic%20Claude%20if%20ANTHROPIC_API_KEY%20is%20set%2C%20OpenAI-compatible%20server%20if%20OPENAI_API_KEY%20is%20set%2C%20or%20mock%20mode%20as%20fallback.%20Include%20a%20--dry-run%20flag%20that%20prints%20the%20prompt%20and%20token%20count%20without%20calling%20any%20model." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
+
+NEO generates the project structure and core implementation. From there you iterate: ask it to add the six built-in plan.md templates (research, code-review, brainstorm, bug-report, data-analysis, weekly-review), implement the backend priority detection with environment variable overrides, or build out the memory session format with git-diffable plain Markdown blocks. Each follow-up builds on what's already there.
+
+To run the finished project:
 
 ```bash
 git clone https://github.com/dakshjain-1616/markdown-agent
 cd markdown-agent
 pip install -r requirements.txt
-```
-
-Write a goal and run the agent with the mock backend (no API key needed):
-
-```bash
-cat > plan.md << 'EOF'
-# Plan
-
-## Goal
-List the five most important principles of clean code
-
-## Tasks
-- [ ] Name each principle
-- [ ] Give a one-line example for each
-EOF
-
-python run_agent.py
-cat output.md
-```
-
-To use Claude:
-
-```bash
-export ANTHROPIC_API_KEY=sk-ant-...
 python run_agent.py
 ```
 
-To use a local GGUF model:
-
-```bash
-LLAMA_MODEL_PATH=~/models/mistral-7b-q4.gguf python run_agent.py
-```
-
-After multiple runs, inspect the accumulated memory:
-
-```bash
-cat memory.md
-git diff memory.md  # if memory.md is tracked in git
-```
-
-Run the test suite:
-
-```bash
-pytest tests/ -q
-# 89 passed
-```
+Start with `python run_agent.py` in mock mode to verify the three-file cycle works, then set `ANTHROPIC_API_KEY` or `LLAMA_MODEL_PATH` to switch to a real backend and run `git diff memory.md` after a few sessions to see accumulated context.
 
 NEO built a three-file AI agent that accumulates memory across sessions in plain Markdown, with backend auto-detection from local GGUF files to Claude to OpenAI. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 

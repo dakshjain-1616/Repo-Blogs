@@ -90,30 +90,26 @@ It's less appropriate when you have abundant historical data, domain-specific pa
 
 ## ML Systems That Work End-to-End
 
-## How to Build This
+## How to Build This with NEO
 
-You need Python 3.10+, Node.js 18+, and about 2GB of disk space for the TimesFM model weights. Clone the repo, then set up the backend first:
+Open NEO in VS Code or Cursor and describe what you want to build. A good starting prompt for this project:
+
+> "Build a full-stack natural language time series forecasting app with a FastAPI backend and React 19 + TypeScript + Vite frontend. The backend loads Google's TimesFM-2.5-200M zero-shot forecasting model from HuggingFace and parses plain-language queries to identify the data source — live Yahoo Finance tickers or curated statsmodels datasets. Run inference and return forecast point estimates with confidence bands. The frontend renders historical data, the projected forecast, and shaded uncertainty regions using Recharts, with a metrics panel showing trend direction and a plain-language summary."
+
+<a href="https://heyneo.so/dashboard?section=new-chat&prompt=Build%20a%20full-stack%20natural%20language%20time%20series%20forecasting%20app%20with%20a%20FastAPI%20backend%20and%20React%2019%20%2B%20TypeScript%20%2B%20Vite%20frontend.%20The%20backend%20loads%20Google%27s%20TimesFM-2.5-200M%20zero-shot%20forecasting%20model%20from%20HuggingFace%20and%20parses%20plain-language%20queries%20to%20identify%20the%20data%20source%20%E2%80%94%20live%20Yahoo%20Finance%20tickers%20or%20curated%20statsmodels%20datasets.%20Run%20inference%20and%20return%20forecast%20point%20estimates%20with%20confidence%20bands.%20The%20frontend%20renders%20historical%20data%2C%20the%20projected%20forecast%2C%20and%20shaded%20uncertainty%20regions%20using%20Recharts%2C%20with%20a%20metrics%20panel%20showing%20trend%20direction%20and%20a%20plain-language%20summary." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
+
+NEO generates the project structure and core implementation from that. From there you iterate — ask it to add the natural language query router that maps user input to the right data source, implement the confidence band calculation and shaded area chart rendering, or add a FORCE_CPU environment flag to override GPU detection. Each request builds on what's already there without re-explaining the context.
+
+To run the finished project:
 
 ```bash
 git clone https://github.com/dakshjain-1616/AI-Powered-Time-Series-Forecasting.git
 cd AI-Powered-Time-Series-Forecasting/backend
-python -m venv venv
-source venv/bin/activate
 pip install -r requirements.txt
 python main.py
 ```
 
-On the first run the backend downloads the TimesFM-2.5-200M weights from HuggingFace and caches them locally. The API server starts on `http://localhost:8000`. In a second terminal, start the frontend:
-
-```bash
-cd frontend
-npm install
-npm run dev
-```
-
-Open `http://localhost:5173`. Type a query like `"Apple stock price forecast for the next 30 days"` and submit. The system fetches live AAPL data from Yahoo Finance, runs inference through TimesFM, and renders the chart with historical prices, the projected forecast line, and shaded confidence bands. The metrics panel shows trend direction and a plain-language summary.
-
-You can configure the backend with a `.env` file in the `backend/` directory. Setting `FORCE_CPU=true` overrides GPU detection if needed.
+In a second terminal run `cd frontend && npm install && npm run dev`, then open `http://localhost:5173`. Type a query like "Apple stock price forecast for the next 30 days" and the chart renders with live AAPL data, the forecast line, and shaded confidence bands.
 
 NEO built a natural language time series forecasting platform where zero-shot predictions from Google's TimesFM are accessible to anyone, not just data scientists. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 

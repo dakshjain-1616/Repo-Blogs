@@ -63,41 +63,27 @@ for frame in video_frames:
 
 This pattern integrates cleanly with any existing pipeline. The cache stores only the hash fingerprints, not the full frame data, so memory usage stays flat regardless of how much footage you process.
 
-## How to Build This
+## How to Build This with NEO
 
-Clone the repo and install dependencies:
+Open NEO in VS Code or Cursor and describe what you want to build. A good starting prompt for this project:
+
+> "Build a Python CLI tool called worldcache that sits in front of world model inference pipelines and deduplicates redundant video frames using perceptual hashing. Implement four hash algorithms: dhash (horizontal gradient, default), phash (DCT-based), ahash (average pixel), and whash (Haar wavelet). For each incoming frame, compute its hash and check Hamming distance against all cached hashes. Skip the frame if the distance falls below a configurable threshold. Expose four CLI commands: process (deduplicate a directory or MP4 file), demo (synthetic frame test), inspect (summarize a previous run's cache_report.json), and benchmark (compare all four algorithms on throughput and cache hit rate). Provide a Python API with WorldCache(algorithm, threshold).is_duplicate(frame) for inline pipeline integration."
+
+<a href="https://heyneo.so/dashboard?section=new-chat&prompt=Build%20a%20Python%20CLI%20tool%20called%20worldcache%20that%20sits%20in%20front%20of%20world%20model%20inference%20pipelines%20and%20deduplicates%20redundant%20video%20frames%20using%20perceptual%20hashing.%20Implement%20four%20hash%20algorithms%3A%20dhash%20%28horizontal%20gradient%2C%20default%29%2C%20phash%20%28DCT-based%29%2C%20ahash%20%28average%20pixel%29%2C%20and%20whash%20%28Haar%20wavelet%29.%20For%20each%20incoming%20frame%2C%20compute%20its%20hash%20and%20check%20Hamming%20distance%20against%20all%20cached%20hashes.%20Skip%20the%20frame%20if%20the%20distance%20falls%20below%20a%20configurable%20threshold.%20Expose%20four%20CLI%20commands%3A%20process%20%28deduplicate%20a%20directory%20or%20MP4%20file%29%2C%20demo%20%28synthetic%20frame%20test%29%2C%20inspect%20%28summarize%20a%20previous%20run%27s%20cache_report.json%29%2C%20and%20benchmark%20%28compare%20all%20four%20algorithms%20on%20throughput%20and%20cache%20hit%20rate%29.%20Provide%20a%20Python%20API%20with%20WorldCache%28algorithm%2C%20threshold%29.is_duplicate%28frame%29%20for%20inline%20pipeline%20integration." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
+
+NEO generates the four hash algorithm implementations, Hamming distance cache, CLI commands, and Python API. From there you iterate -- ask it to add an MP4 input mode using OpenCV for frame extraction, add a live progress bar during processing with frames-per-second display, or add a `cache_report.json` output that records every skipped frame index and its Hamming distance for inspection.
+
+To run the finished project:
 
 ```bash
 git clone https://github.com/dakshjain-1616/worldcache-cli
 cd worldcache-cli
 pip install -r requirements.txt
-```
-
-For MP4 video file support, install OpenCV:
-
-```bash
-pip install opencv-python
-```
-
-Run the demo to verify everything works without needing real footage:
-
-```bash
 python -m worldcache demo
-```
-
-To process a directory of frames:
-
-```bash
 python -m worldcache process --input ./frames/ --algorithm dhash --threshold 10 --output ./deduplicated/
 ```
 
-To process an MP4 file directly:
-
-```bash
-python -m worldcache process --input ./video.mp4 --threshold 8
-```
-
-The tool prints a live progress bar during processing and writes a `cache_report.json` to the output directory. That report contains the full list of skipped frame indices and the computed Hamming distances, which you can feed into `inspect` for a formatted summary.
+The tool prints a live progress bar and writes `cache_report.json` to the output directory -- showing deduplication rate, skipped frame indices, and Hamming distances for every filtered frame.
 
 NEO built WorldCache CLI to cut redundant frame processing in world model pipelines by up to 90%, using perceptual hashing instead of expensive model inference. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 

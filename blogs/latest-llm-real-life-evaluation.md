@@ -86,40 +86,27 @@ Third-party benchmarks tell you how models performed on someone else's tasks, ev
 
 Running your own benchmark on your own task distribution gives you data that's actually predictive of how a model will perform in your production environment.
 
-## How to Build This
+## How to Build This with NEO
 
-You need Python 3.10 or later. No system-level dependencies beyond a working Python installation and internet access to reach the provider APIs.
+Open NEO in VS Code or Cursor and describe what you want to build. A good starting prompt for this project:
 
-Clone and install:
+> "Build an async Python LLM benchmarking platform that evaluates models across 150+ real-world tasks in ten categories: coding (40 tasks focused on Flask and FastAPI routes, authentication middleware, query parameter validation), structured output (25 tasks testing strict JSON Schema compliance), reasoning (20 multi-step logic tasks), long-context retrieval (8 tasks embedding target facts in 32,000+ token documents), and six more. Use four scoring methods based on task type: exact matching, regex validation, JSON Schema compliance validation, and LLM-as-a-judge. Record latency in milliseconds and compute estimated USD cost per task. Run all tasks in parallel with async dispatch. Support OpenAI, Anthropic, Google, ZhipuAI, and OpenRouter providers, all configured via environment variables. Export results as Markdown with category breakdowns, raw JSON per-task data, and CSV with model/category/task/score/latency/cost columns."
+
+<a href="https://heyneo.so/dashboard?section=new-chat&prompt=Build%20an%20async%20Python%20LLM%20benchmarking%20platform%20that%20evaluates%20models%20across%20150%2B%20real-world%20tasks%20in%20ten%20categories%3A%20coding%20%2840%20tasks%20focused%20on%20Flask%20and%20FastAPI%20routes%2C%20authentication%20middleware%2C%20query%20parameter%20validation%29%2C%20structured%20output%20%2825%20tasks%20testing%20strict%20JSON%20Schema%20compliance%29%2C%20reasoning%20%2820%20multi-step%20logic%20tasks%29%2C%20long-context%20retrieval%20%288%20tasks%20embedding%20target%20facts%20in%2032%2C000%2B%20token%20documents%29%2C%20and%20six%20more.%20Use%20four%20scoring%20methods%20based%20on%20task%20type%3A%20exact%20matching%2C%20regex%20validation%2C%20JSON%20Schema%20compliance%20validation%2C%20and%20LLM-as-a-judge.%20Record%20latency%20in%20milliseconds%20and%20compute%20estimated%20USD%20cost%20per%20task.%20Run%20all%20tasks%20in%20parallel%20with%20async%20dispatch.%20Support%20OpenAI%2C%20Anthropic%2C%20Google%2C%20ZhipuAI%2C%20and%20OpenRouter%20providers%2C%20all%20configured%20via%20environment%20variables.%20Export%20results%20as%20Markdown%20with%20category%20breakdowns%2C%20raw%20JSON%20per-task%20data%2C%20and%20CSV%20with%20model%2Fcategory%2Ftask%2Fscore%2Flatency%2Fcost%20columns." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
+
+NEO generates the project structure and core implementation from that. From there you iterate — ask it to add a `--quick` flag for a 5-task validation run, add cost-per-correct-answer as a computed column in the CSV output, or add the `--compare` mode that runs two or more models on the same task set and renders a side-by-side comparison table. Each request builds on what's already there.
+
+To run the finished project:
 
 ```bash
 git clone https://github.com/dakshjain-1616/Latest-LLMs-Real-Life-Task-Evaluation
 cd Latest-LLMs-Real-Life-Task-Evaluation
 pip install -r requirements.txt
-```
-
-Configure your API keys as environment variables. The platform reads each provider's key from a standard variable name:
-
-```bash
-export OPENAI_API_KEY=sk-...
-export ANTHROPIC_API_KEY=sk-ant-...
-export GOOGLE_API_KEY=...
-export OPENROUTER_API_KEY=...
-```
-
-Run a quick 5-task validation to confirm your setup is working before committing to a full run:
-
-```bash
 python benchmark.py --quick
+python benchmark.py --models gpt-4o claude-3.5-sonnet --tasks 50 --output results/
 ```
 
-For a targeted evaluation, specify which models to compare and how many tasks to run:
-
-```bash
-python benchmark.py --models gpt-4o claude-3.5-sonnet gemini-1.5-pro --tasks 50 --output results/
-```
-
-The full 150+ task suite with parallel async execution takes roughly 15 to 30 minutes depending on provider latency. Progress is logged to the console as tasks complete. When finished, you get three output files in the results directory: a Markdown report with category breakdowns and per-model summaries, a JSON file with the raw per-task data, and a CSV suitable for spreadsheet analysis. The CSV includes columns for model, category, task ID, score, latency in milliseconds, and estimated USD cost per task. Cost-per-correct-answer is the column worth sorting on first.
+The full 150+ task suite with parallel async execution completes in 15-30 minutes and produces a CSV where cost-per-correct-answer is the column worth sorting on first.
 
 NEO built an async LLM benchmarking platform where 150+ real-world tasks across coding, structured output, reasoning, and long-context retrieval give teams model performance data that actually predicts production behavior. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 

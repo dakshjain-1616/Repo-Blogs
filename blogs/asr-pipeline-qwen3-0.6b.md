@@ -78,47 +78,26 @@ NEO recorded a live demo of the ASR pipeline transcribing audio through the Stre
 
 [![Watch on YouTube](https://img.youtube.com/vi/Fn-jEt5wLmw/maxresdefault.jpg)](https://youtu.be/Fn-jEt5wLmw)
 
-## How to Build This
+## How to Build This with NEO
 
-Python 3.8+ is required. Clone the repo and install dependencies:
+Open NEO in VS Code or Cursor and describe what you want to build. A good starting prompt for this project:
+
+> "Build a speech recognition pipeline in Python using the Qwen3-ASR-0.6B model from HuggingFace. Use librosa for audio preprocessing and format normalization before inference. Support GPU with automatic CPU fallback. Expose three interfaces: a Streamlit web app where users record audio in the browser or upload files and see the transcript, a CLI tool with flags for output directory and device selection, and a Python API for programmatic integration. The model should download automatically on first use and the pipeline should handle WAV, MP3, and other common formats."
+
+<a href="https://heyneo.so/dashboard?section=new-chat&prompt=Build%20a%20speech%20recognition%20pipeline%20in%20Python%20using%20the%20Qwen3-ASR-0.6B%20model%20from%20HuggingFace.%20Use%20librosa%20for%20audio%20preprocessing%20and%20format%20normalization%20before%20inference.%20Support%20GPU%20with%20automatic%20CPU%20fallback.%20Expose%20three%20interfaces%3A%20a%20Streamlit%20web%20app%20where%20users%20record%20audio%20in%20the%20browser%20or%20upload%20files%20and%20see%20the%20transcript%2C%20a%20CLI%20tool%20with%20flags%20for%20output%20directory%20and%20device%20selection%2C%20and%20a%20Python%20API%20for%20programmatic%20integration.%20The%20model%20should%20download%20automatically%20on%20first%20use%20and%20the%20pipeline%20should%20handle%20WAV%2C%20MP3%2C%20and%20other%20common%20formats." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
+
+NEO generates the project structure and core implementation from that. From there you iterate — ask it to add the browser-based recording component to the Streamlit interface so no server-side audio hardware is needed, implement the `--output-dir` flag and batch file processing in the CLI, or add GPU/CPU performance benchmarking output to the transcript result. Each request builds on what's already there without re-explaining the context.
+
+To run the finished project:
 
 ```bash
 git clone https://github.com/dakshjain-1616/ASR-pipeline-using-Qwen3-ASR-0.6B---BY-NEO.git
 cd ASR-pipeline-using-Qwen3-ASR-0.6B---BY-NEO
-python3 -m venv venv
-source venv/bin/activate
 pip install -r requirements.txt
-```
-
-The model weights download automatically on first use. If you want to pre-fetch them:
-
-```bash
-huggingface-cli download Qwen/Qwen3-ASR-0.6B
-```
-
-Transcribe an audio file from the command line:
-
-```bash
-python cli.py --audio path/to/audio.wav
-```
-
-The transcript prints to stdout. To save output to a custom directory:
-
-```bash
-python cli.py --audio audio.mp3 --output-dir ./transcriptions
-```
-
-On machines without a GPU, add `--device cpu`. Expect roughly 1 to 3 seconds of processing per second of audio on CPU, versus 0.1 to 0.5 seconds on GPU.
-
-For the web interface, launch Streamlit:
-
-```bash
 streamlit run streamlit_app.py
 ```
 
-Open `http://localhost:8501`, record directly in the browser or upload a file, and the transcription appears below. If you need ffmpeg for non-wav formats: `sudo apt-get install ffmpeg`.
-
----
+Open `http://localhost:8501`, record or upload an audio file, and the transcript appears below. For CLI use, run `python cli.py --audio path/to/audio.wav` and the transcript prints to stdout.
 
 NEO built an edge-ready speech recognition pipeline where accurate transcription with a 0.6B model runs on-device without cloud dependency, not as a compromise but as a deliberate architecture choice. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 

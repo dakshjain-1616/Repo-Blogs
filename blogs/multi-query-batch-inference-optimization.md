@@ -91,42 +91,28 @@ Structured output support is increasingly important as LLMs get integrated into 
 
 ---
 
-## How to Build This
+## How to Build This with NEO
 
-Clone the repo and install dependencies:
+Open NEO in VS Code or Cursor and describe what you want to build. A good starting prompt for this project:
+
+> "Build a Mistral-7B inference server in Python using FastAPI with async request handling and five optimization components: a continuous batching engine where requests join and leave the active batch mid-generation so short requests don't wait behind long ones, a two-tier priority scheduler with interactive requests targeting 500ms latency and batch requests running in background slots, a block-based KV cache allocator that allocates in fixed-size blocks and expands dynamically to achieve 72% memory reduction vs static allocation, and a GBNF grammar-constrained structured JSON output mode with under 5% overhead. Expose /generate, /generate/json, /metrics, and /warmup endpoints. Target 18+ requests per second on CPU with 6.8GB memory for 8 concurrent requests."
+
+<a href="https://heyneo.so/dashboard?section=new-chat&prompt=Build%20a%20Mistral-7B%20inference%20server%20in%20Python%20using%20FastAPI%20with%20async%20request%20handling%20and%20five%20optimization%20components%3A%20a%20continuous%20batching%20engine%20where%20requests%20join%20and%20leave%20the%20active%20batch%20mid-generation%20so%20short%20requests%20don%27t%20wait%20behind%20long%20ones%2C%20a%20two-tier%20priority%20scheduler%20with%20interactive%20requests%20targeting%20500ms%20latency%20and%20batch%20requests%20running%20in%20background%20slots%2C%20a%20block-based%20KV%20cache%20allocator%20that%20allocates%20in%20fixed-size%20blocks%20and%20expands%20dynamically%20to%20achieve%2072%25%20memory%20reduction%20vs%20static%20allocation%2C%20and%20a%20GBNF%20grammar-constrained%20structured%20JSON%20output%20mode%20with%20under%205%25%20overhead.%20Expose%20%2Fgenerate%2C%20%2Fgenerate%2Fjson%2C%20%2Fmetrics%2C%20and%20%2Fwarmup%20endpoints.%20Target%2018%2B%20requests%20per%20second%20on%20CPU%20with%206.8GB%20memory%20for%208%20concurrent%20requests." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
+
+NEO generates the project structure and core implementation. From there you iterate: ask it to implement the continuous batching engine with mid-generation request joining and slot recycling, add the block-based KV cache allocator with dynamic expansion tracking, or build the GBNF grammar-constrained decoder that guarantees valid JSON at generation time. Each follow-up builds on what's already there.
+
+To run the finished project:
 
 ```bash
 git clone https://github.com/dakshjain-1616/Multi-Query-Batch-Inference-Optimization
 cd Multi-Query-Batch-Inference-Optimization
 pip install -r requirements.txt
-```
-
-You need Python 3.8 or later, at least 16GB RAM, and 4 or more CPU cores. The server downloads Mistral-7B weights on first start (approximately 4GB for the 4-bit quantized version). Start the inference server:
-
-```bash
 python server.py
 ```
 
-The server comes up on `localhost:8080` and begins accepting requests. Send a generation request with priority level specified:
-
-```bash
-curl -X POST http://localhost:8080/generate \
-  -H "Content-Type: application/json" \
-  -d '{"prompt": "Explain continuous batching in one paragraph", "priority": "interactive"}'
-```
-
-Interactive requests target under 500ms median latency. Batch requests use `"priority": "batch"` and are scheduled in background slots. To request structured JSON output with a schema:
-
-```bash
-curl -X POST http://localhost:8080/generate/json \
-  -H "Content-Type: application/json" \
-  -d '{"prompt": "Extract name and date from: John Smith, March 5 2024", "schema": {"name": "string", "date": "string"}}'
-```
-
-The `/metrics` endpoint returns current throughput, KV cache utilization, and queue depth. Pre-load the model before opening traffic in production by calling the `/warmup` endpoint once the server starts.
+Hit `/warmup` once the server starts before opening traffic, then check `/metrics` to see live throughput, KV cache utilization, and queue depth as you send requests.
 
 NEO built a Mistral-7B inference server where continuous batching, priority scheduling, and block-based KV cache management together deliver a 15.6x throughput improvement over sequential processing on commodity CPU hardware. See what else NEO ships at [heyneo.so](https://heyneo.so/).
-
 ---
 
 ## Try NEO in Your IDE

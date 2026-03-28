@@ -69,37 +69,27 @@ NEO's benchmarking suite is designed to be reproducible and extensible. Each tas
 
 The runner supports all three models through a unified interface with adapters for each model's API or local inference endpoint. Results are written to JSON and can be visualized with the included Jupyter notebook, which generates comparison tables and per-category radar charts.
 
-## How to Build This
+## How to Build This with NEO
 
-You need Python 3.10 or later. To run MiniMax M2-7B locally, you need at least 8GB of VRAM for 4-bit quantization or 16GB for full precision. The benchmark can also run all models through API endpoints if you prefer not to load them locally.
+Open NEO in VS Code or Cursor and describe what you want to build. A good starting prompt for this project:
 
-Clone and install:
+> "Build a reproducible code generation benchmark suite in Python. Tasks should be defined in YAML files specifying the prompt, expected output or test cases, and scoring rubric. The runner should support multiple models via a unified interface with adapters for local inference or API endpoints. Benchmark categories should include function synthesis (pass@1 with test cases), bug fixing, test generation measured by line coverage, SQL query generation with exact-match scoring, and shell scripting with sandboxed execution checking exit code and output. Write per-model results to JSON and include a Jupyter notebook that generates comparison tables and per-category radar charts."
+
+<a href="https://heyneo.so/dashboard?section=new-chat&prompt=Build%20a%20reproducible%20code%20generation%20benchmark%20suite%20in%20Python.%20Tasks%20should%20be%20defined%20in%20YAML%20files%20specifying%20the%20prompt%2C%20expected%20output%20or%20test%20cases%2C%20and%20scoring%20rubric.%20The%20runner%20should%20support%20multiple%20models%20via%20a%20unified%20interface%20with%20adapters%20for%20local%20inference%20or%20API%20endpoints.%20Benchmark%20categories%20should%20include%20function%20synthesis%20%28pass%401%20with%20test%20cases%29%2C%20bug%20fixing%2C%20test%20generation%20measured%20by%20line%20coverage%2C%20SQL%20query%20generation%20with%20exact-match%20scoring%2C%20and%20shell%20scripting%20with%20sandboxed%20execution%20checking%20exit%20code%20and%20output.%20Write%20per-model%20results%20to%20JSON%20and%20include%20a%20Jupyter%20notebook%20that%20generates%20comparison%20tables%20and%20per-category%20radar%20charts." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
+
+NEO generates the project structure and core implementation. From there you iterate: ask it to add the YAML task definition format with test cases and scoring rubrics, implement the sandboxed shell script execution environment for the scripting category, or build the Jupyter notebook visualization with radar charts and side-by-side comparison tables. Each follow-up builds on what's already there.
+
+To run the finished project:
 
 ```bash
 git clone https://github.com/dakshjain-1616/minimax-m2-7-codegen
 cd minimax-m2-7-codegen
 pip install -r requirements.txt
-```
-
-Each benchmark task is defined in a YAML file under `tasks/`. To run the full suite against all three models:
-
-```bash
 python runner.py --models minimax-m2-7b codestral deepseek-coder --tasks tasks/ --output results/
-```
-
-To run a single category for faster iteration:
-
-```bash
-python runner.py --models minimax-m2-7b --category sql --tasks tasks/sql/ --output results/
-```
-
-The runner loads each model (or hits its API endpoint), runs every task, and scores responses. For function synthesis and SQL tasks, scoring is automatic using test cases and exact-match comparison. For shell scripting tasks, the runner attempts to execute the generated script in a sandboxed environment and checks the exit code and output. Results are written to a JSON file per model run. When all runs finish, open the included Jupyter notebook to generate comparison tables and per-category radar charts:
-
-```bash
 jupyter notebook analysis/results_viz.ipynb
 ```
 
-The notebook reads all JSON files from the results directory and renders side-by-side comparisons across every category. The radar chart is the fastest way to see where MiniMax M2-7B leads and where it trails.
+Start with `--category sql` to get results quickly, then run the full suite once you have confirmed the runner works with all three model adapters.
 
 NEO built an honest, reproducible benchmark suite that gives developers real data on MiniMax M2-7B before they commit to it for production code generation. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 

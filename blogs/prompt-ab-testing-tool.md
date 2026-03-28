@@ -63,45 +63,28 @@ This is what systematic prompt evaluation looks like.
 
 ---
 
-## How to Build This
+## How to Build This with NEO
 
-Clone the repo and install dependencies:
+Open NEO in VS Code or Cursor and describe what you want to build. A good starting prompt for this project:
+
+> "Build a CLI prompt A/B testing tool that runs two prompts with {input} placeholders against built-in datasets (customer support, coding tasks, creative writing — 20 test cases each) using Anthropic, OpenAI, or OpenRouter. Score each response 1-10 using an LLM judge on a consistent rubric. Compute an independent t-test with a 0.05 significance threshold, 95% confidence intervals, and Cohen's d effect size. Track per-prompt latency and token usage, project cost at scale, and write a self-contained HTML report with quality score distributions, statistical test results, and cost comparison. Flag results as statistically inconclusive when p > 0.05."
+
+<a href="https://heyneo.so/dashboard?section=new-chat&prompt=Build%20a%20CLI%20prompt%20A%2FB%20testing%20tool%20that%20runs%20two%20prompts%20with%20%7Binput%7D%20placeholders%20against%20built-in%20datasets%20%28customer%20support%2C%20coding%20tasks%2C%20creative%20writing%20%E2%80%94%2020%20test%20cases%20each%29%20using%20Anthropic%2C%20OpenAI%2C%20or%20OpenRouter.%20Score%20each%20response%201-10%20using%20an%20LLM%20judge%20on%20a%20consistent%20rubric.%20Compute%20an%20independent%20t-test%20with%20a%200.05%20significance%20threshold%2C%2095%25%20confidence%20intervals%2C%20and%20Cohen%27s%20d%20effect%20size.%20Track%20per-prompt%20latency%20and%20token%20usage%2C%20project%20cost%20at%20scale%2C%20and%20write%20a%20self-contained%20HTML%20report%20with%20quality%20score%20distributions%2C%20statistical%20test%20results%2C%20and%20cost%20comparison.%20Flag%20results%20as%20statistically%20inconclusive%20when%20p%20%3E%200.05." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
+
+NEO generates the project structure and core implementation. From there you iterate — ask it to add custom dataset support that reads test cases from a JSON file, add argument-based mode alongside interactive mode for scripting and CI pipelines, or add cross-provider comparison output that runs the same prompt pair against two different models.
+
+To run the finished project:
 
 ```bash
 git clone https://github.com/Dakshjain1604/Prompt-AB-testing-Tool
 cd Prompt-AB-testing-Tool
 pip install -r requirements.txt
-```
-
-Set your API key for the provider you want to test against. The tool supports Anthropic, OpenAI, and OpenRouter:
-
-```bash
-OPENAI_API_KEY=sk-...
-# or
-ANTHROPIC_API_KEY=sk-ant-...
-# or
-OPENROUTER_API_KEY=sk-or-...
-```
-
-Create two prompt files. Each prompt uses `{input}` as a placeholder for the test case text:
-
-```
-# prompt_a.txt
-You are a helpful customer support agent. Answer the following question concisely: {input}
-
-# prompt_b.txt
-You are a senior customer support specialist. Think step by step before answering: {input}
-```
-
-Run the A/B test interactively:
-
-```bash
 python ab_test.py --prompt-a prompt_a.txt --prompt-b prompt_b.txt --dataset customer_support --provider openai --model gpt-4o-mini
 ```
 
-The tool runs both prompts against all 20 test cases in the selected dataset, scores responses using an LLM judge, computes the t-test and Cohen's d, and writes a self-contained HTML report to `reports/`. The report includes quality score distributions, the statistical test result with p-value and confidence intervals, latency comparisons, and cost projections at scale. If the p-value is above 0.05, the report flags the result as statistically inconclusive.
+The HTML report in `reports/` shows you the p-value, Cohen's d, and cost projection — everything needed to decide whether to ship the new prompt.
 
-NEO built a prompt A/B testing tool where t-tests, Cohen's d effect sizes, and LLM quality scoring replace intuition-driven prompt decisions with statistically grounded evidence. See what else NEO ships at [heyneo.so](https://heyneo.so/).
+NEO built a prompt A/B testing tool where t-tests, Cohen's d effect sizes, and LLM quality scoring replace intuition-driven prompt decisions with statistically grounded evidence. See what else NEO ships at [heyneo.so](https://heyneo.so()).
 
 ---
 

@@ -85,46 +85,29 @@ In production, it gives you the visibility to catch degradation before users not
 
 Teams building customer-facing AI products, internal automation workflows, or complex research pipelines have all found value here. Anywhere you're running more than one agent in a coordinated system, observability pays for itself quickly.
 
-## How to Build This
+## How to Build This with NEO
 
-Clone the repo and install dependencies:
+Open NEO in VS Code or Cursor and describe what you want to build. A good starting prompt for this project:
+
+> "Build a self-hosted multi-agent observability platform with a FastAPI backend and a self-contained HTML dashboard. The platform should: ingest agent traces as OpenTelemetry-compatible spans via a message ingestion endpoint, record per-agent decisions with conditions and rationale, compute real-time cost per agent and per session using OpenRouter model pricing, detect anomalies including infinite loops, latency spikes, and decision drift, and use an LLM to generate natural-language workflow summaries and optimization suggestions. Expose a /session/{id}/replay endpoint for post-mortem analysis. Instrument agents with a decorator-based SDK that requires only adding @tracer.trace to agent functions."
+
+<a href="https://heyneo.so/dashboard?section=new-chat&prompt=Build%20a%20self-hosted%20multi-agent%20observability%20platform%20with%20a%20FastAPI%20backend%20and%20a%20self-contained%20HTML%20dashboard.%20The%20platform%20should%3A%20ingest%20agent%20traces%20as%20OpenTelemetry-compatible%20spans%20via%20a%20message%20ingestion%20endpoint%2C%20record%20per-agent%20decisions%20with%20conditions%20and%20rationale%2C%20compute%20real-time%20cost%20per%20agent%20and%20per%20session%20using%20OpenRouter%20model%20pricing%2C%20detect%20anomalies%20including%20infinite%20loops%2C%20latency%20spikes%2C%20and%20decision%20drift%2C%20and%20use%20an%20LLM%20to%20generate%20natural-language%20workflow%20summaries%20and%20optimization%20suggestions.%20Expose%20a%20%2Fsession%2F%7Bid%7D%2Freplay%20endpoint%20for%20post-mortem%20analysis.%20Instrument%20agents%20with%20a%20decorator-based%20SDK%20that%20requires%20only%20adding%20%40tracer.trace%20to%20agent%20functions." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
+
+NEO generates the project structure and core implementation. From there you iterate: ask it to implement the loop detection algorithm with configurable threshold and the decision drift detector, add the LLM-powered workflow summary endpoint that turns 200 trace rows into a readable paragraph, or build the HTML dashboard with live trace timelines, per-agent cost breakdowns, and the anomaly feed. Each follow-up builds on what's already there.
+
+To run the finished project:
 
 ```bash
 git clone https://github.com/abhishekgandhi-neo/MultiAgent_Observability_Platform_by_NEO
 cd MultiAgent_Observability_Platform_by_NEO
 pip install -r requirements.txt
-```
-
-Set your OpenRouter API key in a `.env` file. The platform uses OpenRouter to generate natural-language workflow summaries and optimization suggestions:
-
-```bash
-OPENROUTER_API_KEY=sk-or-...
-```
-
-Start the FastAPI backend:
-
-```bash
+echo "OPENROUTER_API_KEY=sk-or-..." > .env
 uvicorn main:app --host 0.0.0.0 --port 8000
 ```
 
-Open `dashboard.html` directly in a browser. It connects to the backend at `localhost:8000` with no build step required.
-
-To instrument your own agents, import the SDK and apply the `@tracer.trace` decorator to agent functions:
-
-```python
-from observability_sdk import AgentTracer
-
-tracer = AgentTracer(backend_url="http://localhost:8000")
-
-@tracer.trace(agent_name="retrieval_agent")
-async def retrieve_context(query: str) -> list[str]:
-    ...
-```
-
-Once agents are running, the dashboard shows live trace timelines, per-agent cost breakdowns, and the anomaly feed. The backend also exposes a `/session/{id}/replay` endpoint for post-mortem analysis of any recorded session. Loop detection thresholds and model pricing rates are configurable in `config.py`.
+Open `dashboard.html` in your browser while the backend runs. Instrument one of your own agents with the `@tracer.trace` decorator and watch the trace timeline populate in real time as the agent runs.
 
 NEO built a self-hosted multi-agent observability platform where OpenTelemetry-compatible tracing, real-time cost tracking, and LLM-powered anomaly detection give teams visibility into agent workflows that standard infrastructure tools simply cannot provide. See what else NEO ships at [heyneo.so](https://heyneo.so/).
-
 ---
 
 ## Try NEO in Your IDE

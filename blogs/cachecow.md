@@ -69,52 +69,26 @@ In production deployments on applications with repetitive query patterns — cus
 
 The embedding and search overhead adds approximately 5-15ms to cache-miss requests (the embedding computation plus the ANN search). Cache hits are served in under 5ms total, significantly faster than an LLM API round-trip. For many applications, cacheCow improves latency on average by reducing the fraction of requests that wait for an LLM response.
 
-## How to Build This
+## How to Build This with NEO
 
-Install from PyPI:
+Open NEO in VS Code or Cursor and describe what you want to build. A good starting prompt for this project:
 
-```bash
-pip install cachecow
-```
+> "Build a semantic caching middleware library in Python for LLM API calls. Embed each incoming query with sentence-transformers all-MiniLM-L6-v2, search cached entries by cosine similarity using FAISS, and return the cached response when similarity exceeds a configurable threshold (default 0.92). Support two storage backends with identical interfaces: an in-memory FAISS backend for single-process use, and a Redis backend with RediSearch for distributed deployments with TTL-based expiry. Expose a @cachecow decorator and a drop-in wrapper that follows the OpenAI and Anthropic client interfaces. Export hit/miss metrics and cumulative cost savings in Prometheus format."
 
-Or clone and install in editable mode:
+<a href="https://heyneo.so/dashboard?section=new-chat&prompt=Build%20a%20semantic%20caching%20middleware%20library%20in%20Python%20for%20LLM%20API%20calls.%20Embed%20each%20incoming%20query%20with%20sentence-transformers%20all-MiniLM-L6-v2%2C%20search%20cached%20entries%20by%20cosine%20similarity%20using%20FAISS%2C%20and%20return%20the%20cached%20response%20when%20similarity%20exceeds%20a%20configurable%20threshold%20%28default%200.92%29.%20Support%20two%20storage%20backends%20with%20identical%20interfaces%3A%20an%20in-memory%20FAISS%20backend%20for%20single-process%20use%2C%20and%20a%20Redis%20backend%20with%20RediSearch%20for%20distributed%20deployments%20with%20TTL-based%20expiry.%20Expose%20a%20%40cachecow%20decorator%20and%20a%20drop-in%20wrapper%20that%20follows%20the%20OpenAI%20and%20Anthropic%20client%20interfaces.%20Export%20hit%2Fmiss%20metrics%20and%20cumulative%20cost%20savings%20in%20Prometheus%20format." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
+
+NEO generates the project structure and core implementation from that. From there you iterate — ask it to build the threshold calibration tool that plots a precision-recall curve from labeled query pairs, add batch invalidation by embedding similarity for when system prompts change, or implement cache warming from a seed file of expected high-frequency queries. Each request builds on what's already there without re-explaining the context.
+
+To run the finished project:
 
 ```bash
 git clone https://github.com/dakshjain-1616/cachecow.git
 cd cachecow
 pip install -e .
-```
-
-Create a `.env` file to configure your backend and API keys:
-
-```
-DEEPSEEK_API_KEY=your_key
-CACHECOW_BACKEND=memory
-CACHECOW_DEFAULT_TTL=3600
-```
-
-The `DEEPSEEK_API_KEY` is optional — cacheCow falls back to heuristic similarity matching if no key is set. The default backend is in-memory, which requires no additional infrastructure.
-
-Wrap any function with the `@cachecow` decorator:
-
-```python
-from cachecow import cachecow
-
-@cachecow
-def call_llm(prompt):
-    # your existing API call here
-    return response
-```
-
-Subsequent calls with semantically equivalent prompts return the cached result. The wrapper also follows the OpenAI and Anthropic client interfaces directly, so wrapping an existing application is a two-line change: import cacheCow's client wrapper instead of the native SDK and pass your cache configuration.
-
-Run the interactive demo to see hit/miss behavior without an API key:
-
-```bash
 cachecow demo
 ```
 
-To switch to Redis for distributed or multi-process deployments, set `CACHECOW_BACKEND=redis` and `REDIS_URL=redis://localhost:6379/0`. Cache metrics export in Prometheus format for Grafana dashboards.
+The interactive demo shows hit/miss behavior and similarity scores without needing an API key. Wrap your own LLM calls with the `@cachecow` decorator or drop in the client wrapper as a two-line change.
 
 NEO built cacheCow to make semantic caching a drop-in feature for any LLM-powered application — embedding-based similarity matching, configurable thresholds, Redis or in-memory backends, and built-in cost observability. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 

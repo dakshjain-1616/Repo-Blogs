@@ -82,61 +82,26 @@ Immediate ECG and troponin indicated.<end_of_turn>
 
 Q4_K_M fits on any MacBook M2 or standard laptop with 16 GB RAM. No GPU is required for inference.
 
-## How to Build This
+## How to Build This with NEO
 
-**To run training yourself**, clone the repo and install:
+Open NEO in VS Code or Cursor and describe what you want to build. A good starting prompt for this project:
 
-```bash
-git clone https://github.com/dakshjain-1616/gemma3-medical-sft
-cd gemma3-medical-sft
-pip install -r requirements.txt
-```
+> "Build a supervised fine-tuning pipeline for Gemma-3-12B targeting three medical reasoning tasks: symptom triage with LOW/MEDIUM/HIGH risk stratification, drug interaction checking with severity levels, and lab result interpretation. Load the base model in 4-bit NF4 with bitsandbytes. Use LoRA (rank 32, alpha 64) targeting attention layers only. Generate 1,000 synthetic medical cases with seeded randomization. Use response-only training by masking user prompt tokens with labels=-100 so gradients only flow through assistant response tokens. Format outputs with a five-step <think> reasoning block before the final answer. After training, merge the LoRA adapter and export to GGUF Q4_K_M (target 7.8 GB, runnable on 16 GB RAM with no GPU). All training parameters configurable via environment variables."
 
-Set your HuggingFace token and configure training parameters via environment variables, then run:
+<a href="https://heyneo.so/dashboard?section=new-chat&prompt=Build%20a%20supervised%20fine-tuning%20pipeline%20for%20Gemma-3-12B%20targeting%20three%20medical%20reasoning%20tasks%3A%20symptom%20triage%20with%20LOW%2FMEDIUM%2FHIGH%20risk%20stratification%2C%20drug%20interaction%20checking%20with%20severity%20levels%2C%20and%20lab%20result%20interpretation.%20Load%20the%20base%20model%20in%204-bit%20NF4%20with%20bitsandbytes.%20Use%20LoRA%20%28rank%2032%2C%20alpha%2064%29%20targeting%20attention%20layers%20only.%20Generate%201%2C000%20synthetic%20medical%20cases%20with%20seeded%20randomization.%20Use%20response-only%20training%20by%20masking%20user%20prompt%20tokens%20with%20labels%3D-100%20so%20gradients%20only%20flow%20through%20assistant%20response%20tokens.%20Format%20outputs%20with%20a%20five-step%20%3Cthink%3E%20reasoning%20block%20before%20the%20final%20answer.%20After%20training%2C%20merge%20the%20LoRA%20adapter%20and%20export%20to%20GGUF%20Q4_K_M%20%28target%207.8%20GB%2C%20runnable%20on%2016%20GB%20RAM%20with%20no%20GPU%29.%20All%20training%20parameters%20configurable%20via%20environment%20variables." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
 
-```bash
-export HF_TOKEN=hf_your_token_here
-python -m gemma3_medical_sft train
-```
+NEO generates the project structure and core implementation from that. From there you iterate — ask it to add the synthetic dataset generation script with domain/severity tagging and reproducible seeding, add support for Q5_K_M and Q8_0 quantization tiers in the export step, or add a `DRY_RUN=1` mode that runs two mock training steps without downloading the model. Each request builds on what's already there.
 
-Generate the synthetic dataset separately:
+To use the released model directly, download from HuggingFace and run with llama.cpp:
 
 ```bash
-python -m gemma3_medical_sft generate-dataset
-```
-
-Export to GGUF:
-
-```bash
-python -m gemma3_medical_sft export
-```
-
-**To use the released model directly**, pull it from HuggingFace:
-
-```bash
-pip install huggingface_hub transformers
+pip install huggingface_hub
 huggingface-cli download daksh-neo/gemma-3-12b-medical-sft --local-dir ./model
+./llama-cli -m model/gemma-3-12b-medical-sft-Q4_K_M.gguf \
+  -p "Patient presents with chest pain, shortness of breath, diaphoresis." -n 512
 ```
 
-Load and run inference:
-
-```python
-from transformers import AutoModelForCausalLM, AutoTokenizer
-
-model = AutoModelForCausalLM.from_pretrained("daksh-neo/gemma-3-12b-medical-sft")
-tokenizer = AutoTokenizer.from_pretrained("daksh-neo/gemma-3-12b-medical-sft")
-inputs = tokenizer("Patient presents with fever, productive cough, and pleuritic chest pain.", return_tensors="pt")
-outputs = model.generate(**inputs, max_new_tokens=256)
-print(tokenizer.decode(outputs[0]))
-```
-
-Try the dry run without any GPU or API key:
-
-```bash
-python demo.py
-```
-
-All environment variables are configurable: `LORA_R`, `LORA_ALPHA`, `MAX_SEQ_LENGTH`, `NUM_TRAIN_EPOCHS`, `BATCH_SIZE`, `LEARNING_RATE`, `GGUF_QUANT`. Set `DRY_RUN=1` to run two mock training steps without downloading the model.
+The model produces a five-step `<think>` differential reasoning chain before the final risk-stratified answer, running fully offline on any 16 GB laptop.
 
 NEO built a medical reasoning model that runs entirely on-device, keeps patient data local, and shows its differential diagnosis reasoning in auditable `<think>` blocks. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 

@@ -63,42 +63,26 @@ python compare.py --models SandyVeliz/acervo-extractor-qwen3.5-9b,Qwen/Qwen3-8B
 
 The dry-run mode generates synthetic but realistic data without downloading any weights, so you can verify the pipeline and inspect output formats before running on real hardware.
 
-## How to Build This
+## How to Build This with NEO
 
-Clone the repo and install dependencies:
+Open NEO in VS Code or Cursor and describe what you want to build. A good starting prompt for this project:
+
+> "Build a quantization and benchmarking pipeline in Python for HuggingFace models using llama.cpp. It should auto-build llama.cpp, convert float16 weights to GGUF, then run llama-quantize to produce Q4_K_M and Q8_0 outputs in one pass. Include a benchmark module with configurable warmup iterations that records mean latency, p95 latency, and perplexity on a 100-prompt test set. Add a memory estimator that computes peak RAM including KV cache overhead and recommends the best quantization tier for the user's available RAM."
+
+<a href="https://heyneo.so/dashboard?section=new-chat&prompt=Build%20a%20quantization%20and%20benchmarking%20pipeline%20in%20Python%20for%20HuggingFace%20models%20using%20llama.cpp.%20It%20should%20auto-build%20llama.cpp%2C%20convert%20float16%20weights%20to%20GGUF%2C%20then%20run%20llama-quantize%20to%20produce%20Q4_K_M%20and%20Q8_0%20outputs%20in%20one%20pass.%20Include%20a%20benchmark%20module%20with%20configurable%20warmup%20iterations%20that%20records%20mean%20latency%2C%20p95%20latency%2C%20and%20perplexity%20on%20a%20100-prompt%20test%20set.%20Add%20a%20memory%20estimator%20that%20computes%20peak%20RAM%20including%20KV%20cache%20overhead%20and%20recommends%20the%20best%20quantization%20tier%20for%20the%20user%27s%20available%20RAM." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
+
+NEO generates the project structure and core implementation from that. From there you iterate — ask it to add a multi-model comparison runner that ranks by tokens-per-second and perplexity, build out the dry-run mode with synthetic benchmark data, or add CSV and JSON export formats for the benchmark results. Each request builds on what's already there without re-explaining the context.
+
+To run the finished project:
 
 ```bash
 git clone https://github.com/dakshjain-1616/acervo-extractor-qwen3-5-9b-gguf-4-2gb-quantization
 cd acervo-extractor-qwen3-5-9b-gguf-4-2gb-quantization
 pip install -r requirements.txt
-cp .env.example .env
-```
-
-If you need to access gated HuggingFace models, add your token to `.env`:
-
-```bash
-HF_TOKEN=hf_...
-```
-
-Run the full pipeline in dry-run mode first to check output formats:
-
-```bash
 python scripts/demo.py --dry-run --export-csv
 ```
 
-To quantize the actual model (requires ~20 GB disk and builds llama.cpp automatically):
-
-```bash
-python quantize.py --model SandyVeliz/acervo-extractor-qwen3.5-9b --quant Q4_K_M,Q8_0
-```
-
-Check RAM requirements before downloading:
-
-```bash
-python memory_estimator.py --params 9.0
-```
-
-The pipeline outputs GGUF files to `output/`, a Markdown report to `outputs/quantization_report.md`, and JSON results to `outputs/benchmark_results.json`.
+Check RAM requirements before a full run with `python memory_estimator.py --params 9.0`, then quantize with `python quantize.py --model SandyVeliz/acervo-extractor-qwen3.5-9b --quant Q4_K_M,Q8_0`. GGUF files land in `output/` alongside a Markdown benchmark report.
 
 NEO built a complete quantization and benchmarking pipeline for the Acervo Extractor Qwen3.5 9B model, producing a 4.7 GB GGUF that runs on consumer hardware with measured quality and speed tradeoffs. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 

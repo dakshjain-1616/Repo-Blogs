@@ -98,49 +98,28 @@ for row in get_leaderboard():
     print(row["model"], row["wins"], row["win_rate"])
 ```
 
-## How to Build This
+## How to Build This with NEO
 
-Clone and install:
+Open NEO in VS Code or Cursor and describe what you want to build. A good starting prompt for this project:
+
+> "Build a Gradio web app called PatchDuel that runs two local LLMs head-to-head on Python code repair tasks. Each model generates a fix simultaneously, show split-screen git-style diffs, and score each patch 0-100: exact match scores 100, surgical fix under 5% change scores 90, moderate fix 5-15% scores 80, large rewrite 15-40% scores 65, full rewrite above 40% scores 40, unchanged scores 0 with a +15 bonus for near-exact match capped at 100. Support Ollama, OpenRouter, and a deterministic mock provider. Store every duel in SQLite with 18 columns including both patches, HTML diffs, winner, latency, and token counts. Show a leaderboard tab sorted by win count and a history tab with full reproducibility data."
+
+<a href="https://heyneo.so/dashboard?section=new-chat&prompt=Build%20a%20Gradio%20web%20app%20called%20PatchDuel%20that%20runs%20two%20local%20LLMs%20head-to-head%20on%20Python%20code%20repair%20tasks.%20Each%20model%20generates%20a%20fix%20simultaneously%2C%20show%20split-screen%20git-style%20diffs%2C%20and%20score%20each%20patch%200-100%3A%20exact%20match%20scores%20100%2C%20surgical%20fix%20under%205%25%20change%20scores%2090%2C%20moderate%20fix%205-15%25%20scores%2080%2C%20large%20rewrite%2015-40%25%20scores%2065%2C%20full%20rewrite%20above%2040%25%20scores%2040%2C%20unchanged%20scores%200%20with%20a%20%2B15%20bonus%20for%20near-exact%20match%20capped%20at%20100.%20Support%20Ollama%2C%20OpenRouter%2C%20and%20a%20deterministic%20mock%20provider.%20Store%20every%20duel%20in%20SQLite%20with%2018%20columns%20including%20both%20patches%2C%20HTML%20diffs%2C%20winner%2C%20latency%2C%20and%20token%20counts.%20Show%20a%20leaderboard%20tab%20sorted%20by%20win%20count%20and%20a%20history%20tab%20with%20full%20reproducibility%20data." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
+
+NEO generates the project structure and core implementation. From there you iterate — ask it to add eight built-in bug scenarios tagged by difficulty (arithmetic operator bug through mutable default argument), add CSV export of the full SQLite run history, or add programmatic API access so duels can be scripted without launching the Gradio UI.
+
+To run the finished project:
 
 ```bash
 git clone https://github.com/dakshjain-1616/patchduel-local-llm-code-repair
 cd patchduel-local-llm-code-repair
 pip install -r requirements.txt
-```
-
-Run in mock mode with no setup:
-
-```bash
 python app.py
 ```
 
-Open `http://localhost:7860`, select Mock as the provider for both models, choose a scenario, and click Run. For Ollama:
+Open `http://localhost:7860`, select Mock for both models, pick a bug scenario, and run your first duel — no API key or Ollama install needed.
 
-```bash
-ollama pull llama3.2
-ollama pull mistral
-python app.py
-```
-
-Select Ollama as the provider, pick the two models, and run the arena. For programmatic access without the UI:
-
-```python
-from patchduel_local_llm_ import repair_code, save_run
-
-buggy = "def multiply(a, b):\n    return a + b  # Bug"
-patch_a = repair_code("llama3.2", buggy)
-patch_b = repair_code("mistral",  buggy)
-save_run("llama3.2", "mistral", buggy, patch_a, patch_b)
-```
-
-Run the test suite:
-
-```bash
-pytest tests/ -q
-# 142 passed
-```
-
-NEO built a local LLM code repair arena with split-screen diffs, quality scoring, and SQLite-backed leaderboards that accumulate evidence across duels over time. See what else NEO ships at [heyneo.so](https://heyneo.so/).
+NEO built a local LLM code repair arena with split-screen diffs, quality scoring, and SQLite-backed leaderboards that accumulate evidence across duels over time. See what else NEO ships at [heyneo.so](https://heyneo.so()).
 
 ---
 

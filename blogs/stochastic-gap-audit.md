@@ -75,42 +75,27 @@ python audit.py --compare mistralai/mistral-small-2603 openai/gpt-5.4-nano
 
 The `ModelComparator` runs each model through the same 100 prompts in sequence, building independent transition matrices and reliability scores. You get per-tier breakdowns for both models, so you can see whether one model is weak on code but strong on factual knowledge.
 
-## How to Build This
+## How to Build This with NEO
 
-Clone the repo and install dependencies:
+Open NEO in VS Code or Cursor and describe what you want to build. A good starting prompt for this project:
+
+> "Build a Python CLI tool that audits any LLM's reliability before deployment. Run 100 prompts across five tiers — math/reasoning, code/logic, factual knowledge, and instruction following — with tier-specific keyword scoring. Classify each response as PASS, UNCERTAIN, or FAIL. Model consecutive responses as a Markov chain, compute the 3x3 empirical transition matrix, derive the steady-state distribution via eigendecomposition, and calculate mean first passage time to FAIL. Output a reliability_score.csv and a Rich-formatted summary table. Support a --compare flag for side-by-side model comparison and a --history flag for regression tracking across runs."
+
+<a href="https://heyneo.so/dashboard?section=new-chat&prompt=Build%20a%20Python%20CLI%20tool%20that%20audits%20any%20LLM%27s%20reliability%20before%20deployment.%20Run%20100%20prompts%20across%20five%20tiers%20%E2%80%94%20math%2Freasoning%2C%20code%2Flogic%2C%20factual%20knowledge%2C%20and%20instruction%20following%20%E2%80%94%20with%20tier-specific%20keyword%20scoring.%20Classify%20each%20response%20as%20PASS%2C%20UNCERTAIN%2C%20or%20FAIL.%20Model%20consecutive%20responses%20as%20a%20Markov%20chain%2C%20compute%20the%203x3%20empirical%20transition%20matrix%2C%20derive%20the%20steady-state%20distribution%20via%20eigendecomposition%2C%20and%20calculate%20mean%20first%20passage%20time%20to%20FAIL.%20Output%20a%20reliability_score.csv%20and%20a%20Rich-formatted%20summary%20table.%20Support%20a%20--compare%20flag%20for%20side-by-side%20model%20comparison%20and%20a%20--history%20flag%20for%20regression%20tracking%20across%20runs." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
+
+NEO generates the prompt suite, Markov chain analysis, scoring engine, and Rich terminal output. From there you iterate — ask it to add a `--html` flag that generates a self-contained report with distribution charts, add a mock client that simulates Markovian responses for dry-run testing without an API key, or add per-tier score breakdowns to the comparison output.
+
+To run the finished project:
 
 ```bash
 git clone https://github.com/dakshjain-1616/stochastic-gap-audit
 cd stochastic-gap-audit
 pip install -r requirements.txt
-```
-
-Run a dry-run audit with no API key to verify everything works:
-
-```bash
-python audit.py --dry-run --model mistralai/mistral-small-2603
-```
-
-This uses the mock client, which simulates Markovian responses with realistic transition probabilities. For a real model audit via OpenRouter:
-
-```bash
 export OPENROUTER_API_KEY=sk-or-...
 python audit.py --model mistralai/mistral-small-2603 --output-dir results/
 ```
 
-To compare two models and save the CSV:
-
-```bash
-python audit.py --compare mistralai/mistral-small-2603 openai/gpt-5.4-nano --output-dir results/
-```
-
-To generate an HTML report and enable regression tracking:
-
-```bash
-python audit.py --model mistralai/mistral-small-2603 --html --history
-```
-
-The tool writes `outputs/reliability_score.csv` and optionally `outputs/audit_report.html`. The regression detector compares the current run against `.audit_history.jsonl` and prints a warning if any metric degrades beyond a threshold.
+In under five minutes you get a reliability score, stochastic gap, oversight cost, and mean first passage time to failure — a complete pre-deployment risk profile with no cloud dashboard required.
 
 NEO built a five-minute, fully offline LLM reliability auditor that gives pre-deployment teams a numeric risk score with no dashboard required. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 

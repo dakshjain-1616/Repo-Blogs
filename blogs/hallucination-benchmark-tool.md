@@ -81,32 +81,27 @@ If adversarial resistance is low, you need to add input filtering for adversaria
 
 The benchmark produces a risk profile, not just a score. Each metric maps to a mitigation strategy, turning evaluation output into an action plan.
 
-## How to Build This
+## How to Build This with NEO
 
-Clone and install:
+Open NEO in VS Code or Cursor and describe what you want to build. A good starting prompt for this project:
+
+> "Build a Python CLI hallucination benchmark tool that measures three distinct failure modes in LLMs: factual confabulation (wrong answers stated confidently), confident wrongness (high expressed confidence on wrong answers), and adversarial hallucination (false outputs from prompts with false premises, citation traps, recency probes, and leading questions). Run evaluations across configurable domain sets including general knowledge, scientific research, historical events, medical information, legal content, math, and recent events. Extract confidence signals via logprobs where available and verbal confidence elicitation otherwise. Compute expected calibration error, reliability diagrams, and overconfidence rate. Support dynamic mode that generates fresh ground truth using a 3-LLM consensus panel via OpenRouter, tagging each entry with a high/medium/low confidence level based on inter-model agreement. Output JSON and Markdown reports plus CI/CD threshold-based pass/fail exit codes."
+
+<a href="https://heyneo.so/dashboard?section=new-chat&prompt=Build%20a%20Python%20CLI%20hallucination%20benchmark%20tool%20that%20measures%20three%20distinct%20failure%20modes%20in%20LLMs%3A%20factual%20confabulation%20%28wrong%20answers%20stated%20confidently%29%2C%20confident%20wrongness%20%28high%20expressed%20confidence%20on%20wrong%20answers%29%2C%20and%20adversarial%20hallucination%20%28false%20outputs%20from%20prompts%20with%20false%20premises%2C%20citation%20traps%2C%20recency%20probes%2C%20and%20leading%20questions%29.%20Run%20evaluations%20across%20configurable%20domain%20sets%20including%20general%20knowledge%2C%20scientific%20research%2C%20historical%20events%2C%20medical%20information%2C%20legal%20content%2C%20math%2C%20and%20recent%20events.%20Extract%20confidence%20signals%20via%20logprobs%20where%20available%20and%20verbal%20confidence%20elicitation%20otherwise.%20Compute%20expected%20calibration%20error%2C%20reliability%20diagrams%2C%20and%20overconfidence%20rate.%20Support%20dynamic%20mode%20that%20generates%20fresh%20ground%20truth%20using%20a%203-LLM%20consensus%20panel%20via%20OpenRouter%2C%20tagging%20each%20entry%20with%20a%20high%2Fmedium%2Flow%20confidence%20level%20based%20on%20inter-model%20agreement.%20Output%20JSON%20and%20Markdown%20reports%20plus%20CI%2FCD%20threshold-based%20pass%2Ffail%20exit%20codes." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
+
+NEO generates the project structure and core implementation from that. From there you iterate — ask it to add the adversarial prompt suite with false-premise questions, citation traps, and leading questions with per-category resistance scores, add the leaderboard view for comparing multiple models across all metrics in a single report, or add per-domain hallucination breakdown charts mapping each metric to a specific mitigation strategy. Each request builds on what's already there.
+
+To run the finished project:
 
 ```bash
 git clone https://github.com/dakshjain-1616/Hallucination-Benchmark-Tool
 cd Hallucination-Benchmark-Tool
 pip install -r requirements.txt
 cp .env.example .env
-```
-
-Add your OpenRouter API key to `.env`. The tool uses OpenRouter to access multiple models for both evaluation and the optional 3-LLM consensus ground truth generation.
-
-Run a dynamic benchmark that generates fresh evaluation data and tests a model against it:
-
-```bash
-python cli.py --topic "geography" --dynamic --model google/gemini-2.0-flash-001
-```
-
-Run against a specific number of questions:
-
-```bash
 python cli.py --topic "medical research" --dynamic --model openai/gpt-4o --num-entries 10
 ```
 
-The tool prints a results table to the terminal showing hallucination rate, faithfulness score, factual consistency, and BLEU score, along with per-entry cost. It also saves a JSON report and a Markdown report to the output directory. When using dynamic mode, the consensus log records which of the three provider models agreed on each ground truth entry and assigns a confidence level (high, medium, or low) based on inter-model agreement. Low-agreement entries are flagged so you can decide whether to include them in evaluation or treat them as ambiguous.
+The results table shows hallucination rate, faithfulness score, factual consistency, and BLEU score per entry — and the JSON report maps each metric to a concrete mitigation strategy.
 
 NEO built a hallucination benchmark where every metric connects to a concrete deployment decision, making the gap between evaluation and production risk visible and actionable. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 

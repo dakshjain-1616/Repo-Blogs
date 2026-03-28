@@ -69,39 +69,28 @@ A conversational agent changes the interaction model entirely. The question "how
 
 This is where developer tooling is going. Less grep, more Q&A.
 
-## How to Build This
+## How to Build This with NEO
 
-Clone the repo and install the Python dependencies:
+Open NEO in VS Code or Cursor and describe what you want to build. A good starting prompt for this project:
+
+> "Build a Flask web app with a terminal-styled UI that accepts a public GitHub URL, clones the repository, filters out binaries and node_modules and .git directories, then runs a map-reduce analysis pipeline: chunk the source files, process each chunk in parallel to produce summaries, hierarchically merge summaries until a single architectural report emerges covering directory hierarchy, key components, dependency relationships, and data flow patterns. Serve the report and a multi-turn chat interface via Server-Sent Events for streaming output. Use google/gemini-2.5-flash-lite via OpenRouter as the default model, configurable via .env."
+
+<a href="https://heyneo.so/dashboard?section=new-chat&prompt=Build%20a%20Flask%20web%20app%20with%20a%20terminal-styled%20UI%20that%20accepts%20a%20public%20GitHub%20URL%2C%20clones%20the%20repository%2C%20filters%20out%20binaries%20and%20node_modules%20and%20.git%20directories%2C%20then%20runs%20a%20map-reduce%20analysis%20pipeline%3A%20chunk%20the%20source%20files%2C%20process%20each%20chunk%20in%20parallel%20to%20produce%20summaries%2C%20hierarchically%20merge%20summaries%20until%20a%20single%20architectural%20report%20emerges%20covering%20directory%20hierarchy%2C%20key%20components%2C%20dependency%20relationships%2C%20and%20data%20flow%20patterns.%20Serve%20the%20report%20and%20a%20multi-turn%20chat%20interface%20via%20Server-Sent%20Events%20for%20streaming%20output.%20Use%20google%2Fgemini-2.5-flash-lite%20via%20OpenRouter%20as%20the%20default%20model%2C%20configurable%20via%20.env." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
+
+NEO generates the project structure and core implementation. From there you iterate — ask it to add source file filtering rules for additional noise directories like `__pycache__` and `dist`, add conversation context management that trims history when it approaches the model's context limit, or add a configurable model override so users can swap to a different OpenRouter model string without touching code.
+
+To run the finished project:
 
 ```bash
 git clone https://github.com/gauravvij/GithubRepoAgent
 cd GithubRepoAgent
 pip install -r requirements.txt
-```
-
-Create a `.env` file in the project root and add your OpenRouter API key:
-
-```bash
-OPENROUTER_API_KEY=sk-or-...
-```
-
-The default model is `google/gemini-2.5-flash-lite`. You can override it in the `.env` file with a different OpenRouter model string if you want to swap providers.
-
-Start the Flask server:
-
-```bash
 python app.py
 ```
 
-Open `http://localhost:5000` in your browser. Paste a public GitHub URL into the input field — for example, `https://github.com/pallets/flask`. The agent clones the repository, runs the map-reduce analysis pipeline, and generates an architectural report before the chat interface opens. For a mid-sized repository this takes 30 to 90 seconds. The report appears automatically when it is ready.
+Open `http://localhost:5000`, paste any public GitHub URL, and start asking questions about the codebase in plain language once the architectural report finishes generating.
 
-Once the report is generated, you can ask questions like "how does request routing work?" or "what are the main external dependencies?" Responses stream as they are generated so you see output immediately rather than waiting for a full completion. Multi-turn conversation context is maintained for the duration of the session.
-
-The terminal-styled web UI is the primary interface. There is no separate CLI mode — all interaction goes through the browser.
-
-## Build Your Own Code Intelligence Tools
-
-NEO built a conversational GitHub repo agent where a map-reduce pipeline distills any public codebase into an architectural understanding you can query in plain language, replacing hours of manual code reading. See what else NEO ships at [heyneo.so](https://heyneo.so/).
+NEO built a conversational GitHub repo agent where a map-reduce pipeline distills any public codebase into an architectural understanding you can query in plain language, replacing hours of manual code reading. See what else NEO ships at [heyneo.so](https://heyneo.so()).
 
 ---
 

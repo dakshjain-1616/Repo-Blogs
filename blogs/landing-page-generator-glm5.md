@@ -76,32 +76,27 @@ The single-file output makes deployment trivial. Upload to S3, drop it in a CDN,
 
 The principle behind Ship-It is that good tooling should produce complete, usable artifacts, not starting points. The multi-agent approach with GLM5 gets you there for landing pages. The same architecture applies to other structured code generation tasks where the output needs to meet multiple quality criteria simultaneously.
 
-## How to Build This
+## How to Build This with NEO
 
-You need Python 3.8+, an NVIDIA GPU with CUDA 11.8+, and at least 4 GB of VRAM. Clone and install:
+Open NEO in VS Code or Cursor and describe what you want to build. A good starting prompt for this project:
+
+> "Build a Python CLI called Ship-It that generates complete, self-contained landing pages using a local GLM5 model with CUDA inference (no API calls). The pipeline uses six specialized agents: Research (analyzes product description for selling points and competitive context), Copy (generates headlines, subheadlines, feature descriptions, social proof, CTAs), Design (makes layout, color palette, and visual hierarchy decisions and outputs a structured design spec), Builder (assembles the HTML with all CSS and JS inline — no external frameworks or dependencies), QA (validates for design consistency, responsive layout, accessibility including alt text and color contrast, and SEO including meta tags), and Deploy (writes index.html and starts a preview server). Run Research and Copy in parallel. If QA validation fails, give Builder a correction pass. Output a single self-contained HTML file around 30-35 KB. After generation, provide a section-level iteration menu so users can edit specific sections without regenerating the full page. Monitor VRAM usage and warn when approaching limits. Target: GLM5 medium model at ~1 GB VRAM."
+
+<a href="https://heyneo.so/dashboard?section=new-chat&prompt=Build%20a%20Python%20CLI%20called%20Ship-It%20that%20generates%20complete%2C%20self-contained%20landing%20pages%20using%20a%20local%20GLM5%20model%20with%20CUDA%20inference%20%28no%20API%20calls%29.%20The%20pipeline%20uses%20six%20specialized%20agents%3A%20Research%20%28analyzes%20product%20description%20for%20selling%20points%20and%20competitive%20context%29%2C%20Copy%20%28generates%20headlines%2C%20subheadlines%2C%20feature%20descriptions%2C%20social%20proof%2C%20CTAs%29%2C%20Design%20%28makes%20layout%2C%20color%20palette%2C%20and%20visual%20hierarchy%20decisions%20and%20outputs%20a%20structured%20design%20spec%29%2C%20Builder%20%28assembles%20the%20HTML%20with%20all%20CSS%20and%20JS%20inline%20%E2%80%94%20no%20external%20frameworks%20or%20dependencies%29%2C%20QA%20%28validates%20for%20design%20consistency%2C%20responsive%20layout%2C%20accessibility%20including%20alt%20text%20and%20color%20contrast%2C%20and%20SEO%20including%20meta%20tags%29%2C%20and%20Deploy%20%28writes%20index.html%20and%20starts%20a%20preview%20server%29.%20Run%20Research%20and%20Copy%20in%20parallel.%20If%20QA%20validation%20fails%2C%20give%20Builder%20a%20correction%20pass.%20Output%20a%20single%20self-contained%20HTML%20file%20around%2030-35%20KB.%20After%20generation%2C%20provide%20a%20section-level%20iteration%20menu%20so%20users%20can%20edit%20specific%20sections%20without%20regenerating%20the%20full%20page.%20Monitor%20VRAM%20usage%20and%20warn%20when%20approaching%20limits.%20Target%3A%20GLM5%20medium%20model%20at%20~1%20GB%20VRAM." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
+
+NEO generates the project structure and core implementation from that. From there you iterate — ask it to add the three GLM5 size configurations (512 MB / 1 GB / 2 GB VRAM) with automatic selection based on available VRAM, add hot-reload in the preview server so section edits appear immediately at localhost:8080, or add a targeted fix pass that re-runs only the QA-failed section through the Builder without touching the rest. Each request builds on what's already there.
+
+To run the finished project:
 
 ```bash
 git clone https://github.com/dakshjain-1616/GLA5-Landing-Page-tool
 cd GLA5-Landing-Page-tool
-python3 -m venv venv
-source venv/bin/activate
 pip install torch --index-url https://download.pytorch.org/whl/cu118
 pip install -r requirements.txt
-```
-
-Verify your GPU is accessible:
-
-```bash
-python3 -c "import torch; print(torch.cuda.get_device_name(0))"
-```
-
-Run the generator:
-
-```bash
 python3 ship_it.py
 ```
 
-You will be prompted for four inputs: product name, tagline, description, and hero headline. After you provide them, the pipeline loads the GLM5 medium model (~1 GB VRAM), runs the Research and Copy agents in parallel using GPU inference, assembles the HTML with the Builder Agent, validates it with the QA Agent across design, responsiveness, accessibility, and SEO checks, and writes the final `index.html`. The preview server starts automatically at `http://localhost:8080`. An iteration menu then appears in the terminal where you can edit specific sections, check live VRAM stats, or run a targeted fix pass on individual parts of the page without regenerating everything. The final output file is around 30 to 35 KB and requires no build step to deploy.
+Enter product name, tagline, description, and hero headline — the six-agent pipeline runs end-to-end and opens a live preview at `http://localhost:8080` with the iteration menu ready for section-level edits.
 
 NEO built a multi-agent landing page generator where a single CLI command produces a complete, self-contained HTML file—validated for accessibility, SEO, and responsive layout—with no assembly required. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 

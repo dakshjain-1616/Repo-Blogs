@@ -77,38 +77,28 @@ This agent is useful any time you're setting up a new Claude Desktop environment
 
 It's also a concrete example of what an agentic research pipeline looks like in practice: live data retrieval, structured reasoning, validated output generation, and clean integration with existing tooling. No magic, just a well-designed pipeline.
 
-## How to Build This
+## How to Build This with NEO
 
-You need Python 3.12 or later and Node.js 18 or later. Both are required: Python runs the AI agent and analysis engine, Node.js handles some of the MCP tooling integrations.
+Open NEO in VS Code or Cursor and describe what you want to build. A good starting prompt for this project:
 
-Clone and install:
+> "Build a Python and Node.js agent that automates MCP server discovery and configuration for Claude Desktop. It should support two modes: a suggest mode that takes a plain-text use case description, queries live web sources for recently published MCP servers, filters results to about 90% precision, applies AI reasoning to rank options, and outputs a markdown report with per-server JSON configuration blocks; and an optimize mode that reads an existing claude_desktop_config.json, backs it up, and produces a diff-style improvement report with replacement recommendations and ready-to-copy config snippets."
+
+<a href="https://heyneo.so/dashboard?section=new-chat&prompt=Build%20a%20Python%20and%20Node.js%20agent%20that%20automates%20MCP%20server%20discovery%20and%20configuration%20for%20Claude%20Desktop.%20It%20should%20support%20two%20modes%3A%20a%20suggest%20mode%20that%20takes%20a%20plain-text%20use%20case%20description%2C%20queries%20live%20web%20sources%20for%20recently%20published%20MCP%20servers%2C%20filters%20results%20to%20about%2090%25%20precision%2C%20applies%20AI%20reasoning%20to%20rank%20options%2C%20and%20outputs%20a%20markdown%20report%20with%20per-server%20JSON%20configuration%20blocks%3B%20and%20an%20optimize%20mode%20that%20reads%20an%20existing%20claude_desktop_config.json%2C%20backs%20it%20up%2C%20and%20produces%20a%20diff-style%20improvement%20report%20with%20replacement%20recommendations%20and%20ready-to-copy%20config%20snippets." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
+
+NEO generates the project structure and core implementation. From there you iterate: ask it to implement the live web research module with relevance filtering to suppress false positives, add the AI reasoning layer that evaluates server quality and compatibility, or build the reporting module that produces both markdown reports and ready-to-use JSON configs. Each follow-up builds on what's already there.
+
+To run the finished project:
 
 ```bash
 git clone https://github.com/abhishekgandhi-neo/MCP_Optimization_Suggestion_Agent_By_NEO
 cd MCP_Optimization_Suggestion_Agent_By_NEO
 pip install -r requirements.txt
 npm install
-```
-
-Get a free API key from [openrouter.ai](https://openrouter.ai) and set it:
-
-```bash
 export OPENROUTER_API_KEY=sk-or-...
-```
-
-To generate MCP server recommendations from a use case description:
-
-```bash
 python agent.py --mode suggest --task "I need MCP servers for web scraping, database queries, and file management"
 ```
 
-The agent runs live web research, applies its filtering and reasoning pipeline, and produces a markdown report in 8 to 12 seconds. The report lists recommended servers by capability area, explains why each was chosen over alternatives, includes the exact JSON configuration block for each, and notes any dependencies or setup steps. To analyze and optimize an existing Claude Desktop configuration:
-
-```bash
-python agent.py --mode optimize --config ~/Library/Application\ Support/Claude/claude_desktop_config.json
-```
-
-The agent backs up your current config file, then produces a diff-style view with specific improvement suggestions, replacement recommendations for outdated tools, and configuration snippets ready to copy. All generated configurations are valid for Claude Desktop's expected directory structure and JSON format.
+Run suggest mode first to see the full discovery-to-configuration output, then try optimize mode against your own Claude Desktop config to see what the agent flags for improvement.
 
 NEO built an MCP optimization agent where live web research and structured AI reasoning replace manual GitHub searches and JSON editing, completing the full discovery-to-configuration cycle in under 12 seconds. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 

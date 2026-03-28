@@ -71,9 +71,17 @@ Second, the review checkpoints in the form automation aren't a courtesy feature.
 
 AutoCareer works best as a starting point. The scoring logic is extensible, the scraper can target new boards, and the RAG pipeline is general enough to handle different document types.
 
-## How to Build This
+## How to Build This with NEO
 
-The recommended way to run AutoCareer is with Docker Compose, which starts both the FastAPI backend and the React frontend together:
+Open NEO in VS Code or Cursor and describe what you want to build. A good starting prompt for this project:
+
+> "Build an autonomous job application agent with a FastAPI backend and React 18 frontend that run together via Docker Compose. The pipeline has six stages: parse a PDF resume into FAISS vector embeddings using SentenceTransformers; scrape LinkedIn and Greenhouse listings using Playwright with anti-bot handling (rate limiting, session rotation, realistic browser fingerprinting); score candidate fit 0-100 using keyword alignment against resume embeddings with an optional GPT-4 path for higher-confidence reasoning; generate tailored cover letters using LangChain RAG that fetches the company's website for context before writing; fill application forms with Selenium including a 10-second review checkpoint before any submission; and log every submission with a timestamp, screenshot, and cryptographically secured record. Include DRY_RUN=true mode that walks through the full pipeline including form filling without submitting."
+
+<a href="https://heyneo.so/dashboard?section=new-chat&prompt=Build%20an%20autonomous%20job%20application%20agent%20with%20a%20FastAPI%20backend%20and%20React%2018%20frontend%20that%20run%20together%20via%20Docker%20Compose.%20The%20pipeline%20has%20six%20stages%3A%20parse%20a%20PDF%20resume%20into%20FAISS%20vector%20embeddings%20using%20SentenceTransformers%3B%20scrape%20LinkedIn%20and%20Greenhouse%20listings%20using%20Playwright%20with%20anti-bot%20handling%20%28rate%20limiting%2C%20session%20rotation%2C%20realistic%20browser%20fingerprinting%29%3B%20score%20candidate%20fit%200-100%20using%20keyword%20alignment%20against%20resume%20embeddings%20with%20an%20optional%20GPT-4%20path%20for%20higher-confidence%20reasoning%3B%20generate%20tailored%20cover%20letters%20using%20LangChain%20RAG%20that%20fetches%20the%20company%27s%20website%20for%20context%20before%20writing%3B%20fill%20application%20forms%20with%20Selenium%20including%20a%2010-second%20review%20checkpoint%20before%20any%20submission%3B%20and%20log%20every%20submission%20with%20a%20timestamp%2C%20screenshot%2C%20and%20cryptographically%20secured%20record.%20Include%20DRY_RUN%3Dtrue%20mode%20that%20walks%20through%20the%20full%20pipeline%20including%20form%20filling%20without%20submitting." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
+
+NEO generates the project structure and core implementation from that. From there you iterate — ask it to add the fallback to keyword-based scoring when no OpenAI API key is configured, add Indeed and Lever scraper adapters using the same anti-bot Playwright setup, or add SQLite-backed application history with the cryptographic audit log. Each request builds on what's already there.
+
+To run the finished project:
 
 ```bash
 git clone https://github.com/Dakshjain1604/Job-Application-AutoFiller-Agent
@@ -81,27 +89,7 @@ cd Job-Application-AutoFiller-Agent
 docker-compose up --build
 ```
 
-The frontend is at `http://localhost:3000` and the API docs are at `http://localhost:8000/docs`.
-
-For manual setup without Docker:
-
-```bash
-cd backend
-python3 -m venv ../venv && source ../venv/bin/activate
-pip install -r requirements.txt
-playwright install chromium
-cp .env.example .env
-python main.py
-```
-
-In a separate terminal:
-
-```bash
-cd frontend
-npm install && npm start
-```
-
-An OpenAI API key in `backend/.env` enables GPT-4 fit scoring and RAG cover letter generation. Without it, the system falls back to keyword-based scoring automatically. Upload your resume PDF through the UI, run a job search with your target keywords, review the fit scores, and generate a cover letter for any listing. Before submitting, a 10-second review gate shows you exactly what will be sent. Set `DRY_RUN=true` in your environment to walk through the complete pipeline including form filling without actually submitting anything.
+The frontend is at `http://localhost:3000` and the API docs at `http://localhost:8000/docs` — upload a resume PDF, search for jobs, review fit scores, generate cover letters, and submit with the 10-second review gate before anything goes out.
 
 NEO built an end-to-end job application agent where RAG-powered cover letter generation, semantic fit scoring, and form automation close the full loop from discovery to submission. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 

@@ -69,49 +69,26 @@ For long completions, **token streaming** sends each generated token as a server
 
 Streaming is optional and controlled by the `stream` field in the request body. Non-streaming clients get the complete response in one JSON object, identical to the OpenAI non-streaming format.
 
-## How to Build This
+## How to Build This with NEO
 
-Clone the repo and install dependencies:
+Open NEO in VS Code or Cursor and describe what you want to build. A good starting prompt for this project:
+
+> "Build a Flask-based OpenAI-compatible inference server for GGUF models using llama-cpp-python. Expose POST /v1/completions and POST /v1/chat/completions endpoints that are wire-compatible with the OpenAI API spec — same request and response JSON structure. Accept --model flag to point at any .gguf file and --port flag for port selection. Add a --mock flag that starts a lightweight stub returning realistic responses with correct JSON structure, token counts, and finish reasons without loading any model. Support token streaming via server-sent events when the request body includes 'stream': true. Keep it a single Python file with no Docker dependency."
+
+<a href="https://heyneo.so/dashboard?section=new-chat&prompt=Build%20a%20Flask-based%20OpenAI-compatible%20inference%20server%20for%20GGUF%20models%20using%20llama-cpp-python.%20Expose%20POST%20%2Fv1%2Fcompletions%20and%20POST%20%2Fv1%2Fchat%2Fcompletions%20endpoints%20that%20are%20wire-compatible%20with%20the%20OpenAI%20API%20spec%20%E2%80%94%20same%20request%20and%20response%20JSON%20structure.%20Accept%20--model%20flag%20to%20point%20at%20any%20.gguf%20file%20and%20--port%20flag%20for%20port%20selection.%20Add%20a%20--mock%20flag%20that%20starts%20a%20lightweight%20stub%20returning%20realistic%20responses%20with%20correct%20JSON%20structure%2C%20token%20counts%2C%20and%20finish%20reasons%20without%20loading%20any%20model.%20Support%20token%20streaming%20via%20server-sent%20events%20when%20the%20request%20body%20includes%20%27stream%27%3A%20true.%20Keep%20it%20a%20single%20Python%20file%20with%20no%20Docker%20dependency." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
+
+NEO generates the project structure and core implementation from that. From there you iterate — ask it to add the 42-test pytest suite covering endpoint validation, response format compliance, mock mode behavior, and streaming correctness, add port conflict detection with a helpful error message, or add request logging middleware that records model, token counts, and latency per call. Each request builds on what's already there.
+
+To run the finished project:
 
 ```bash
 git clone https://github.com/dakshjain-1616/gguf-serve
 cd gguf-serve
 pip install -r requirements.txt
-```
-
-Start the server against a local GGUF file:
-
-```bash
-python server.py --model ./your-model.gguf --port 8080
-```
-
-Or start in mock mode without any model file:
-
-```bash
 python server.py --mock --port 8080
 ```
 
-Send a chat completion request:
-
-```bash
-curl http://localhost:8080/v1/chat/completions \
-  -H "Content-Type: application/json" \
-  -d '{
-    "model": "local",
-    "messages": [{"role": "user", "content": "Hello"}]
-  }'
-```
-
-For streaming responses, add `"stream": true` to the request body. The server will return server-sent events with `data:` prefixed JSON chunks.
-
-Run the test suite:
-
-```bash
-pytest tests/ -v
-# 42 passed
-```
-
-The 42-test suite covers endpoint validation, response format compliance, mock mode behavior, error handling, and streaming correctness.
+Point any OpenAI-compatible client at `http://localhost:8080/v1` — swap `api.openai.com` for `localhost:8080` and the client library works without modification.
 
 NEO built gguf-serve as a minimal, debuggable OpenAI-compatible server that exposes any GGUF model as a local API endpoint with zero configuration overhead. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 

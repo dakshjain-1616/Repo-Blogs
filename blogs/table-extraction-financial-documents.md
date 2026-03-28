@@ -85,49 +85,26 @@ Analysts who previously spent hours manually transcribing tables can run this pi
 
 ---
 
-## How to Build This
+## How to Build This with NEO
 
-Clone the repo and install dependencies:
+Open NEO in VS Code or Cursor and describe what you want to build. A good starting prompt for this project:
+
+> "Build a Python pipeline that extracts structured tables from PDFs and scanned financial documents. Use OpenCV for deskewing and contrast enhancement, Microsoft Table Transformer from HuggingFace to detect table boundaries and classify row/column headers, and TrOCR for cell-level OCR. Reconstruct table structure from bounding box coordinates, handle merged cells, and run a numerical validation pass that checks column totals against row sums and flags percentage columns outside expected ranges. Output CSV, JSON with cell coordinates and confidence scores, or an annotated PDF report. Support both single files and directory batch processing."
+
+<a href="https://heyneo.so/dashboard?section=new-chat&prompt=Build%20a%20Python%20pipeline%20that%20extracts%20structured%20tables%20from%20PDFs%20and%20scanned%20financial%20documents.%20Use%20OpenCV%20for%20deskewing%20and%20contrast%20enhancement%2C%20Microsoft%20Table%20Transformer%20from%20HuggingFace%20to%20detect%20table%20boundaries%20and%20classify%20row%2Fcolumn%20headers%2C%20and%20TrOCR%20for%20cell-level%20OCR.%20Reconstruct%20table%20structure%20from%20bounding%20box%20coordinates%2C%20handle%20merged%20cells%2C%20and%20run%20a%20numerical%20validation%20pass%20that%20checks%20column%20totals%20against%20row%20sums%20and%20flags%20percentage%20columns%20outside%20expected%20ranges.%20Output%20CSV%2C%20JSON%20with%20cell%20coordinates%20and%20confidence%20scores%2C%20or%20an%20annotated%20PDF%20report.%20Support%20both%20single%20files%20and%20directory%20batch%20processing." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
+
+NEO generates the six-stage pipeline, numerical validation logic, and Docker configuration. From there you iterate -- ask it to add embedded text layer extraction for digitally generated PDFs to skip OCR where possible, add multi-table detection for pages containing more than one grid, or add a `--output-format report` mode that annotates the source PDF with bounding boxes and flagged anomalies.
+
+To run the finished project:
 
 ```bash
 git clone https://github.com/dakshjain-1616/Table-Extraction-from-Financial-Documents
 cd Table-Extraction-from-Financial-Documents
 pip install -r requirements.txt
-```
-
-The pipeline downloads Microsoft Table Transformer and TrOCR model weights from HuggingFace on first run (~1.5 GB total). No API keys are required — all inference runs locally.
-
-Run extraction on a PDF:
-
-```bash
 python extract.py --input ./samples/annual_report.pdf --output-format json
 ```
 
-Run on a scanned image:
-
-```bash
-python extract.py --input ./samples/balance_sheet.png --output-format csv
-```
-
-Supported `--output-format` values are `json`, `csv`, and `report`. The `report` format produces a PDF with annotated bounding boxes showing detected table regions and flagged anomalies.
-
-To process all PDFs in a directory:
-
-```bash
-python extract.py --input-dir ./documents/ --output-dir ./results/ --output-format json
-```
-
-The JSON output for each file includes per-table data with cell coordinates, extracted text, confidence scores, and a validation section flagging any numerical inconsistencies detected (for example, column totals that do not match the sum of their rows).
-
-To run via Docker:
-
-```bash
-docker build -t table-extractor .
-docker run -v $(pwd)/documents:/app/input -v $(pwd)/results:/app/output \
-  table-extractor --input-dir /app/input --output-dir /app/output --output-format json
-```
-
-Processing speed is approximately 3.2 seconds per page on CPU. GPU acceleration significantly reduces this for the TrOCR inference stage, which is the primary bottleneck.
+The JSON output includes per-table cell coordinates, extracted text, OCR confidence scores, and a validation section flagging numerical inconsistencies -- ready to pipe into any downstream analysis workflow.
 
 NEO built a financial table extraction pipeline where Microsoft Table Transformer detection, TrOCR cell-level OCR, and numerical consistency validation together deliver 96%+ accuracy on PDFs and scanned documents with explicit uncertainty signaling rather than silent errors. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 

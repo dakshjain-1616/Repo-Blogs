@@ -63,45 +63,28 @@ The final stage composites audio and video, burns in captions (generated from th
 
 At scale, the pipeline supports batch processing with a queue system. A deployment generating 1,000 personalized videos processes them at roughly 80 videos per hour on a single GPU machine, making large-scale rollouts feasible without exotic infrastructure.
 
-## How to Build This
+## How to Build This with NEO
 
-You need Python 3.10 or later and FFmpeg installed on your system. FFmpeg handles the final video rendering step and must be in your PATH. On Linux, install it with `apt install ffmpeg`; on macOS, `brew install ffmpeg`.
+Open NEO in VS Code or Cursor and describe what you want to build. A good starting prompt for this project:
 
-Clone and install:
+> "Build a Python video personalization pipeline that takes a JSON user profile (name, role, achievements, industry, tone, target audience) and produces a 1080p H.264 MP4 intro video. The pipeline should have five stages: LLM script generation with three variant scoring on speaking duration and originality, neural TTS narration with prosody adjustment and -16 LUFS normalization, embedding-based background music selection from a licensed library with automated ducking, visual slide assembly with crossfades timed to narration pacing, and final FFmpeg rendering. Support batch processing via a queue for directories of profile JSON files."
+
+<a href="https://heyneo.so/dashboard?section=new-chat&prompt=Build%20a%20Python%20video%20personalization%20pipeline%20that%20takes%20a%20JSON%20user%20profile%20%28name%2C%20role%2C%20achievements%2C%20industry%2C%20tone%2C%20target%20audience%29%20and%20produces%20a%201080p%20H.264%20MP4%20intro%20video.%20The%20pipeline%20should%20have%20five%20stages%3A%20LLM%20script%20generation%20with%20three%20variant%20scoring%20on%20speaking%20duration%20and%20originality%2C%20neural%20TTS%20narration%20with%20prosody%20adjustment%20and%20-16%20LUFS%20normalization%2C%20embedding-based%20background%20music%20selection%20from%20a%20licensed%20library%20with%20automated%20ducking%2C%20visual%20slide%20assembly%20with%20crossfades%20timed%20to%20narration%20pacing%2C%20and%20final%20FFmpeg%20rendering.%20Support%20batch%20processing%20via%20a%20queue%20for%20directories%20of%20profile%20JSON%20files." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
+
+NEO generates the project structure and core implementation. From there you iterate: ask it to implement the three-variant script scorer that penalizes formulaic phrasing and targets the specified duration bracket, add the embedding-based music matching that maps tone and industry to track mood categories, or build the audio-reactive slide transition timing that avoids cutting mid-syllable. Each follow-up builds on what's already there.
+
+To run the finished project:
 
 ```bash
 git clone https://github.com/dakshjain-1616/lumosx-personalizer
 cd lumosx-personalizer
 pip install -r requirements.txt
-```
-
-Configure your API keys for the LLM (script generation) and TTS provider:
-
-```bash
 export OPENAI_API_KEY=sk-...
 export TTS_API_KEY=...
-```
-
-Prepare a user profile as a JSON file. For example, create `profiles/sample.json`:
-
-```json
-{
-  "name": "Sarah Chen",
-  "role": "Senior Product Manager",
-  "achievements": ["Launched payments platform used by 2M users", "Grew team from 4 to 18 engineers"],
-  "industry": "fintech",
-  "tone": "professional",
-  "target_audience": "recruiting teams and potential collaborators"
-}
-```
-
-Run the pipeline:
-
-```bash
 python generate.py --profile profiles/sample.json --output videos/
 ```
 
-The pipeline runs all five stages in sequence: script generation and variant scoring (30 to 60 seconds), TTS narration with prosody adjustment (15 to 30 seconds), music selection and ducking (5 to 10 seconds), visual slide assembly (10 to 20 seconds), and FFmpeg rendering to 1080p H.264 MP4 (about 45 seconds). Total end-to-end time is roughly two to three minutes per video. The finished file appears in the output directory. For batch generation, pass a directory of profile JSON files to `--profile` and the pipeline queues them automatically.
+The pipeline completes in roughly two to three minutes per video. Pass a directory of profile JSON files to `--profile` to run batch generation with the built-in queue.
 
 NEO built a fully automated video personalization pipeline that delivers professional-quality intro videos at the speed and cost of software rather than production. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 

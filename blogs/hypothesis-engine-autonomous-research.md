@@ -59,33 +59,28 @@ HypothesisEngine is most useful at the beginning of a research project, when the
 
 The tool does not replace domain expertise. A senior researcher reading the output will immediately spot when the agent has over-weighted a poorly-designed study or missed a critical methodological issue. The value is not in replacing that judgment but in doing the mechanical work of retrieval, reading, and initial synthesis fast enough that the researcher can focus their judgment on the interesting parts.
 
-## How to Build This
+## How to Build This with NEO
 
-HypothesisEngine uses only the Python standard library, so there are no additional package installs. Clone and set up a virtual environment:
+Open NEO in VS Code or Cursor and describe what you want to build. A good starting prompt for this project:
+
+> "Build an autonomous research agent called HypothesisEngine that takes a broad research question, decomposes it into structured sub-queries using chain-of-thought reasoning, fans queries out to arxiv, PubMed, and Semantic Scholar in parallel, and synthesizes findings into ranked hypotheses. Each hypothesis should have a confidence score based on study type weighting (RCT > cohort > in vitro > computational) and an evidence chain showing the specific claims from each paper that support or contradict it. When contradictions arise, generate resolution hypotheses that accommodate both results. Use forward and backward citation graph traversal via the Semantic Scholar adapter to surface cross-domain connections. Cache abstract embeddings after first retrieval so subsequent passes use vector similarity rather than re-running keyword searches. Output a Markdown report with candidate hypotheses ranked by confidence, supporting and contradicting evidence, identified research gaps, and suggested experimental designs."
+
+<a href="https://heyneo.so/dashboard?section=new-chat&prompt=Build%20an%20autonomous%20research%20agent%20called%20HypothesisEngine%20that%20takes%20a%20broad%20research%20question%2C%20decomposes%20it%20into%20structured%20sub-queries%20using%20chain-of-thought%20reasoning%2C%20fans%20queries%20out%20to%20arxiv%2C%20PubMed%2C%20and%20Semantic%20Scholar%20in%20parallel%2C%20and%20synthesizes%20findings%20into%20ranked%20hypotheses.%20Each%20hypothesis%20should%20have%20a%20confidence%20score%20based%20on%20study%20type%20weighting%20%28RCT%20%3E%20cohort%20%3E%20in%20vitro%20%3E%20computational%29%20and%20an%20evidence%20chain%20showing%20the%20specific%20claims%20from%20each%20paper%20that%20support%20or%20contradict%20it.%20When%20contradictions%20arise%2C%20generate%20resolution%20hypotheses%20that%20accommodate%20both%20results.%20Use%20forward%20and%20backward%20citation%20graph%20traversal%20via%20the%20Semantic%20Scholar%20adapter%20to%20surface%20cross-domain%20connections.%20Cache%20abstract%20embeddings%20after%20first%20retrieval%20so%20subsequent%20passes%20use%20vector%20similarity%20rather%20than%20re-running%20keyword%20searches.%20Output%20a%20Markdown%20report%20with%20candidate%20hypotheses%20ranked%20by%20confidence%2C%20supporting%20and%20contradicting%20evidence%2C%20identified%20research%20gaps%2C%20and%20suggested%20experimental%20designs." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
+
+NEO generates the project structure and core implementation from that. From there you iterate — ask it to add the adapter-based architecture with normalized document schema across all three literature sources, add the iterative refinement loop where the agent searches for contradicting evidence and updates confidence scores before synthesizing, or add JSON output format for downstream integration with citation managers and project management tools. Each request builds on what's already there.
+
+To run the finished project:
 
 ```bash
 git clone https://github.com/dakshjain-1616/HypothesisEngine---Autonomous-Research-Framework
 cd HypothesisEngine---Autonomous-Research-Framework
-python3 -m venv venv
-source venv/bin/activate
-```
-
-Run in interactive mode and enter your research question when prompted:
-
-```bash
-python3 src/hypothesis_engine.py
-```
-
-Or pass a hypothesis directly on the command line:
-
-```bash
 python3 src/hypothesis_engine.py \
   --hypothesis "Regular exercise improves cognitive function in older adults" \
   --output reports/exercise_cognition.md \
   --questions 5
 ```
 
-The engine decomposes the question into sub-queries, fans them out to arxiv, PubMed, and Semantic Scholar in parallel, ranks results by semantic similarity and citation recency, and runs a chain-of-thought synthesis pass over the retrieved papers. The terminal shows progress through each stage. When the run completes, a Markdown research brief is written to the output path with sections covering candidate hypotheses ranked by confidence, supporting and contradicting evidence for each, identified research gaps, and suggested experimental designs. A full timestamped log is saved alongside the report for reproducibility.
+The terminal shows progress through each stage — sub-query decomposition, parallel literature retrieval, chain-of-thought synthesis — and writes a complete Markdown research brief with ranked hypotheses and suggested experimental designs.
 
 NEO built HypothesisEngine to give researchers a collaborator that never gets tired of reading papers. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 

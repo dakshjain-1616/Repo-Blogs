@@ -61,35 +61,26 @@ The model comparison table across all benchmarks surfaces a clear picture. OmniC
 
 The practical implication is that OmniCoder-9B is the right choice for teams that need fully local deployment with good function-level synthesis quality and can tolerate weaker performance on complex repository-level tasks. Teams with strong data processing use cases in particular will find the model punches above its weight class.
 
-## How to Build This
+## How to Build This with NEO
 
-Clone the repo and install dependencies:
+Open NEO in VS Code or Cursor and describe what you want to build. A good starting prompt for this project:
+
+> "Build a benchmarking suite for OmniCoder-9B that evaluates it on HumanEval (164 problems, pass@1 and pass@10), MBPP (374 problems), SWE-bench execution accuracy on real GitHub issues, and a 200-problem custom task suite covering pandas/Polars data pipelines, REST API integration patterns, and Terraform/GitHub Actions infrastructure-as-code. Compare against GPT-4o-mini, CodeLlama-13B, and Deepseek-Coder-6.7B. Measure tokens-per-second on CPU, RTX 4090, and A100. Use 4-bit quantization by default on CPU and consumer GPU. Auto-detect available hardware and report it in the results header."
+
+<a href="https://heyneo.so/dashboard?section=new-chat&prompt=Build%20a%20benchmarking%20suite%20for%20OmniCoder-9B%20that%20evaluates%20it%20on%20HumanEval%20%28164%20problems%2C%20pass%401%20and%20pass%4010%29%2C%20MBPP%20%28374%20problems%29%2C%20SWE-bench%20execution%20accuracy%20on%20real%20GitHub%20issues%2C%20and%20a%20200-problem%20custom%20task%20suite%20covering%20pandas%2FPolars%20data%20pipelines%2C%20REST%20API%20integration%20patterns%2C%20and%20Terraform%2FGitHub%20Actions%20infrastructure-as-code.%20Compare%20against%20GPT-4o-mini%2C%20CodeLlama-13B%2C%20and%20Deepseek-Coder-6.7B.%20Measure%20tokens-per-second%20on%20CPU%2C%20RTX%204090%2C%20and%20A100.%20Use%204-bit%20quantization%20by%20default%20on%20CPU%20and%20consumer%20GPU.%20Auto-detect%20available%20hardware%20and%20report%20it%20in%20the%20results%20header." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
+
+NEO generates the project structure and core implementation. From there you iterate — ask it to add a Markdown comparison table with per-benchmark pass@1, latency, and cost columns, add human-scoring rubric output for infrastructure-as-code tasks that can't be auto-evaluated, or add `--compare` flag support to run all models in parallel with configurable worker count.
+
+To run the finished project:
 
 ```bash
 git clone https://github.com/dakshjain-1616/OmniCoder-9B-Benchmark-
 cd OmniCoder-9B-Benchmark-
 pip install -r requirements.txt
-```
-
-The benchmark suite requires Python 3.10 or later. OmniCoder-9B is pulled from HuggingFace automatically. For CPU or consumer GPU runs, the 4-bit quantized version is used by default to fit within memory constraints. Set your HuggingFace token if the model requires authentication:
-
-```bash
-HF_TOKEN=hf_...
-```
-
-Run the HumanEval benchmark:
-
-```bash
 python run_benchmark.py --benchmark humaneval --model omnicoder-9b
 ```
 
-Run the full suite across all four benchmark categories:
-
-```bash
-python run_benchmark.py --benchmark all --model omnicoder-9b --compare gpt4o-mini codellama-13b deepseek-coder-6.7b
-```
-
-The custom task suite evaluation runs automatically as part of `--benchmark all`. For the infrastructure-as-code and API integration tasks that require human scoring, the tool outputs a review file with the generated code and a scoring rubric. Results are written to `results/` as a JSON summary and a Markdown comparison table. The comparison table includes pass@1, pass@10, execution accuracy on SWE-bench, and measured tokens-per-second for each hardware configuration. Hardware detection is automatic: the suite uses the best available device and reports which configuration was used in the results header.
+Results write to `results/` as JSON and Markdown — the comparison table shows exactly where OmniCoder-9B wins, ties, or trails each competitor across every benchmark category.
 
 NEO built this benchmarking suite to produce actionable numbers, not just leaderboard entries — so deployment decisions can be made on evidence. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 

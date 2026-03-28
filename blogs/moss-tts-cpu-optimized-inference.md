@@ -71,41 +71,28 @@ Running 8.4B parameter TTS models on CPU hardware is possible with the right qua
 
 This principle applies beyond MOSS-TTS. Any multi-component model architecture with distinct processing stages can potentially benefit from component-selective quantization. The key is identifying which components are sensitive to numerical precision and protecting those while compressing the rest.
 
-## How to Build This
+## How to Build This with NEO
 
-You need Python 3.10 or later and a machine with at least 32GB of RAM for selective quantization (the recommended mode) or 40GB for fp32. No GPU is required. The pipeline is designed for CPU-only servers and runs without CUDA.
+Open NEO in VS Code or Cursor and describe what you want to build. A good starting prompt for this project:
 
-Clone and install:
+> "Build a CPU-only inference pipeline for the MOSS-TTS 8.4B parameter text-to-speech model. Implement three inference modes: fp32 (full precision, highest quality), selective INT8 (quantize only the language model component, leave acoustic components at full precision, targeting 21% memory reduction vs fp32), and full INT8 (apply INT8 across the entire model). Auto-configure thread count from detected CPU core count, force Float32 at the framework level for components that require it, and log performance measurements at each pipeline stage. Include a benchmark script that measures peak RAM and load time per mode and writes a comparison report."
+
+<a href="https://heyneo.so/dashboard?section=new-chat&prompt=Build%20a%20CPU-only%20inference%20pipeline%20for%20the%20MOSS-TTS%208.4B%20parameter%20text-to-speech%20model.%20Implement%20three%20inference%20modes%3A%20fp32%20%28full%20precision%2C%20highest%20quality%29%2C%20selective%20INT8%20%28quantize%20only%20the%20language%20model%20component%2C%20leave%20acoustic%20components%20at%20full%20precision%2C%20targeting%2021%25%20memory%20reduction%20vs%20fp32%29%2C%20and%20full%20INT8%20%28apply%20INT8%20across%20the%20entire%20model%29.%20Auto-configure%20thread%20count%20from%20detected%20CPU%20core%20count%2C%20force%20Float32%20at%20the%20framework%20level%20for%20components%20that%20require%20it%2C%20and%20log%20performance%20measurements%20at%20each%20pipeline%20stage.%20Include%20a%20benchmark%20script%20that%20measures%20peak%20RAM%20and%20load%20time%20per%20mode%20and%20writes%20a%20comparison%20report." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
+
+NEO generates the project structure and core implementation. From there you iterate: ask it to implement the selective quantization logic that identifies and compresses only the LM component while leaving acoustic modules at full precision, add the audio normalization to -16 LUFS for output WAV files, or build the benchmark runner that logs per-mode peak RAM and load time. Each follow-up builds on what's already there.
+
+To run the finished project (requires 32GB+ RAM, no GPU needed):
 
 ```bash
 git clone https://github.com/dakshjain-1616/MOSS-TTS-CPU-Optimized-Inference-Pipeline
 cd MOSS-TTS-CPU-Optimized-Inference-Pipeline
 pip install -r requirements.txt
-```
-
-The model weights are downloaded automatically on first run from Hugging Face. Expect a 15 to 20 minute download for the 8.4B parameter checkpoint. Once cached locally, subsequent runs skip the download.
-
-Run inference with selective INT8 quantization (the recommended mode, 26GB peak RAM):
-
-```bash
 python infer.py --text "The quick brown fox jumps over the lazy dog." --mode selective_int8 --output audio/output.wav
 ```
 
-For fp32 at full quality (33GB peak RAM):
+Run `python benchmark.py` after your first inference to get peak RAM and load time numbers for each mode on your specific hardware configuration.
 
-```bash
-python infer.py --text "Hello, this is a test." --mode fp32 --output audio/output.wav
-```
-
-The first run takes about 7 seconds to load the model and apply quantization. Subsequent calls against a loaded server are faster. The output is a WAV file at the path you specify. To benchmark all available modes and compare memory usage and load times, run:
-
-```bash
-python benchmark.py --output results/benchmark_report.txt
-```
-
-The benchmark report logs peak RAM consumption and load time for each mode, giving you concrete numbers to compare against the figures in this post on your specific hardware configuration.
-
-NEO built a CPU-optimized inference pipeline for MOSS-TTS where selective INT8 quantization delivers a 21% memory reduction while preserving audio quality—making an 8.4B parameter TTS model practical without GPU hardware. See what else NEO ships at [heyneo.so](https://heyneo.so/).
+NEO built a CPU-optimized inference pipeline for MOSS-TTS where selective INT8 quantization delivers a 21% memory reduction while preserving audio quality, making an 8.4B parameter TTS model practical without GPU hardware. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---
 

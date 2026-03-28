@@ -75,43 +75,27 @@ There's a broader application. Any workflow that touches multiple enterprise sys
 
 NEO built this to run in real environments, not demo environments. The error handling, the dry-run mode, the audit logging, the masked credentials, the parallel execution, the config validation: these aren't afterthoughts. They're what makes the difference between a script and a tool your team can rely on.
 
-## How to Build This
+## How to Build This with NEO
 
-Clone the repo and install dependencies:
+Open NEO in VS Code or Cursor and describe what you want to build. A good starting prompt for this project:
+
+> "Build a configuration-driven new hire onboarding CLI in Python that provisions employees across G Suite (account creation, group assignment), Jira (user creation, project assignment), Slack (user provisioning, channel assignment, welcome message), Google Calendar (schedule one-on-ones with team leads, attach Meet links), and Gmail (send welcome email to corporate and personal addresses). Run G Suite and Jira provisioning in parallel using thread-safe state management. Include dry-run mode, structured audit logging with masked credentials, and a --generate-config command that walks through initial setup and validates all API credentials."
+
+<a href="https://heyneo.so/dashboard?section=new-chat&prompt=Build%20a%20configuration-driven%20new%20hire%20onboarding%20CLI%20in%20Python%20that%20provisions%20employees%20across%20G%20Suite%20%28account%20creation%2C%20group%20assignment%29%2C%20Jira%20%28user%20creation%2C%20project%20assignment%29%2C%20Slack%20%28user%20provisioning%2C%20channel%20assignment%2C%20welcome%20message%29%2C%20Google%20Calendar%20%28schedule%20one-on-ones%20with%20team%20leads%2C%20attach%20Meet%20links%29%2C%20and%20Gmail%20%28send%20welcome%20email%20to%20corporate%20and%20personal%20addresses%29.%20Run%20G%20Suite%20and%20Jira%20provisioning%20in%20parallel%20using%20thread-safe%20state%20management.%20Include%20dry-run%20mode%2C%20structured%20audit%20logging%20with%20masked%20credentials%2C%20and%20a%20--generate-config%20command%20that%20walks%20through%20initial%20setup%20and%20validates%20all%20API%20credentials." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
+
+NEO generates the project structure and core implementation. From there you iterate — ask it to add batch processing mode that reads a directory of employee JSON files, add per-phase error isolation so a Jira API timeout does not halt Slack and Calendar provisioning, or add configurable email templates per role from the company config file.
+
+To run the finished project:
 
 ```bash
 git clone https://github.com/dakshjain-1616/New-Hire-OnBoarding-Tool
 cd New-Hire-OnBoarding-Tool
 pip install -r requirements.txt
-```
-
-You need API credentials for each of the five services: G Suite (service account JSON), a Jira API token, a Slack bot token, and OAuth credentials for Google Calendar and Gmail. Run the config generator to walk through initial setup:
-
-```bash
 python onboard.py --generate-config
-```
-
-This produces `company_config.json` with your org structure, team leads, Slack channels, Jira project keys, and email templates. It also validates each credential before saving.
-
-Prepare an employee JSON file with the new hire's details:
-
-```json
-{"name": "Jane Smith", "email": "jane@personal.com", "role": "engineer", "team": "platform", "start_date": "2026-04-01"}
-```
-
-Run a dry run first to verify everything looks correct without touching any real APIs:
-
-```bash
 python onboard.py --employee employee.json --dry-run
 ```
 
-The dry run prints every step that would execute, validates the config, and reports any missing credentials or config fields. Once satisfied, run the actual provisioning:
-
-```bash
-python onboard.py --employee employee.json
-```
-
-The tool provisions all five systems in parallel where possible and writes a structured audit log to `logs/`. Provisioning for a single hire completes in under two minutes. Check the audit log to confirm each phase completed or to diagnose any partial failures.
+The dry run validates every step without touching real APIs. Once credentials are confirmed, drop `--dry-run` and provisioning across all five systems completes in under two minutes.
 
 NEO built a configuration-driven new hire onboarding engine where parallel provisioning across G Suite, Jira, Slack, Calendar, and Gmail completes in under 2 minutes with full audit logging and zero missed steps. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 

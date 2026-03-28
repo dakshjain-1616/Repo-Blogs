@@ -97,21 +97,22 @@ When you're evaluating whether speculative decoding is worth the added complexit
 
 This tool gives you clean, reproducible measurements to make those decisions with confidence.
 
-## How to Build This
+## How to Build This with NEO
 
-Clone the repo and install dependencies:
+Open NEO in VS Code or Cursor and describe what you want to build. A good starting prompt for this project:
+
+> "Build a Python benchmarking tool for speculative decoding that measures quality and latency across draft-target model pairs from HuggingFace. Evaluate quality using BLEU, ROUGE-L, and BERTScore. Measure latency at P50, P95, and P99 percentiles. Compute an adaptive gamma recommendation based on measured token acceptance rate. Expose three interfaces: a CLI with --draft-model, --target-model, --gamma, and --num-prompts flags; a FastAPI REST server for CI/CD integration; and a Python module with BenchmarkConfig and BenchmarkRunner classes."
+
+<a href="https://heyneo.so/dashboard?section=new-chat&prompt=Build%20a%20Python%20benchmarking%20tool%20for%20speculative%20decoding%20that%20measures%20quality%20and%20latency%20across%20draft-target%20model%20pairs%20from%20HuggingFace.%20Evaluate%20quality%20using%20BLEU%2C%20ROUGE-L%2C%20and%20BERTScore.%20Measure%20latency%20at%20P50%2C%20P95%2C%20and%20P99%20percentiles.%20Compute%20an%20adaptive%20gamma%20recommendation%20based%20on%20measured%20token%20acceptance%20rate.%20Expose%20three%20interfaces%3A%20a%20CLI%20with%20--draft-model%2C%20--target-model%2C%20--gamma%2C%20and%20--num-prompts%20flags%3B%20a%20FastAPI%20REST%20server%20for%20CI%2FCD%20integration%3B%20and%20a%20Python%20module%20with%20BenchmarkConfig%20and%20BenchmarkRunner%20classes." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
+
+NEO generates the benchmark runner, metric computation, and FastAPI server. From there you iterate — ask it to add YAML config file support for running the same benchmark across multiple model pairs, add a side-by-side comparison mode for two gamma values on the same model pair, or add pre-commit hooks with Black, isort, mypy, and flake8.
+
+To run the finished project:
 
 ```bash
 git clone https://github.com/dakshjain-1616/Speculative-Decoding-Bench-marker
 cd Speculative-Decoding-Bench-marker
 pip install -r requirements.txt
-```
-
-No API keys are required. The tool downloads models from HuggingFace on first run. Make sure you have enough disk space — the default OPT-125M draft model is 250 MB and OPT-1.3B target model is 2.6 GB.
-
-Run a benchmark from the CLI using the default model pair:
-
-```bash
 python -m decoding_benchmarker run \
   --draft-model facebook/opt-125m \
   --target-model facebook/opt-1.3b \
@@ -120,30 +121,7 @@ python -m decoding_benchmarker run \
   --output-format json
 ```
 
-To use the Python module interface directly:
-
-```python
-from decoding_benchmarker import BenchmarkConfig, BenchmarkRunner
-
-config = BenchmarkConfig(
-    draft_model="facebook/opt-125m",
-    target_model="facebook/opt-1.3b",
-    num_prompts=100,
-    gamma=4
-)
-runner = BenchmarkRunner(config)
-results = runner.run()
-print(f"Speedup: {results.speedup_ratio:.2f}x")
-print(f"BERTScore: {results.bert_score:.3f}")
-```
-
-To launch the REST API server for CI/CD integration:
-
-```bash
-python -m decoding_benchmarker serve --port 8080
-```
-
-The benchmark report includes speedup ratio, BLEU, ROUGE-L, and BERTScore across all prompts, P50/P95/P99 latency breakdowns, and an adaptive gamma recommendation based on the measured acceptance rate for your specific model pair and prompt distribution. JSON output is written to `./results/` by default.
+The report in `./results/` shows speedup ratio, BLEU/ROUGE-L/BERTScore, P50/P95/P99 latency, and a data-driven gamma recommendation for your specific model pair.
 
 NEO built a speculative decoding benchmarker where BLEU, ROUGE-L, and BERTScore quality metrics combine with percentile latency measurements and adaptive gamma recommendations to give teams the data needed to determine whether speculative decoding actually helps their specific model pair. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 

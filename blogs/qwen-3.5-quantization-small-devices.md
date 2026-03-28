@@ -85,63 +85,28 @@ Set your expectations correctly going in. Q4_K_S Qwen3.5-2B is a capable small m
 
 For edge use cases, that's usually fine. Most embedded applications don't need the full capability of frontier models. They need reliable, fast, private inference for bounded tasks. That's exactly what these quantized variants deliver.
 
-## How to Build This
+## How to Build This with NEO
 
-Download the GGUF models from HuggingFace. Install the HuggingFace CLI first:
+Open NEO in VS Code or Cursor and describe what you want to build. A good starting prompt for this project:
 
-```bash
-pip install huggingface_hub
-```
+> "Build a Python wrapper around llama.cpp for running Qwen3.5-2B K-quantized GGUF models on Raspberry Pi and other sub-$100 edge devices. Support three quantization variants: Q4_K_S (~1.4GB RAM), Q3_K_S (~1.2GB RAM), and Q2_K (~1.0GB RAM). Implement three inference modes via a single run.py: prompt mode for single-shot completions, interactive chat mode with automatic conversation history management, and REST API server mode that accepts POST requests with a JSON body containing a prompt field. Recommend context window of 2K tokens on edge hardware to avoid KV cache memory pressure."
 
-Then pull whichever variant fits your hardware:
+<a href="https://heyneo.so/dashboard?section=new-chat&prompt=Build%20a%20Python%20wrapper%20around%20llama.cpp%20for%20running%20Qwen3.5-2B%20K-quantized%20GGUF%20models%20on%20Raspberry%20Pi%20and%20other%20sub-%24100%20edge%20devices.%20Support%20three%20quantization%20variants%3A%20Q4_K_S%20%28~1.4GB%20RAM%29%2C%20Q3_K_S%20%28~1.2GB%20RAM%29%2C%20and%20Q2_K%20%28~1.0GB%20RAM%29.%20Implement%20three%20inference%20modes%20via%20a%20single%20run.py%3A%20prompt%20mode%20for%20single-shot%20completions%2C%20interactive%20chat%20mode%20with%20automatic%20conversation%20history%20management%2C%20and%20REST%20API%20server%20mode%20that%20accepts%20POST%20requests%20with%20a%20JSON%20body%20containing%20a%20prompt%20field.%20Recommend%20context%20window%20of%202K%20tokens%20on%20edge%20hardware%20to%20avoid%20KV%20cache%20memory%20pressure." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
 
-```bash
-# Q4_K_S — recommended for Raspberry Pi 4 (requires ~1.4 GB RAM)
-huggingface-cli download dakshjain-1616/Qwen-3.5-Quantisation-for-small-devices- \
-  --include "qwen3.5-2b-q4_k_s.gguf" --local-dir ./model
+NEO generates the project structure and core implementation. From there you iterate — ask it to add hardware detection that prints recommended variant based on available RAM before loading a model, add HuggingFace CLI download instructions for each variant in the README, or add a benchmark mode that measures tokens-per-second on the current device and compares against the published Pi 4 baseline.
 
-# Q3_K_S — smaller footprint (~1.2 GB RAM)
-huggingface-cli download dakshjain-1616/Qwen-3.5-Quantisation-for-small-devices- \
-  --include "qwen3.5-2b-q3_k_s.gguf" --local-dir ./model
-
-# Q2_K — maximum compression for Pi Zero (~1.0 GB RAM)
-huggingface-cli download dakshjain-1616/Qwen-3.5-Quantisation-for-small-devices- \
-  --include "qwen3.5-2b-q2_k.gguf" --local-dir ./model
-```
-
-Clone the repository and install the Python wrapper:
+To run the finished project:
 
 ```bash
 git clone https://github.com/dakshjain-1616/Qwen-3.5-Quantisation-for-small-devices-
 cd Qwen-3.5-Quantisation-for-small-devices-
 pip install -r requirements.txt
-```
-
-Run a single prompt:
-
-```bash
-python run.py --mode prompt \
-  --model ./model/qwen3.5-2b-q4_k_s.gguf \
-  --prompt "Explain what a transformer model is in two sentences."
-```
-
-Start an interactive chat session:
-
-```bash
 python run.py --mode chat --model ./model/qwen3.5-2b-q4_k_s.gguf
 ```
 
-Start the REST API server for integration with other services:
+On a Raspberry Pi 4 you get 8-12 tokens per second with Q4_K_S — interactive enough for conversational use cases, with no network dependency and no cloud cost.
 
-```bash
-python run.py --mode server --model ./model/qwen3.5-2b-q4_k_s.gguf --port 8080
-```
-
-On a Raspberry Pi 4 using Q4_K_S, expect 8 to 12 tokens per second. A 100-token response completes in roughly ten seconds. The API server listens on the configured port and accepts POST requests with a JSON body containing a `prompt` field.
-
-## Bringing ML to Constrained Hardware
-
-NEO built an extreme quantization pipeline for Qwen 3.5 where importance-aware K-quantization produces three GGUF variants under 1.15GB that run at 8–12 tokens per second on a Raspberry Pi 4—no cloud, no GPU, no compromise on usability. See what else NEO ships at [heyneo.so](https://heyneo.so/).
+NEO built an extreme quantization pipeline for Qwen 3.5 where importance-aware K-quantization produces three GGUF variants under 1.15GB that run at 8-12 tokens per second on a Raspberry Pi 4—no cloud, no GPU, no compromise on usability. See what else NEO ships at [heyneo.so](https://heyneo.so()).
 
 ---
 

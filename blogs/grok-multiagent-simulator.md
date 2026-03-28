@@ -71,37 +71,26 @@ The simulator is designed to support system sizes from 2 agents to 20 agents. Be
 
 The scaling behavior itself is a research question the simulator helps answer. Does adding more researcher agents improve output quality linearly, sublinearly, or not at all beyond a certain count? Does a larger critic panel improve feedback quality or produce inconsistent, harder-to-reconcile critiques? The simulator makes these questions answerable by running the same scenario at different agent counts and comparing output quality and cost.
 
-## How to Build This
+## How to Build This with NEO
 
-Clone and install:
+Open NEO in VS Code or Cursor and describe what you want to build. A good starting prompt for this project:
+
+> "Build a multi-agent simulation framework using Grok models via OpenRouter. Agents are defined in YAML with role descriptions, system prompts, and communication protocols. Support three communication topologies: flat peer-to-peer, hierarchical (coordinator/supervisor/leaf), and role-specialized (Researcher/Critic/Synthesizer/Executor with defined communication rules). Use a typed message bus where messages carry types — task assignment, status update, information request, information response, escalation — so agents can route them differently. Agents maintain a priority-queue context window that evicts older low-priority messages when full. Support asynchronous message passing. Include an observability dashboard with a message flow graph showing communication topology, a timeline view for identifying bottlenecks and feedback loops, quality metrics over iterations, and per-agent token and cost accounting."
+
+<a href="https://heyneo.so/dashboard?section=new-chat&prompt=Build%20a%20multi-agent%20simulation%20framework%20using%20Grok%20models%20via%20OpenRouter.%20Agents%20are%20defined%20in%20YAML%20with%20role%20descriptions%2C%20system%20prompts%2C%20and%20communication%20protocols.%20Support%20three%20communication%20topologies%3A%20flat%20peer-to-peer%2C%20hierarchical%20%28coordinator%2Fsupervisor%2Fleaf%29%2C%20and%20role-specialized%20%28Researcher%2FCritic%2FSynthesizer%2FExecutor%20with%20defined%20communication%20rules%29.%20Use%20a%20typed%20message%20bus%20where%20messages%20carry%20types%20%E2%80%94%20task%20assignment%2C%20status%20update%2C%20information%20request%2C%20information%20response%2C%20escalation%20%E2%80%94%20so%20agents%20can%20route%20them%20differently.%20Agents%20maintain%20a%20priority-queue%20context%20window%20that%20evicts%20older%20low-priority%20messages%20when%20full.%20Support%20asynchronous%20message%20passing.%20Include%20an%20observability%20dashboard%20with%20a%20message%20flow%20graph%20showing%20communication%20topology%2C%20a%20timeline%20view%20for%20identifying%20bottlenecks%20and%20feedback%20loops%2C%20quality%20metrics%20over%20iterations%2C%20and%20per-agent%20token%20and%20cost%20accounting." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
+
+NEO generates the project structure and core implementation from that. From there you iterate — ask it to add the scenario template library (collaborative synthesis, negotiation/resource allocation, adversarial quality checking, cascading task decomposition), add scaling experiments that run the same scenario at 2 through 20 agent counts and compare quality vs. cost, or add the Rich live terminal dashboard showing word count and words-per-second per agent with real-time charts. Each request builds on what's already there.
+
+To run the finished project:
 
 ```bash
 git clone https://github.com/dakshjain-1616/grok-multiagent-simulator
 cd grok-multiagent-simulator
 pip install -r requirements.txt
-```
-
-Create a `.env` file with your OpenRouter API key and the Grok model endpoint:
-
-```bash
-OPENROUTER_API_KEY=your_key_here
-OPENROUTER_BASE_URL=https://openrouter.ai/api/v1
-MODEL_NAME=x-ai/grok-4.20-multi-agent-beta
-```
-
-Run with the default task (financial multi-agent analysis):
-
-```bash
-python sim.py
-```
-
-Run with a custom task:
-
-```bash
 python sim.py --task "Analyze the risks of deploying LLMs in medical diagnosis"
 ```
 
-The three agents run sequentially: Researcher gathers information, Analyst identifies patterns, Synthesizer produces the final answer. A live Rich dashboard updates in the terminal as each agent completes, showing word count, time elapsed, and words per second per agent alongside three real-time charts. After all three agents finish, the full output and metrics are printed in a final summary panel and saved to `run_log.json`. The log captures each agent's complete output, timing data, and the final synthesized response for review or downstream processing.
+The live Rich dashboard updates as each agent completes, and the full run log with per-agent outputs, timing data, and the synthesized response saves to `run_log.json`.
 
 NEO built the Grok Multiagent Simulator to give engineers a safe environment to discover how their multi-agent system actually behaves before it touches production traffic. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 

@@ -63,57 +63,28 @@ The tool also reads from `.pyforge.toml` in the project root for project-specifi
 
 PyForge supports both cloud API backends (OpenAI, Anthropic) and local models via Ollama. For one-shot scripts and small refactors, local models with quantization are fast enough to feel responsive. For complex scaffolding or multi-file refactors, cloud models produce substantially better results. The backend is configurable per command type, so a developer can route simple generations to a local model and complex tasks to a cloud API, balancing speed and capability.
 
-## How to Build This
+## How to Build This with NEO
 
-Clone the repo and install:
+Open NEO in VS Code or Cursor and describe what you want to build. A good starting prompt for this project:
+
+> "Build a Python CLI tool called PyForge with four commands: 'gen' that takes a natural language description and produces executable Python with type hints, f-strings, and error handling written to stdout or a file with streaming output; 'refactor' that parses the target file into an AST for structural context, applies a natural language instruction, and shows a diff preview before writing; 'debug' that accepts a stack trace from stdin or a file, identifies the root cause, and produces a specific fix or asks a clarifying question if the trace is ambiguous; and 'scaffold' that generates a complete project directory following community conventions. Store session state in SQLite for follow-up refinement with 'pyforge refine'. Support OpenAI, Anthropic, and Ollama backends."
+
+<a href="https://heyneo.so/dashboard?section=new-chat&prompt=Build%20a%20Python%20CLI%20tool%20called%20PyForge%20with%20four%20commands%3A%20%27gen%27%20that%20takes%20a%20natural%20language%20description%20and%20produces%20executable%20Python%20with%20type%20hints%2C%20f-strings%2C%20and%20error%20handling%20written%20to%20stdout%20or%20a%20file%20with%20streaming%20output%3B%20%27refactor%27%20that%20parses%20the%20target%20file%20into%20an%20AST%20for%20structural%20context%2C%20applies%20a%20natural%20language%20instruction%2C%20and%20shows%20a%20diff%20preview%20before%20writing%3B%20%27debug%27%20that%20accepts%20a%20stack%20trace%20from%20stdin%20or%20a%20file%2C%20identifies%20the%20root%20cause%2C%20and%20produces%20a%20specific%20fix%20or%20asks%20a%20clarifying%20question%20if%20the%20trace%20is%20ambiguous%3B%20and%20%27scaffold%27%20that%20generates%20a%20complete%20project%20directory%20following%20community%20conventions.%20Store%20session%20state%20in%20SQLite%20for%20follow-up%20refinement%20with%20%27pyforge%20refine%27.%20Support%20OpenAI%2C%20Anthropic%2C%20and%20Ollama%20backends." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
+
+NEO generates the project structure and core implementation. From there you iterate — ask it to add a `.pyforge.toml` project config that sets preferred style and common imports so generated code fits the existing codebase, add per-command backend routing so simple generations go to a local Ollama model while complex scaffolds go to a cloud API, or add Unix-standard exit codes so PyForge steps compose cleanly in shell scripts and CI pipelines.
+
+To run the finished project:
 
 ```bash
 git clone https://github.com/dakshjain-1616/PyForge-AI-powered-Python-CLI
 cd PyForge-AI-powered-Python-CLI
 pip install -e .
-```
-
-Installing with `-e` makes the `pyforge` command available globally. Set your API key for the provider you want to use:
-
-```bash
-OPENAI_API_KEY=sk-...
-# or for Anthropic
-ANTHROPIC_API_KEY=sk-ant-...
-```
-
-For local model support, install Ollama and pull a model before using the `--backend ollama` flag. Generate a Python script from a natural language description:
-
-```bash
 pyforge gen "read a CSV file, compute per-column statistics, and write a summary to stdout"
 ```
 
-PyForge writes the generated code to stdout by default. Pipe it to a file or to `black` for formatting:
+Generated code streams to stdout immediately — pipe it to `black`, `mypy`, or a file without any extra steps.
 
-```bash
-pyforge gen "parse command-line args with argparse and validate required fields" > cli.py
-```
-
-Refactor an existing file with a natural language instruction:
-
-```bash
-pyforge refactor utils.py "replace all os.path calls with pathlib equivalents"
-```
-
-PyForge shows a diff preview and prompts for confirmation before writing. Debug a stack trace by piping it in:
-
-```bash
-cat traceback.txt | pyforge debug --context "this function is supposed to process a CSV row"
-```
-
-Scaffold a full project:
-
-```bash
-pyforge scaffold "FastAPI service with PostgreSQL, JWT auth, and pytest test suite" --output ./my-service
-```
-
-Session state is stored automatically, so follow-up refinements apply to the last generated output without re-reading anything.
-
-NEO built PyForge to eliminate the context switch between writing code and asking for help with it. See what else NEO ships at [heyneo.so](https://heyneo.so/).
+NEO built PyForge to eliminate the context switch between writing code and asking for help with it. See what else NEO ships at [heyneo.so](https://heyneo.so()).
 
 ---
 

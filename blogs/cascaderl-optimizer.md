@@ -57,37 +57,26 @@ The search space config distinguishes between strategic dimensions (optimizer, s
 
 Trial results are logged in a structured format compatible with TensorBoard and W&B. The cascade tree — which strategies the high-level agent explored, which it concentrated on, and what the low-level agents found within each strategy — is visualized as a collapsible tree plot that makes the optimization trajectory easy to inspect and explain.
 
-## How to Build This
+## How to Build This with NEO
 
-Clone the repo and install dependencies:
+Open NEO in VS Code or Cursor and describe what you want to build. A good starting prompt for this project:
+
+> "Build a hierarchical reinforcement learning hyperparameter optimizer in Python for LLM fine-tuning. Use two levels of PPO agents: a high-level agent that selects optimization strategy — optimizer family (AdamW, SGD, Adafactor), scheduler shape, regularization approach, and LoRA configuration — and low-level agents that tune continuous parameters within the chosen strategy, such as learning rate peak, warmup ratio, weight decay, and gradient clipping norm. The high-level agent receives a state encoding of recent evaluation history and stops exploring inferior strategy families early. Use asynchronous advantage estimation for credit assignment across multi-minute training trials. Log results to TensorBoard and W&B and visualize the cascade tree as a collapsible plot showing which strategies were explored and concentrated on."
+
+<a href="https://heyneo.so/dashboard?section=new-chat&prompt=Build%20a%20hierarchical%20reinforcement%20learning%20hyperparameter%20optimizer%20in%20Python%20for%20LLM%20fine-tuning.%20Use%20two%20levels%20of%20PPO%20agents%3A%20a%20high-level%20agent%20that%20selects%20optimization%20strategy%20%E2%80%94%20optimizer%20family%20%28AdamW%2C%20SGD%2C%20Adafactor%29%2C%20scheduler%20shape%2C%20regularization%20approach%2C%20and%20LoRA%20configuration%20%E2%80%94%20and%20low-level%20agents%20that%20tune%20continuous%20parameters%20within%20the%20chosen%20strategy%2C%20such%20as%20learning%20rate%20peak%2C%20warmup%20ratio%2C%20weight%20decay%2C%20and%20gradient%20clipping%20norm.%20The%20high-level%20agent%20receives%20a%20state%20encoding%20of%20recent%20evaluation%20history%20and%20stops%20exploring%20inferior%20strategy%20families%20early.%20Use%20asynchronous%20advantage%20estimation%20for%20credit%20assignment%20across%20multi-minute%20training%20trials.%20Log%20results%20to%20TensorBoard%20and%20W%26B%20and%20visualize%20the%20cascade%20tree%20as%20a%20collapsible%20plot%20showing%20which%20strategies%20were%20explored%20and%20concentrated%20on." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
+
+NEO generates the project structure and core implementation from that. From there you iterate — ask it to implement the ask-tell interface compatible with Optuna and Ray Tune conventions, add the cascade tree visualization showing the high-level agent's strategy exploration trajectory, or build out the YAML config schema that distinguishes strategic from tactical hyperparameter dimensions. Each request builds on what's already there without re-explaining the context.
+
+To run the finished project:
 
 ```bash
 git clone https://github.com/dakshjain-1616/CascadeRL-Optimizer
 cd CascadeRL-Optimizer
 pip install -r requirements.txt
-```
-
-The optimizer works with any HuggingFace causal LM. For a quick CPU demo, use the default tiny model:
-
-```bash
 python optimize.py --task text_classification --steps 30
 ```
 
-To run with a different model and task:
-
-```bash
-python optimize.py --model EleutherAI/pythia-160m --task qa --steps 20
-```
-
-To run all three tasks in round-robin:
-
-```bash
-python optimize.py --model distilgpt2 --task all --steps 50
-```
-
-Configuration lives in `config.yaml`. You can override individual values with environment variables or CLI flags without editing the file. The `--checkpoint` flag resumes a previous run or exports the trained weights.
-
-During a run, a Rich table updates in place showing all five reward signals (fluency, task relevance, length, diversity, coherence) plus the total at each training step. After the run completes, a before/after evaluation report is written to `reports/` as JSON, and a training curve plot is saved alongside it. If you are evaluating across multiple model variants, each run produces its own timestamped report directory so results stay separated.
+A Rich table updates in place during the run showing all five reward signals per step. After completion, a before/after evaluation report and training curve plot are written to `reports/`.
 
 NEO built CascadeRL Optimizer to bring principled multi-level reasoning to a problem where flat search algorithms leave significant performance on the table. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 

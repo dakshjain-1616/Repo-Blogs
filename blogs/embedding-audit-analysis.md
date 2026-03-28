@@ -75,36 +75,26 @@ NEO put together a full CLI walkthrough showing EmbedAudit running on a real voc
 
 ---
 
-## How to Build This
+## How to Build This with NEO
 
-Clone and install:
+Open NEO in VS Code or Cursor and describe what you want to build. A good starting prompt for this project:
+
+> "Build a Python CLI tool called EmbedAudit that audits semantic embedding spaces. It should accept text files, CSV files, vocabulary lists, or pre-computed .npy files as input, generate embeddings using a local HuggingFace model, reduce dimensions with UMAP, cluster with HDBSCAN, and run five targeted checks: outlier detection, boundary ambiguity, isolated token detection, polarity mismatch, and global collapse detection. Output a timestamped directory with a 2D cluster map, anomaly overlay, centroid heatmap, a structured JSON report, and a Markdown summary with prioritized recommendations. Support CLI flags, .env files, and a .embedaudit.yaml config file."
+
+<a href="https://heyneo.so/dashboard?section=new-chat&prompt=Build%20a%20Python%20CLI%20tool%20called%20EmbedAudit%20that%20audits%20semantic%20embedding%20spaces.%20It%20should%20accept%20text%20files%2C%20CSV%20files%2C%20vocabulary%20lists%2C%20or%20pre-computed%20.npy%20files%20as%20input%2C%20generate%20embeddings%20using%20a%20local%20HuggingFace%20model%2C%20reduce%20dimensions%20with%20UMAP%2C%20cluster%20with%20HDBSCAN%2C%20and%20run%20five%20targeted%20checks%3A%20outlier%20detection%2C%20boundary%20ambiguity%2C%20isolated%20token%20detection%2C%20polarity%20mismatch%2C%20and%20global%20collapse%20detection.%20Output%20a%20timestamped%20directory%20with%20a%202D%20cluster%20map%2C%20anomaly%20overlay%2C%20centroid%20heatmap%2C%20a%20structured%20JSON%20report%2C%20and%20a%20Markdown%20summary%20with%20prioritized%20recommendations.%20Support%20CLI%20flags%2C%20.env%20files%2C%20and%20a%20.embedaudit.yaml%20config%20file." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
+
+NEO generates the project structure and core implementation from that. From there you iterate — ask it to add OpenAI and OpenRouter embedding provider support, add side-by-side comparison plots for evaluating fine-tuning impact between two model variants, or add batch processing mode for large corpora that samples for the visualization step. Each request builds on what's already there.
+
+To run the finished project:
 
 ```bash
 git clone https://github.com/dakshjain-1616/Embedding-Evaluator
 cd Embedding-Evaluator
 pip install -e .
-embedaudit --version
-```
-
-By default, the tool uses a local HuggingFace model and requires no API key. To use OpenAI or OpenRouter instead, create a `.env` file:
-
-```bash
-EMBEDDING_PROVIDER=openai_compatible
-OPENAI_API_KEY=sk-...
-OPENAI_API_BASE=https://api.openai.com/v1
-EMBEDDING_MODEL_NAME=text-embedding-3-small
-```
-
-Prepare a corpus file with one sentence or token per line, then run the audit:
-
-```bash
-echo "machine learning" > corpus.txt
-echo "deep learning" >> corpus.txt
-echo "riverbank" >> corpus.txt
 embedaudit audit --text-file corpus.txt
 ```
 
-The tool runs all five semantic checks, reduces the embeddings with UMAP, clusters with HDBSCAN, and writes all output to a timestamped directory. That directory contains a 2D cluster map, an anomaly overlay marking flagged tokens by severity, a centroid heatmap, a structured JSON report, and a human-readable Markdown summary with prioritized recommendations. Pre-computed `.npy` embedding files and CSV inputs are also accepted if you want to audit embeddings produced by a different pipeline.
+Point it at any text file and it runs the full five-check audit, producing a cluster map, anomaly overlay, and Markdown report in a timestamped output directory.
 
 NEO built a semantic embedding audit tool where UMAP, HDBSCAN, and five targeted checks surface outliers, polarity mismatches, and global collapse before they silently degrade downstream retrieval quality. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 

@@ -79,33 +79,26 @@ This entire benchmark, including prompt design, concurrent test execution, metri
 
 That's what autonomous ML engineering looks like in practice: systematic, fast, and documented.
 
-## How to Build This
+## How to Build This with NEO
 
-Clone the repo and install dependencies. Python 3.8+ is required.
+Open NEO in VS Code or Cursor and describe what you want to build. A good starting prompt for this project:
+
+> "Build a concurrent LLM benchmarking framework in Python that tests multiple models simultaneously across five task categories: coding challenges, logical reasoning, factual accuracy, creative generation, and instruction following. For each model, capture per-request token throughput and live cost from actual token consumption. Compute an efficiency score that combines accuracy, tokens per second, cost per thousand tokens, and parameter count. Flag anomalies where models over- or underperform their expected capability based on parameter count. Write per-model accuracy scores, efficiency metrics, and a ranked comparison report to a results directory."
+
+<a href="https://heyneo.so/dashboard?section=new-chat&prompt=Build%20a%20concurrent%20LLM%20benchmarking%20framework%20in%20Python%20that%20tests%20multiple%20models%20simultaneously%20across%20five%20task%20categories%3A%20coding%20challenges%2C%20logical%20reasoning%2C%20factual%20accuracy%2C%20creative%20generation%2C%20and%20instruction%20following.%20For%20each%20model%2C%20capture%20per-request%20token%20throughput%20and%20live%20cost%20from%20actual%20token%20consumption.%20Compute%20an%20efficiency%20score%20that%20combines%20accuracy%2C%20tokens%20per%20second%2C%20cost%20per%20thousand%20tokens%2C%20and%20parameter%20count.%20Flag%20anomalies%20where%20models%20over-%20or%20underperform%20their%20expected%20capability%20based%20on%20parameter%20count.%20Write%20per-model%20accuracy%20scores%2C%20efficiency%20metrics%2C%20and%20a%20ranked%20comparison%20report%20to%20a%20results%20directory." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
+
+NEO generates the project structure and core implementation from that. From there you iterate — ask it to add the anomaly detection logic that flags unexpected over- or under-performance during a concurrent run, build out the YAML config schema for defining the model list and prompt distribution, or add a single-model quick-test mode for validating the setup before committing to the full suite. Each request builds on what's already there without re-explaining the context.
+
+To run the finished project:
 
 ```bash
 git clone https://github.com/dakshjain-1616/Benchmark-Qwen-3.5-Medium-Edition.git
 cd Benchmark-Qwen-3.5-Medium-Edition
-python3 -m venv venv
-source venv/bin/activate
 pip install -r requirements.txt
-```
-
-Set your PYTHONPATH before running:
-
-```bash
-export PYTHONPATH="$PWD/src:$PYTHONPATH"
-```
-
-The core engine is `neo_bench_orchestrator.py`. Run it to execute the benchmark against the configured model set:
-
-```bash
 python src/neo_bench_orchestrator.py
 ```
 
-The orchestrator runs tests concurrently across all configured models, captures token throughput and cost in real time, flags anomalies where models over- or under-perform expectations, and writes results to the `benchmark_results/` directory. Output includes per-model accuracy scores across all five task categories, the efficiency metric combining accuracy, speed, cost, and parameter count, and a comparison report showing where each model leads and where it falls short.
-
-To run a quick single-model test before committing to the full 350-test suite, check the benchmark configs in `configs/` and adjust the model list or prompt count before executing.
+Results land in `benchmark_results/` — per-model accuracy scores across all five task categories, the efficiency metric, and a comparison report showing where each model leads and where it falls short.
 
 NEO built a 350-test LLM benchmark where empirical cost-performance tradeoffs across seven models—not vendor claims—drive model selection decisions. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 

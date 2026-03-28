@@ -96,11 +96,17 @@ The goal of this tool is to make continuous evaluation cheap and systematic enou
 
 ## Build Reliable AI Systems
 
-## How to Build This
+## How to Build This with NEO
 
-You need Python 3.10 or later. The tool runs entirely via API calls, so no local GPU is needed. The Judge LLM step uses Gemini Pro, so a Google API key is required in addition to an OpenRouter key for accessing the candidate models.
+Open NEO in VS Code or Cursor and describe what you want to build. A good starting prompt for this project:
 
-Clone and install:
+> "Build a Python CLI tool that takes a task description and automatically evaluates LLM candidates for it. The pipeline should: generate tailored test cases for the task, discover up to six candidate models via OpenRouter, run each candidate on every test case, then use Gemini Pro as a judge to score each response across five dimensions (accuracy, hallucination, grounding, tool-calling ability, and response clarity). Output a ranked top-three list with per-dimension breakdowns and an optimized system prompt for the winning model."
+
+<a href="https://heyneo.so/dashboard?section=new-chat&prompt=Build%20a%20Python%20CLI%20tool%20that%20takes%20a%20task%20description%20and%20automatically%20evaluates%20LLM%20candidates%20for%20it.%20The%20pipeline%20should%3A%20generate%20tailored%20test%20cases%20for%20the%20task%2C%20discover%20up%20to%20six%20candidate%20models%20via%20OpenRouter%2C%20run%20each%20candidate%20on%20every%20test%20case%2C%20then%20use%20Gemini%20Pro%20as%20a%20judge%20to%20score%20each%20response%20across%20five%20dimensions%20%28accuracy%2C%20hallucination%2C%20grounding%2C%20tool-calling%20ability%2C%20and%20response%20clarity%29.%20Output%20a%20ranked%20top-three%20list%20with%20per-dimension%20breakdowns%20and%20an%20optimized%20system%20prompt%20for%20the%20winning%20model." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
+
+NEO generates the project structure and core implementation. From there you iterate: ask it to add the test case generation logic with task-specific probe design, implement the five-dimension Gemini Pro judge prompt with independent per-criterion scoring, or build the system prompt optimizer that uses observed model behavior as its input. Each follow-up builds on what's already there.
+
+To run the finished project:
 
 ```bash
 git clone https://github.com/gauravvij/llm-evaluator
@@ -108,28 +114,15 @@ cd llm-evaluator
 pip install -r requirements.txt
 ```
 
-Create a `.env` file with your API credentials:
-
-```bash
-OPENROUTER_API_KEY=sk-or-...
-GOOGLE_API_KEY=...
-```
-
-Run the evaluator on a task description:
+Set credentials in a `.env` file, then run:
 
 ```bash
 python main.py --task "Summarize legal contracts and extract key obligations, dates, and party names as structured JSON"
 ```
 
-The tool runs automatically from there. It generates five test cases tailored to the task, identifies up to six candidate models, benchmarks each model on every test case, and then passes all responses to the Gemini Pro judge for scoring across accuracy, hallucination, grounding, tool-calling, and clarity dimensions. The full pipeline takes three to eight minutes depending on candidate count and API latency.
+Try running the same task with `--max-candidates 3` for a faster result, or with `--test-cases 10` for a more thorough evaluation when you need higher confidence before committing to a model for production.
 
-When it completes, you get a ranked list of the top three models printed to the console, a per-dimension score breakdown for each, and an optimized system prompt written to the output directory ready to use. You can adjust the number of test cases or candidates with optional flags:
-
-```bash
-python main.py --task "your task" --test-cases 10 --max-candidates 4 --output-dir ./eval-results
-```
-
-NEO built an automated LLM evaluator where a Judge LLM scores candidates across five dimensions—accuracy, hallucination, grounding, tool-calling, and clarity—and outputs a ranked shortlist with an optimized system prompt. See what else NEO ships at [heyneo.so](https://heyneo.so/).
+NEO built an automated LLM evaluator where a Judge LLM scores candidates across five dimensions - accuracy, hallucination, grounding, tool-calling, and clarity - and outputs a ranked shortlist with an optimized system prompt. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---
 

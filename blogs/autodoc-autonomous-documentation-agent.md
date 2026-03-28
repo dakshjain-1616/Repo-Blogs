@@ -69,55 +69,26 @@ Confidence scoring: each generated documentation element gets a confidence score
 
 AutoDoc doesn't replace engineering judgment — it handles the tedious mechanical parts of documentation and flags the areas where human input is most needed.
 
-## How to Build This
+## How to Build This with NEO
 
-Python 3.8+ is required. Clone the repo and install the one dependency:
+Open NEO in VS Code or Cursor and describe what you want to build. A good starting prompt for this project:
+
+> "Build an autonomous documentation agent in Python that analyzes a source directory and generates README files, API reference docs, and inline docstrings. The agent should do an entry-point discovery pass first, then read files in dependency order — widely imported modules before their dependents. For each function document purpose, parameter roles, return value conditions, and side effects inferred from the implementation. Use test files as the basis for usage examples. Add a diff-aware mode that uses git history to only regenerate docs for components changed since the last run. Support Python, JavaScript, TypeScript, and Go with language-appropriate output formats."
+
+<a href="https://heyneo.so/dashboard?section=new-chat&prompt=Build%20an%20autonomous%20documentation%20agent%20in%20Python%20that%20analyzes%20a%20source%20directory%20and%20generates%20README%20files%2C%20API%20reference%20docs%2C%20and%20inline%20docstrings.%20The%20agent%20should%20do%20an%20entry-point%20discovery%20pass%20first%2C%20then%20read%20files%20in%20dependency%20order%20%E2%80%94%20widely%20imported%20modules%20before%20their%20dependents.%20For%20each%20function%20document%20purpose%2C%20parameter%20roles%2C%20return%20value%20conditions%2C%20and%20side%20effects%20inferred%20from%20the%20implementation.%20Use%20test%20files%20as%20the%20basis%20for%20usage%20examples.%20Add%20a%20diff-aware%20mode%20that%20uses%20git%20history%20to%20only%20regenerate%20docs%20for%20components%20changed%20since%20the%20last%20run.%20Support%20Python%2C%20JavaScript%2C%20TypeScript%2C%20and%20Go%20with%20language-appropriate%20output%20formats." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
+
+NEO generates the project structure and core implementation from that. From there you iterate — ask it to add the confidence scoring system that flags low-confidence generated docs for human review, implement the implementation consistency checker that verifies generated descriptions match the actual code behavior, or build out the dry-run mode that previews changes without writing any files. Each request builds on what's already there without re-explaining the context.
+
+To run the finished project:
 
 ```bash
 git clone https://github.com/dakshjain-1616/AutoDoc---Autonomous-Documentation-Agent.git
 cd AutoDoc---Autonomous-Documentation-Agent
-python3 -m venv venv
-source venv/bin/activate
 pip install requests
-```
-
-Set your HuggingFace API token, which is required to access the HyperNova-60B model used for code understanding:
-
-```bash
-export HUGGINGFACE_API_TOKEN="hf_..."
-```
-
-Or copy the example env file and fill it in:
-
-```bash
-cp .env.example .env
-```
-
-Point AutoDoc at a source directory:
-
-```bash
-python3 autodoc.py ./src
-```
-
-The agent scans the directory, reads files in dependency order, builds a working model of the codebase, and writes documentation. By default it does not overwrite existing docstrings. To force regeneration:
-
-```bash
-python3 autodoc.py ./src --force
-```
-
-To preview what would be written without touching any files:
-
-```bash
-python3 autodoc.py ./src --dry-run
-```
-
-The repo includes a `trial/` directory with sample source files if you want to test before pointing it at your own code:
-
-```bash
 python3 autodoc.py ./trial
 ```
 
-AutoDoc supports Python, JavaScript, TypeScript, and Go. Output format adapts to each language: Google-style docstrings for Python, JSDoc for JavaScript and TypeScript, GoDoc comments for Go.
+AutoDoc scans the directory, reads files in dependency order, and writes docstrings and module summaries. Use `--dry-run` to preview output without modifying any files, or point it at your own codebase with `python3 autodoc.py ./src`.
 
 NEO built an autonomous documentation agent that treats documentation as a first-class engineering artifact, generated continuously and kept synchronized with code. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 

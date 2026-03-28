@@ -65,47 +65,26 @@ The **JSON** format writes a structured object with the full run-by-run breakdow
 
 The **CSV** format produces a flat table compatible with spreadsheet tools and Pandas. Column names are stable across versions, making it safe to use as input to a recurring comparison pipeline.
 
-## How to Build This
+## How to Build This with NEO
 
-Clone the repo and install dependencies:
+Open NEO in VS Code or Cursor and describe what you want to build. A good starting prompt for this project:
+
+> "Build a lightweight Python prompt A/B testing tool called PromptFight that calls OpenAI and Anthropic APIs using only Python's standard library urllib.request with no SDK imports. Accept two prompt templates with {input} placeholders, a list of models, and a run count. Score responses with a configurable heuristic judge (length, keyword presence, structural elements, absence of refusals) or an LLM judge. Run the Mann-Whitney U test using scipy to determine statistical significance at p < 0.05. Support multi-model testing that runs both prompts against every model in the list. Output results as a formatted table (default), JSON with full per-run breakdown, or CSV for downstream analysis. Include a mock model that runs offline in milliseconds."
+
+<a href="https://heyneo.so/dashboard?section=new-chat&prompt=Build%20a%20lightweight%20Python%20prompt%20A%2FB%20testing%20tool%20called%20PromptFight%20that%20calls%20OpenAI%20and%20Anthropic%20APIs%20using%20only%20Python%27s%20standard%20library%20urllib.request%20with%20no%20SDK%20imports.%20Accept%20two%20prompt%20templates%20with%20%7Binput%7D%20placeholders%2C%20a%20list%20of%20models%2C%20and%20a%20run%20count.%20Score%20responses%20with%20a%20configurable%20heuristic%20judge%20%28length%2C%20keyword%20presence%2C%20structural%20elements%2C%20absence%20of%20refusals%29%20or%20an%20LLM%20judge.%20Run%20the%20Mann-Whitney%20U%20test%20using%20scipy%20to%20determine%20statistical%20significance%20at%20p%20%3C%200.05.%20Support%20multi-model%20testing%20that%20runs%20both%20prompts%20against%20every%20model%20in%20the%20list.%20Output%20results%20as%20a%20formatted%20table%20%28default%29%2C%20JSON%20with%20full%20per-run%20breakdown%2C%20or%20CSV%20for%20downstream%20analysis.%20Include%20a%20mock%20model%20that%20runs%20offline%20in%20milliseconds." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
+
+NEO generates the project structure and core implementation. From there you iterate — ask it to add token count and per-run cost tracking in USD for each provider, add graceful degradation that returns raw win counts when scipy is not installed, or add per-model result separation in JSON output so multi-model runs stay organized.
+
+To run the finished project:
 
 ```bash
 git clone https://github.com/dakshjain-1616/promptfight
 cd promptfight
 pip install -r requirements.txt
+python -m promptfight --prompt-a "Summarize: {input}" --prompt-b "TL;DR: {input}" --input "Your text here" --model mock --runs 5
 ```
 
-For statistical significance testing, also install scipy and numpy if not already present:
-
-```bash
-pip install scipy numpy
-```
-
-Run a comparison with the mock model to verify the setup:
-
-```bash
-python -m promptfight \
-  --prompt-a "Summarize: {input}" \
-  --prompt-b "TL;DR: {input}" \
-  --input "The quick brown fox jumps over the lazy dog." \
-  --model mock \
-  --runs 5
-```
-
-To test against a real model, set the API key and switch the model flag:
-
-```bash
-export OPENAI_API_KEY=sk-...
-python -m promptfight \
-  --prompt-a "Summarize: {input}" \
-  --prompt-b "Give a one-sentence summary of: {input}" \
-  --input "Your production text here" \
-  --model gpt-4o-mini \
-  --runs 20 \
-  --output json > results.json
-```
-
-With 20 runs and a real model, PromptFight has enough data to run the Mann-Whitney U test and report a p-value alongside the win rates. A p-value below 0.05 means the observed win rate difference is unlikely to be random noise at that sample size.
+Swap `mock` for `gpt-4o-mini` and set `OPENAI_API_KEY` when you are ready to run against a real model and get a p-value with your win rates.
 
 NEO built PromptFight to make rigorous prompt comparison as fast as running a single test, using direct API calls and statistical validation without framework overhead. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 

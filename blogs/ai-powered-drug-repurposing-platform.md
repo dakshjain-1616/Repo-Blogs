@@ -61,35 +61,26 @@ Secondary use cases include pharmaceutical analysts tracking the competitive lan
 
 The design principle NEO returned to throughout development was transparency. An AI system making biomedical claims needs to be interrogable. The live reasoning trace isn't a nice-to-have. It's a requirement for any context where a researcher needs to know why the system ranked a particular candidate.
 
-## How to Build This
+## How to Build This with NEO
 
-Python 3.8+ is required. Clone the repo, create a virtual environment, and install dependencies:
+Open NEO in VS Code or Cursor and describe what you want to build. A good starting prompt for this project:
+
+> "Build a drug repurposing research platform in Python using Streamlit, Biopython, GPT-4o-mini, and PubChem. Pull 50-100 recent PubMed abstracts for a given disease query, extract drug candidates with GPT-4o-mini, validate them against an FDA-approved drug cache, and score each candidate 0-100 across eight curated fibrotic disease pathways. Show a live timestamped reasoning trace as each step executes. Render interactive 3D molecular structures with stmol and generate a PDF research report with ReportLab including executive summary, scoring breakdowns, and experimental protocols."
+
+<a href="https://heyneo.so/dashboard?section=new-chat&prompt=Build%20a%20drug%20repurposing%20research%20platform%20in%20Python%20using%20Streamlit%2C%20Biopython%2C%20GPT-4o-mini%2C%20and%20PubChem.%20Pull%2050-100%20recent%20PubMed%20abstracts%20for%20a%20given%20disease%20query%2C%20extract%20drug%20candidates%20with%20GPT-4o-mini%2C%20validate%20them%20against%20an%20FDA-approved%20drug%20cache%2C%20and%20score%20each%20candidate%200-100%20across%20eight%20curated%20fibrotic%20disease%20pathways.%20Show%20a%20live%20timestamped%20reasoning%20trace%20as%20each%20step%20executes.%20Render%20interactive%203D%20molecular%20structures%20with%20stmol%20and%20generate%20a%20PDF%20research%20report%20with%20ReportLab%20including%20executive%20summary%2C%20scoring%20breakdowns%2C%20and%20experimental%20protocols." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
+
+NEO generates the project structure and core implementation from that. From there you iterate — ask it to add the PubChem 3D visualization tab with rotation and property details, build out the eight fibrotic pathway scoring weights, or add graceful API fallback so the pipeline continues when PubChem is slow. Each request builds on what's already there without re-explaining the context.
+
+To run the finished project:
 
 ```bash
 git clone https://github.com/Dakshjain1604/AI-Powered-Drug-Repurposing-Platform.git
 cd AI-Powered-Drug-Repurposing-Platform
-python3 -m venv venv
-source venv/bin/activate
 pip install -r requirements.txt
-```
-
-Create a `.env` file with your API credentials:
-
-```
-OPENAI_API_KEY=sk-...
-NCBI_EMAIL=your@email.com
-NCBI_API_KEY=your_ncbi_key
-```
-
-The `NCBI_API_KEY` is optional but recommended — without it, PubMed rate limits your requests to 3 per second. You can get a free key at ncbi.nlm.nih.gov/account.
-
-Launch the Streamlit dashboard:
-
-```bash
 streamlit run app.py
 ```
 
-Open `http://localhost:8501`. Set your disease focus, adjust the time range and abstract limit, and click "Start Analysis." The live reasoning trace appears on the left as the system retrieves abstracts, extracts candidates, filters against the FDA database, scores across the eight fibrotic pathways, and generates research protocols. Typical runtime is 60 to 105 seconds. Results are organized across tabs: Literature, Candidates, Top 3 Analysis, Visualization, and Report Export.
+Open `http://localhost:8501`, set a disease focus, and click Start Analysis. The live reasoning trace appears on the left while results populate across the Literature, Candidates, Visualization, and Report Export tabs over 60-105 seconds.
 
 NEO built a drug repurposing research platform where live reasoning traces and transparent AI decision-making are built into the system, not bolted on as an afterthought. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 

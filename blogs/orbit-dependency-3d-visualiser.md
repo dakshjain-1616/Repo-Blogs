@@ -63,45 +63,26 @@ During code review, Orbit in watch mode can show whether a PR is adding new circ
 
 Orbit handles large codebases through progressive rendering. Projects with thousands of modules render a coarser-grained view initially — showing packages or directories as nodes rather than individual files — with the ability to expand a cluster into its constituent modules on demand. This keeps the visualization navigable even when the underlying graph has 10,000+ nodes.
 
-## How to Build This
+## How to Build This with NEO
 
-Clone the repo and install dependencies:
+Open NEO in VS Code or Cursor and describe what you want to build. A good starting prompt for this project:
+
+> "Build a 3D dependency graph visualizer called Orbit for Python, JavaScript, and TypeScript codebases. Parse Python imports using the ast module (resolving relative imports), parse JS/TS imports using the TypeScript compiler API (resolving tsconfig.json path aliases). Render the directed graph with Three.js using a force-directed layout where node size scales with in-degree, node color encodes module type (app code, tests, config, external), and edge color distinguishes regular imports (gray), circular dependencies (red), and cross-layer violations (orange). Detect circular dependencies with Tarjan's algorithm, orphaned modules, and high fan-in nodes. Cache the graph JSON with a file hash so unchanged projects skip re-analysis."
+
+<a href="https://heyneo.so/dashboard?section=new-chat&prompt=Build%20a%203D%20dependency%20graph%20visualizer%20called%20Orbit%20for%20Python%2C%20JavaScript%2C%20and%20TypeScript%20codebases.%20Parse%20Python%20imports%20using%20the%20ast%20module%20%28resolving%20relative%20imports%29%2C%20parse%20JS%2FTS%20imports%20using%20the%20TypeScript%20compiler%20API%20%28resolving%20tsconfig.json%20path%20aliases%29.%20Render%20the%20directed%20graph%20with%20Three.js%20using%20a%20force-directed%20layout%20where%20node%20size%20scales%20with%20in-degree%2C%20node%20color%20encodes%20module%20type%20%28app%20code%2C%20tests%2C%20config%2C%20external%29%2C%20and%20edge%20color%20distinguishes%20regular%20imports%20%28gray%29%2C%20circular%20dependencies%20%28red%29%2C%20and%20cross-layer%20violations%20%28orange%29.%20Detect%20circular%20dependencies%20with%20Tarjan%27s%20algorithm%2C%20orphaned%20modules%2C%20and%20high%20fan-in%20nodes.%20Cache%20the%20graph%20JSON%20with%20a%20file%20hash%20so%20unchanged%20projects%20skip%20re-analysis." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
+
+NEO generates the project structure and core implementation. From there you iterate — ask it to add layer violation detection driven by a `.orbit.json` config file, add `--watch` mode that rebuilds the graph on file save, or add progressive rendering that starts at package level and lets users expand clusters on demand for repos with thousands of modules.
+
+To run the finished project:
 
 ```bash
 git clone https://github.com/dakshjain-1616/Orbit-dependency-visualised
 cd Orbit-dependency-visualised
 pip install -r requirements.txt
-```
-
-Python 3.9 or later is required. For JavaScript and TypeScript projects, Node.js must also be installed so Orbit can access the TypeScript compiler API.
-
-Point Orbit at a codebase to analyze:
-
-```bash
 python orbit.py --path /path/to/your/project --language python
 ```
 
-For JavaScript or TypeScript:
-
-```bash
-python orbit.py --path /path/to/your/project --language typescript
-```
-
-The analysis runs, builds the dependency graph, caches it, and opens the 3D visualization in your default browser. The graph uses a force-directed layout where tightly coupled modules cluster together. Node size reflects in-degree: shared utilities appear as large spheres. Click any node to highlight it and its immediate neighbors.
-
-The sidebar lists detected circular dependencies, orphaned modules, and high fan-in candidates. For projects with defined architectural layers, add a `.orbit.json` config file to enable layer violation detection:
-
-```json
-{"layers": {"ui": ["src/components"], "service": ["src/services"], "repository": ["src/db"]}, "allowed_direction": "down"}
-```
-
-Run in watch mode to update the graph as files change:
-
-```bash
-python orbit.py --path /path/to/your/project --watch
-```
-
-For very large projects, Orbit starts in package-level view and lets you expand individual clusters on demand.
+The visualization opens in your browser. Click any node to focus on it and its immediate neighbors; the sidebar lists detected circular dependencies and orphaned modules.
 
 NEO built Orbit to make the invisible architecture of a codebase something you can see, explore, and reason about spatially. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 

@@ -78,11 +78,17 @@ Multi-agent pipelines like this one are a better fit for mechanical implementati
 
 ## Production ML Engineering at Scale
 
-## How to Build This
+## How to Build This with NEO
 
-Prerequisites: Node.js 20 or higher and an OpenRouter API key.
+Open NEO in VS Code or Cursor and describe what you want to build. A good starting prompt for this project:
 
-Clone the repo and install dependencies:
+> "Build a Node.js multi-agent pipeline with five sequential agents — Architect, Planner, Engineer, QA, and Reviewer — that takes a plain-language feature description and produces typed TypeScript implementation files, Vitest test suites, and a security audit report. Use OpenRouter for LLM calls with exponential backoff for rate limits and a 20-minute hard timeout. Output all artifacts to a timestamped directory. Add both an interactive CLI and a Next.js web dashboard at localhost:3000 with live pipeline progress."
+
+<a href="https://heyneo.so/dashboard?section=new-chat&prompt=Build%20a%20Node.js%20multi-agent%20pipeline%20with%20five%20sequential%20agents%20%E2%80%94%20Architect%2C%20Planner%2C%20Engineer%2C%20QA%2C%20and%20Reviewer%20%E2%80%94%20that%20takes%20a%20plain-language%20feature%20description%20and%20produces%20typed%20TypeScript%20implementation%20files%2C%20Vitest%20test%20suites%2C%20and%20a%20security%20audit%20report.%20Use%20OpenRouter%20for%20LLM%20calls%20with%20exponential%20backoff%20for%20rate%20limits%20and%20a%2020-minute%20hard%20timeout.%20Output%20all%20artifacts%20to%20a%20timestamped%20directory.%20Add%20both%20an%20interactive%20CLI%20and%20a%20Next.js%20web%20dashboard%20at%20localhost%3A3000%20with%20live%20pipeline%20progress." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
+
+NEO generates the agent orchestration layer, per-agent prompt templates, retry logic, and the web dashboard. From there you iterate — ask it to add dependency-ordered task sequencing in the Planner agent, add JSON schema validation for inter-agent handoffs to catch malformed outputs, or add a comparison mode that runs two different LLM models through the same spec and diffs their implementations.
+
+To run the finished project:
 
 ```bash
 git clone https://github.com/dakshjain-1616/Spec-To-Ship
@@ -90,31 +96,15 @@ cd Spec-To-Ship
 npm install
 ```
 
-Create a `.env` file with your OpenRouter API key:
-
-```bash
-OPENROUTER_API_KEY=sk-or-...
-```
-
-Run the interactive CLI, which prompts you to describe the feature you want to build:
+Add `OPENROUTER_API_KEY=sk-or-...` to a `.env` file, then run:
 
 ```bash
 npm run start
 ```
 
-Alternatively, launch the web dashboard for a visual representation of pipeline progress:
+Enter a feature description and watch the five agents work in sequence — producing TypeScript code, tests, and a reviewer report in a timestamped output directory, typically in 3 to 10 minutes.
 
-```bash
-npm run dev
-```
-
-The web interface runs at `http://localhost:3000`. Enter a feature description like "add a rate limiter to an Express API that limits each IP to 100 requests per 15-minute window and returns a 429 with a Retry-After header."
-
-The five-agent pipeline runs automatically: Architect produces a spec, Planner creates a task list, Engineer writes the implementation, QA writes Vitest tests, and Reviewer audits for security and quality issues. The full run typically takes 3 to 10 minutes for a well-scoped feature, bounded by a 20-minute hard timeout.
-
-Output lands in a timestamped directory under `./output/`: TypeScript implementation files, test suites, a reviewer report, and logs from each agent stage. If the pipeline fails partway through, the logs show exactly which agent stage produced the failure and what output it had generated up to that point.
-
-NEO built a spec-to-ship multi-agent pipeline where a plain-language feature description automatically becomes typed TypeScript code, Vitest test suites, and a security audit—produced by five specialized agents working in sequence. See what else NEO ships at [heyneo.so](https://heyneo.so/).
+NEO built a spec-to-ship multi-agent pipeline where a plain-language feature description automatically becomes typed TypeScript code, Vitest test suites, and a security audit — produced by five specialized agents working in sequence. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---
 

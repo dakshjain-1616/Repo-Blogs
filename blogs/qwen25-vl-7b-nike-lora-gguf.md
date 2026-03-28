@@ -60,31 +60,17 @@ The benchmark suite tests eight distinct visual tasks, each with its own categor
 
 The benchmark runs in mock mode without a GPU, producing realistic synthetic results for integration testing. Real inference requires an OpenRouter API key or a local GPU with 8+ GB VRAM.
 
-## How to Build This
+## How to Build This with NEO
 
-Pull the model from HuggingFace:
+Open NEO in VS Code or Cursor and describe what you want to build. A good starting prompt for this project:
 
-```bash
-pip install huggingface_hub
-huggingface-cli download daksh-neo/Qwen2.5-VL-7B-Nike-LoRA-GGUF --local-dir ./model
-```
+> "Build a three-stage pipeline for vision-language LoRA models: Stage 1 — a LoRAMerger class that loads Qwen2.5-VL-7B-Instruct base and a PEFT LoRA adapter, merges them into a single bfloat16 HuggingFace checkpoint; Stage 2 — a GGUFQuantizer class that calls llama.cpp's convert_hf_to_gguf.py on the merged model then runs llama-quantize to produce a Q8_0 GGUF at ~4.5GB that fits in 8GB VRAM; Stage 3 — a VLBenchmark class that runs the model against eight visual reasoning tasks (logo recognition, product description, colorway identification, sport classification), records accuracy and confidence per task and VRAM delta, and writes results as JSON, CSV, and Markdown. Include mock mode that runs without a GPU for integration testing."
 
-Run inference with llama.cpp:
+<a href="https://heyneo.so/dashboard?section=new-chat&prompt=Build%20a%20three-stage%20pipeline%20for%20vision-language%20LoRA%20models%3A%20Stage%201%20%E2%80%94%20a%20LoRAMerger%20class%20that%20loads%20Qwen2.5-VL-7B-Instruct%20base%20and%20a%20PEFT%20LoRA%20adapter%2C%20merges%20them%20into%20a%20single%20bfloat16%20HuggingFace%20checkpoint%3B%20Stage%202%20%E2%80%94%20a%20GGUFQuantizer%20class%20that%20calls%20llama.cpp%27s%20convert_hf_to_gguf.py%20on%20the%20merged%20model%20then%20runs%20llama-quantize%20to%20produce%20a%20Q8_0%20GGUF%20at%20~4.5GB%20that%20fits%20in%208GB%20VRAM%3B%20Stage%203%20%E2%80%94%20a%20VLBenchmark%20class%20that%20runs%20the%20model%20against%20eight%20visual%20reasoning%20tasks%20%28logo%20recognition%2C%20product%20description%2C%20colorway%20identification%2C%20sport%20classification%29%2C%20records%20accuracy%20and%20confidence%20per%20task%20and%20VRAM%20delta%2C%20and%20writes%20results%20as%20JSON%2C%20CSV%2C%20and%20Markdown.%20Include%20mock%20mode%20that%20runs%20without%20a%20GPU%20for%20integration%20testing." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
 
-```bash
-./llama-cli -m ./model/Qwen2.5-VL-7B-Nike-LoRA-Q8_0.gguf -p "What brand logo is shown?" -n 256
-```
+NEO generates the project structure and core implementation. From there you iterate — ask it to add VRAM delta measurement per inference call using pynvml, add Q4 quantization as a second format alongside Q8_0 for comparison, or add a regression check that fails the pipeline if accuracy drops below a configurable threshold.
 
-Or load in Python with llama-cpp-python:
-
-```python
-from llama_cpp import Llama
-llm = Llama(model_path="./model/Qwen2.5-VL-7B-Nike-LoRA-Q8_0.gguf", n_ctx=4096)
-output = llm("What brand logo is shown?", max_tokens=256)
-print(output["choices"][0]["text"])
-```
-
-To run the full merge-quantize-benchmark pipeline from source:
+To run the finished project:
 
 ```bash
 git clone https://github.com/dakshjain-1616/erichflam-hkust-qwen2-5-vl-7b
@@ -93,13 +79,7 @@ pip install -r requirements.txt
 python scripts/demo.py
 ```
 
-For real inference with a GPU, add your OpenRouter key:
-
-```bash
-OPENROUTER_API_KEY=your_key_here python scripts/demo.py
-```
-
-The pipeline outputs benchmark results to `outputs/bench_results.json`, a Markdown summary to `outputs/bench.md`, and a CSV to `outputs/bench.csv`.
+The demo runs in mock mode with no GPU required. Set `OPENROUTER_API_KEY` for real inference against the 4.5GB GGUF on 8GB VRAM hardware.
 
 NEO built a full merge-quantize-benchmark pipeline for the Nike-fine-tuned Qwen2.5-VL-7B vision model, producing a 4.5 GB GGUF with 93.75% benchmark accuracy on 8 GB VRAM. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 

@@ -81,47 +81,26 @@ NEO put together a video walkthrough of the pipeline in action, showing the carb
 
 [![Watch on YouTube](https://img.youtube.com/vi/71Se6aNaWTM/maxresdefault.jpg)](https://youtu.be/71Se6aNaWTM)
 
-## How to Build This
+## How to Build This with NEO
 
-Python 3.8+ and PyTorch 2.0+ are required. Clone the repo and install dependencies:
+Open NEO in VS Code or Cursor and describe what you want to build. A good starting prompt for this project:
+
+> "Build a PyTorch training pipeline in Python that integrates carbon-aware scheduling, gradient accumulation, and real-time emissions tracking with CodeCarbon. The scheduler pulls real-time carbon intensity from an electricity grid API and delays training start until intensity drops below a configurable YAML threshold, with fallback to mock grid patterns when the API is unavailable. Gradient accumulation processes mini-batches sequentially and only performs weight updates after the configured accumulation steps, reducing peak GPU memory by 45-60%. CodeCarbon monitors CO2, energy, and power draw throughout the training loop and outputs a structured JSON report. Generate a comparison report showing CO2 reduction, accuracy delta, and GPU memory usage between baseline and optimized runs."
+
+<a href="https://heyneo.so/dashboard?section=new-chat&prompt=Build%20a%20PyTorch%20training%20pipeline%20in%20Python%20that%20integrates%20carbon-aware%20scheduling%2C%20gradient%20accumulation%2C%20and%20real-time%20emissions%20tracking%20with%20CodeCarbon.%20The%20scheduler%20pulls%20real-time%20carbon%20intensity%20from%20an%20electricity%20grid%20API%20and%20delays%20training%20start%20until%20intensity%20drops%20below%20a%20configurable%20YAML%20threshold%2C%20with%20fallback%20to%20mock%20grid%20patterns%20when%20the%20API%20is%20unavailable.%20Gradient%20accumulation%20processes%20mini-batches%20sequentially%20and%20only%20performs%20weight%20updates%20after%20the%20configured%20accumulation%20steps%2C%20reducing%20peak%20GPU%20memory%20by%2045-60%25.%20CodeCarbon%20monitors%20CO2%2C%20energy%2C%20and%20power%20draw%20throughout%20the%20training%20loop%20and%20outputs%20a%20structured%20JSON%20report.%20Generate%20a%20comparison%20report%20showing%20CO2%20reduction%2C%20accuracy%20delta%2C%20and%20GPU%20memory%20usage%20between%20baseline%20and%20optimized%20runs." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
+
+NEO generates the project structure and core implementation from that. From there you iterate — ask it to add the YAML config schema for carbon threshold, target region, and accumulation steps, implement the graceful API fallback to regional mock carbon intensity patterns, or build the comparison report generator that produces the side-by-side baseline vs. optimized summary. Each request builds on what's already there without re-explaining the context.
+
+To run the finished project:
 
 ```bash
 git clone https://github.com/dakshjain-1616/CarbonAwareModelTraining.git
 cd CarbonAwareModelTraining
-python3 -m venv venv
-source venv/bin/activate
 pip install -r requirements.txt
-```
-
-Set the Python path so modules resolve correctly:
-
-```bash
-export PYTHONPATH="$PWD/src:$PYTHONPATH"
-```
-
-Run the baseline training without any carbon optimizations:
-
-```bash
-python src/train.py configs/baseline.yaml
-```
-
-Then run the optimized version with carbon-aware scheduling and gradient accumulation enabled:
-
-```bash
 python src/train.py configs/optimized.yaml
 ```
 
-The optimized run checks the carbon intensity API before starting. If the current intensity is above the threshold configured in the YAML, the scheduler waits and polls until a cleaner window opens. Training on MNIST typically takes a few minutes. CodeCarbon monitors emissions throughout the run.
-
-After both runs complete, generate the comparison report:
-
-```bash
-python generate_comparison.py
-```
-
-Output files land in `output/`: `summary_baseline.json`, `summary_optimized.json`, `comparison_report.json`, `emissions.csv`, and detailed training logs. The comparison report shows CO2 reduction, accuracy delta, and GPU memory usage side by side. For a quick test without waiting for a carbon window, set `scheduler.enabled: false` in the config.
-
----
+After training completes, run `python generate_comparison.py` to see the CO2 reduction, accuracy delta, and GPU memory savings in `output/comparison_report.json`.
 
 NEO built a carbon-aware model training pipeline where grid carbon intensity and emissions tracking are first-class training metrics, not afterthoughts—delivering a 43% CO2 reduction without sacrificing accuracy. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 

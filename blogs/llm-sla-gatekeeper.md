@@ -67,66 +67,26 @@ latency_ms = 5 × model_size_in_B + 15
 
 A 7B model yields 50 ms simulated latency. A 1.7B model yields 23.5 ms. This makes the tool practical for CI/CD pipelines on CPU-only runners.
 
-## How to Build This
+## How to Build This with NEO
 
-Clone the repo and install:
+Open NEO in VS Code or Cursor and describe what you want to build. A good starting prompt for this project:
+
+> "Build a Python LLM deployment gating tool that benchmarks a given Hugging Face model ID against configurable SLA profiles (chatbot, realtime, batch, edge, dev). The tool should run N inference passes, compute p50 and p95 latency plus throughput, compare results against thresholds, and return a PASS or FAIL verdict with a confidence score, exit code 0 or 1 for CI/CD integration, and a JSONL history file that accumulates results across runs. Include a simulation mode that uses a linear formula based on model size when no GPU is available."
+
+<a href="https://heyneo.so/dashboard?section=new-chat&prompt=Build%20a%20Python%20LLM%20deployment%20gating%20tool%20that%20benchmarks%20a%20given%20Hugging%20Face%20model%20ID%20against%20configurable%20SLA%20profiles%20%28chatbot%2C%20realtime%2C%20batch%2C%20edge%2C%20dev%29.%20The%20tool%20should%20run%20N%20inference%20passes%2C%20compute%20p50%20and%20p95%20latency%20plus%20throughput%2C%20compare%20results%20against%20thresholds%2C%20and%20return%20a%20PASS%20or%20FAIL%20verdict%20with%20a%20confidence%20score%2C%20exit%20code%200%20or%201%20for%20CI%2FCD%20integration%2C%20and%20a%20JSONL%20history%20file%20that%20accumulates%20results%20across%20runs.%20Include%20a%20simulation%20mode%20that%20uses%20a%20linear%20formula%20based%20on%20model%20size%20when%20no%20GPU%20is%20available." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
+
+NEO generates the project structure and core implementation. From there you iterate: ask it to implement the confidence scoring formula that combines run count and variance, add the five named SLA profiles with environment variable overrides for each threshold, or build the Gradio UI with Validate, Compare, History, and About tabs. Each follow-up builds on what's already there.
+
+To run the finished project:
 
 ```bash
 git clone https://github.com/dakshjain-1616/llm-sla-gatekeeper
 cd llm-sla-gatekeeper
 pip install -r requirements.txt
-```
-
-Validate a model against a named profile in simulation mode:
-
-```bash
 python run_validation.py --model=Qwen/Qwen3-8B --profile=chatbot --simulate
 ```
 
-Use the Python API:
-
-```python
-from llm_sla_gatekeeper import validate_model, profile_to_sla_config, SLAValidator
-
-# One-liner
-result = validate_model("Qwen/Qwen3-8B", max_latency_ms=200, force_simulation=True)
-print(result.status)           # "PASS" or "FAIL"
-print(result.confidence_score) # 0.0–1.0
-
-# Named profile
-sla = profile_to_sla_config("chatbot")
-validator = SLAValidator(force_simulation=True)
-result = validator.validate("Qwen/Qwen3-8B", sla)
-print(result.recommendations)
-```
-
-Add it to a GitHub Actions workflow:
-
-```yaml
-- name: SLA Gate
-  run: |
-    SLA_SIMULATION_MODE=1 python run_validation.py \
-      --model=Qwen/Qwen3-8B \
-      --profile=chatbot \
-      --output=sla-result.json
-```
-
-Exit code 1 automatically blocks the merge or deployment. Save and export results:
-
-```bash
-python run_validation.py --model=Qwen/Qwen3-8B --profile=realtime --output-format=both
-```
-
-This produces JSON, CSV, and a self-contained HTML report. The JSONL history file at `outputs/history.jsonl` accumulates every run for longitudinal tracking across model versions.
-
-Launch the Gradio UI for interactive validation:
-
-```bash
-python app.py
-# → http://localhost:7860
-```
-
-The UI has four tabs: Validate, Compare (batch mode), History, and About.
+Add the GitHub Actions snippet from the README to your CI pipeline so that exit code 1 automatically blocks merges when a model swap fails the latency gate.
 
 NEO built a deployment gate that gives LLM teams a repeatable, CI-compatible answer to the question "is this model fast enough to ship." See what else NEO ships at [heyneo.so](https://heyneo.so/).
 

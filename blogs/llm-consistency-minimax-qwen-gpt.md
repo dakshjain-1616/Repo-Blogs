@@ -70,39 +70,26 @@ Additional outputs generated per run include an HTML report with sortable tables
 CI = mean ± 1.96 × std / √N
 ```
 
-## How to Build This
+## How to Build This with NEO
 
-Clone the repo and install dependencies:
+Open NEO in VS Code or Cursor and describe what you want to build. A good starting prompt for this project:
+
+> "Build a Python LLM consistency measurement tool that sends 50 fixed seed prompts to three frontier models (Qwen3.5-397B, MiniMax M2.7, and GPT-5.4) 10 times each via OpenRouter — 1,500 total API calls. For each (model, prompt) pair, compute normalized Levenshtein distance across all C(10,2)=45 response pairs: d(a,b) = levenshtein(a,b) / max(len(a), len(b)), then average to a single variance score 0-1. Also compute Jaccard semantic distance via token overlap. Map variance scores to four verdict tiers: 0-0.08 perfectly stable, 0.08-0.18 acceptable drift, 0.18-0.35 noticeable variance, 0.35+ unreliable. Render results as a matplotlib heatmap PNG using YlOrRd colormap with prompts as rows and models as columns. Also export an HTML report with sortable tables, a CSV for Pandas analysis, and experiment_meta.json with 95% confidence intervals per model. Include a mock demo mode seeded by RANDOM_SEED=42 that generates all outputs locally without API calls."
+
+<a href="https://heyneo.so/dashboard?section=new-chat&prompt=Build%20a%20Python%20LLM%20consistency%20measurement%20tool%20that%20sends%2050%20fixed%20seed%20prompts%20to%20three%20frontier%20models%20%28Qwen3.5-397B%2C%20MiniMax%20M2.7%2C%20and%20GPT-5.4%29%2010%20times%20each%20via%20OpenRouter%20%E2%80%94%201%2C500%20total%20API%20calls.%20For%20each%20%28model%2C%20prompt%29%20pair%2C%20compute%20normalized%20Levenshtein%20distance%20across%20all%20C%2810%2C2%29%3D45%20response%20pairs%3A%20d%28a%2Cb%29%20%3D%20levenshtein%28a%2Cb%29%20%2F%20max%28len%28a%29%2C%20len%28b%29%29%2C%20then%20average%20to%20a%20single%20variance%20score%200-1.%20Also%20compute%20Jaccard%20semantic%20distance%20via%20token%20overlap.%20Map%20variance%20scores%20to%20four%20verdict%20tiers%3A%200-0.08%20perfectly%20stable%2C%200.08-0.18%20acceptable%20drift%2C%200.18-0.35%20noticeable%20variance%2C%200.35%2B%20unreliable.%20Render%20results%20as%20a%20matplotlib%20heatmap%20PNG%20using%20YlOrRd%20colormap%20with%20prompts%20as%20rows%20and%20models%20as%20columns.%20Also%20export%20an%20HTML%20report%20with%20sortable%20tables%2C%20a%20CSV%20for%20Pandas%20analysis%2C%20and%20experiment_meta.json%20with%2095%25%20confidence%20intervals%20per%20model.%20Include%20a%20mock%20demo%20mode%20seeded%20by%20RANDOM_SEED%3D42%20that%20generates%20all%20outputs%20locally%20without%20API%20calls." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
+
+NEO generates the project structure and core implementation from that. From there you iterate — ask it to add configurable TEMPERATURE=0.0 support for a determinism floor test to detect server-side non-deterministic batching, add a `generate_heatmap.py` script that regenerates the PNG from existing variance data without re-running the experiment, or add configurable NUM_PROMPTS and NUM_RUNS via .env for faster iteration. Each request builds on what's already there.
+
+To run the finished project:
 
 ```bash
 git clone https://github.com/dakshjain-1616/llm-consistency-across-Minimax-Qwen-and-Gpt-
 cd llm-consistency-across-Minimax-Qwen-and-Gpt-
 pip install -r requirements.txt
-cp .env.example .env
-```
-
-Run in mock mode with no API key to see all outputs generated locally:
-
-```bash
 python scripts/demo.py
 ```
 
-This generates `outputs/heatmap.png`, `outputs/report.html`, `outputs/results.csv`, and `outputs/variance.json` using synthetic responses seeded by `RANDOM_SEED=42`.
-
-To run against the three real models via OpenRouter:
-
-```bash
-export OPENROUTER_API_KEY=sk-or-...
-python run_experiment.py
-```
-
-Results go to `results/`. The experiment makes 1,500 API calls total: 50 prompts times 10 runs times 3 models. With a 0.5-second inter-request delay and 256 max tokens per response, a full run takes about 15 minutes. Reduce `NUM_PROMPTS` or `NUM_RUNS` in `.env` for faster iteration.
-
-To regenerate the heatmap from existing variance data without re-running the experiment:
-
-```bash
-python generate_heatmap.py
-```
+The demo generates a heatmap PNG, HTML report, CSV, and variance JSON locally using synthetic seeded responses — set `OPENROUTER_API_KEY` and run `python run_experiment.py` for the real 1,500-call measurement.
 
 NEO built this consistency measurement tool to give engineers a concrete stability fingerprint before committing to a model in a production pipeline, using Levenshtein variance and Jaccard distance across 1,500 responses. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 

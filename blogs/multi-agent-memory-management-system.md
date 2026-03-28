@@ -88,48 +88,29 @@ Long-running agent sessions are the obvious target. Customer support bots, resea
 
 It's also valuable for multi-session systems where a user interacts with an agent across multiple days or weeks. Persistent cold storage means the agent can recall relevant context from previous sessions without bloating every new conversation with historical data.
 
-## How to Build This
+## How to Build This with NEO
 
-Clone the repo and install dependencies:
+Open NEO in VS Code or Cursor and describe what you want to build. A good starting prompt for this project:
+
+> "Build a 3-tier memory management system for LLM agents in Python. Tier 1 is hot context holding the last N turns in full fidelity. Tier 2 is cold storage using SQLite for structured metadata and ChromaDB for vector embeddings, with semantic search returning results in under 100ms. Tier 3 is automatic summarization triggered when conversation length exceeds a threshold, with the Consolidation Agent generating compressed summaries stored to cold storage. Three autonomous agents manage the tiers: a Retrieval Agent for semantic search, a Consolidation Agent that monitors length and triggers summarization, and a Storage Agent that keeps SQLite and ChromaDB synchronized. Include mock mode that works without any API key."
+
+<a href="https://heyneo.so/dashboard?section=new-chat&prompt=Build%20a%203-tier%20memory%20management%20system%20for%20LLM%20agents%20in%20Python.%20Tier%201%20is%20hot%20context%20holding%20the%20last%20N%20turns%20in%20full%20fidelity.%20Tier%202%20is%20cold%20storage%20using%20SQLite%20for%20structured%20metadata%20and%20ChromaDB%20for%20vector%20embeddings%2C%20with%20semantic%20search%20returning%20results%20in%20under%20100ms.%20Tier%203%20is%20automatic%20summarization%20triggered%20when%20conversation%20length%20exceeds%20a%20threshold%2C%20with%20the%20Consolidation%20Agent%20generating%20compressed%20summaries%20stored%20to%20cold%20storage.%20Three%20autonomous%20agents%20manage%20the%20tiers%3A%20a%20Retrieval%20Agent%20for%20semantic%20search%2C%20a%20Consolidation%20Agent%20that%20monitors%20length%20and%20triggers%20summarization%2C%20and%20a%20Storage%20Agent%20that%20keeps%20SQLite%20and%20ChromaDB%20synchronized.%20Include%20mock%20mode%20that%20works%20without%20any%20API%20key." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
+
+NEO generates the project structure and core implementation. From there you iterate: ask it to implement the Consolidation Agent with configurable length threshold and summary generation, add the semantic retrieval pipeline with ChromaDB vector search and 80-96ms latency targets, or build the benchmark script that measures retrieval latency, semantic recall accuracy, and token reduction across 50 simulated 25-turn conversations. Each follow-up builds on what's already there.
+
+To run the finished project:
 
 ```bash
 git clone https://github.com/abhishekgandhi-neo/Multi-Agent_Memory_Management_System_BY_NEO
 cd Multi-Agent_Memory_Management_System_BY_NEO
 pip install -r requirements.txt
-```
-
-The system uses ChromaDB and SQLite for storage, both of which are embedded and require no separate database server. Set your LLM provider key in a `.env` file:
-
-```bash
-OPENAI_API_KEY=sk-...
-```
-
-If you want to run the memory system without any API key first, use mock mode. The smoke test script exercises the full 3-tier memory pipeline against a synthetic conversation:
-
-```bash
 python smoke_test.py
-```
-
-For benchmarking across simulated 25-turn conversations, run the benchmark script:
-
-```bash
 python benchmark.py
 ```
 
-To integrate the memory system into your own agent, import `MemoryAgentSystem` and pass it your session identifier:
+Run `smoke_test.py` first in mock mode to verify the full 3-tier pipeline works end-to-end, then set your OpenAI API key and run `benchmark.py` to measure retrieval latency and token reduction on your hardware.
 
-```python
-from memory_system import MemoryAgentSystem
-
-memory = MemoryAgentSystem(session_id="user_123")
-await memory.add_turn(role="user", content="What dataset did we discuss?")
-context = await memory.retrieve_context(query="dataset discussed earlier")
-```
-
-The benchmark output reports average retrieval latency, semantic recall accuracy across the test conversations, and the percentage reduction in tokens compared to loading full conversation history. Expect retrieval latency in the 80 to 96ms range and token reductions between 35 and 45 percent on the included benchmark workloads.
-
-NEO built a 3-tier memory management system for LLM agents where semantic retrieval from cold storage replaces naive truncation, cutting token usage by 35–45% while maintaining 87% recall accuracy. See what else NEO ships at [heyneo.so](https://heyneo.so/).
-
+NEO built a 3-tier memory management system for LLM agents where semantic retrieval from cold storage replaces naive truncation, cutting token usage by 35-45% while maintaining 87% recall accuracy. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 ---
 
 ## Try NEO in Your IDE

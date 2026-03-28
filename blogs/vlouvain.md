@@ -51,45 +51,26 @@ VLouvain exposes its key parameters through constructor arguments, CLI flags, or
 
 Environment variable names follow the `VLOUVAIN_` prefix convention: `VLOUVAIN_K`, `VLOUVAIN_RANDOM_STATE`, and so on.
 
-## How to Build This
+## How to Build This with NEO
 
-Clone the repo and install dependencies:
+Open NEO in VS Code or Cursor and describe what you want to build. A good starting prompt for this project:
+
+> "Build a Python clustering library called VLouvain for high-dimensional float32 embeddings at scale. Implement a four-stage pipeline: L2 normalize all vectors, build a k-NN graph using FAISS HNSW index for datasets under 500k points and IVF index for larger ones, run vectorized label propagation with NumPy broadcasting to avoid Python-level loops, then optionally apply Louvain modularity refinement. Expose a CLI command `vlouvain cluster --input embeddings.npy --output labels.npy --k 15` and a Python API with `VLouvain(k, resolution, similarity_threshold).fit_predict(embeddings)`. Target 33ms for 10k vectors and 12 seconds for 1M vectors."
+
+<a href="https://heyneo.so/dashboard?section=new-chat&prompt=Build%20a%20Python%20clustering%20library%20called%20VLouvain%20for%20high-dimensional%20float32%20embeddings%20at%20scale.%20Implement%20a%20four-stage%20pipeline%3A%20L2%20normalize%20all%20vectors%2C%20build%20a%20k-NN%20graph%20using%20FAISS%20HNSW%20index%20for%20datasets%20under%20500k%20points%20and%20IVF%20index%20for%20larger%20ones%2C%20run%20vectorized%20label%20propagation%20with%20NumPy%20broadcasting%20to%20avoid%20Python-level%20loops%2C%20then%20optionally%20apply%20Louvain%20modularity%20refinement.%20Expose%20a%20CLI%20command%20%60vlouvain%20cluster%20--input%20embeddings.npy%20--output%20labels.npy%20--k%2015%60%20and%20a%20Python%20API%20with%20%60VLouvain%28k%2C%20resolution%2C%20similarity_threshold%29.fit_predict%28embeddings%29%60.%20Target%2033ms%20for%2010k%20vectors%20and%2012%20seconds%20for%201M%20vectors." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
+
+NEO generates the four-stage pipeline, FAISS index selection logic, vectorized label propagation, and CLI. From there you iterate -- ask it to add environment variable configuration with a `VLOUVAIN_` prefix, add a `--resolution` flag for tuning cluster granularity during Louvain refinement, or add cluster quality metrics like silhouette score computed on a sample for large datasets.
+
+To run the finished project:
 
 ```bash
 git clone https://github.com/dakshjain-1616/vlouvain
 cd vlouvain
 pip install -r requirements.txt
-```
-
-Python 3.8 or later is required. FAISS is included in the requirements.
-
-Cluster a NumPy embedding file from the CLI:
-
-```bash
 vlouvain cluster --input embeddings.npy --output labels.npy --k 15
 ```
 
-Or use the Python API directly in your inference pipeline:
-
-```python
-from vlouvain import VLouvain
-import numpy as np
-
-embeddings = np.load("embeddings.npy")  # shape: (N, D), float32
-
-model = VLouvain(k=15, resolution=1.0, similarity_threshold=0.3)
-labels = model.fit_predict(embeddings)
-
-print(f"Found {len(set(labels))} clusters across {len(labels)} vectors")
-```
-
-The `labels` array is a 1D NumPy array of integer cluster IDs, one per input vector. Cluster IDs are not ordered by size or any other property, so post-processing to sort by frequency is often useful.
-
-To run the test suite:
-
-```bash
-python -m pytest tests/ -v
-```
+Pass any float32 NumPy array of shape (N, D) and get back a 1D integer cluster label array -- 10k vectors in 33ms, 1M vectors in 12 seconds, no GPU required.
 
 NEO built VLouvain to cluster millions of embeddings in seconds without GPU acceleration, combining FAISS-powered k-NN graph construction with vectorized label propagation. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 

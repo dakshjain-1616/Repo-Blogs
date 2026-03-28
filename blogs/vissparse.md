@@ -64,9 +64,17 @@ results = model.benchmark(n_samples=100)
 print(f"Speedup: {results['speedup']:.1f}x, Accuracy delta: {results['accuracy_delta']:.2%}")
 ```
 
-## How to Build This
+## How to Build This with NEO
 
-Clone the repo and install dependencies:
+Open NEO in VS Code or Cursor and describe what you want to build. A good starting prompt for this project:
+
+> "Build a Python token pruning toolkit for vision-language models called VisSparse. At inference time, compute cosine similarity between each image patch token and a query representation derived from the text prompt. Mask out tokens below a keep_ratio threshold (0.05 to 1.0) using a sparse boolean attention mask that integrates with HuggingFace's attention_mask parameter. Apply this as a wrapper around Qwen2-VL-7B and LLaVA without retraining. Record accuracy, latency in milliseconds, and speedup vs unpruned baseline for each inference call. Include a mock testing mode that generates synthetic tokens and produces realistic benchmark outputs without requiring a GPU."
+
+<a href="https://heyneo.so/dashboard?section=new-chat&prompt=Build%20a%20Python%20token%20pruning%20toolkit%20for%20vision-language%20models%20called%20VisSparse.%20At%20inference%20time%2C%20compute%20cosine%20similarity%20between%20each%20image%20patch%20token%20and%20a%20query%20representation%20derived%20from%20the%20text%20prompt.%20Mask%20out%20tokens%20below%20a%20keep_ratio%20threshold%20%280.05%20to%201.0%29%20using%20a%20sparse%20boolean%20attention%20mask%20that%20integrates%20with%20HuggingFace%27s%20attention_mask%20parameter.%20Apply%20this%20as%20a%20wrapper%20around%20Qwen2-VL-7B%20and%20LLaVA%20without%20retraining.%20Record%20accuracy%2C%20latency%20in%20milliseconds%2C%20and%20speedup%20vs%20unpruned%20baseline%20for%20each%20inference%20call.%20Include%20a%20mock%20testing%20mode%20that%20generates%20synthetic%20tokens%20and%20produces%20realistic%20benchmark%20outputs%20without%20requiring%20a%20GPU." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
+
+NEO generates the cosine similarity scorer, sparse mask builder, HuggingFace model wrapper, and mock benchmark mode. From there you iterate -- ask it to add a `benchmark` method that runs n_samples and reports mean speedup and accuracy delta across a range of keep_ratio values, add automatic keep_ratio tuning that targets a user-specified speedup goal while minimizing accuracy loss, or add support for LLaVA-1.5 alongside Qwen2-VL.
+
+To run the finished project:
 
 ```bash
 git clone https://github.com/dakshjain-1616/vissparse
@@ -74,38 +82,16 @@ cd vissparse
 pip install -r requirements.txt
 ```
 
-Run a quick benchmark in mock mode:
+Test immediately in mock mode without a GPU:
 
 ```python
 from vissparse import VisSparse
-
 model = VisSparse(base_model="mock", keep_ratio=0.10, mock=True)
 results = model.benchmark(n_samples=50)
-print(results)
+print(results)  # speedup, accuracy_delta
 ```
 
-For real inference with Qwen2-VL:
-
-```python
-from vissparse import VisSparse
-from PIL import Image
-
-model = VisSparse(base_model="Qwen/Qwen2-VL-7B", keep_ratio=0.15)
-img = Image.open("your-image.jpg")
-output = model.generate(image=img, prompt="Describe what you see.")
-print(output)
-```
-
-Adjust `keep_ratio` based on your task requirements. Start at 0.25 for general tasks and decrease toward 0.10 for object-focused queries where the target occupies a small image region.
-
-Run the test suite:
-
-```bash
-pytest tests/ -v
-# 91 passed
-```
-
-The 91-test suite covers token scoring correctness, mask generation, accuracy measurement, speedup calculation, and mock mode behavior across different keep_ratio values.
+At keep_ratio=0.10 on real Qwen2-VL-7B, you get 4.7x inference speedup with less than 5% accuracy loss -- no retraining required.
 
 NEO built VisSparse as a zero-retraining token pruning toolkit that delivers up to 4.7x inference speedup on vision-language models by discarding image tokens that are irrelevant to the prompt. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 

@@ -81,40 +81,27 @@ Benchmarking before you commit to a configuration catches these mistakes before 
 
 ## GPU Selection and Optimization
 
-## How to Build This
+## How to Build This with NEO
 
-You need Python 3.10 or later, PyTorch 2.1+, and the `transformers` library. For INT4 GPTQ benchmarking, install `auto-gptq` as well. FP8 benchmarking requires a Hopper (H100) or Ada Lovelace (RTX 40 series) GPU. BF16 and INT4 runs work on any NVIDIA card with sufficient VRAM.
+Open NEO in VS Code or Cursor and describe what you want to build. A good starting prompt for this project:
 
-Clone and install:
+> "Build a configuration-driven GPU benchmarking suite in Python using PyTorch and Hugging Face Transformers. It should load Qwen model variants (0.8B to 35B) in BF16, GPTQ INT4, and FP8 formats, run configurable warm-up and benchmark iterations, and measure tokens per second, time-to-first-token, and peak VRAM per model-format combination. Results should be written to JSON, CSV, and a ranked human-readable text summary. The entire suite should be driven by a JSON config file with no code changes required to switch models or formats."
+
+<a href="https://heyneo.so/dashboard?section=new-chat&prompt=Build%20a%20configuration-driven%20GPU%20benchmarking%20suite%20in%20Python%20using%20PyTorch%20and%20Hugging%20Face%20Transformers.%20It%20should%20load%20Qwen%20model%20variants%20%280.8B%20to%2035B%29%20in%20BF16%2C%20GPTQ%20INT4%2C%20and%20FP8%20formats%2C%20run%20configurable%20warm-up%20and%20benchmark%20iterations%2C%20and%20measure%20tokens%20per%20second%2C%20time-to-first-token%2C%20and%20peak%20VRAM%20per%20model-format%20combination.%20Results%20should%20be%20written%20to%20JSON%2C%20CSV%2C%20and%20a%20ranked%20human-readable%20text%20summary.%20The%20entire%20suite%20should%20be%20driven%20by%20a%20JSON%20config%20file%20with%20no%20code%20changes%20required%20to%20switch%20models%20or%20formats." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
+
+NEO generates the project structure and core implementation. From there you iterate: ask it to add the FP8 format loader with Hopper architecture detection, implement the warm-up and benchmark loop with per-run latency sampling, or build the output formatters that produce ranked tables and CSV. Each follow-up builds on what's already there.
+
+To run the finished project:
 
 ```bash
 git clone https://github.com/gauravvij/llm-hardware-benchmarking
 cd llm-hardware-benchmarking
 pip install -r requirements.txt
-# For INT4 GPTQ support:
 pip install auto-gptq
-```
-
-The benchmark is driven entirely by a JSON configuration file. Edit `config/benchmark_config.json` to specify which models and quantization formats to test, which prompts to use, and where to write results:
-
-```json
-{
-  "models": ["Qwen/Qwen2.5-7B", "Qwen/Qwen2.5-14B"],
-  "formats": ["bf16", "gptq-int4"],
-  "prompts_file": "config/prompts.json",
-  "output_dir": "results/",
-  "warmup_runs": 3,
-  "benchmark_runs": 10
-}
-```
-
-Run the suite:
-
-```bash
 python benchmark.py --config config/benchmark_config.json
 ```
 
-The script loads each model in each configured format, runs warm-up iterations, then measures tokens per second, time-to-first-token, and peak VRAM usage over the benchmark runs. Progress is printed per model-format combination. When all combinations finish, results are written to JSON, CSV, and a human-readable text summary in the output directory. The text summary shows a ranked table by tokens per second for quick scanning. The CSV is ready for charting in any spreadsheet tool.
+Start with a smaller config targeting just the 7B model in BF16 and GPTQ-INT4 to verify your setup works, then expand to the full model range once you have confirmed the pipeline runs clean on your hardware.
 
 NEO built a GPU benchmarking suite where tokens-per-second, latency, and memory consumption across six Qwen 3.5 variants and three quantization formats give teams the concrete data needed to choose the right configuration for their hardware. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 

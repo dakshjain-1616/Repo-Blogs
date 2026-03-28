@@ -77,40 +77,26 @@ Fine-tuning for capability improvements often degrades safety properties in non-
 
 For teams doing targeted safety fine-tuning, AXIOM provides specific failure modes to address. Rather than training on generic safety examples, you can target training data at the exact scenario types where your model shows inconsistency.
 
-## How to Build This
+## How to Build This with NEO
 
-Python 3.8+ is required. Clone the repo and install dependencies:
+Open NEO in VS Code or Cursor and describe what you want to build. A good starting prompt for this project:
+
+> "Build an autonomous AI ethics and safety testing framework in Python that probes LLMs for moral consistency across eight dimensions: harm avoidance, honesty under pressure, value consistency across groups, authority resistance, instruction-values conflict resolution, sycophancy detection, moral reasoning coherence, and adversarial jailbreak resistance. For each dimension, generate semantically equivalent test scenarios across multiple phrasings and contexts, run them against the target model, and compute a consistency score measuring response variance. Output a radar chart visualization across all eight dimensions, scenario-level drill-downs showing exactly which pairs caused inconsistency, and a weighted aggregate integrity index."
+
+<a href="https://heyneo.so/dashboard?section=new-chat&prompt=Build%20an%20autonomous%20AI%20ethics%20and%20safety%20testing%20framework%20in%20Python%20that%20probes%20LLMs%20for%20moral%20consistency%20across%20eight%20dimensions%3A%20harm%20avoidance%2C%20honesty%20under%20pressure%2C%20value%20consistency%20across%20groups%2C%20authority%20resistance%2C%20instruction-values%20conflict%20resolution%2C%20sycophancy%20detection%2C%20moral%20reasoning%20coherence%2C%20and%20adversarial%20jailbreak%20resistance.%20For%20each%20dimension%2C%20generate%20semantically%20equivalent%20test%20scenarios%20across%20multiple%20phrasings%20and%20contexts%2C%20run%20them%20against%20the%20target%20model%2C%20and%20compute%20a%20consistency%20score%20measuring%20response%20variance.%20Output%20a%20radar%20chart%20visualization%20across%20all%20eight%20dimensions%2C%20scenario-level%20drill-downs%20showing%20exactly%20which%20pairs%20caused%20inconsistency%2C%20and%20a%20weighted%20aggregate%20integrity%20index." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
+
+NEO generates the project structure and core implementation from that. From there you iterate — ask it to build the scenario generation engine that creates matched group-variable pairs for value consistency testing, implement the LLM-as-judge evaluation that scores response similarity using embeddings, or add the trend tracking mode for comparing consistency scores across model versions. Each request builds on what's already there without re-explaining the context.
+
+To run the finished project:
 
 ```bash
 git clone https://github.com/dakshjain-1616/AXIOM---Autonomous-eXaminer-of-Integrity-and-Moral-Operations.git
 cd AXIOM---Autonomous-eXaminer-of-Integrity-and-Moral-Operations
-python -m venv venv
-source venv/bin/activate
 pip install -r requirements.txt
-```
-
-Run AXIOM against a Python file containing your model or agent code:
-
-```bash
-python src/axiom_main.py path/to/your/model_code.py
-```
-
-To specify where reports are written:
-
-```bash
-python src/axiom_main.py path/to/your/model_code.py \
-  --output ./output \
-  --legal-dir ./legal_docs \
-  --alternatives-dir ./alternatives
-```
-
-To test with the included sample data:
-
-```bash
 python src/run_axiom.py
 ```
 
-AXIOM generates three categories of output files. Ethics reports are the main analysis documents showing consistency scores across all eight dimensions with the radar chart visualization and scenario-level drill-downs. Legal documentation covers GDPR and CCPA compliance artifacts. Alternative code files contain privacy-improved versions of flagged code. All output goes to the directories you configured, defaulting to `./output`, `./legal_docs`, and `./alternatives`.
+Reports land in `./output` with radar chart visualizations and per-dimension consistency scores. Point AXIOM at your own model code with `python src/axiom_main.py path/to/model_code.py`.
 
 NEO built AXIOM so that AI ethics evaluation is systematic, repeatable, and operationally connected to training decisions rather than a one-time checklist. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 

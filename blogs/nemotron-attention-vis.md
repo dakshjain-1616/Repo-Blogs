@@ -70,58 +70,28 @@ Every visualization run produces three outputs. The **HTML heatmap** is a self-c
 
 The CSV is the most useful for quantitative comparisons. You can compute mean attention to specific token positions across heads, measure entropy per head to identify heads that have collapsed to attending to a single token, or track how attention to a particular token changes across fine-tuning checkpoints.
 
-## How to Build This
+## How to Build This with NEO
 
-Clone the repo and install:
+Open NEO in VS Code or Cursor and describe what you want to build. A good starting prompt for this project:
+
+> "Build an attention head visualizer for nvidia/Nemotron-Cascade-2-30B-A3B that applies attention rollout (Abnar and Zuidema 2020) to collapse per-layer, per-head attention tensors into a single effective attention matrix, renders interactive HTML heatmaps, exports CSV with one row per (layer, head, from_token, to_token), and includes a MockAttentionExtractor that produces synthetic attention matrices in milliseconds so the full visualization pipeline works offline without downloading the model."
+
+<a href="https://heyneo.so/dashboard?section=new-chat&prompt=Build%20an%20attention%20head%20visualizer%20for%20nvidia%2FNemotron-Cascade-2-30B-A3B%20that%20applies%20attention%20rollout%20%28Abnar%20and%20Zuidema%202020%29%20to%20collapse%20per-layer%2C%20per-head%20attention%20tensors%20into%20a%20single%20effective%20attention%20matrix%2C%20renders%20interactive%20HTML%20heatmaps%2C%20exports%20CSV%20with%20one%20row%20per%20%28layer%2C%20head%2C%20from_token%2C%20to_token%29%2C%20and%20includes%20a%20MockAttentionExtractor%20that%20produces%20synthetic%20attention%20matrices%20in%20milliseconds%20so%20the%20full%20visualization%20pipeline%20works%20offline%20without%20downloading%20the%20model." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
+
+NEO generates the project structure and core implementation. From there you iterate — ask it to add a `compare_prompts` API that renders side-by-side HTML diffs for two prompts, add token importance scoring that sums attention received per input token across all layers and heads, or wire in the real `nvidia/Nemotron-Cascade-2-30B-A3B` model behind a `mock=False` flag.
+
+To run the finished project:
 
 ```bash
 git clone https://github.com/dakshjain-1616/nemotron-attention-vis
 cd nemotron-attention-vis
 pip install -r requirements.txt
-```
-
-Run the demo script in mock mode:
-
-```bash
 python scripts/demo.py --mock --prompt "Explain quantum computing"
 ```
 
-This writes `outputs/attention_map.html` and opens it in the browser. For programmatic use:
+The demo writes `outputs/attention_map.html` — open it to explore per-head attention weights with tooltips, then swap to `mock=False` on a GPU machine to inspect the real model.
 
-```python
-from nemotron_attention_v import visualize
-
-html, json_path = visualize(
-    prompt="def fibonacci(n):",
-    mock=True,
-    output_dir="outputs",
-    export_csv=True,
-    rollout_view=True,
-)
-print(f"Heatmap: {html}")
-print(f"Data:    {json_path}")
-```
-
-For a two-prompt comparison:
-
-```python
-from nemotron_attention_v import compare_prompts
-
-html = compare_prompts(
-    prompts=["Function signatures matter", "Comments are optional"],
-    mock=True,
-    output_dir="outputs/comparison",
-)
-```
-
-To run against the real model, set `mock=False`. The tool will load `nvidia/Nemotron-Cascade-2-30B-A3B` via HuggingFace on the local GPU. Run the test suite to verify the installation:
-
-```bash
-pytest tests/ -q
-# 90 passed in ~2s
-```
-
-NEO built an offline-first attention visualizer for Nemotron-Cascade-2-30B-A3B that works without a GPU download and scales to real model inspection when you need it. See what else NEO ships at [heyneo.so](https://heyneo.so/).
+NEO built an offline-first attention visualizer for Nemotron-Cascade-2-30B-A3B that works without a GPU download and scales to real model inspection when you need it. See what else NEO ships at [heyneo.so](https://heyneo.so()).
 
 ---
 

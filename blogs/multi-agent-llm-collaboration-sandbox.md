@@ -63,48 +63,29 @@ The sandbox is configured via YAML. You specify the topology type, the agent cou
 
 The results logger records the final output, total token usage per agent, wall-clock time, message count, and any errors. For systematic comparisons, a batch runner accepts a list of experiment configurations and runs them sequentially, writing a CSV of results. This is how you answer questions like: does a three-level hierarchy outperform a flat director-worker setup on this class of task, and does the answer change when you use a weaker model for the worker tier?
 
-## How to Build This
+## How to Build This with NEO
 
-You need Python 3.10 or later. The sandbox runs entirely via API calls, so no local GPU is required. An OpenRouter key gives you access to multiple model providers through a single key, which makes it easy to assign different models to different agent roles.
+Open NEO in VS Code or Cursor and describe what you want to build. A good starting prompt for this project:
 
-Clone and install:
+> "Build a Python multi-agent LLM sandbox with three topology implementations: director-worker (director decomposes tasks, dispatches to parallel workers, synthesizes results), peer-to-peer (agents communicate freely with any peer for emergent consensus), and hierarchical (multi-level delegation with specialist worker pools). Wire agents through a typed message bus supporting unicast, broadcast, and topic pubsub delivery modes with message ordering preserved per sender-receiver pair. Implement three memory tiers: private per-agent, shared key-value working memory, and persistent ChromaDB vector store. Add a real-time visualization at localhost:8080 that renders agents as nodes, messages in flight as animated edges, and agent state as node color. Drive experiments via YAML config files."
+
+<a href="https://heyneo.so/dashboard?section=new-chat&prompt=Build%20a%20Python%20multi-agent%20LLM%20sandbox%20with%20three%20topology%20implementations%3A%20director-worker%20%28director%20decomposes%20tasks%2C%20dispatches%20to%20parallel%20workers%2C%20synthesizes%20results%29%2C%20peer-to-peer%20%28agents%20communicate%20freely%20with%20any%20peer%20for%20emergent%20consensus%29%2C%20and%20hierarchical%20%28multi-level%20delegation%20with%20specialist%20worker%20pools%29.%20Wire%20agents%20through%20a%20typed%20message%20bus%20supporting%20unicast%2C%20broadcast%2C%20and%20topic%20pubsub%20delivery%20modes%20with%20message%20ordering%20preserved%20per%20sender-receiver%20pair.%20Implement%20three%20memory%20tiers%3A%20private%20per-agent%2C%20shared%20key-value%20working%20memory%2C%20and%20persistent%20ChromaDB%20vector%20store.%20Add%20a%20real-time%20visualization%20at%20localhost%3A8080%20that%20renders%20agents%20as%20nodes%2C%20messages%20in%20flight%20as%20animated%20edges%2C%20and%20agent%20state%20as%20node%20color.%20Drive%20experiments%20via%20YAML%20config%20files." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
+
+NEO generates the project structure and core implementation. From there you iterate: ask it to implement the typed message envelope with correlation IDs for request-response tracing, add the three memory tier implementations with ChromaDB for the persistent vector store, or build the real-time visualization with animated message edges and a timeline showing per-agent activity. Each follow-up builds on what's already there.
+
+To run the finished project:
 
 ```bash
 git clone https://github.com/dakshjain-1616/-Multi-Agent-LLM-Collaboration-Sandbox
 cd -Multi-Agent-LLM-Collaboration-Sandbox
 pip install -r requirements.txt
-```
-
-Set your API key:
-
-```bash
 export OPENROUTER_API_KEY=sk-or-...
-```
-
-Experiments are defined in YAML configuration files. Create an experiment config at `experiments/director_worker_research.yaml`:
-
-```yaml
-topology: director-worker
-director_model: openai/gpt-4o
-worker_model: anthropic/claude-3.5-sonnet
-worker_count: 3
-task: "Research the top 5 open-source vector databases and compare them on query latency, indexing speed, and filtering support"
-memory:
-  shared: true
-  persistent: false
-output_dir: results/
-```
-
-Run the experiment:
-
-```bash
 python sandbox.py --config experiments/director_worker_research.yaml
 ```
 
-The sandbox starts the director agent, which decomposes the task and dispatches subtasks to three worker agents running in parallel. Message traffic is logged in real time to the console. When all agents complete, the director synthesizes the worker outputs into a final answer. The terminal shows the final answer, total token usage per agent, wall-clock time, and message count. The real-time visualization opens automatically in your browser at `http://localhost:8080`, showing the animated message graph. To run a batch comparison across topologies, list multiple config files in a single command and the batch runner produces a CSV of results across all experiments.
+Start with the director-worker topology to see task decomposition and parallel worker execution, then change `topology: peer-to-peer` in the YAML and rerun the same task to compare how emergent consensus differs from top-down coordination.
 
-NEO built the Multi-Agent LLM Collaboration Sandbox so that experimenting with agent topologies takes hours instead of weeks — topology selection, message passing, shared memory, and visualization all come pre-built. See what else NEO ships at [heyneo.so](https://heyneo.so/).
-
+NEO built the Multi-Agent LLM Collaboration Sandbox so that experimenting with agent topologies takes hours instead of weeks. Topology selection, message passing, shared memory, and visualization all come pre-built. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 ---
 
 ## Try NEO in Your IDE
