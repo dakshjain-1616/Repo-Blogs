@@ -79,6 +79,34 @@ This entire benchmark, including prompt design, concurrent test execution, metri
 
 That's what autonomous ML engineering looks like in practice: systematic, fast, and documented.
 
+## How to Build This
+
+Clone the repo and install dependencies. Python 3.8+ is required.
+
+```bash
+git clone https://github.com/dakshjain-1616/Benchmark-Qwen-3.5-Medium-Edition.git
+cd Benchmark-Qwen-3.5-Medium-Edition
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
+
+Set your PYTHONPATH before running:
+
+```bash
+export PYTHONPATH="$PWD/src:$PYTHONPATH"
+```
+
+The core engine is `neo_bench_orchestrator.py`. Run it to execute the benchmark against the configured model set:
+
+```bash
+python src/neo_bench_orchestrator.py
+```
+
+The orchestrator runs tests concurrently across all configured models, captures token throughput and cost in real time, flags anomalies where models over- or under-perform expectations, and writes results to the `benchmark_results/` directory. Output includes per-model accuracy scores across all five task categories, the efficiency metric combining accuracy, speed, cost, and parameter count, and a comparison report showing where each model leads and where it falls short.
+
+To run a quick single-model test before committing to the full 350-test suite, check the benchmark configs in `configs/` and adjust the model list or prompt count before executing.
+
 NEO built a 350-test LLM benchmark where empirical cost-performance tradeoffs across seven models—not vendor claims—drive model selection decisions. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---

@@ -77,6 +77,55 @@ The report format is designed for sharing. Engineering teams can use it to prior
 
 Running adversarial probes during development, not just after, changes how you approach model improvement. When you can see exactly which attack types cause the most flip rate increase, you can target data augmentation and training changes at those specific weaknesses. The probe becomes a feedback loop, not just an evaluation tool.
 
+## How to Build This
+
+Clone the repo and install dependencies. Python 3.8+ is required; a GPU is recommended but not required.
+
+```bash
+git clone https://github.com/dakshjain-1616/Adversarial-Robustness-Probe.git
+cd Adversarial-Robustness-Probe
+pip install -r requirements.txt
+```
+
+Run a stress test on a sentiment classifier with typo attacks:
+
+```bash
+python src/cli.py \
+  --model distilbert-base-uncased-finetuned-sst-2-english \
+  --task sentiment \
+  --input data/sentiment_examples.txt \
+  --attacks typo \
+  --intensity medium \
+  --output reports/sentiment_typo_report.html
+```
+
+For a vision model, swap the task and modality flags:
+
+```bash
+python src/cli.py \
+  --model resnet18 \
+  --task image_classification \
+  --input data/images/ \
+  --attacks pixel_noise \
+  --modality vision \
+  --output reports/resnet_report.html
+```
+
+To run all seven attack types at once with explanations and causal analysis:
+
+```bash
+python src/cli.py \
+  --model distilbert-base-uncased-finetuned-sst-2-english \
+  --task sentiment \
+  --input data/sentiment_examples.txt \
+  --attacks all \
+  --explain \
+  --causal \
+  --seed 42
+```
+
+The output is an HTML report at the path you specified. Open it in any browser to see flip rates by attack type, confidence change distributions, and per-example breakdowns. The letter grade (A through F) summarizes overall robustness at the top of the report.
+
 NEO built an adversarial robustness probe where model stress-testing across seven attack types is part of the build process, not a post-deployment afterthought. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---

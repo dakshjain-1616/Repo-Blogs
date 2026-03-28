@@ -63,6 +63,48 @@ SchemaInfer AI generates schemas in four output formats, with format-specific op
 
 **SQL DDL** generates CREATE TABLE statements with appropriate column types for the target database dialect (PostgreSQL, MySQL, SQLite, or BigQuery are currently supported), NOT NULL constraints, CHECK constraints for enum fields, PRIMARY KEY and FOREIGN KEY declarations, and index suggestions for fields identified as likely query predicates.
 
+## How to Build This
+
+Clone the repo and install dependencies:
+
+```bash
+git clone https://github.com/dakshjain-1616/schemainfer-ai
+cd schemainfer-ai
+pip install -r requirements.txt
+```
+
+Set your API key for the LLM backend. The tool uses OpenAI by default:
+
+```bash
+export OPENAI_API_KEY=sk-...
+```
+
+Run inference against a JSON file:
+
+```bash
+python infer.py --input ./samples/orders.json --format json-schema
+```
+
+Supported `--format` values are `json-schema`, `pydantic`, `typescript`, and `sql`. The `--dialect` flag controls SQL output when using `--format sql`:
+
+```bash
+python infer.py --input ./samples/transactions.csv --format sql --dialect postgresql
+```
+
+For a database dump:
+
+```bash
+python infer.py --input ./samples/export.sql --format pydantic
+```
+
+The tool prints the inferred schema to stdout. Redirect to a file to save it:
+
+```bash
+python infer.py --input ./samples/products.json --format typescript > schema.ts
+```
+
+The output includes inferred types, nullable markers, detected enum values with confidence scores, and constraint annotations. For JSON input with multiple related collections, the tool also emits detected foreign key relationships as `$ref` links in JSON Schema or `ForeignKey` declarations in SQL DDL. Processing a 10,000-row CSV file typically takes 5 to 15 seconds depending on field count and LLM response time.
+
 NEO built a schema inference tool that turns the first-hour data engineering tax into a ten-second automated step. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---

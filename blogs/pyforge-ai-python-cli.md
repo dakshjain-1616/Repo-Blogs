@@ -63,6 +63,56 @@ The tool also reads from `.pyforge.toml` in the project root for project-specifi
 
 PyForge supports both cloud API backends (OpenAI, Anthropic) and local models via Ollama. For one-shot scripts and small refactors, local models with quantization are fast enough to feel responsive. For complex scaffolding or multi-file refactors, cloud models produce substantially better results. The backend is configurable per command type, so a developer can route simple generations to a local model and complex tasks to a cloud API, balancing speed and capability.
 
+## How to Build This
+
+Clone the repo and install:
+
+```bash
+git clone https://github.com/dakshjain-1616/PyForge-AI-powered-Python-CLI
+cd PyForge-AI-powered-Python-CLI
+pip install -e .
+```
+
+Installing with `-e` makes the `pyforge` command available globally. Set your API key for the provider you want to use:
+
+```bash
+OPENAI_API_KEY=sk-...
+# or for Anthropic
+ANTHROPIC_API_KEY=sk-ant-...
+```
+
+For local model support, install Ollama and pull a model before using the `--backend ollama` flag. Generate a Python script from a natural language description:
+
+```bash
+pyforge gen "read a CSV file, compute per-column statistics, and write a summary to stdout"
+```
+
+PyForge writes the generated code to stdout by default. Pipe it to a file or to `black` for formatting:
+
+```bash
+pyforge gen "parse command-line args with argparse and validate required fields" > cli.py
+```
+
+Refactor an existing file with a natural language instruction:
+
+```bash
+pyforge refactor utils.py "replace all os.path calls with pathlib equivalents"
+```
+
+PyForge shows a diff preview and prompts for confirmation before writing. Debug a stack trace by piping it in:
+
+```bash
+cat traceback.txt | pyforge debug --context "this function is supposed to process a CSV row"
+```
+
+Scaffold a full project:
+
+```bash
+pyforge scaffold "FastAPI service with PostgreSQL, JWT auth, and pytest test suite" --output ./my-service
+```
+
+Session state is stored automatically, so follow-up refinements apply to the last generated output without re-reading anything.
+
 NEO built PyForge to eliminate the context switch between writing code and asking for help with it. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---

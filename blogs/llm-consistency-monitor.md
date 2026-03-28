@@ -73,6 +73,39 @@ The full pipeline runs in **60 to 120 seconds** on typical hardware and uses app
 
 ---
 
+## How to Build This
+
+You need Python 3.9 or later. The embedding step uses `sentence-transformers`, which requires a few hundred MB of disk space for the model weights downloaded on first run. No GPU is required; inference runs on CPU within the 2GB memory budget.
+
+Clone and install:
+
+```bash
+git clone https://github.com/Dakshjain1604/LLM-consistency-Monitor
+cd LLM-consistency-Monitor
+pip install -r requirements.txt
+```
+
+Create a `.env` file at the root of the repository with your API credentials:
+
+```bash
+ANTHROPIC_API_KEY=sk-ant-...
+OPENAI_API_KEY=sk-...
+```
+
+Run a consistency check on a single question:
+
+```bash
+python monitor.py --question "What is the capital of France?" --model claude-sonnet-4
+```
+
+The tool generates 20 paraphrased variants, queries the model concurrently, and runs the embedding and DBSCAN clustering pipeline. The whole run completes in 60 to 120 seconds. When it finishes, it opens an HTML report in your default browser showing a similarity heatmap across all 20 responses, the cluster distribution chart, per-variant latency, and a final consistency score out of 100. A score above 80 means the model is giving essentially the same answer across phrasings. Below that, the report flags which paraphrase groups are diverging and suggests prompt refinements to reduce the instability.
+
+To run batch evaluation across multiple questions from a JSON file:
+
+```bash
+python monitor.py --batch questions.json --model gpt-4o --output results/
+```
+
 NEO built an LLM consistency monitor where semantic clustering across 20 paraphrased variants exposes answer instability before it reaches users in production. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---

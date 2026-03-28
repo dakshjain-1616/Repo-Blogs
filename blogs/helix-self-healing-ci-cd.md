@@ -63,6 +63,42 @@ Helix tracks the outcome of every remediation action. When a PR it creates is me
 
 This feedback loop feeds a continuous improvement process. Patterns in failed remediations surface cases where Helix's diagnosis was incorrect or where its remediation strategy was right but its implementation was wrong. The remediation strategy library is updated accordingly.
 
+## How to Build This
+
+You need Python 3.9+, a GitHub account, an OpenRouter API key, and a way to expose a local port to the internet (cloudflared works and is free). Clone and install:
+
+```bash
+git clone https://github.com/dakshjain-1616/Helix-Self-Healing-CI-CD-Agent
+cd Helix-Self-Healing-CI-CD-Agent
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
+
+Configure environment variables:
+
+```bash
+export GITHUB_TOKEN=ghp_...
+export GITHUB_WEBHOOK_SECRET=your_webhook_secret
+export OPENROUTER_API_KEY=sk-or-...
+```
+
+Expose your local server with cloudflared:
+
+```bash
+cloudflared tunnel --url http://localhost:8000
+```
+
+Start Helix:
+
+```bash
+python server/webhook.py
+```
+
+Register the webhook in your GitHub repository: Settings > Webhooks > Add webhook. Set the Payload URL to your cloudflared URL, content type to `application/json`, secret to match `GITHUB_WEBHOOK_SECRET`, and select the `Workflow runs` event.
+
+To test before granting write permissions, set `DRY_RUN=true` in your environment. In dry-run mode, Helix performs full diagnosis and posts all proposed fixes as PR comments without committing anything. Once you are satisfied with the diagnostic quality, remove the flag and Helix will begin creating PRs for medium-risk fixes and executing low-risk actions automatically.
+
 NEO built Helix to turn CI/CD failures from developer interruptions into background events that resolve themselves. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---

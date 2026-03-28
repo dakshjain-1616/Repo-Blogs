@@ -69,6 +69,48 @@ With this framework, you get confidence intervals that tell you the true effect 
 
 That is the difference between shipping a hunch and shipping a measured improvement.
 
+## How to Build This
+
+Clone the repo and install dependencies:
+
+```bash
+git clone https://github.com/dakshjain-1616/AB-testing-tool.git
+cd AB-testing-tool
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
+
+Make sure the data and results directories exist before running:
+
+```bash
+mkdir -p data results
+```
+
+Run the full pipeline — simulation, statistical analysis, and visualizations — in one command:
+
+```bash
+python3 run_full_pipeline.py
+```
+
+You can also run each stage independently. `python3 src/simulate.py` generates experiment data and writes it to `data/experiment_logs.csv`. `python3 src/analysis.py` runs ANOVA and Bonferroni correction on that data. `python3 src/report_viz.py` produces the charts and summary tables. Results land in `results/`.
+
+To serve the framework as an API endpoint, start the FastAPI server:
+
+```bash
+python3 src/serving.py
+```
+
+Then send routing requests:
+
+```bash
+curl -X POST "http://localhost:8000/predict" \
+  -H "Content-Type: application/json" \
+  -d '{"user_id": "user_123", "features": {"age": 35}}'
+```
+
+The response includes which variant the user was routed to and the model's prediction. If you hit a `PYTHONPATH` import error, run `export PYTHONPATH=$(pwd):$PYTHONPATH` before executing any script.
+
 ---
 
 NEO built a multi-variant LLM testing framework where rigorous statistical evaluation—ANOVA, Bonferroni correction, effect sizes—is a first-class concern, not an afterthought. See what else NEO ships at [heyneo.so](https://heyneo.so/).

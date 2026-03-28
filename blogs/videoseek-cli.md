@@ -67,6 +67,66 @@ Videoseek CLI is driven by three commands. `videoseek index <source>` transcribe
 
 Output defaults to a human-readable table in the terminal. The `--json` flag emits structured JSON for piping into other tools. The `--open` flag on macOS and Linux attempts to open the video at the matching timestamp directly in the default media player or browser.
 
+## How to Build This
+
+Clone the repo and install dependencies:
+
+```bash
+git clone https://github.com/dakshjain-1616/videoseek-cli
+cd videoseek-cli
+pip install -r requirements.txt
+```
+
+You also need `ffmpeg` installed on your system for audio extraction from local video files:
+
+```bash
+# Ubuntu/Debian
+sudo apt-get install ffmpeg
+
+# macOS
+brew install ffmpeg
+```
+
+For YouTube downloads, `yt-dlp` is included in the requirements.
+
+Set your embedding API key if using OpenAI embeddings (the default):
+
+```bash
+export OPENAI_API_KEY=sk-...
+```
+
+To use local embeddings instead, pass `--embedder local` when indexing — this uses `all-MiniLM-L6-v2` via sentence-transformers and requires no API key.
+
+Index a YouTube video:
+
+```bash
+videoseek index https://www.youtube.com/watch?v=dQw4w9WgXcQ
+```
+
+Index a local file:
+
+```bash
+videoseek index ./recordings/architecture-review.mp4
+```
+
+Indexing a two-hour video takes 4 to 8 minutes on CPU with local embeddings, or 1 to 2 minutes with a GPU.
+
+Search your indexed collection:
+
+```bash
+videoseek search "how did they handle database migrations"
+```
+
+Results print to the terminal as a table showing timestamps, similarity scores, and matching text. For YouTube-sourced videos, results include a direct URL with a `?t=` parameter that jumps to the matching moment.
+
+List all indexed videos:
+
+```bash
+videoseek list
+```
+
+Use `--json` on any command to get structured output for piping into other tools.
+
 NEO built Videoseek CLI so that long-form video stops being a knowledge silo — one index command and every recording in your collection becomes instantly searchable with timestamp-accurate results. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---

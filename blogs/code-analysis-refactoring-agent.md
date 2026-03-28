@@ -101,6 +101,32 @@ IDE integration would let developers see the agent's analysis inline as they wri
 
 ---
 
+## How to Build This
+
+You need Python 3.12+, an Ollama instance running locally, and a target Python codebase. Clone and install:
+
+```bash
+git clone https://github.com/dakshjain-1616/Code-Agent-Analysis-and-Refactoring-tool
+cd Code-Agent-Analysis-and-Refactoring-tool
+pip install -r requirements.txt
+```
+
+Pull the required model in Ollama:
+
+```bash
+ollama pull deepseek-coder
+```
+
+Point the agent at a directory of Python code and run:
+
+```bash
+python main.py --path /path/to/your/codebase
+```
+
+If Ollama is not available, the agent falls back to rule-based transformations automatically. No flag is needed to enable fallback mode.
+
+The Rich-based CLI shows each file as it is analyzed, lists the issues found per tool (pylint, flake8, radon, AST), displays what the LLM generates for each flagged function, and reports whether the test suite passed or failed after each refactoring. Refactored code goes onto an isolated git branch. At the end, the terminal prints a summary table with before/after cyclomatic complexity scores, lines-of-code delta, and the number of changes committed versus discarded. A full JSON report is written to the output directory covering every issue detected and every refactoring attempted.
+
 NEO built a three-stage code refactoring agent where AST analysis, LLM-powered suggestions, and test validation work together to reduce cyclomatic complexity by 35% without breaking existing functionality. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---

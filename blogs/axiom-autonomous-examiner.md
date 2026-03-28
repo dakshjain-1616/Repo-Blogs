@@ -77,6 +77,41 @@ Fine-tuning for capability improvements often degrades safety properties in non-
 
 For teams doing targeted safety fine-tuning, AXIOM provides specific failure modes to address. Rather than training on generic safety examples, you can target training data at the exact scenario types where your model shows inconsistency.
 
+## How to Build This
+
+Python 3.8+ is required. Clone the repo and install dependencies:
+
+```bash
+git clone https://github.com/dakshjain-1616/AXIOM---Autonomous-eXaminer-of-Integrity-and-Moral-Operations.git
+cd AXIOM---Autonomous-eXaminer-of-Integrity-and-Moral-Operations
+python -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
+
+Run AXIOM against a Python file containing your model or agent code:
+
+```bash
+python src/axiom_main.py path/to/your/model_code.py
+```
+
+To specify where reports are written:
+
+```bash
+python src/axiom_main.py path/to/your/model_code.py \
+  --output ./output \
+  --legal-dir ./legal_docs \
+  --alternatives-dir ./alternatives
+```
+
+To test with the included sample data:
+
+```bash
+python src/run_axiom.py
+```
+
+AXIOM generates three categories of output files. Ethics reports are the main analysis documents showing consistency scores across all eight dimensions with the radar chart visualization and scenario-level drill-downs. Legal documentation covers GDPR and CCPA compliance artifacts. Alternative code files contain privacy-improved versions of flagged code. All output goes to the directories you configured, defaulting to `./output`, `./legal_docs`, and `./alternatives`.
+
 NEO built AXIOM so that AI ethics evaluation is systematic, repeatable, and operationally connected to training decisions rather than a one-time checklist. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---

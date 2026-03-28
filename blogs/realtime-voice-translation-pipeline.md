@@ -96,6 +96,38 @@ The architecture is modular. The main extension points are: adding WebSocket sup
 
 ---
 
+## How to Build This
+
+Clone the repository and install dependencies:
+
+```bash
+git clone https://github.com/dakshjain-1616/Real-time-Voice-Translation-Pipeline
+cd Real-time-Voice-Translation-Pipeline
+pip install -r requirements.txt
+```
+
+No API keys are required. All models run locally: Whisper Tiny downloads automatically from HuggingFace on first run, MarianMT translation models are pulled from HuggingFace for each language pair, and Edge-TTS runs without local model weights.
+
+Run translation on an audio file:
+
+```bash
+python translate.py --input ./samples/english_sample.wav --target-lang es
+```
+
+Supported target language codes are `es` (Spanish), `fr` (French), and `de` (German). On first run, the MarianMT model for the selected language pair downloads to a local cache — this takes 30 to 60 seconds. Subsequent runs use the cached model.
+
+The output is a translated audio file written to `./output/translated.wav` and the translated text printed to stdout.
+
+To run as a Docker container:
+
+```bash
+docker build -t voice-translation .
+docker run -v $(pwd)/samples:/app/samples -v $(pwd)/output:/app/output \
+  voice-translation --input /app/samples/english_sample.wav --target-lang fr
+```
+
+End-to-end latency on CPU hardware is 1.3 seconds median: 0.4 seconds for Whisper Tiny transcription, 0.3 seconds for MarianMT translation, and 0.6 seconds for Edge-TTS synthesis. Adding GPU acceleration reduces the STT and translation stages substantially.
+
 NEO built a real-time voice translation pipeline where deliberate model choices at every stage—Whisper Tiny, MarianMT, Edge-TTS—deliver end-to-end speech-to-speech translation in 1.3 seconds without sacrificing output quality. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---

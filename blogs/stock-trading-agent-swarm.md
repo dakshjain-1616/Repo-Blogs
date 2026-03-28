@@ -89,6 +89,40 @@ NEO recorded the full swarm running through a live simulation, with the message 
 
 ---
 
+## How to Build This
+
+Clone the repo and install dependencies:
+
+```bash
+git clone https://github.com/dakshjain-1616/Stock-trading-Agent-Swarm
+cd Stock-trading-Agent-Swarm
+pip install -r requirements.txt
+```
+
+No external API keys are required. The `yfinance` library fetches historical S&P 500 data directly from Yahoo Finance.
+
+Run the simulation with default parameters ($1M capital, 250 trading days):
+
+```bash
+python run_simulation.py
+```
+
+To customize the simulation window or capital:
+
+```bash
+python run_simulation.py --capital 500000 --days 100 --start-date 2023-01-01
+```
+
+To run with Docker Compose, which spins up all agent containers together:
+
+```bash
+docker compose up
+```
+
+As the simulation runs, the Reporter agent logs per-agent activity to stdout: trade signals from each analyst, order submissions from each trader, approval or rejection decisions from each risk manager, and cumulative portfolio performance. The message bus logs show the full sequence of inter-agent messages in order.
+
+When the simulation completes, the Reporter agent prints a summary: total return, number of executed trades, order approval rate, positions blocked by risk managers, and stop-losses triggered. Results are also written to `./output/simulation_report.json` for post-run analysis.
+
 NEO built a 10-agent trading simulation where asynchronous message-bus coordination, hard risk validation gates, and separation of signal generation from execution demonstrate the coordination patterns that make multi-agent systems reliable under real conditions. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---

@@ -79,6 +79,42 @@ NEO is also experimenting with streaming outputs so that partial results are ava
 
 ---
 
+## How to Build This
+
+Clone the repo and install dependencies:
+
+```bash
+git clone https://github.com/dakshjain-1616/Multi-Model-Invoice-OCR-Pipeline
+cd Multi-Model-Invoice-OCR-Pipeline
+pip install -r requirements.txt
+```
+
+You need Python 3.10 or later. The pipeline uses GLM-4.5V via OpenRouter for the vision stage, so set your API key in a `.env` file:
+
+```bash
+OPENROUTER_API_KEY=sk-or-...
+```
+
+The BERT model weights are downloaded automatically on first run. Run the entry point script against the included sample invoices:
+
+```bash
+python run_project.py
+```
+
+The script verifies dependencies, downloads model weights if needed, processes the sample invoices in the `samples/` directory, and writes structured JSON results to `results/`. Each output file contains the extracted fields (vendor name, invoice number, date, line items, totals) alongside a confidence score per field. Fields with confidence below the threshold are flagged for human review rather than passed downstream silently.
+
+For a single invoice, you can call the pipeline directly:
+
+```python
+from pipeline import InvoicePipeline
+
+pipeline = InvoicePipeline()
+result = pipeline.process("invoice.pdf")
+print(result.to_json())
+```
+
+Total setup takes about ten minutes, most of which is downloading the BERT weights on first run.
+
 NEO built a multi-model invoice OCR pipeline where GLM-4.5V vision understanding and fine-tuned BERT entity extraction combine to achieve 95%+ accuracy across any invoice format, with confidence scores that flag uncertain extractions rather than passing bad data downstream. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---

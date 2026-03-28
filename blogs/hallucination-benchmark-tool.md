@@ -81,6 +81,33 @@ If adversarial resistance is low, you need to add input filtering for adversaria
 
 The benchmark produces a risk profile, not just a score. Each metric maps to a mitigation strategy, turning evaluation output into an action plan.
 
+## How to Build This
+
+Clone and install:
+
+```bash
+git clone https://github.com/dakshjain-1616/Hallucination-Benchmark-Tool
+cd Hallucination-Benchmark-Tool
+pip install -r requirements.txt
+cp .env.example .env
+```
+
+Add your OpenRouter API key to `.env`. The tool uses OpenRouter to access multiple models for both evaluation and the optional 3-LLM consensus ground truth generation.
+
+Run a dynamic benchmark that generates fresh evaluation data and tests a model against it:
+
+```bash
+python cli.py --topic "geography" --dynamic --model google/gemini-2.0-flash-001
+```
+
+Run against a specific number of questions:
+
+```bash
+python cli.py --topic "medical research" --dynamic --model openai/gpt-4o --num-entries 10
+```
+
+The tool prints a results table to the terminal showing hallucination rate, faithfulness score, factual consistency, and BLEU score, along with per-entry cost. It also saves a JSON report and a Markdown report to the output directory. When using dynamic mode, the consensus log records which of the three provider models agreed on each ground truth entry and assigns a confidence level (high, medium, or low) based on inter-model agreement. Low-agreement entries are flagged so you can decide whether to include them in evaluation or treat them as ambiguous.
+
 NEO built a hallucination benchmark where every metric connects to a concrete deployment decision, making the gap between evaluation and production risk visible and actionable. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---

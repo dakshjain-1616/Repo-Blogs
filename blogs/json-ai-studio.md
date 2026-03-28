@@ -63,6 +63,39 @@ The cleaning mode addresses a common data engineering problem: JSON data from ex
 
 JSON AI Studio's cleaning mode profiles the document (or document set) and identifies inconsistencies. It then proposes a set of normalization operations: coerce `"null"` strings to actual null, standardize date formats to ISO 8601, fill missing required arrays with empty arrays. Each proposed operation is shown with the count of affected records before it is applied.
 
+## How to Build This
+
+Clone and install:
+
+```bash
+git clone https://github.com/dakshjain-1616/JSON-AI-Studio
+cd JSON-AI-Studio
+python -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
+
+Configure your OpenRouter API key (the tool uses `anthropic/claude-sonnet-4` by default):
+
+```bash
+mkdir -p ~/.config/openrouter
+echo '{"api_key": "sk-or-..."}' > ~/.config/openrouter/config
+```
+
+Or set it as an environment variable:
+
+```bash
+export OPENROUTER_API_KEY="sk-or-..."
+```
+
+Start the server:
+
+```bash
+python server.py
+```
+
+Open `http://localhost:7860` in your browser. Paste any JSON, YAML, or CSV document into the editor. The Visualizer tab renders it as an interactive node-graph. The AI Chat tab lets you query the loaded data in plain English. The Transformer tab takes a natural-language instruction and applies it to the data, showing a unified diff before and after. The Schema Gen tab infers a JSON Schema from the document with an optional AI explanation. The Fixer tab repairs malformed JSON using demjson3 first and Claude as fallback for cases that rule-based parsing cannot handle.
+
 NEO built JSON AI Studio to remove the friction from the JSON manipulation tasks that slow down data work and API integration every day. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---

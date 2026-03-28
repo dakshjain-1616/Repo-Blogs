@@ -71,6 +71,40 @@ Running 8.4B parameter TTS models on CPU hardware is possible with the right qua
 
 This principle applies beyond MOSS-TTS. Any multi-component model architecture with distinct processing stages can potentially benefit from component-selective quantization. The key is identifying which components are sensitive to numerical precision and protecting those while compressing the rest.
 
+## How to Build This
+
+You need Python 3.10 or later and a machine with at least 32GB of RAM for selective quantization (the recommended mode) or 40GB for fp32. No GPU is required. The pipeline is designed for CPU-only servers and runs without CUDA.
+
+Clone and install:
+
+```bash
+git clone https://github.com/dakshjain-1616/MOSS-TTS-CPU-Optimized-Inference-Pipeline
+cd MOSS-TTS-CPU-Optimized-Inference-Pipeline
+pip install -r requirements.txt
+```
+
+The model weights are downloaded automatically on first run from Hugging Face. Expect a 15 to 20 minute download for the 8.4B parameter checkpoint. Once cached locally, subsequent runs skip the download.
+
+Run inference with selective INT8 quantization (the recommended mode, 26GB peak RAM):
+
+```bash
+python infer.py --text "The quick brown fox jumps over the lazy dog." --mode selective_int8 --output audio/output.wav
+```
+
+For fp32 at full quality (33GB peak RAM):
+
+```bash
+python infer.py --text "Hello, this is a test." --mode fp32 --output audio/output.wav
+```
+
+The first run takes about 7 seconds to load the model and apply quantization. Subsequent calls against a loaded server are faster. The output is a WAV file at the path you specify. To benchmark all available modes and compare memory usage and load times, run:
+
+```bash
+python benchmark.py --output results/benchmark_report.txt
+```
+
+The benchmark report logs peak RAM consumption and load time for each mode, giving you concrete numbers to compare against the figures in this post on your specific hardware configuration.
+
 NEO built a CPU-optimized inference pipeline for MOSS-TTS where selective INT8 quantization delivers a 21% memory reduction while preserving audio quality—making an 8.4B parameter TTS model practical without GPU hardware. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---

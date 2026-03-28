@@ -85,6 +85,50 @@ Analysts who previously spent hours manually transcribing tables can run this pi
 
 ---
 
+## How to Build This
+
+Clone the repo and install dependencies:
+
+```bash
+git clone https://github.com/dakshjain-1616/Table-Extraction-from-Financial-Documents
+cd Table-Extraction-from-Financial-Documents
+pip install -r requirements.txt
+```
+
+The pipeline downloads Microsoft Table Transformer and TrOCR model weights from HuggingFace on first run (~1.5 GB total). No API keys are required — all inference runs locally.
+
+Run extraction on a PDF:
+
+```bash
+python extract.py --input ./samples/annual_report.pdf --output-format json
+```
+
+Run on a scanned image:
+
+```bash
+python extract.py --input ./samples/balance_sheet.png --output-format csv
+```
+
+Supported `--output-format` values are `json`, `csv`, and `report`. The `report` format produces a PDF with annotated bounding boxes showing detected table regions and flagged anomalies.
+
+To process all PDFs in a directory:
+
+```bash
+python extract.py --input-dir ./documents/ --output-dir ./results/ --output-format json
+```
+
+The JSON output for each file includes per-table data with cell coordinates, extracted text, confidence scores, and a validation section flagging any numerical inconsistencies detected (for example, column totals that do not match the sum of their rows).
+
+To run via Docker:
+
+```bash
+docker build -t table-extractor .
+docker run -v $(pwd)/documents:/app/input -v $(pwd)/results:/app/output \
+  table-extractor --input-dir /app/input --output-dir /app/output --output-format json
+```
+
+Processing speed is approximately 3.2 seconds per page on CPU. GPU acceleration significantly reduces this for the TrOCR inference stage, which is the primary bottleneck.
+
 NEO built a financial table extraction pipeline where Microsoft Table Transformer detection, TrOCR cell-level OCR, and numerical consistency validation together deliver 96%+ accuracy on PDFs and scanned documents with explicit uncertainty signaling rather than silent errors. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---

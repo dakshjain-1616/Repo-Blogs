@@ -69,6 +69,38 @@ NEO's benchmarking suite is designed to be reproducible and extensible. Each tas
 
 The runner supports all three models through a unified interface with adapters for each model's API or local inference endpoint. Results are written to JSON and can be visualized with the included Jupyter notebook, which generates comparison tables and per-category radar charts.
 
+## How to Build This
+
+You need Python 3.10 or later. To run MiniMax M2-7B locally, you need at least 8GB of VRAM for 4-bit quantization or 16GB for full precision. The benchmark can also run all models through API endpoints if you prefer not to load them locally.
+
+Clone and install:
+
+```bash
+git clone https://github.com/dakshjain-1616/minimax-m2-7-codegen
+cd minimax-m2-7-codegen
+pip install -r requirements.txt
+```
+
+Each benchmark task is defined in a YAML file under `tasks/`. To run the full suite against all three models:
+
+```bash
+python runner.py --models minimax-m2-7b codestral deepseek-coder --tasks tasks/ --output results/
+```
+
+To run a single category for faster iteration:
+
+```bash
+python runner.py --models minimax-m2-7b --category sql --tasks tasks/sql/ --output results/
+```
+
+The runner loads each model (or hits its API endpoint), runs every task, and scores responses. For function synthesis and SQL tasks, scoring is automatic using test cases and exact-match comparison. For shell scripting tasks, the runner attempts to execute the generated script in a sandboxed environment and checks the exit code and output. Results are written to a JSON file per model run. When all runs finish, open the included Jupyter notebook to generate comparison tables and per-category radar charts:
+
+```bash
+jupyter notebook analysis/results_viz.ipynb
+```
+
+The notebook reads all JSON files from the results directory and renders side-by-side comparisons across every category. The radar chart is the fastest way to see where MiniMax M2-7B leads and where it trails.
+
 NEO built an honest, reproducible benchmark suite that gives developers real data on MiniMax M2-7B before they commit to it for production code generation. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---

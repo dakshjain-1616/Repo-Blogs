@@ -76,6 +76,33 @@ The single-file output makes deployment trivial. Upload to S3, drop it in a CDN,
 
 The principle behind Ship-It is that good tooling should produce complete, usable artifacts, not starting points. The multi-agent approach with GLM5 gets you there for landing pages. The same architecture applies to other structured code generation tasks where the output needs to meet multiple quality criteria simultaneously.
 
+## How to Build This
+
+You need Python 3.8+, an NVIDIA GPU with CUDA 11.8+, and at least 4 GB of VRAM. Clone and install:
+
+```bash
+git clone https://github.com/dakshjain-1616/GLA5-Landing-Page-tool
+cd GLA5-Landing-Page-tool
+python3 -m venv venv
+source venv/bin/activate
+pip install torch --index-url https://download.pytorch.org/whl/cu118
+pip install -r requirements.txt
+```
+
+Verify your GPU is accessible:
+
+```bash
+python3 -c "import torch; print(torch.cuda.get_device_name(0))"
+```
+
+Run the generator:
+
+```bash
+python3 ship_it.py
+```
+
+You will be prompted for four inputs: product name, tagline, description, and hero headline. After you provide them, the pipeline loads the GLM5 medium model (~1 GB VRAM), runs the Research and Copy agents in parallel using GPU inference, assembles the HTML with the Builder Agent, validates it with the QA Agent across design, responsiveness, accessibility, and SEO checks, and writes the final `index.html`. The preview server starts automatically at `http://localhost:8080`. An iteration menu then appears in the terminal where you can edit specific sections, check live VRAM stats, or run a targeted fix pass on individual parts of the page without regenerating everything. The final output file is around 30 to 35 KB and requires no build step to deploy.
+
 NEO built a multi-agent landing page generator where a single CLI command produces a complete, self-contained HTML file—validated for accessibility, SEO, and responsive layout—with no assembly required. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---

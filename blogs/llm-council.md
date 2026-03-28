@@ -80,6 +80,43 @@ NEO also found that council size matters less than council diversity. Three mode
 
 LLM Council is open source. The core is small enough to read in an afternoon, modify easily, and integrate into any Python project. If you're building applications where answer quality matters and hallucinations carry cost, it's worth adding to your stack.
 
+## How to Build This
+
+You need Python 3.10 or later. The framework depends only on `openai` and `pydantic`, so installation is fast. An OpenRouter API key gives you access to all 200+ supported models through a single key, which is the recommended setup.
+
+Clone and install:
+
+```bash
+git clone https://github.com/abhishekgandhi-neo/llm_council_by_neo
+cd llm_council_by_neo
+pip install -r requirements.txt
+```
+
+Set your OpenRouter API key:
+
+```bash
+export OPENROUTER_API_KEY=sk-or-...
+```
+
+Run a query through a three-model council using the synthesis strategy:
+
+```python
+import asyncio
+from council import LLMCouncil
+
+council = LLMCouncil(
+    models=["openai/gpt-4o", "anthropic/claude-3.5-sonnet", "google/gemini-pro-1.5"],
+    strategy="synthesis",
+    judge_model="openai/gpt-4o"
+)
+
+result = asyncio.run(council.query("What are the tradeoffs between PostgreSQL and MongoDB for a high-write workload?"))
+print(result.answer)
+print(f"Hallucination flags: {result.conflicts}")
+```
+
+The council fires all three model queries simultaneously via `asyncio.gather()`. Total wall time approximates the slowest model in the set, typically two to four seconds. The synthesis judge reads all three responses and returns a unified answer along with any factual conflicts it detected across the responses. For voting mode, change `strategy="voting"` and remove the `judge_model` parameter. The response then includes the majority answer and a breakdown of how many models agreed on each distinct answer.
+
 NEO built a multi-model consensus engine where hallucination reduction and answer quality improvement happen through model diversity, not just bigger models. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---

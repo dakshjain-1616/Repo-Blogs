@@ -67,6 +67,46 @@ Screenshot2SQL is designed to fit into existing data engineering workflows. The 
 
 A Python library interface is also available for integration into data pipeline scripts. Pass an image path and get back a structured object containing the table name, column definitions, and rows — from which you can generate any output format you need.
 
+## How to Build This
+
+Clone the repo and install dependencies:
+
+```bash
+git clone https://github.com/dakshjain-1616/screenshot2sql
+cd screenshot2sql
+pip install -r requirements.txt
+```
+
+Set the API key for your chosen vision model. GPT-4o Vision is the default:
+
+```bash
+export OPENAI_API_KEY=sk-...
+```
+
+To use Claude 3.5 Sonnet instead, set `ANTHROPIC_API_KEY` and pass `--model claude` to the CLI.
+
+Run against a screenshot:
+
+```bash
+python screenshot2sql.py --input ./samples/invoice_table.png --dialect postgresql
+```
+
+Supported `--dialect` values are `postgresql`, `mysql`, `sqlite`, and `sqlserver`. Output goes to stdout by default:
+
+```bash
+python screenshot2sql.py --input ./samples/spreadsheet.png --dialect mysql > schema.sql
+```
+
+Use `--output` to write to a file instead, or `--dry-run` to see the inferred schema as a human-readable table without generating SQL:
+
+```bash
+python screenshot2sql.py --input ./samples/grid.png --dry-run
+```
+
+The dry-run output lists each detected column with its inferred type, nullable flag, and any detected format (UUID, email, ISO date, etc.). This is useful for reviewing type inference before committing to a schema.
+
+The generated SQL includes a `CREATE TABLE` statement with all inferred constraints and a batch `INSERT` statement for all visible rows. For screenshots containing multiple tables, the tool generates a separate SQL block per table labeled `table_1`, `table_2`, and so on.
+
 NEO built Screenshot2SQL to eliminate one of the most tedious recurring tasks in data engineering — taking visual table data and turning it into executable SQL with zero manual transcription. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---

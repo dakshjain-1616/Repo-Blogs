@@ -61,6 +61,36 @@ Secondary use cases include pharmaceutical analysts tracking the competitive lan
 
 The design principle NEO returned to throughout development was transparency. An AI system making biomedical claims needs to be interrogable. The live reasoning trace isn't a nice-to-have. It's a requirement for any context where a researcher needs to know why the system ranked a particular candidate.
 
+## How to Build This
+
+Python 3.8+ is required. Clone the repo, create a virtual environment, and install dependencies:
+
+```bash
+git clone https://github.com/Dakshjain1604/AI-Powered-Drug-Repurposing-Platform.git
+cd AI-Powered-Drug-Repurposing-Platform
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
+
+Create a `.env` file with your API credentials:
+
+```
+OPENAI_API_KEY=sk-...
+NCBI_EMAIL=your@email.com
+NCBI_API_KEY=your_ncbi_key
+```
+
+The `NCBI_API_KEY` is optional but recommended — without it, PubMed rate limits your requests to 3 per second. You can get a free key at ncbi.nlm.nih.gov/account.
+
+Launch the Streamlit dashboard:
+
+```bash
+streamlit run app.py
+```
+
+Open `http://localhost:8501`. Set your disease focus, adjust the time range and abstract limit, and click "Start Analysis." The live reasoning trace appears on the left as the system retrieves abstracts, extracts candidates, filters against the FDA database, scores across the eight fibrotic pathways, and generates research protocols. Typical runtime is 60 to 105 seconds. Results are organized across tabs: Literature, Candidates, Top 3 Analysis, Visualization, and Report Export.
+
 NEO built a drug repurposing research platform where live reasoning traces and transparent AI decision-making are built into the system, not bolted on as an afterthought. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---

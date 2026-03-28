@@ -97,6 +97,54 @@ When you're evaluating whether speculative decoding is worth the added complexit
 
 This tool gives you clean, reproducible measurements to make those decisions with confidence.
 
+## How to Build This
+
+Clone the repo and install dependencies:
+
+```bash
+git clone https://github.com/dakshjain-1616/Speculative-Decoding-Bench-marker
+cd Speculative-Decoding-Bench-marker
+pip install -r requirements.txt
+```
+
+No API keys are required. The tool downloads models from HuggingFace on first run. Make sure you have enough disk space — the default OPT-125M draft model is 250 MB and OPT-1.3B target model is 2.6 GB.
+
+Run a benchmark from the CLI using the default model pair:
+
+```bash
+python -m decoding_benchmarker run \
+  --draft-model facebook/opt-125m \
+  --target-model facebook/opt-1.3b \
+  --num-prompts 100 \
+  --gamma 4 \
+  --output-format json
+```
+
+To use the Python module interface directly:
+
+```python
+from decoding_benchmarker import BenchmarkConfig, BenchmarkRunner
+
+config = BenchmarkConfig(
+    draft_model="facebook/opt-125m",
+    target_model="facebook/opt-1.3b",
+    num_prompts=100,
+    gamma=4
+)
+runner = BenchmarkRunner(config)
+results = runner.run()
+print(f"Speedup: {results.speedup_ratio:.2f}x")
+print(f"BERTScore: {results.bert_score:.3f}")
+```
+
+To launch the REST API server for CI/CD integration:
+
+```bash
+python -m decoding_benchmarker serve --port 8080
+```
+
+The benchmark report includes speedup ratio, BLEU, ROUGE-L, and BERTScore across all prompts, P50/P95/P99 latency breakdowns, and an adaptive gamma recommendation based on the measured acceptance rate for your specific model pair and prompt distribution. JSON output is written to `./results/` by default.
+
 NEO built a speculative decoding benchmarker where BLEU, ROUGE-L, and BERTScore quality metrics combine with percentile latency measurements and adaptive gamma recommendations to give teams the data needed to determine whether speculative decoding actually helps their specific model pair. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---

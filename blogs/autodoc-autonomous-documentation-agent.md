@@ -69,6 +69,56 @@ Confidence scoring: each generated documentation element gets a confidence score
 
 AutoDoc doesn't replace engineering judgment — it handles the tedious mechanical parts of documentation and flags the areas where human input is most needed.
 
+## How to Build This
+
+Python 3.8+ is required. Clone the repo and install the one dependency:
+
+```bash
+git clone https://github.com/dakshjain-1616/AutoDoc---Autonomous-Documentation-Agent.git
+cd AutoDoc---Autonomous-Documentation-Agent
+python3 -m venv venv
+source venv/bin/activate
+pip install requests
+```
+
+Set your HuggingFace API token, which is required to access the HyperNova-60B model used for code understanding:
+
+```bash
+export HUGGINGFACE_API_TOKEN="hf_..."
+```
+
+Or copy the example env file and fill it in:
+
+```bash
+cp .env.example .env
+```
+
+Point AutoDoc at a source directory:
+
+```bash
+python3 autodoc.py ./src
+```
+
+The agent scans the directory, reads files in dependency order, builds a working model of the codebase, and writes documentation. By default it does not overwrite existing docstrings. To force regeneration:
+
+```bash
+python3 autodoc.py ./src --force
+```
+
+To preview what would be written without touching any files:
+
+```bash
+python3 autodoc.py ./src --dry-run
+```
+
+The repo includes a `trial/` directory with sample source files if you want to test before pointing it at your own code:
+
+```bash
+python3 autodoc.py ./trial
+```
+
+AutoDoc supports Python, JavaScript, TypeScript, and Go. Output format adapts to each language: Google-style docstrings for Python, JSDoc for JavaScript and TypeScript, GoDoc comments for Go.
+
 NEO built an autonomous documentation agent that treats documentation as a first-class engineering artifact, generated continuously and kept synchronized with code. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---

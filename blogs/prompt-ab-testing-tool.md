@@ -63,6 +63,44 @@ This is what systematic prompt evaluation looks like.
 
 ---
 
+## How to Build This
+
+Clone the repo and install dependencies:
+
+```bash
+git clone https://github.com/Dakshjain1604/Prompt-AB-testing-Tool
+cd Prompt-AB-testing-Tool
+pip install -r requirements.txt
+```
+
+Set your API key for the provider you want to test against. The tool supports Anthropic, OpenAI, and OpenRouter:
+
+```bash
+OPENAI_API_KEY=sk-...
+# or
+ANTHROPIC_API_KEY=sk-ant-...
+# or
+OPENROUTER_API_KEY=sk-or-...
+```
+
+Create two prompt files. Each prompt uses `{input}` as a placeholder for the test case text:
+
+```
+# prompt_a.txt
+You are a helpful customer support agent. Answer the following question concisely: {input}
+
+# prompt_b.txt
+You are a senior customer support specialist. Think step by step before answering: {input}
+```
+
+Run the A/B test interactively:
+
+```bash
+python ab_test.py --prompt-a prompt_a.txt --prompt-b prompt_b.txt --dataset customer_support --provider openai --model gpt-4o-mini
+```
+
+The tool runs both prompts against all 20 test cases in the selected dataset, scores responses using an LLM judge, computes the t-test and Cohen's d, and writes a self-contained HTML report to `reports/`. The report includes quality score distributions, the statistical test result with p-value and confidence intervals, latency comparisons, and cost projections at scale. If the p-value is above 0.05, the report flags the result as statistically inconclusive.
+
 NEO built a prompt A/B testing tool where t-tests, Cohen's d effect sizes, and LLM quality scoring replace intuition-driven prompt decisions with statistically grounded evidence. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---

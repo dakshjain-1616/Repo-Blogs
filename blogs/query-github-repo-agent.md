@@ -69,6 +69,36 @@ A conversational agent changes the interaction model entirely. The question "how
 
 This is where developer tooling is going. Less grep, more Q&A.
 
+## How to Build This
+
+Clone the repo and install the Python dependencies:
+
+```bash
+git clone https://github.com/gauravvij/GithubRepoAgent
+cd GithubRepoAgent
+pip install -r requirements.txt
+```
+
+Create a `.env` file in the project root and add your OpenRouter API key:
+
+```bash
+OPENROUTER_API_KEY=sk-or-...
+```
+
+The default model is `google/gemini-2.5-flash-lite`. You can override it in the `.env` file with a different OpenRouter model string if you want to swap providers.
+
+Start the Flask server:
+
+```bash
+python app.py
+```
+
+Open `http://localhost:5000` in your browser. Paste a public GitHub URL into the input field — for example, `https://github.com/pallets/flask`. The agent clones the repository, runs the map-reduce analysis pipeline, and generates an architectural report before the chat interface opens. For a mid-sized repository this takes 30 to 90 seconds. The report appears automatically when it is ready.
+
+Once the report is generated, you can ask questions like "how does request routing work?" or "what are the main external dependencies?" Responses stream as they are generated so you see output immediately rather than waiting for a full completion. Multi-turn conversation context is maintained for the duration of the session.
+
+The terminal-styled web UI is the primary interface. There is no separate CLI mode — all interaction goes through the browser.
+
 ## Build Your Own Code Intelligence Tools
 
 NEO built a conversational GitHub repo agent where a map-reduce pipeline distills any public codebase into an architectural understanding you can query in plain language, replacing hours of manual code reading. See what else NEO ships at [heyneo.so](https://heyneo.so/).

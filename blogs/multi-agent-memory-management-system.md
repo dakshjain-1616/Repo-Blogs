@@ -88,6 +88,46 @@ Long-running agent sessions are the obvious target. Customer support bots, resea
 
 It's also valuable for multi-session systems where a user interacts with an agent across multiple days or weeks. Persistent cold storage means the agent can recall relevant context from previous sessions without bloating every new conversation with historical data.
 
+## How to Build This
+
+Clone the repo and install dependencies:
+
+```bash
+git clone https://github.com/abhishekgandhi-neo/Multi-Agent_Memory_Management_System_BY_NEO
+cd Multi-Agent_Memory_Management_System_BY_NEO
+pip install -r requirements.txt
+```
+
+The system uses ChromaDB and SQLite for storage, both of which are embedded and require no separate database server. Set your LLM provider key in a `.env` file:
+
+```bash
+OPENAI_API_KEY=sk-...
+```
+
+If you want to run the memory system without any API key first, use mock mode. The smoke test script exercises the full 3-tier memory pipeline against a synthetic conversation:
+
+```bash
+python smoke_test.py
+```
+
+For benchmarking across simulated 25-turn conversations, run the benchmark script:
+
+```bash
+python benchmark.py
+```
+
+To integrate the memory system into your own agent, import `MemoryAgentSystem` and pass it your session identifier:
+
+```python
+from memory_system import MemoryAgentSystem
+
+memory = MemoryAgentSystem(session_id="user_123")
+await memory.add_turn(role="user", content="What dataset did we discuss?")
+context = await memory.retrieve_context(query="dataset discussed earlier")
+```
+
+The benchmark output reports average retrieval latency, semantic recall accuracy across the test conversations, and the percentage reduction in tokens compared to loading full conversation history. Expect retrieval latency in the 80 to 96ms range and token reductions between 35 and 45 percent on the included benchmark workloads.
+
 NEO built a 3-tier memory management system for LLM agents where semantic retrieval from cold storage replaces naive truncation, cutting token usage by 35–45% while maintaining 87% recall accuracy. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---

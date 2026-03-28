@@ -81,6 +81,39 @@ Seasonal patterns around cloud provider capacity announcements and new hardware 
 
 This historical context turns GPU Scout from a point-in-time monitoring tool into a planning tool for teams that run regular training workloads.
 
+## How to Build This
+
+Clone and install:
+
+```bash
+git clone https://github.com/NeoResearchAI/gpu-scout
+cd gpu-scout
+pip install -r requirements.txt
+```
+
+Configure your provider credentials and notification targets in a `.env` file. At minimum, set the providers you want to monitor:
+
+```bash
+AWS_ACCESS_KEY_ID=...
+AWS_SECRET_ACCESS_KEY=...
+LAMBDA_LABS_API_KEY=...
+SLACK_WEBHOOK_URL=https://hooks.slack.com/services/...
+```
+
+Start monitoring:
+
+```bash
+python scout.py --gpus A100,H100 --regions us-east-1,us-west-2
+```
+
+Set a price threshold alert for a specific GPU:
+
+```bash
+python scout.py --gpus A100 --alert-below 2.50 --notify slack
+```
+
+The dashboard updates on each polling interval, showing current spot prices per GPU type and region across all configured providers, with the cheapest option highlighted. Historical price charts and the availability heatmap are accessible via the web dashboard that starts alongside the monitor. When a price threshold is crossed, the Slack notification fires immediately with the GPU type, provider, region, and current price so you can act on it before the window closes.
+
 NEO built GPU Scout so that GPU cost optimization is data-driven and automated rather than a manual process of dashboard-checking and gut feeling. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---

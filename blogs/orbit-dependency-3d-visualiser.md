@@ -63,6 +63,46 @@ During code review, Orbit in watch mode can show whether a PR is adding new circ
 
 Orbit handles large codebases through progressive rendering. Projects with thousands of modules render a coarser-grained view initially — showing packages or directories as nodes rather than individual files — with the ability to expand a cluster into its constituent modules on demand. This keeps the visualization navigable even when the underlying graph has 10,000+ nodes.
 
+## How to Build This
+
+Clone the repo and install dependencies:
+
+```bash
+git clone https://github.com/dakshjain-1616/Orbit-dependency-visualised
+cd Orbit-dependency-visualised
+pip install -r requirements.txt
+```
+
+Python 3.9 or later is required. For JavaScript and TypeScript projects, Node.js must also be installed so Orbit can access the TypeScript compiler API.
+
+Point Orbit at a codebase to analyze:
+
+```bash
+python orbit.py --path /path/to/your/project --language python
+```
+
+For JavaScript or TypeScript:
+
+```bash
+python orbit.py --path /path/to/your/project --language typescript
+```
+
+The analysis runs, builds the dependency graph, caches it, and opens the 3D visualization in your default browser. The graph uses a force-directed layout where tightly coupled modules cluster together. Node size reflects in-degree: shared utilities appear as large spheres. Click any node to highlight it and its immediate neighbors.
+
+The sidebar lists detected circular dependencies, orphaned modules, and high fan-in candidates. For projects with defined architectural layers, add a `.orbit.json` config file to enable layer violation detection:
+
+```json
+{"layers": {"ui": ["src/components"], "service": ["src/services"], "repository": ["src/db"]}, "allowed_direction": "down"}
+```
+
+Run in watch mode to update the graph as files change:
+
+```bash
+python orbit.py --path /path/to/your/project --watch
+```
+
+For very large projects, Orbit starts in package-level view and lets you expand individual clusters on demand.
+
 NEO built Orbit to make the invisible architecture of a codebase something you can see, explore, and reason about spatially. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---

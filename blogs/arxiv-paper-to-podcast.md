@@ -61,6 +61,42 @@ For researchers who want to convert an entire reading list, NEO built a batch mo
 
 A webhook mode supports integration with arxiv mailing list notifications — when new papers arrive in configured categories, the pipeline automatically generates episodes and appends them to the feed. This creates a true "subscribe and listen" workflow for staying current with ML research without reading queues that pile up faster than you can clear them.
 
+## How to Build This
+
+Clone the repo and install dependencies:
+
+```bash
+git clone https://github.com/dakshjain-1616/arxiv-paper-to-podcast.git
+cd arxiv-paper-to-podcast
+pip install -r requirements.txt
+pip install -e .
+```
+
+Create a `.env` file with your API keys:
+
+```
+ANTHROPIC_API_KEY=sk-ant-...
+ELEVENLABS_API_KEY=your_elevenlabs_key
+```
+
+`ANTHROPIC_API_KEY` is required for dialogue generation. `ELEVENLABS_API_KEY` is required for voice synthesis. Without ElevenLabs you can still generate a dialogue script using `--dialogue-only`.
+
+Convert a paper by its arxiv ID:
+
+```bash
+arxiv-podcast 1706.03762
+```
+
+That fetches the Attention Is All You Need paper, generates a two-host conversation script, synthesizes speech with distinct voices, mixes background music, and writes the finished episode to `./output/1706.03762.mp3`. The ID3 metadata includes the paper title, authors, and arxiv ID.
+
+To generate a script without audio (no ElevenLabs key needed):
+
+```bash
+arxiv-podcast 1706.03762 --dialogue-only
+```
+
+For batch processing, create a text file with one arxiv ID per line and pass it to the batch mode. A companion RSS feed generator creates a valid podcast feed from the output directory so you can subscribe in any podcast app.
+
 NEO built a complete arxiv-to-podcast pipeline that turns the fire hose of ML research into something you can actually keep up with. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---

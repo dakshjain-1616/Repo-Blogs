@@ -96,6 +96,39 @@ The goal of this tool is to make continuous evaluation cheap and systematic enou
 
 ## Build Reliable AI Systems
 
+## How to Build This
+
+You need Python 3.10 or later. The tool runs entirely via API calls, so no local GPU is needed. The Judge LLM step uses Gemini Pro, so a Google API key is required in addition to an OpenRouter key for accessing the candidate models.
+
+Clone and install:
+
+```bash
+git clone https://github.com/gauravvij/llm-evaluator
+cd llm-evaluator
+pip install -r requirements.txt
+```
+
+Create a `.env` file with your API credentials:
+
+```bash
+OPENROUTER_API_KEY=sk-or-...
+GOOGLE_API_KEY=...
+```
+
+Run the evaluator on a task description:
+
+```bash
+python main.py --task "Summarize legal contracts and extract key obligations, dates, and party names as structured JSON"
+```
+
+The tool runs automatically from there. It generates five test cases tailored to the task, identifies up to six candidate models, benchmarks each model on every test case, and then passes all responses to the Gemini Pro judge for scoring across accuracy, hallucination, grounding, tool-calling, and clarity dimensions. The full pipeline takes three to eight minutes depending on candidate count and API latency.
+
+When it completes, you get a ranked list of the top three models printed to the console, a per-dimension score breakdown for each, and an optimized system prompt written to the output directory ready to use. You can adjust the number of test cases or candidates with optional flags:
+
+```bash
+python main.py --task "your task" --test-cases 10 --max-candidates 4 --output-dir ./eval-results
+```
+
 NEO built an automated LLM evaluator where a Judge LLM scores candidates across five dimensions—accuracy, hallucination, grounding, tool-calling, and clarity—and outputs a ranked shortlist with an optimized system prompt. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---

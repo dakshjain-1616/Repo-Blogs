@@ -73,6 +73,57 @@ The model is hosted on HuggingFace and loadable via standard tooling. With Ollam
 
 The GPTQ version loads via Transformers with AutoGPTQ: standard `AutoModelForCausalLM.from_pretrained` with `device_map="auto"` handles layer distribution automatically.
 
+## How to Build This
+
+Download the GGUF files from HuggingFace:
+
+```bash
+pip install huggingface_hub
+huggingface-cli download daksh-neo/sarvam-30b-quantized \
+  --include "sarvam-30b-q4_k_m.gguf" --local-dir ./model
+```
+
+For other quantization levels, replace the filename with `sarvam-30b-q5_k_m.gguf`, `sarvam-30b-q8_0.gguf`, or `sarvam-30b-q2_k.gguf`. Q4_K_M is the recommended default for most hardware.
+
+Run with llama.cpp directly (build llama.cpp first from https://github.com/ggml-org/llama.cpp):
+
+```bash
+./llama-cli -m ./model/sarvam-30b-q4_k_m.gguf \
+  -p "हिंदी में भारत की राजधानी क्या है?" \
+  -n 256 --ctx-size 2048
+```
+
+Or use Ollama for a simpler interface. Create a `Modelfile`:
+
+```
+FROM ./model/sarvam-30b-q4_k_m.gguf
+```
+
+Then create and run the model:
+
+```bash
+ollama create sarvam-30b-q4 -f Modelfile
+ollama run sarvam-30b-q4
+```
+
+For GPU inference, load the GPTQ version using Transformers with AutoGPTQ:
+
+```bash
+pip install transformers auto-gptq accelerate
+```
+
+```python
+from transformers import AutoModelForCausalLM, AutoTokenizer
+
+model = AutoModelForCausalLM.from_pretrained(
+    "daksh-neo/sarvam-30b-quantized",
+    device_map="auto"
+)
+tokenizer = AutoTokenizer.from_pretrained("daksh-neo/sarvam-30b-quantized")
+```
+
+The Q4_K_M GGUF fits entirely on a 24 GB GPU (RTX 3090, RTX 4090, A5000) and achieves 15 to 25 tokens per second. On a machine with an 8 GB laptop GPU and 32 GB RAM, llama.cpp will offload layers automatically to run in hybrid mode at 3 to 6 tokens per second.
+
 NEO built a quantized Sarvam 30B so that serious Indian language model capabilities are deployable beyond datacenter infrastructure, bringing multilingual AI accessibility to the hardware that most of the world actually has. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---

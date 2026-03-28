@@ -91,6 +91,40 @@ Structured output support is increasingly important as LLMs get integrated into 
 
 ---
 
+## How to Build This
+
+Clone the repo and install dependencies:
+
+```bash
+git clone https://github.com/dakshjain-1616/Multi-Query-Batch-Inference-Optimization
+cd Multi-Query-Batch-Inference-Optimization
+pip install -r requirements.txt
+```
+
+You need Python 3.8 or later, at least 16GB RAM, and 4 or more CPU cores. The server downloads Mistral-7B weights on first start (approximately 4GB for the 4-bit quantized version). Start the inference server:
+
+```bash
+python server.py
+```
+
+The server comes up on `localhost:8080` and begins accepting requests. Send a generation request with priority level specified:
+
+```bash
+curl -X POST http://localhost:8080/generate \
+  -H "Content-Type: application/json" \
+  -d '{"prompt": "Explain continuous batching in one paragraph", "priority": "interactive"}'
+```
+
+Interactive requests target under 500ms median latency. Batch requests use `"priority": "batch"` and are scheduled in background slots. To request structured JSON output with a schema:
+
+```bash
+curl -X POST http://localhost:8080/generate/json \
+  -H "Content-Type: application/json" \
+  -d '{"prompt": "Extract name and date from: John Smith, March 5 2024", "schema": {"name": "string", "date": "string"}}'
+```
+
+The `/metrics` endpoint returns current throughput, KV cache utilization, and queue depth. Pre-load the model before opening traffic in production by calling the `/warmup` endpoint once the server starts.
+
 NEO built a Mistral-7B inference server where continuous batching, priority scheduling, and block-based KV cache management together deliver a 15.6x throughput improvement over sequential processing on commodity CPU hardware. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---

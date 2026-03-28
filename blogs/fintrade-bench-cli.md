@@ -63,6 +63,43 @@ Every FinTradeBench run is specified by a YAML config file and executed with a s
 
 The combination of config-as-code and deterministic execution means every result is reproducible. Share the config file and the data source specification, and anyone can reproduce the exact same backtest numbers. This matters for reporting results honestly and for debugging when metrics change unexpectedly after a strategy update.
 
+## How to Build This
+
+Clone and install dependencies:
+
+```bash
+git clone https://github.com/dakshjain-1616/FinTradeBench-CLI
+cd FinTradeBench-CLI
+pip install -r requirements.txt
+```
+
+Add your OpenRouter API key to a `.env` file:
+
+```bash
+cp .env.example .env
+# Edit .env and set OPENROUTER_API_KEY
+```
+
+Run a full benchmark against a specific model:
+
+```bash
+python benchmark.py --model openai/gpt-4o
+```
+
+To try the tool without spending API credits:
+
+```bash
+python benchmark.py --model openai/gpt-4o --dry-run
+```
+
+To benchmark two models side by side:
+
+```bash
+python benchmark.py --compare openai/gpt-4o deepseek/deepseek-chat
+```
+
+The terminal shows a live progress bar as each of the 65 financial questions is answered, followed by a category breakdown table and per-question results. After the run, a JSON report and an HTML report with animated bar charts are saved automatically. A persistent leaderboard accumulates results across runs, so you can compare model performance over time with `python benchmark.py --leaderboard`.
+
 NEO built FinTradeBench CLI so that evaluating AI trading strategies is as disciplined as evaluating any other machine learning system — data partitioning, cost modeling, risk metrics, and baseline comparison all enforced by the tool. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---

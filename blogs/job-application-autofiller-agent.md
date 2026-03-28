@@ -71,6 +71,38 @@ Second, the review checkpoints in the form automation aren't a courtesy feature.
 
 AutoCareer works best as a starting point. The scoring logic is extensible, the scraper can target new boards, and the RAG pipeline is general enough to handle different document types.
 
+## How to Build This
+
+The recommended way to run AutoCareer is with Docker Compose, which starts both the FastAPI backend and the React frontend together:
+
+```bash
+git clone https://github.com/Dakshjain1604/Job-Application-AutoFiller-Agent
+cd Job-Application-AutoFiller-Agent
+docker-compose up --build
+```
+
+The frontend is at `http://localhost:3000` and the API docs are at `http://localhost:8000/docs`.
+
+For manual setup without Docker:
+
+```bash
+cd backend
+python3 -m venv ../venv && source ../venv/bin/activate
+pip install -r requirements.txt
+playwright install chromium
+cp .env.example .env
+python main.py
+```
+
+In a separate terminal:
+
+```bash
+cd frontend
+npm install && npm start
+```
+
+An OpenAI API key in `backend/.env` enables GPT-4 fit scoring and RAG cover letter generation. Without it, the system falls back to keyword-based scoring automatically. Upload your resume PDF through the UI, run a job search with your target keywords, review the fit scores, and generate a cover letter for any listing. Before submitting, a 10-second review gate shows you exactly what will be sent. Set `DRY_RUN=true` in your environment to walk through the complete pipeline including form filling without actually submitting anything.
+
 NEO built an end-to-end job application agent where RAG-powered cover letter generation, semantic fit scoring, and form automation close the full loop from discovery to submission. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---

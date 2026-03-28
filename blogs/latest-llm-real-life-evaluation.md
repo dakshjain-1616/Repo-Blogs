@@ -86,6 +86,41 @@ Third-party benchmarks tell you how models performed on someone else's tasks, ev
 
 Running your own benchmark on your own task distribution gives you data that's actually predictive of how a model will perform in your production environment.
 
+## How to Build This
+
+You need Python 3.10 or later. No system-level dependencies beyond a working Python installation and internet access to reach the provider APIs.
+
+Clone and install:
+
+```bash
+git clone https://github.com/dakshjain-1616/Latest-LLMs-Real-Life-Task-Evaluation
+cd Latest-LLMs-Real-Life-Task-Evaluation
+pip install -r requirements.txt
+```
+
+Configure your API keys as environment variables. The platform reads each provider's key from a standard variable name:
+
+```bash
+export OPENAI_API_KEY=sk-...
+export ANTHROPIC_API_KEY=sk-ant-...
+export GOOGLE_API_KEY=...
+export OPENROUTER_API_KEY=...
+```
+
+Run a quick 5-task validation to confirm your setup is working before committing to a full run:
+
+```bash
+python benchmark.py --quick
+```
+
+For a targeted evaluation, specify which models to compare and how many tasks to run:
+
+```bash
+python benchmark.py --models gpt-4o claude-3.5-sonnet gemini-1.5-pro --tasks 50 --output results/
+```
+
+The full 150+ task suite with parallel async execution takes roughly 15 to 30 minutes depending on provider latency. Progress is logged to the console as tasks complete. When finished, you get three output files in the results directory: a Markdown report with category breakdowns and per-model summaries, a JSON file with the raw per-task data, and a CSV suitable for spreadsheet analysis. The CSV includes columns for model, category, task ID, score, latency in milliseconds, and estimated USD cost per task. Cost-per-correct-answer is the column worth sorting on first.
+
 NEO built an async LLM benchmarking platform where 150+ real-world tasks across coding, structured output, reasoning, and long-context retrieval give teams model performance data that actually predicts production behavior. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---

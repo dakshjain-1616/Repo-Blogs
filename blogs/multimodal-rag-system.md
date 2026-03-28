@@ -95,6 +95,43 @@ Video is the other obvious modality to add. The CLIP architecture extends to vid
 
 ---
 
+## How to Build This
+
+Clone the repo and install dependencies:
+
+```bash
+git clone https://github.com/dakshjain-1616/Multi-Model-RAG
+cd Multi-Model-RAG
+pip install -r requirements.txt
+```
+
+The system requires Python 3.9 or later. Tesseract OCR must be installed separately for image text extraction:
+
+```bash
+# Ubuntu/Debian
+sudo apt-get install tesseract-ocr
+
+# macOS
+brew install tesseract
+```
+
+CLIP model weights download automatically on first use. Start the Streamlit web interface:
+
+```bash
+streamlit run app.py
+```
+
+Open `localhost:8501` in a browser. Use the file upload panel to ingest documents into the knowledge base: drag in PDFs, images (PNG, JPG, TIFF), and spreadsheets (CSV, XLSX). Ingestion runs in the background. Once complete, submit a query in the chat panel.
+
+To use the CLI for batch ingestion:
+
+```bash
+python ingest.py --path ./docs/ --types pdf,png,csv
+python query.py --query "quarterly revenue by region"
+```
+
+Query results include the retrieved content, the modality it came from (text chunk, image, or table), and the similarity score. Cross-modal retrieval is automatic: a text query will return relevant images and tables alongside text chunks, ranked by embedding distance in the shared CLIP space.
+
 NEO built a multimodal RAG system where CLIP embeddings unify text, images, and tables into a single retrievable space—delivering 0.030-second latency and 60%+ cross-modal accuracy on queries that text-only systems simply cannot answer. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---

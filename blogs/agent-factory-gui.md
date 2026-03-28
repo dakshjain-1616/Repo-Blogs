@@ -57,6 +57,40 @@ Agent Factory GUI covers the standard taxonomy of agent architectures. Single-ag
 
 Hierarchical multi-agent setups are supported through sub-agent nesting. An agent node can itself contain a full pipeline, letting you build supervisor-worker hierarchies where a high-level orchestrator delegates to specialized sub-agents for retrieval, code generation, or domain-specific reasoning. The canvas handles the nesting visually with collapsible group nodes.
 
+## How to Build This
+
+You need Python 3.10+, Node.js 18+, and npm. Clone the repo, then configure your API keys:
+
+```bash
+git clone https://github.com/dakshjain-1616/Agent-Factory-GUI.git
+cd Agent-Factory-GUI
+cp backend/.env.example backend/.env
+```
+
+Edit `backend/.env` and add your credentials:
+
+```
+ANTHROPIC_API_KEY=sk-ant-...
+OPENAI_API_KEY=sk-...
+```
+
+Start the application with the included script, which sets up the Python virtual environment, installs backend dependencies, builds the React frontend, and starts the FastAPI server:
+
+```bash
+bash start.sh
+```
+
+Open `http://localhost:8000` in your browser. The canvas loads with the component palette on the left. Drag agent, tool, memory, and router nodes onto the canvas, connect them by dragging between ports, and click any node to configure its parameters inline. Hit the Run button to execute the workflow and watch the trace panel update in real time.
+
+For development with hot reload, run the backend and frontend separately:
+
+```bash
+cd backend && source ../venv/bin/activate && uvicorn main:app --reload --port 8000
+cd frontend && npm start
+```
+
+The frontend dev server runs on `http://localhost:3000` and proxies API calls to port 8000 automatically.
+
 NEO built Agent Factory GUI to close the gap between architectural ideas and working agent pipelines — draft on the canvas, test interactively, export to production code. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---

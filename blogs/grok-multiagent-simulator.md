@@ -71,6 +71,38 @@ The simulator is designed to support system sizes from 2 agents to 20 agents. Be
 
 The scaling behavior itself is a research question the simulator helps answer. Does adding more researcher agents improve output quality linearly, sublinearly, or not at all beyond a certain count? Does a larger critic panel improve feedback quality or produce inconsistent, harder-to-reconcile critiques? The simulator makes these questions answerable by running the same scenario at different agent counts and comparing output quality and cost.
 
+## How to Build This
+
+Clone and install:
+
+```bash
+git clone https://github.com/dakshjain-1616/grok-multiagent-simulator
+cd grok-multiagent-simulator
+pip install -r requirements.txt
+```
+
+Create a `.env` file with your OpenRouter API key and the Grok model endpoint:
+
+```bash
+OPENROUTER_API_KEY=your_key_here
+OPENROUTER_BASE_URL=https://openrouter.ai/api/v1
+MODEL_NAME=x-ai/grok-4.20-multi-agent-beta
+```
+
+Run with the default task (financial multi-agent analysis):
+
+```bash
+python sim.py
+```
+
+Run with a custom task:
+
+```bash
+python sim.py --task "Analyze the risks of deploying LLMs in medical diagnosis"
+```
+
+The three agents run sequentially: Researcher gathers information, Analyst identifies patterns, Synthesizer produces the final answer. A live Rich dashboard updates in the terminal as each agent completes, showing word count, time elapsed, and words per second per agent alongside three real-time charts. After all three agents finish, the full output and metrics are printed in a final summary panel and saved to `run_log.json`. The log captures each agent's complete output, timing data, and the final synthesized response for review or downstream processing.
+
 NEO built the Grok Multiagent Simulator to give engineers a safe environment to discover how their multi-agent system actually behaves before it touches production traffic. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---

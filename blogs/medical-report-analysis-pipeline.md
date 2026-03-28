@@ -85,6 +85,40 @@ The bottleneck now is compliance and validation infrastructure. Systems that get
 
 ---
 
+## How to Build This
+
+You need Python 3.10 or later and Docker. The recommended path is Docker, which bundles the FastAPI HTTPS server, all model dependencies, and the compliance layer into a single startup command. GPU acceleration is optional; the pipeline runs on CPU but slower.
+
+Clone and install:
+
+```bash
+git clone https://github.com/dakshjain-1616/Medical-Report-Analysis-Pipeline
+cd Medical-Report-Analysis-Pipeline
+```
+
+The single-command setup script handles environment initialization, server startup, and compliance verification checks:
+
+```bash
+./run_pipeline.sh
+```
+
+If you prefer manual setup outside Docker:
+
+```bash
+pip install -r requirements.txt
+python server.py --host 0.0.0.0 --port 8443 --tls
+```
+
+Once the server is running, submit a DICOM file for analysis via the REST API:
+
+```bash
+curl -X POST https://localhost:8443/analyze \
+  -H "Authorization: Bearer <your-token>" \
+  -F "dicom=@study.dcm"
+```
+
+The pipeline processes the file through ingestion and de-identification, MedSAM segmentation, RadBERT report generation, and multimodal risk assessment. Processing time for a typical study runs 33 to 97 seconds depending on study size and whether GPU acceleration is available. The response is a JSON object containing the segmentation mask paths, the structured radiology report text in standard findings-and-impression format, and the risk assessment output. Every API call is written to the tamper-proof audit log at `logs/audit.log`, which records user, action, timestamp, and study ID without including any PHI.
+
 NEO built a HIPAA-compliant medical imaging pipeline where MedSAM segmentation, RadBERT report generation, end-to-end encryption, and tamper-proof audit logging are architectural requirements, not optional add-ons. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---

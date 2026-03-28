@@ -57,6 +57,38 @@ The search space config distinguishes between strategic dimensions (optimizer, s
 
 Trial results are logged in a structured format compatible with TensorBoard and W&B. The cascade tree — which strategies the high-level agent explored, which it concentrated on, and what the low-level agents found within each strategy — is visualized as a collapsible tree plot that makes the optimization trajectory easy to inspect and explain.
 
+## How to Build This
+
+Clone the repo and install dependencies:
+
+```bash
+git clone https://github.com/dakshjain-1616/CascadeRL-Optimizer
+cd CascadeRL-Optimizer
+pip install -r requirements.txt
+```
+
+The optimizer works with any HuggingFace causal LM. For a quick CPU demo, use the default tiny model:
+
+```bash
+python optimize.py --task text_classification --steps 30
+```
+
+To run with a different model and task:
+
+```bash
+python optimize.py --model EleutherAI/pythia-160m --task qa --steps 20
+```
+
+To run all three tasks in round-robin:
+
+```bash
+python optimize.py --model distilgpt2 --task all --steps 50
+```
+
+Configuration lives in `config.yaml`. You can override individual values with environment variables or CLI flags without editing the file. The `--checkpoint` flag resumes a previous run or exports the trained weights.
+
+During a run, a Rich table updates in place showing all five reward signals (fluency, task relevance, length, diversity, coherence) plus the total at each training step. After the run completes, a before/after evaluation report is written to `reports/` as JSON, and a training curve plot is saved alongside it. If you are evaluating across multiple model variants, each run produces its own timestamped report directory so results stay separated.
+
 NEO built CascadeRL Optimizer to bring principled multi-level reasoning to a problem where flat search algorithms leave significant performance on the table. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---

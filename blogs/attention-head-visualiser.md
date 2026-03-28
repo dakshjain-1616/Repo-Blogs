@@ -73,6 +73,47 @@ The six-module codebase covers model loading, behavior scoring, visualization ge
 
 Most people who use transformer models treat the attention mechanism as a black box. That's fine for many applications. But when you need to diagnose unexpected behavior, improve performance on specific task types, or explain model decisions to stakeholders, knowing what the individual heads are doing is genuinely useful.
 
+## How to Build This
+
+Python 3.8+ is required, along with PyTorch 2.2+ and transformers 4.36+. Clone the repo and install:
+
+```bash
+git clone https://github.com/dakshjain-1616/Attention-Head-Visualiser.git
+cd Attention-Head-Visualiser
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
+
+Run the probe on a piece of text and generate an HTML report:
+
+```bash
+python attn_probe.py \
+  --text "The Eiffel Tower is in Paris" \
+  --model gpt2-medium \
+  --output report.html
+```
+
+The model downloads from HuggingFace on first run (about 1.5GB for gpt2-medium). Scoring takes under 10 seconds on GPU and a bit longer on CPU. Open `report.html` in any browser.
+
+To detect induction heads specifically:
+
+```bash
+python attn_probe.py --text "a b c a b" --behavior induction
+```
+
+To analyze retrieval heads for a named entity, pass the `--entity` flag:
+
+```bash
+python attn_probe.py \
+  --text "Romeo and Juliet was written by Shakespeare" \
+  --model gpt2-medium \
+  --behavior retrieval \
+  --entity "Romeo and Juliet"
+```
+
+The report contains heatmaps for every head, head passport cards with behavior classification and confidence scores, and layer-level summary statistics. Use `--top_k 5` to limit output to the five heads with the highest confidence score for each behavior type.
+
 NEO built an attention head visualiser where every GPT-2 head is automatically classified into copying, induction, previous-token, or retrieval behavior—making transformer internals inspectable, not opaque. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---

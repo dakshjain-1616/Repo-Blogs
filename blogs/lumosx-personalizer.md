@@ -63,6 +63,46 @@ The final stage composites audio and video, burns in captions (generated from th
 
 At scale, the pipeline supports batch processing with a queue system. A deployment generating 1,000 personalized videos processes them at roughly 80 videos per hour on a single GPU machine, making large-scale rollouts feasible without exotic infrastructure.
 
+## How to Build This
+
+You need Python 3.10 or later and FFmpeg installed on your system. FFmpeg handles the final video rendering step and must be in your PATH. On Linux, install it with `apt install ffmpeg`; on macOS, `brew install ffmpeg`.
+
+Clone and install:
+
+```bash
+git clone https://github.com/dakshjain-1616/lumosx-personalizer
+cd lumosx-personalizer
+pip install -r requirements.txt
+```
+
+Configure your API keys for the LLM (script generation) and TTS provider:
+
+```bash
+export OPENAI_API_KEY=sk-...
+export TTS_API_KEY=...
+```
+
+Prepare a user profile as a JSON file. For example, create `profiles/sample.json`:
+
+```json
+{
+  "name": "Sarah Chen",
+  "role": "Senior Product Manager",
+  "achievements": ["Launched payments platform used by 2M users", "Grew team from 4 to 18 engineers"],
+  "industry": "fintech",
+  "tone": "professional",
+  "target_audience": "recruiting teams and potential collaborators"
+}
+```
+
+Run the pipeline:
+
+```bash
+python generate.py --profile profiles/sample.json --output videos/
+```
+
+The pipeline runs all five stages in sequence: script generation and variant scoring (30 to 60 seconds), TTS narration with prosody adjustment (15 to 30 seconds), music selection and ducking (5 to 10 seconds), visual slide assembly (10 to 20 seconds), and FFmpeg rendering to 1080p H.264 MP4 (about 45 seconds). Total end-to-end time is roughly two to three minutes per video. The finished file appears in the output directory. For batch generation, pass a directory of profile JSON files to `--profile` and the pipeline queues them automatically.
+
 NEO built a fully automated video personalization pipeline that delivers professional-quality intro videos at the speed and cost of software rather than production. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---

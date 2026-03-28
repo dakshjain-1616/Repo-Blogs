@@ -73,6 +73,40 @@ NeuroLens doesn't solve interpretability. But it makes one important part of it,
 
 NEO built this because the gap between ML engineering and ML understanding needs to close. Tools that make internal model analysis accessible are part of how that happens.
 
+## How to Build This
+
+Clone the repo and install dependencies:
+
+```bash
+git clone https://github.com/dakshjain-1616/Neuron-Activation-Mapper
+cd Neuron-Activation-Mapper
+pip install -r requirements.txt
+```
+
+Model weights for GPT-2, BERT, and RoBERTa download automatically from HuggingFace on first use. ResNet weights are pulled from `torchvision`. No separate download step is needed.
+
+Run a concept probe against GPT-2 using one of the built-in concept sets:
+
+```bash
+python neuro_lens.py --model gpt2 --concept royalty --layers 6 7 8
+```
+
+This scores every neuron in layers 6, 7, and 8 for selectivity, consistency, and importance relative to the "royalty" concept. To run causal ablation on the top-scoring candidates:
+
+```bash
+python neuro_lens.py --model gpt2 --concept royalty --layers 6 7 8 --ablate --top-k 10
+```
+
+Ablation zeros out each candidate neuron in turn and measures the resulting drop in model confidence on concept-related tasks. Results are written to `reports/` as a self-contained HTML file. Open it in any browser to explore the heatmaps, scatter plots, and Sankey diagrams.
+
+For a custom concept, create a probe file with positive and negative examples:
+
+```bash
+python neuro_lens.py --model bert-base-uncased --probe probes/my_concept.json --report my_analysis.html
+```
+
+The probe file format is a JSON object with `positive` and `negative` example lists. The report generates in under two minutes for most layer and model combinations.
+
 NEO built a neuron activation mapper where selectivity scoring and causal ablation turn the question "which neurons encode this concept?" from a manual research exercise into an automated, reproducible analysis. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---

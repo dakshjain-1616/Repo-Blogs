@@ -90,6 +90,31 @@ It's less appropriate when you have abundant historical data, domain-specific pa
 
 ## ML Systems That Work End-to-End
 
+## How to Build This
+
+You need Python 3.10+, Node.js 18+, and about 2GB of disk space for the TimesFM model weights. Clone the repo, then set up the backend first:
+
+```bash
+git clone https://github.com/dakshjain-1616/AI-Powered-Time-Series-Forecasting.git
+cd AI-Powered-Time-Series-Forecasting/backend
+python -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+python main.py
+```
+
+On the first run the backend downloads the TimesFM-2.5-200M weights from HuggingFace and caches them locally. The API server starts on `http://localhost:8000`. In a second terminal, start the frontend:
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Open `http://localhost:5173`. Type a query like `"Apple stock price forecast for the next 30 days"` and submit. The system fetches live AAPL data from Yahoo Finance, runs inference through TimesFM, and renders the chart with historical prices, the projected forecast line, and shaded confidence bands. The metrics panel shows trend direction and a plain-language summary.
+
+You can configure the backend with a `.env` file in the `backend/` directory. Setting `FORCE_CPU=true` overrides GPU detection if needed.
+
 NEO built a natural language time series forecasting platform where zero-shot predictions from Google's TimesFM are accessible to anyone, not just data scientists. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---

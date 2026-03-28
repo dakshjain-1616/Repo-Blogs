@@ -69,6 +69,53 @@ In production deployments on applications with repetitive query patterns — cus
 
 The embedding and search overhead adds approximately 5-15ms to cache-miss requests (the embedding computation plus the ANN search). Cache hits are served in under 5ms total, significantly faster than an LLM API round-trip. For many applications, cacheCow improves latency on average by reducing the fraction of requests that wait for an LLM response.
 
+## How to Build This
+
+Install from PyPI:
+
+```bash
+pip install cachecow
+```
+
+Or clone and install in editable mode:
+
+```bash
+git clone https://github.com/dakshjain-1616/cachecow.git
+cd cachecow
+pip install -e .
+```
+
+Create a `.env` file to configure your backend and API keys:
+
+```
+DEEPSEEK_API_KEY=your_key
+CACHECOW_BACKEND=memory
+CACHECOW_DEFAULT_TTL=3600
+```
+
+The `DEEPSEEK_API_KEY` is optional — cacheCow falls back to heuristic similarity matching if no key is set. The default backend is in-memory, which requires no additional infrastructure.
+
+Wrap any function with the `@cachecow` decorator:
+
+```python
+from cachecow import cachecow
+
+@cachecow
+def call_llm(prompt):
+    # your existing API call here
+    return response
+```
+
+Subsequent calls with semantically equivalent prompts return the cached result. The wrapper also follows the OpenAI and Anthropic client interfaces directly, so wrapping an existing application is a two-line change: import cacheCow's client wrapper instead of the native SDK and pass your cache configuration.
+
+Run the interactive demo to see hit/miss behavior without an API key:
+
+```bash
+cachecow demo
+```
+
+To switch to Redis for distributed or multi-process deployments, set `CACHECOW_BACKEND=redis` and `REDIS_URL=redis://localhost:6379/0`. Cache metrics export in Prometheus format for Grafana dashboards.
+
 NEO built cacheCow to make semantic caching a drop-in feature for any LLM-powered application — embedding-based similarity matching, configurable thresholds, Redis or in-memory backends, and built-in cost observability. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---

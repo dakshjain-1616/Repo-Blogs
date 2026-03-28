@@ -75,6 +75,32 @@ Performance benchmarking across hardware configurations was part of the process 
 
 ## Build Voice AI That Actually Responds
 
+## How to Build This
+
+You need Python 3.12+ and an OpenRouter API key. Clone and install:
+
+```bash
+git clone https://github.com/abhishekgandhi-neo/Low-Latency-CPU-Based-Voice-Assistant
+cd Low-Latency-CPU-Based-Voice-Assistant
+python -m venv venv
+venv\Scripts\activate      # Windows
+pip install -r requirements.txt
+```
+
+Create a `.env` file with your OpenRouter key:
+
+```bash
+OPENROUTER_API_KEY=your_key_here
+```
+
+Run the assistant:
+
+```bash
+python voice_assistant_true_streaming.py
+```
+
+Speak after the prompt appears. The system streams tokens from the LLM through the chunking layer, triggers TTS synthesis at comma and semicolon boundaries, and begins playing audio while the rest of the response is still generating. On a machine with 32 or more CPU cores, ONNX parallelism settings are tuned to saturate the available threads during the hot synthesis loop. First audio should arrive within 1.25 seconds of finishing your question. The terminal shows each chunk as it is synthesized and queued, so you can see the pipeline stages working in parallel.
+
 NEO built a CPU-based voice assistant where sub-sentence streaming and a multi-threaded pipeline deliver 1.25-second time-to-first-audio without any GPU hardware. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---

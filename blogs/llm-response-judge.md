@@ -71,6 +71,41 @@ Content moderation and compliance review are adjacent uses. Configure the rubric
 
 ---
 
+## How to Build This
+
+You need Python 3.10 or later for the backend and Node.js 18+ for the frontend. Docker is the recommended path because it handles both together in one command.
+
+Clone and install:
+
+```bash
+git clone https://github.com/Dakshjain1604/LLM-response-Judge
+cd LLM-response-Judge
+```
+
+With Docker:
+
+```bash
+docker-compose up --build
+```
+
+Without Docker, start each service manually:
+
+```bash
+# Backend
+cd backend
+pip install -r requirements.txt
+uvicorn main:app --host 0.0.0.0 --port 8000
+
+# Frontend (separate terminal)
+cd frontend
+npm install
+npm start
+```
+
+Open `http://localhost:3000` in your browser. The interface starts in demo mode with mock scores, so you can explore the report format before adding API keys. To enable real evaluation, go to the settings panel and enter your API key for whichever provider you want to use as the judge (Anthropic, OpenAI, Google, or OpenRouter). For on-premises use with no data leaving your environment, point it at a local Ollama instance instead.
+
+Prepare your data as a CSV with `question` and `response` columns, then upload it through the interface. Set your rubric criteria and weights, pick a judge model, and click Run. A batch of 100 responses processes in roughly three minutes. The output report shows an aggregate score, a per-criterion breakdown for every response, and written justifications explaining each score. Responses flagged as low-scoring can be sent through the improvement generator directly from the report view.
+
 NEO built an LLM response judge where customizable weighted rubrics and per-criterion justifications make automated quality evaluation actionable, not just a score. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---

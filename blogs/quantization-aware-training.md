@@ -93,6 +93,41 @@ NEO recorded a full walkthrough of the quantization pipeline, showing the traini
 
 ---
 
+## How to Build This
+
+Clone the repo and install dependencies:
+
+```bash
+git clone https://github.com/dakshjain-1616/Quantisation-Awareness-training
+cd Quantisation-Awareness-training
+pip install -r requirements.txt
+```
+
+Python 3.9 or later and TensorFlow 2.x are required. The pipeline downloads CIFAR-10 automatically via `tf.keras.datasets` on first run. No separate dataset download is needed.
+
+Run the full pipeline: fine-tune MobileNetV2 on CIFAR-10, calibrate scaling factors, and export the quantized TFLite model:
+
+```bash
+python train_and_quantize.py
+```
+
+The script fine-tunes for 8 epochs, runs calibration against 200 representative samples, and converts to INT8 TFLite format. The entire process takes 15 to 40 minutes depending on whether a GPU is available. A GPU is not required; the pipeline runs on CPU.
+
+The output is two files: `model.h5` (the full-precision model at 23.5MB) and `model_quantized.tflite` (the compressed model at 2.6MB). Evaluate both on the CIFAR-10 test set:
+
+```bash
+python evaluate.py --model model.h5
+python evaluate.py --model model_quantized.tflite
+```
+
+The evaluation script prints test accuracy for each model so the 3.8 percentage point gap is directly visible. To run inference with the TFLite model on a single image:
+
+```bash
+python infer.py --model model_quantized.tflite --image sample.jpg
+```
+
+The `.tflite` file is ready to bundle into an Android or iOS app via the TensorFlow Lite native APIs, or to run on Raspberry Pi using the Python TFLite runtime.
+
 NEO built a quantization-aware training pipeline where MobileNetV2 is compressed 9x for edge deployment—from 23.5MB to 2.6MB—with only a 3.8% accuracy drop, ready to run on Android, iOS, and Raspberry Pi. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---

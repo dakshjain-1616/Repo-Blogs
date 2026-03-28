@@ -74,6 +74,48 @@ For most production deployments, starting with conservative settings and adjusti
 
 The dual-model agreement requirement is the most effective false-positive filter: requiring both Isolation Forest and LSTM to flag an event before generating a voice alert eliminates the majority of false positives from either model alone. Single-model alerts can still be surfaced as lower-priority log entries for post-hoc review without generating voice interruptions.
 
+## How to Build This
+
+Clone the repo and install dependencies:
+
+```bash
+git clone https://github.com/dakshjain-1616/-System-Anomaly-Detection-with-Voice-Alerts
+cd -- -System-Anomaly-Detection-with-Voice-Alerts
+pip install -r requirements.txt
+```
+
+For voice alerts on Linux, install the pyttsx3 system dependency:
+
+```bash
+sudo apt-get install espeak
+```
+
+On macOS, pyttsx3 uses the built-in `say` command and requires no additional installation.
+
+Start the monitoring agent with a baseline learning period:
+
+```bash
+python monitor.py --baseline-hours 24
+```
+
+During the baseline period, the agent collects metric data without generating alerts and trains both the Isolation Forest and LSTM models on your system's normal behavior. After training completes, anomaly detection begins automatically.
+
+To skip the baseline and start with a pre-trained model:
+
+```bash
+python monitor.py --load-model ./models/baseline.pkl
+```
+
+To configure sensitivity, edit `config.yaml` in the project root. The key parameters are `isolation_forest_contamination` (default 0.05) and `lstm_error_threshold` (default 2.5 standard deviations). Lower contamination values produce fewer but higher-confidence alerts.
+
+The monitoring agent logs all anomaly scores to `./logs/anomaly_scores.csv` continuously. Scores that cross the alert threshold trigger a voice notification and a log entry in `./logs/alerts.csv`. The score log lets you review the distribution and tune thresholds without relying only on the alerts you heard.
+
+To run without voice alerts in log-only mode:
+
+```bash
+python monitor.py --no-voice --log-only
+```
+
 NEO built a system monitoring tool where anomaly detection adapts to your workload and alerts are delivered in the format that fits how engineers actually work, not just how dashboards are designed. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---

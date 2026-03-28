@@ -75,6 +75,44 @@ There's a broader application. Any workflow that touches multiple enterprise sys
 
 NEO built this to run in real environments, not demo environments. The error handling, the dry-run mode, the audit logging, the masked credentials, the parallel execution, the config validation: these aren't afterthoughts. They're what makes the difference between a script and a tool your team can rely on.
 
+## How to Build This
+
+Clone the repo and install dependencies:
+
+```bash
+git clone https://github.com/dakshjain-1616/New-Hire-OnBoarding-Tool
+cd New-Hire-OnBoarding-Tool
+pip install -r requirements.txt
+```
+
+You need API credentials for each of the five services: G Suite (service account JSON), a Jira API token, a Slack bot token, and OAuth credentials for Google Calendar and Gmail. Run the config generator to walk through initial setup:
+
+```bash
+python onboard.py --generate-config
+```
+
+This produces `company_config.json` with your org structure, team leads, Slack channels, Jira project keys, and email templates. It also validates each credential before saving.
+
+Prepare an employee JSON file with the new hire's details:
+
+```json
+{"name": "Jane Smith", "email": "jane@personal.com", "role": "engineer", "team": "platform", "start_date": "2026-04-01"}
+```
+
+Run a dry run first to verify everything looks correct without touching any real APIs:
+
+```bash
+python onboard.py --employee employee.json --dry-run
+```
+
+The dry run prints every step that would execute, validates the config, and reports any missing credentials or config fields. Once satisfied, run the actual provisioning:
+
+```bash
+python onboard.py --employee employee.json
+```
+
+The tool provisions all five systems in parallel where possible and writes a structured audit log to `logs/`. Provisioning for a single hire completes in under two minutes. Check the audit log to confirm each phase completed or to diagnose any partial failures.
+
 NEO built a configuration-driven new hire onboarding engine where parallel provisioning across G Suite, Jira, Slack, Calendar, and Gmail completes in under 2 minutes with full audit logging and zero missed steps. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---

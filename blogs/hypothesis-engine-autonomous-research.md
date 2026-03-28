@@ -59,6 +59,34 @@ HypothesisEngine is most useful at the beginning of a research project, when the
 
 The tool does not replace domain expertise. A senior researcher reading the output will immediately spot when the agent has over-weighted a poorly-designed study or missed a critical methodological issue. The value is not in replacing that judgment but in doing the mechanical work of retrieval, reading, and initial synthesis fast enough that the researcher can focus their judgment on the interesting parts.
 
+## How to Build This
+
+HypothesisEngine uses only the Python standard library, so there are no additional package installs. Clone and set up a virtual environment:
+
+```bash
+git clone https://github.com/dakshjain-1616/HypothesisEngine---Autonomous-Research-Framework
+cd HypothesisEngine---Autonomous-Research-Framework
+python3 -m venv venv
+source venv/bin/activate
+```
+
+Run in interactive mode and enter your research question when prompted:
+
+```bash
+python3 src/hypothesis_engine.py
+```
+
+Or pass a hypothesis directly on the command line:
+
+```bash
+python3 src/hypothesis_engine.py \
+  --hypothesis "Regular exercise improves cognitive function in older adults" \
+  --output reports/exercise_cognition.md \
+  --questions 5
+```
+
+The engine decomposes the question into sub-queries, fans them out to arxiv, PubMed, and Semantic Scholar in parallel, ranks results by semantic similarity and citation recency, and runs a chain-of-thought synthesis pass over the retrieved papers. The terminal shows progress through each stage. When the run completes, a Markdown research brief is written to the output path with sections covering candidate hypotheses ranked by confidence, supporting and contradicting evidence for each, identified research gaps, and suggested experimental designs. A full timestamped log is saved alongside the report for reproducibility.
+
 NEO built HypothesisEngine to give researchers a collaborator that never gets tired of reading papers. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---

@@ -95,6 +95,49 @@ On factual recency, the gap between models with and without web search is large.
 
 ## Build Search-Aware AI Systems
 
+## How to Build This
+
+Clone the repo and install dependencies:
+
+```bash
+git clone https://github.com/dakshjain-1616/SearchModel-Comparison
+cd SearchModel-Comparison
+pip install -r requirements.txt
+```
+
+Create a `.env` file with the API keys for the providers you want to benchmark:
+
+```bash
+OPENAI_API_KEY=sk-...
+GOOGLE_API_KEY=AIza...
+ANTHROPIC_API_KEY=sk-ant-...
+```
+
+Edit `config.json` to specify the two models to compare:
+
+```json
+{
+  "model_a": { "provider": "openai", "model_id": "gpt-4o" },
+  "model_b": { "provider": "google", "model_id": "gemini-2.0-flash" }
+}
+```
+
+Run a single query comparison:
+
+```bash
+python compare.py --query "What is the current Fed funds rate?"
+```
+
+Run a full batch benchmark across all six task categories:
+
+```bash
+python compare.py --batch ./tasks/standard_benchmark.json --output ./results/run_001.json
+```
+
+The `tasks/` directory includes a standard benchmark task file. You can write your own by following the JSON schema documented there.
+
+Results are written to the output path as structured JSON and as a set of charts in `./results/charts/`: bar charts for overall weighted scores, a win/loss distribution chart, per-category bar charts, and a radar diagram showing rubric criterion performance across all seven dimensions. Open `./results/charts/index.html` in a browser to view all charts together.
+
 NEO built a web search model benchmarking platform where a seven-criterion weighted rubric across nine API providers replaces gut-feel model selection with reproducible, task-specific evidence. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---

@@ -81,6 +81,41 @@ Benchmarking before you commit to a configuration catches these mistakes before 
 
 ## GPU Selection and Optimization
 
+## How to Build This
+
+You need Python 3.10 or later, PyTorch 2.1+, and the `transformers` library. For INT4 GPTQ benchmarking, install `auto-gptq` as well. FP8 benchmarking requires a Hopper (H100) or Ada Lovelace (RTX 40 series) GPU. BF16 and INT4 runs work on any NVIDIA card with sufficient VRAM.
+
+Clone and install:
+
+```bash
+git clone https://github.com/gauravvij/llm-hardware-benchmarking
+cd llm-hardware-benchmarking
+pip install -r requirements.txt
+# For INT4 GPTQ support:
+pip install auto-gptq
+```
+
+The benchmark is driven entirely by a JSON configuration file. Edit `config/benchmark_config.json` to specify which models and quantization formats to test, which prompts to use, and where to write results:
+
+```json
+{
+  "models": ["Qwen/Qwen2.5-7B", "Qwen/Qwen2.5-14B"],
+  "formats": ["bf16", "gptq-int4"],
+  "prompts_file": "config/prompts.json",
+  "output_dir": "results/",
+  "warmup_runs": 3,
+  "benchmark_runs": 10
+}
+```
+
+Run the suite:
+
+```bash
+python benchmark.py --config config/benchmark_config.json
+```
+
+The script loads each model in each configured format, runs warm-up iterations, then measures tokens per second, time-to-first-token, and peak VRAM usage over the benchmark runs. Progress is printed per model-format combination. When all combinations finish, results are written to JSON, CSV, and a human-readable text summary in the output directory. The text summary shows a ranked table by tokens per second for quick scanning. The CSV is ready for charting in any spreadsheet tool.
+
 NEO built a GPU benchmarking suite where tokens-per-second, latency, and memory consumption across six Qwen 3.5 variants and three quantization formats give teams the concrete data needed to choose the right configuration for their hardware. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---

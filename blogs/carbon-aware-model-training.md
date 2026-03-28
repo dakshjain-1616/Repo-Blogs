@@ -81,6 +81,46 @@ NEO put together a video walkthrough of the pipeline in action, showing the carb
 
 [![Watch on YouTube](https://img.youtube.com/vi/71Se6aNaWTM/maxresdefault.jpg)](https://youtu.be/71Se6aNaWTM)
 
+## How to Build This
+
+Python 3.8+ and PyTorch 2.0+ are required. Clone the repo and install dependencies:
+
+```bash
+git clone https://github.com/dakshjain-1616/CarbonAwareModelTraining.git
+cd CarbonAwareModelTraining
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
+
+Set the Python path so modules resolve correctly:
+
+```bash
+export PYTHONPATH="$PWD/src:$PYTHONPATH"
+```
+
+Run the baseline training without any carbon optimizations:
+
+```bash
+python src/train.py configs/baseline.yaml
+```
+
+Then run the optimized version with carbon-aware scheduling and gradient accumulation enabled:
+
+```bash
+python src/train.py configs/optimized.yaml
+```
+
+The optimized run checks the carbon intensity API before starting. If the current intensity is above the threshold configured in the YAML, the scheduler waits and polls until a cleaner window opens. Training on MNIST typically takes a few minutes. CodeCarbon monitors emissions throughout the run.
+
+After both runs complete, generate the comparison report:
+
+```bash
+python generate_comparison.py
+```
+
+Output files land in `output/`: `summary_baseline.json`, `summary_optimized.json`, `comparison_report.json`, `emissions.csv`, and detailed training logs. The comparison report shows CO2 reduction, accuracy delta, and GPU memory usage side by side. For a quick test without waiting for a carbon window, set `scheduler.enabled: false` in the config.
+
 ---
 
 NEO built a carbon-aware model training pipeline where grid carbon intensity and emissions tracking are first-class training metrics, not afterthoughts—delivering a 43% CO2 reduction without sacrificing accuracy. See what else NEO ships at [heyneo.so](https://heyneo.so/).

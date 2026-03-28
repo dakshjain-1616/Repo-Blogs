@@ -77,6 +77,39 @@ This agent is useful any time you're setting up a new Claude Desktop environment
 
 It's also a concrete example of what an agentic research pipeline looks like in practice: live data retrieval, structured reasoning, validated output generation, and clean integration with existing tooling. No magic, just a well-designed pipeline.
 
+## How to Build This
+
+You need Python 3.12 or later and Node.js 18 or later. Both are required: Python runs the AI agent and analysis engine, Node.js handles some of the MCP tooling integrations.
+
+Clone and install:
+
+```bash
+git clone https://github.com/abhishekgandhi-neo/MCP_Optimization_Suggestion_Agent_By_NEO
+cd MCP_Optimization_Suggestion_Agent_By_NEO
+pip install -r requirements.txt
+npm install
+```
+
+Get a free API key from [openrouter.ai](https://openrouter.ai) and set it:
+
+```bash
+export OPENROUTER_API_KEY=sk-or-...
+```
+
+To generate MCP server recommendations from a use case description:
+
+```bash
+python agent.py --mode suggest --task "I need MCP servers for web scraping, database queries, and file management"
+```
+
+The agent runs live web research, applies its filtering and reasoning pipeline, and produces a markdown report in 8 to 12 seconds. The report lists recommended servers by capability area, explains why each was chosen over alternatives, includes the exact JSON configuration block for each, and notes any dependencies or setup steps. To analyze and optimize an existing Claude Desktop configuration:
+
+```bash
+python agent.py --mode optimize --config ~/Library/Application\ Support/Claude/claude_desktop_config.json
+```
+
+The agent backs up your current config file, then produces a diff-style view with specific improvement suggestions, replacement recommendations for outdated tools, and configuration snippets ready to copy. All generated configurations are valid for Claude Desktop's expected directory structure and JSON format.
+
 NEO built an MCP optimization agent where live web research and structured AI reasoning replace manual GitHub searches and JSON editing, completing the full discovery-to-configuration cycle in under 12 seconds. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---

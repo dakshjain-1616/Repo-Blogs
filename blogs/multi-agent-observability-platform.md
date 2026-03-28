@@ -85,6 +85,44 @@ In production, it gives you the visibility to catch degradation before users not
 
 Teams building customer-facing AI products, internal automation workflows, or complex research pipelines have all found value here. Anywhere you're running more than one agent in a coordinated system, observability pays for itself quickly.
 
+## How to Build This
+
+Clone the repo and install dependencies:
+
+```bash
+git clone https://github.com/abhishekgandhi-neo/MultiAgent_Observability_Platform_by_NEO
+cd MultiAgent_Observability_Platform_by_NEO
+pip install -r requirements.txt
+```
+
+Set your OpenRouter API key in a `.env` file. The platform uses OpenRouter to generate natural-language workflow summaries and optimization suggestions:
+
+```bash
+OPENROUTER_API_KEY=sk-or-...
+```
+
+Start the FastAPI backend:
+
+```bash
+uvicorn main:app --host 0.0.0.0 --port 8000
+```
+
+Open `dashboard.html` directly in a browser. It connects to the backend at `localhost:8000` with no build step required.
+
+To instrument your own agents, import the SDK and apply the `@tracer.trace` decorator to agent functions:
+
+```python
+from observability_sdk import AgentTracer
+
+tracer = AgentTracer(backend_url="http://localhost:8000")
+
+@tracer.trace(agent_name="retrieval_agent")
+async def retrieve_context(query: str) -> list[str]:
+    ...
+```
+
+Once agents are running, the dashboard shows live trace timelines, per-agent cost breakdowns, and the anomaly feed. The backend also exposes a `/session/{id}/replay` endpoint for post-mortem analysis of any recorded session. Loop detection thresholds and model pricing rates are configurable in `config.py`.
+
 NEO built a self-hosted multi-agent observability platform where OpenTelemetry-compatible tracing, real-time cost tracking, and LLM-powered anomaly detection give teams visibility into agent workflows that standard infrastructure tools simply cannot provide. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---

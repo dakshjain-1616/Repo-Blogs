@@ -63,6 +63,46 @@ The sandbox is configured via YAML. You specify the topology type, the agent cou
 
 The results logger records the final output, total token usage per agent, wall-clock time, message count, and any errors. For systematic comparisons, a batch runner accepts a list of experiment configurations and runs them sequentially, writing a CSV of results. This is how you answer questions like: does a three-level hierarchy outperform a flat director-worker setup on this class of task, and does the answer change when you use a weaker model for the worker tier?
 
+## How to Build This
+
+You need Python 3.10 or later. The sandbox runs entirely via API calls, so no local GPU is required. An OpenRouter key gives you access to multiple model providers through a single key, which makes it easy to assign different models to different agent roles.
+
+Clone and install:
+
+```bash
+git clone https://github.com/dakshjain-1616/-Multi-Agent-LLM-Collaboration-Sandbox
+cd -Multi-Agent-LLM-Collaboration-Sandbox
+pip install -r requirements.txt
+```
+
+Set your API key:
+
+```bash
+export OPENROUTER_API_KEY=sk-or-...
+```
+
+Experiments are defined in YAML configuration files. Create an experiment config at `experiments/director_worker_research.yaml`:
+
+```yaml
+topology: director-worker
+director_model: openai/gpt-4o
+worker_model: anthropic/claude-3.5-sonnet
+worker_count: 3
+task: "Research the top 5 open-source vector databases and compare them on query latency, indexing speed, and filtering support"
+memory:
+  shared: true
+  persistent: false
+output_dir: results/
+```
+
+Run the experiment:
+
+```bash
+python sandbox.py --config experiments/director_worker_research.yaml
+```
+
+The sandbox starts the director agent, which decomposes the task and dispatches subtasks to three worker agents running in parallel. Message traffic is logged in real time to the console. When all agents complete, the director synthesizes the worker outputs into a final answer. The terminal shows the final answer, total token usage per agent, wall-clock time, and message count. The real-time visualization opens automatically in your browser at `http://localhost:8080`, showing the animated message graph. To run a batch comparison across topologies, list multiple config files in a single command and the batch runner produces a CSV of results across all experiments.
+
 NEO built the Multi-Agent LLM Collaboration Sandbox so that experimenting with agent topologies takes hours instead of weeks — topology selection, message passing, shared memory, and visualization all come pre-built. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---

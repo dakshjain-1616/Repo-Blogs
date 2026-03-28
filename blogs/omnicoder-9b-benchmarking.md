@@ -61,6 +61,36 @@ The model comparison table across all benchmarks surfaces a clear picture. OmniC
 
 The practical implication is that OmniCoder-9B is the right choice for teams that need fully local deployment with good function-level synthesis quality and can tolerate weaker performance on complex repository-level tasks. Teams with strong data processing use cases in particular will find the model punches above its weight class.
 
+## How to Build This
+
+Clone the repo and install dependencies:
+
+```bash
+git clone https://github.com/dakshjain-1616/OmniCoder-9B-Benchmark-
+cd OmniCoder-9B-Benchmark-
+pip install -r requirements.txt
+```
+
+The benchmark suite requires Python 3.10 or later. OmniCoder-9B is pulled from HuggingFace automatically. For CPU or consumer GPU runs, the 4-bit quantized version is used by default to fit within memory constraints. Set your HuggingFace token if the model requires authentication:
+
+```bash
+HF_TOKEN=hf_...
+```
+
+Run the HumanEval benchmark:
+
+```bash
+python run_benchmark.py --benchmark humaneval --model omnicoder-9b
+```
+
+Run the full suite across all four benchmark categories:
+
+```bash
+python run_benchmark.py --benchmark all --model omnicoder-9b --compare gpt4o-mini codellama-13b deepseek-coder-6.7b
+```
+
+The custom task suite evaluation runs automatically as part of `--benchmark all`. For the infrastructure-as-code and API integration tasks that require human scoring, the tool outputs a review file with the generated code and a scoring rubric. Results are written to `results/` as a JSON summary and a Markdown comparison table. The comparison table includes pass@1, pass@10, execution accuracy on SWE-bench, and measured tokens-per-second for each hardware configuration. Hardware detection is automatic: the suite uses the best available device and reports which configuration was used in the results header.
+
 NEO built this benchmarking suite to produce actionable numbers, not just leaderboard entries — so deployment decisions can be made on evidence. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---

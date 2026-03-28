@@ -78,6 +78,42 @@ Multi-agent pipelines like this one are a better fit for mechanical implementati
 
 ## Production ML Engineering at Scale
 
+## How to Build This
+
+Prerequisites: Node.js 20 or higher and an OpenRouter API key.
+
+Clone the repo and install dependencies:
+
+```bash
+git clone https://github.com/dakshjain-1616/Spec-To-Ship
+cd Spec-To-Ship
+npm install
+```
+
+Create a `.env` file with your OpenRouter API key:
+
+```bash
+OPENROUTER_API_KEY=sk-or-...
+```
+
+Run the interactive CLI, which prompts you to describe the feature you want to build:
+
+```bash
+npm run start
+```
+
+Alternatively, launch the web dashboard for a visual representation of pipeline progress:
+
+```bash
+npm run dev
+```
+
+The web interface runs at `http://localhost:3000`. Enter a feature description like "add a rate limiter to an Express API that limits each IP to 100 requests per 15-minute window and returns a 429 with a Retry-After header."
+
+The five-agent pipeline runs automatically: Architect produces a spec, Planner creates a task list, Engineer writes the implementation, QA writes Vitest tests, and Reviewer audits for security and quality issues. The full run typically takes 3 to 10 minutes for a well-scoped feature, bounded by a 20-minute hard timeout.
+
+Output lands in a timestamped directory under `./output/`: TypeScript implementation files, test suites, a reviewer report, and logs from each agent stage. If the pipeline fails partway through, the logs show exactly which agent stage produced the failure and what output it had generated up to that point.
+
 NEO built a spec-to-ship multi-agent pipeline where a plain-language feature description automatically becomes typed TypeScript code, Vitest test suites, and a security audit—produced by five specialized agents working in sequence. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---

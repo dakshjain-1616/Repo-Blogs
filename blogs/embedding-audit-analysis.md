@@ -75,6 +75,37 @@ NEO put together a full CLI walkthrough showing EmbedAudit running on a real voc
 
 ---
 
+## How to Build This
+
+Clone and install:
+
+```bash
+git clone https://github.com/dakshjain-1616/Embedding-Evaluator
+cd Embedding-Evaluator
+pip install -e .
+embedaudit --version
+```
+
+By default, the tool uses a local HuggingFace model and requires no API key. To use OpenAI or OpenRouter instead, create a `.env` file:
+
+```bash
+EMBEDDING_PROVIDER=openai_compatible
+OPENAI_API_KEY=sk-...
+OPENAI_API_BASE=https://api.openai.com/v1
+EMBEDDING_MODEL_NAME=text-embedding-3-small
+```
+
+Prepare a corpus file with one sentence or token per line, then run the audit:
+
+```bash
+echo "machine learning" > corpus.txt
+echo "deep learning" >> corpus.txt
+echo "riverbank" >> corpus.txt
+embedaudit audit --text-file corpus.txt
+```
+
+The tool runs all five semantic checks, reduces the embeddings with UMAP, clusters with HDBSCAN, and writes all output to a timestamped directory. That directory contains a 2D cluster map, an anomaly overlay marking flagged tokens by severity, a centroid heatmap, a structured JSON report, and a human-readable Markdown summary with prioritized recommendations. Pre-computed `.npy` embedding files and CSV inputs are also accepted if you want to audit embeddings produced by a different pipeline.
+
 NEO built a semantic embedding audit tool where UMAP, HDBSCAN, and five targeted checks surface outliers, polarity mismatches, and global collapse before they silently degrade downstream retrieval quality. See what else NEO ships at [heyneo.so](https://heyneo.so/).
 
 ---

@@ -78,6 +78,46 @@ NEO recorded a live demo of the ASR pipeline transcribing audio through the Stre
 
 [![Watch on YouTube](https://img.youtube.com/vi/Fn-jEt5wLmw/maxresdefault.jpg)](https://youtu.be/Fn-jEt5wLmw)
 
+## How to Build This
+
+Python 3.8+ is required. Clone the repo and install dependencies:
+
+```bash
+git clone https://github.com/dakshjain-1616/ASR-pipeline-using-Qwen3-ASR-0.6B---BY-NEO.git
+cd ASR-pipeline-using-Qwen3-ASR-0.6B---BY-NEO
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
+
+The model weights download automatically on first use. If you want to pre-fetch them:
+
+```bash
+huggingface-cli download Qwen/Qwen3-ASR-0.6B
+```
+
+Transcribe an audio file from the command line:
+
+```bash
+python cli.py --audio path/to/audio.wav
+```
+
+The transcript prints to stdout. To save output to a custom directory:
+
+```bash
+python cli.py --audio audio.mp3 --output-dir ./transcriptions
+```
+
+On machines without a GPU, add `--device cpu`. Expect roughly 1 to 3 seconds of processing per second of audio on CPU, versus 0.1 to 0.5 seconds on GPU.
+
+For the web interface, launch Streamlit:
+
+```bash
+streamlit run streamlit_app.py
+```
+
+Open `http://localhost:8501`, record directly in the browser or upload a file, and the transcription appears below. If you need ffmpeg for non-wav formats: `sudo apt-get install ffmpeg`.
+
 ---
 
 NEO built an edge-ready speech recognition pipeline where accurate transcription with a 0.6B model runs on-device without cloud dependency, not as a compromise but as a deliberate architecture choice. See what else NEO ships at [heyneo.so](https://heyneo.so/).
