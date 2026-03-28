@@ -19,7 +19,7 @@ huggingface: https://huggingface.co/daksh-neo/Qwen2.5-VL-7B-Nike-LoRA-GGUF
 
 > Thousands of Vision-Language LoRA adapters are published on HuggingFace for tasks like product recognition, brand identification, and medical imaging. Almost none of them ship an official GGUF quantization. Running a merged Qwen2.5-VL-7B model in bfloat16 needs 15+ GB VRAM, which rules out most consumer GPUs.
 
-NEO built this pipeline to close that gap. It merges a Nike-fine-tuned LoRA adapter into the Qwen2.5-VL-7B base, quantizes the result to Q8_0 GGUF at 4.5 GB, and benchmarks it on a Nike visual reasoning suite, all in one command.
+NEO built this pipeline to close that gap. It merges a Nike-fine-tuned LoRA adapter into the [Qwen2.5-VL-7B](https://huggingface.co/Qwen/Qwen2.5-VL-7B-Instruct) base, quantizes the result to Q8_0 GGUF at 4.5 GB, and benchmarks it on a Nike visual reasoning suite, all in one command.
 
 ## The Three-Stage Architecture
 

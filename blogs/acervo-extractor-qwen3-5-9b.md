@@ -17,7 +17,7 @@ github: https://github.com/dakshjain-1616/acervo-extractor-qwen3-5-9b-gguf-4-2gb
 
 > Running a 9B parameter document-extraction model in float16 needs 20 GB of VRAM. Most workstations and consumer GPUs don't have that. Generic quantization guides exist, but they don't ship pre-benchmarked artifacts for specific fine-tuned models with measured quality loss.
 
-NEO built this quantization pipeline to take the `SandyVeliz/acervo-extractor-qwen3.5-9b` model from an 18 GB float16 checkpoint down to a 4.7 GB Q4_K_M GGUF file. The result runs on 8 GB of RAM at 12% higher token throughput than the original.
+NEO built this quantization pipeline to take the `SandyVeliz/acervo-extractor-qwen3.5-9b` model (built on [Qwen3.5-9B](https://huggingface.co/Qwen/Qwen3.5-9B)) from an 18 GB float16 checkpoint down to a 4.7 GB Q4_K_M GGUF file. The result runs on 8 GB of RAM at 12% higher token throughput than the original.
 
 ## What Q4_K_M Quantization Does
 

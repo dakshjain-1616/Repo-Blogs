@@ -18,7 +18,7 @@ github: https://github.com/dakshjain-1616/qwen3-5-27b-gguf
 
 > Quantizing a 27B model from fp16 to Q4 cuts size by 70% but can silently degrade quality. Most quantization workflows give you a smaller file without telling you whether the model still works. Running your own benchmark after every quant takes manual effort and does not integrate into CI.
 
-NEO built this pipeline to automate the full cycle: download the fp16 weights, quantize to multiple GGUF formats, benchmark each one, and exit non-zero if any format degrades beyond a threshold. The result is a CI-ready script that protects against silent accuracy regression.
+NEO built this pipeline to automate the full cycle for [Qwen3.5-27B](https://huggingface.co/Qwen/Qwen3.5-27B): download the fp16 weights, quantize to multiple GGUF formats, benchmark each one, and exit non-zero if any format degrades beyond a threshold. The result is a CI-ready script that protects against silent accuracy regression.
 
 ## The Quantization Formats
 

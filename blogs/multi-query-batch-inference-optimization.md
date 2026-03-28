@@ -63,7 +63,7 @@ The system uses GBNF grammar-constrained decoding to guarantee valid JSON output
 ## Performance Numbers
 
 | Metric | Baseline | Optimized |
-|--------|----------|-----------|
+|:-------|----------:|----------:|
 | Throughput | 1.2 req/s | 18.7 req/s |
 | Improvement | 1x | 15.6x |
 | Interactive latency | - | 165ms median |

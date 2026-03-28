@@ -62,7 +62,7 @@ python app.py
 Status values are explicit:
 
 | Status | Meaning |
-|--------|---------|
+|:-------|:--------|
 | `HEALTHY` | Hash matches, architecture correct, no anomalies |
 | `SUSPICIOUS` | Architecture deviates or weight distribution is unusual |
 | `TAMPERED` | SHA256 mismatch or hidden parameters detected |

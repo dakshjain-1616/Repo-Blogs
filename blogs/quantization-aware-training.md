@@ -52,7 +52,7 @@ During development, NEO initially tried TensorFlow's native quantization toolkit
 ## Results
 
 | Metric | Original | Quantized |
-|--------|----------|-----------|
+|:-------|----------:|----------:|
 | Model size | 23.52 MB | 2.59 MB |
 | Compression ratio | 1x | 9.08x |
 | Test accuracy | 81.0% | 77.2% |

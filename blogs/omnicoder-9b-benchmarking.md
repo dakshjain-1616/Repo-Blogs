@@ -17,7 +17,7 @@ github: https://github.com/dakshjain-1616/OmniCoder-9B-Benchmark-
 
 > Model cards and leaderboard numbers rarely answer the question that actually matters for a team choosing a model for production: how does this model perform on our specific type of task, at the latency and cost we can afford? Published benchmarks measure performance on standardized tasks under standardized conditions. Real workloads are not standardized. A thorough benchmarking process needs to cover both standard benchmarks (for cross-model comparability) and custom task suites (for deployment-specific signal).
 
-NEO built this benchmarking suite to give OmniCoder-9B a complete evaluation — one that produces numbers you can actually use to make deployment decisions.
+NEO built this benchmarking suite to give [OmniCoder-9B](https://huggingface.co/Tesslate/OmniCoder-9B) a complete evaluation — one that produces numbers you can actually use to make deployment decisions.
 
 ## Benchmark Suite Design
 

@@ -21,7 +21,7 @@ NEO built a comprehensive code generation benchmarking and usage showcase for Mi
 
 ## The MiniMax M2-7B Model
 
-MiniMax M2-7B is a code-specialized model trained with a mixture-of-experts approach that gives it effective capacity beyond its nominal parameter count. The model's architecture allows it to activate different expert pathways depending on the programming language and task type, which explains why its performance profile is uneven in an interesting way — it excels in some areas and is merely competitive in others.
+[MiniMax M2-7B](https://huggingface.co/MiniMaxAI/MiniMax-M2) is a code-specialized model trained with a mixture-of-experts approach that gives it effective capacity beyond its nominal parameter count. The model's architecture allows it to activate different expert pathways depending on the programming language and task type, which explains why its performance profile is uneven in an interesting way — it excels in some areas and is merely competitive in others.
 
 The model was trained on a large corpus of open-source code across dozens of languages, with particular emphasis on Python, TypeScript, and SQL. Its training data includes not just raw source files but also code paired with documentation, test suites, and commit messages — a combination that improves the model's ability to generate code that matches its specification rather than just code that looks plausible.
 

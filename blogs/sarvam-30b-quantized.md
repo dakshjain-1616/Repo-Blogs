@@ -17,7 +17,7 @@ github: https://huggingface.co/daksh-neo/sarvam-30b-quantized
 
 > Sarvam 30B is one of the most capable multilingual models for Indian languages — covering Hindi, Bengali, Telugu, Tamil, Marathi, Kannada, Malayalam, Gujarati, Punjabi, Odia, and Urdu with strong performance on regional language benchmarks. But a 30-billion-parameter model in full BF16 precision requires roughly 60GB of VRAM to run, which puts it out of reach for individual researchers, small teams, and the edge deployments where Indian language processing matters most. The model was accessible but not practically deployable.
 
-NEO built a quantized version of Sarvam 30B that brings the model down to sizes that run on consumer GPUs, CPUs, and edge hardware — making serious Indian language AI accessible outside of datacenter infrastructure.
+NEO built a quantized version of [Sarvam 30B](https://huggingface.co/sarvamai/sarvam-30b) that brings the model down to sizes that run on consumer GPUs, CPUs, and edge hardware — making serious Indian language AI accessible outside of datacenter infrastructure.
 
 ## The Quantization Approach
 

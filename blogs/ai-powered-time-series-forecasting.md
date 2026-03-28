@@ -21,7 +21,7 @@ NEO autonomously built ChronoSight to change that. Ask a question in plain langu
 
 ## The Model Underneath
 
-The forecasting engine is Google's TimesFM-2.5-200M, a **200-million-parameter** foundation model for time series data from HuggingFace. The key property is zero-shot forecasting: the model produces useful predictions without any fine-tuning on your specific dataset. You don't train it, you don't provide historical examples, you just run inference.
+The forecasting engine is Google's [TimesFM-2.5-200M](https://huggingface.co/google/timesfm-2.5-200m-pytorch), a **200-million-parameter** foundation model for time series data from HuggingFace. The key property is zero-shot forecasting: the model produces useful predictions without any fine-tuning on your specific dataset. You don't train it, you don't provide historical examples, you just run inference.
 
 This matters practically. Fine-tuning a forecasting model requires substantial historical data, compute time, and expertise in avoiding overfitting. Zero-shot removes all of that friction. Point the model at a data source, specify a forecast horizon, and you get predictions immediately.
 

@@ -21,7 +21,7 @@ NEO built AutoPrompter to close that loop: a system that generates test data, me
 
 ## Dual-Model Architecture
 
-AutoPrompter separates two concerns into two models. The **Optimizer LLM** (Gemini 3.1 Flash Lite Preview by default) acts as the meta-learner. It writes prompts, generates synthetic test datasets, and reads failure cases to reason about what went wrong. The **Target LLM** (Qwen 3.5 9b by default) is the model being improved. It executes against each prompt under test conditions and gets scored.
+AutoPrompter separates two concerns into two models. The **Optimizer LLM** (Gemini 3.1 Flash Lite Preview by default) acts as the meta-learner. It writes prompts, generates synthetic test datasets, and reads failure cases to reason about what went wrong. The **Target LLM** ([Qwen 3.5 9B](https://huggingface.co/Qwen/Qwen3.5-9B) by default) is the model being improved. It executes against each prompt under test conditions and gets scored.
 
 This separation matters. You do not want the same model optimizing and evaluating itself. The Optimizer runs at higher temperature (0.7) to produce diverse prompt candidates. The Target runs at low temperature (0.1) to keep outputs deterministic for reliable scoring.
 

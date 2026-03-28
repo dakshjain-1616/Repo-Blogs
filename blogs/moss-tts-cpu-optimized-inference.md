@@ -17,7 +17,7 @@ github: https://github.com/dakshjain-1616/MOSS-TTS-CPU-Optimized-Inference-Pipel
 
 > GPU access is expensive. For organizations running inference on-premises, or teams prototyping before committing to cloud GPU costs, the ability to run large models on CPU hardware can be the difference between shipping something and waiting for budget approval. MOSS-TTS is an 8.4-billion-parameter text-to-speech model — most production TTS deployments assume GPU acceleration, and no off-the-shelf approach existed for CPU deployment with acceptable memory usage.
 
-NEO set out to determine whether it was possible to run this model on CPU hardware at all, and if so, which quantization strategy produced the best tradeoff between memory usage, load time, and audio quality.
+NEO set out to determine whether it was possible to run [MOSS-TTS](https://huggingface.co/OpenMOSS-Team/MOSS-TTS) on CPU hardware at all, and if so, which quantization strategy produced the best tradeoff between memory usage, load time, and audio quality.
 
 The short answer: yes, it runs on CPU, and selective quantization is the right approach.
 

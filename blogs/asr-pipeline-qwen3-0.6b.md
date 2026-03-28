@@ -17,7 +17,7 @@ github: https://github.com/dakshjain-1616/ASR-pipeline-using-Qwen3-ASR-0.6B---BY
 
 > Full-size automatic speech recognition models are not always practical. A 1B+ parameter model may run fine on a cloud server with dedicated GPU capacity, but deploy it to an edge device or a resource-constrained environment and you run into problems fast. The memory footprint alone rules it out for many real deployments — healthcare devices, legal recording hardware, mobile applications all need on-device transcription without cloud dependency.
 
-NEO autonomously built an ASR pipeline around Qwen3-ASR-0.6B, a **0.6 billion parameter** model that requires only about **3GB of storage**. It transcribes speech accurately, handles multiple audio formats, and runs on GPU or CPU depending on what is available. NEO wrapped it in three different interfaces so it fits however you want to use it.
+NEO autonomously built an ASR pipeline around [Qwen3-ASR-0.6B](https://huggingface.co/Qwen/Qwen3-ASR-0.6B), a **0.6 billion parameter** model that requires only about **3GB of storage**. It transcribes speech accurately, handles multiple audio formats, and runs on GPU or CPU depending on what is available. NEO wrapped it in three different interfaces so it fits however you want to use it.
 
 ## Why 0.6B Parameters Is a Feature, Not a Compromise
 

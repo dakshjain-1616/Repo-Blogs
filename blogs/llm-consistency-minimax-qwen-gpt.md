@@ -41,9 +41,9 @@ Both metrics run on every (model, prompt) pair and appear side-by-side in the ex
 
 All three models run through OpenRouter, which provides a single API key for all of them.
 
-**Qwen3.5-397B** (Alibaba Cloud) is the most stable model in the benchmark results. Its mean variance across 50 prompts is 0.0258, with a maximum of 0.0599. It never strays far from its first answer, making it the safest choice for deterministic pipelines.
+**[Qwen3.5-397B](https://huggingface.co/Qwen/Qwen3.5-397B-A17B)** (Alibaba Cloud) is the most stable model in the benchmark results. Its mean variance across 50 prompts is 0.0258, with a maximum of 0.0599. It never strays far from its first answer, making it the safest choice for deterministic pipelines.
 
-**MiniMax M2.7** sits in the middle tier. Its mean variance is 0.0467 with no outlier prompts above 0.12. Consistent for most production uses, though slightly more variable than Qwen on open-ended prompts.
+**[MiniMax M2](https://huggingface.co/MiniMaxAI/MiniMax-M2)** sits in the middle tier. Its mean variance is 0.0467 with no outlier prompts above 0.12. Consistent for most production uses, though slightly more variable than Qwen on open-ended prompts.
 
 **GPT-5.4** shows bimodal behavior. Its mean variance is 0.1335, but that average hides a wide distribution: 0.00 on simple factual prompts (capital cities, arithmetic, chemical formulas) and up to 0.2949 on open-ended scientific explanations. The high variance appears only on prompts where multiple correct phrasings exist.
 
@@ -52,7 +52,7 @@ All three models run through OpenRouter, which provides a single API key for all
 The tool maps variance scores to four verdict categories:
 
 | Range | Verdict |
-|-------|---------|
+|:------|:--------|
 | 0.00 to 0.08 | Perfectly stable, safe for deterministic pipelines |
 | 0.08 to 0.18 | Acceptable drift, suitable for most production uses |
 | 0.18 to 0.35 | Noticeable variance, add sampling guards |

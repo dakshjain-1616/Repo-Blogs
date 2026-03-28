@@ -17,7 +17,7 @@ github: https://github.com/dakshjain-1616/nemotron3-super-vs-gpt54-nano
 
 > Most LLM benchmarks use clean, self-contained programming puzzles that don't reflect real engineering problems. Embedded firmware debugging involves register conflicts that require reading datasheets, timing failures that depend on bus capacitance, and memory corruption from string handling on 2 KB of SRAM. Developers need to know which model actually helps when debugging an I2C bus hang or a WDT misfire, not when solving a textbook algorithm exercise.
 
-NEO built this benchmark to run NVIDIA Nemotron 3 Super (120B) and OpenAI GPT-5.4 Nano head-to-head on five bugs sourced directly from real Arduino forum threads. The results: GPT-5.4 Nano wins all five bugs, scoring 0.860 average versus Nemotron's 0.599, primarily because GPT produces complete, compilable sketches while Nemotron outputs partial responses with TODO stubs.
+NEO built this benchmark to run [NVIDIA Nemotron 3 Super (120B)](https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16) and OpenAI GPT-5.4 Nano head-to-head on five bugs sourced directly from real Arduino forum threads. The results: GPT-5.4 Nano wins all five bugs, scoring 0.860 average versus Nemotron's 0.599, primarily because GPT produces complete, compilable sketches while Nemotron outputs partial responses with TODO stubs.
 
 ## The Five Bug Categories
 
@@ -52,7 +52,7 @@ total = (compilability × 0.40) + (correctness × 0.40) + (verbosity × 0.20)
 Running both models against all five seed bugs via OpenRouter's live API produced these results:
 
 | Bug | Nemotron | GPT-5.4 Nano | Winner |
-|-----|----------|--------------|--------|
+|:----|----------:|-------------:|:-------|
 | I2C bus hang | 0.455 | 0.560 | GPT |
 | Buffer overflow in dtostrf() | 0.800 | 0.960 | GPT |
 | Timer1/Timer2 conflict | 0.520 | 0.940 | GPT |

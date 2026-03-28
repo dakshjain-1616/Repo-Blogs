@@ -18,7 +18,7 @@ github: https://github.com/dakshjain-1616/llama-3-2-3b-reasoning-sft
 
 > Edge devices like phones and Raspberry Pi cannot run cloud LLMs due to latency or privacy constraints. Existing 3B models produce single-shot answers without structured reasoning, making outputs hard to audit or verify.
 
-NEO built this pipeline to add `<think>` reasoning traces to Llama 3.2 3B via knowledge distillation, then export the result as a 2 GB GGUF that runs locally on any device with 4 GB RAM.
+NEO built this pipeline to add `<think>` reasoning traces to [Llama 3.2 3B](https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct) via knowledge distillation, then export the result as a 2 GB GGUF that runs locally on any device with 4 GB RAM.
 
 ## The Distillation Pipeline
 
@@ -45,7 +45,7 @@ This teaches the model how to reason rather than how to echo prompts.
 **Unsloth** handles the LoRA injection. The adapter targets the attention projection layers only:
 
 | Parameter | Value |
-|-----------|-------|
+|:----------|------:|
 | Rank (r) | 16 |
 | Alpha | 32 |
 | Target modules | q_proj, v_proj, k_proj, o_proj |
@@ -62,7 +62,7 @@ The base model runs in 4-bit NF4 during training, so the full pipeline fits in 8
 The merged model passes through llama.cpp's converter and quantizer to produce a `Q4_K_M` file:
 
 | Quantization | Size | RAM Needed | Speed |
-|--------------|------|------------|-------|
+|:-------------|-----:|-----------:|:------|
 | Q4_K_M | ~1.6 GB | 4 GB | ~12 tok/s on Pi 5 |
 | Q5_K_M | ~1.96 GB | 4 GB | slightly slower |
 | Q8_0 | ~2.89 GB | 6 GB | best quality |

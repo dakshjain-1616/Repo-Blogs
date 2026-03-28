@@ -41,13 +41,13 @@ GPU acceleration (tested on Tesla V100 hardware) is available for this stage whe
 
 ### Anatomical Segmentation with MedSAM
 
-MedSAM handles the segmentation task. This is a medical-domain adaptation of the Segment Anything Model, fine-tuned specifically on medical imaging data. It identifies and delineates anatomical structures in the image, producing segmentation masks that define which pixels belong to which anatomical regions.
+[MedSAM](https://huggingface.co/wanglab/medsam-vit-base) handles the segmentation task. This is a medical-domain adaptation of the Segment Anything Model, fine-tuned specifically on medical imaging data. It identifies and delineates anatomical structures in the image, producing segmentation masks that define which pixels belong to which anatomical regions.
 
 Good segmentation is the foundation for everything downstream. The quality of the report generation and risk assessment both depend on accurate structural identification.
 
 ### Report Generation with RadBERT
 
-RadBERT is a BERT-based language model fine-tuned on radiology reports. It takes the segmentation output and image features as input and generates structured clinical text describing the findings.
+[RadBERT](https://huggingface.co/StanfordAIMI/RadBERT) is a BERT-based language model fine-tuned on radiology reports. It takes the segmentation output and image features as input and generates structured clinical text describing the findings.
 
 The generated reports follow the format radiologists use: structured sections for technique, findings, and impression. The language is domain-appropriate, not generic NLP output.
 

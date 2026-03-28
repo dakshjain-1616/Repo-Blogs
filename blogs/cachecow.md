@@ -23,7 +23,7 @@ NEO built cacheCow to apply semantic similarity to the caching decision — if a
 
 cacheCow sits in front of your LLM API calls as a middleware layer. Every incoming query goes through a three-stage pipeline: embed, search, decide.
 
-**Embed**: The query is converted to a vector embedding using a fast, lightweight embedding model. The default is `all-MiniLM-L6-v2` (sentence-transformers), which produces 384-dimensional embeddings in under 5ms on CPU. For applications where embedding latency is critical, cacheCow supports quantized ONNX versions of the same model that run in under 2ms. For higher-accuracy applications, `text-embedding-3-small` via the OpenAI API is available as the embedding backend, though this adds API round-trip latency.
+**Embed**: The query is converted to a vector embedding using a fast, lightweight embedding model. The default is [`all-MiniLM-L6-v2`](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2) (sentence-transformers), which produces 384-dimensional embeddings in under 5ms on CPU. For applications where embedding latency is critical, cacheCow supports quantized ONNX versions of the same model that run in under 2ms. For higher-accuracy applications, `text-embedding-3-small` via the OpenAI API is available as the embedding backend, though this adds API round-trip latency.
 
 **Search**: The query embedding is compared to all cached entries using approximate nearest neighbor search. The similarity metric is cosine similarity. The search returns the top-k most similar cached queries, typically k=3 to k=10 depending on your confidence threshold strategy.
 

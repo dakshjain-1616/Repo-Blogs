@@ -20,7 +20,7 @@ github: https://github.com/dakshjain-1616/gemma3-medical-sft
 
 > Clinicians in resource-limited settings need decision-support tools that work without internet connectivity and cannot transmit patient data to cloud APIs. General-purpose LLMs are not trained on clinical reasoning formats and cannot be used where HIPAA or GDPR apply to patient data.
 
-NEO built this fine-tuning pipeline to adapt Gemma-3-12B for structured medical reasoning, then export the result as a 7.8 GB GGUF that runs fully offline on a standard 16 GB laptop.
+NEO built this fine-tuning pipeline to adapt [Gemma 3 12B](https://huggingface.co/google/gemma-3-12b-it) for structured medical reasoning, then export the result as a 7.8 GB GGUF that runs fully offline on a standard 16 GB laptop.
 
 ## Three Medical Domains
 
@@ -46,7 +46,7 @@ The **Response-Only Training** approach is critical. Without masking user tokens
 ## LoRA Configuration
 
 | Parameter | Value |
-|-----------|-------|
+|:----------|------:|
 | Rank (r) | 32 |
 | Alpha | 64 |
 | Max sequence length | 4096 |
@@ -75,7 +75,7 @@ Immediate ECG and troponin indicated.<end_of_turn>
 ## GGUF Quantization Options
 
 | Quantization | Size | RAM Needed |
-|--------------|------|------------|
+|:-------------|-----:|-----------:|
 | Q4_K_M | 7.8 GB | 16 GB |
 | Q5_K_M | 9.1 GB | 16 GB |
 | Q8_0 | ~15 GB | 32 GB |

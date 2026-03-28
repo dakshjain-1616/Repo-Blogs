@@ -31,7 +31,7 @@ The raw transcript is segmented into chunks for embedding. Each chunk is a seman
 
 ## Embedding and Indexing
 
-Each transcript chunk is embedded using a sentence-level embedding model. The default is `text-embedding-3-small` from OpenAI, which provides strong semantic representations at low cost. The tool also supports local embedding models via sentence-transformers (all-MiniLM-L6-v2, all-mpnet-base-v2) for fully offline operation.
+Each transcript chunk is embedded using a sentence-level embedding model. The default is `text-embedding-3-small` from OpenAI, which provides strong semantic representations at low cost. The tool also supports local embedding models via sentence-transformers ([all-MiniLM-L6-v2](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2), all-mpnet-base-v2) for fully offline operation.
 
 The embedding for each chunk is stored in a vector index alongside its metadata: the source video identifier, the start timestamp in seconds, the end timestamp in seconds, the chunk text, and the speaker label if speaker diarization was run. The vector index defaults to FAISS (in-memory, fast, no external dependencies). For persistent indexes that survive process restarts and support incremental addition of new videos, a ChromaDB backend is available.
 

@@ -18,7 +18,7 @@ github: https://github.com/dakshjain-1616/mistral-small-r1-distilled
 
 > Applying reasoning distillation to 20B+ models requires solving four problems at once: correct chat format handling, response-only gradient flow, fitting training into a single GPU, and compressing the result enough for practical inference. Getting any one of these wrong breaks the whole pipeline.
 
-NEO built this distillation pipeline for Mistral Small 3.1 22B, wiring all four together with a `DRY_RUN=1` mode that makes CI pass without GPU hardware.
+NEO built this distillation pipeline for [Mistral Small 3.1](https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503), wiring all four together with a `DRY_RUN=1` mode that makes CI pass without GPU hardware.
 
 ## The Four Engineering Problems
 
@@ -44,7 +44,7 @@ FINAL ANSWER: x = 3 or x = 2/3            →  labels = token_id ✅
 ## LoRA Configuration
 
 | Parameter | Value |
-|-----------|-------|
+|:----------|------:|
 | Rank (r) | 64 |
 | Alpha | 128 |
 | Target modules | q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj |
@@ -57,7 +57,7 @@ The higher rank (64 vs 16 for smaller models) is appropriate here. A 22B model h
 ## GGUF Size Reference
 
 | Quantization | Size | VRAM Needed |
-|--------------|------|-------------|
+|:-------------|-----:|:------------|
 | Q4_K_M | 13.45 GB | 24 GB (RTX 4090) |
 | Q5_K_M | 15.74 GB | 24 GB |
 | Q6_K | 18.22 GB | 24 GB |

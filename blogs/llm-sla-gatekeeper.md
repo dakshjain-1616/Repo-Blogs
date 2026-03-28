@@ -35,7 +35,7 @@ The exit codes integrate directly with CI/CD: `0` is PASS, `1` is FAIL, `2` is E
 Five named profiles cover the common LLM deployment scenarios:
 
 | Profile | Max Latency | Min Throughput | Use Case |
-|---------|-------------|----------------|----------|
+|:--------|------------:|---------------:|:---------|
 | `chatbot` | 150 ms | 10 tok/s | Interactive chat, customer support |
 | `realtime` | 50 ms | 50 tok/s | Streaming, voice assistants |
 | `batch` | 2000 ms | 1 tok/s | Document processing, summarization |
