@@ -101,7 +101,7 @@ Open NEO in VS Code or Cursor and describe what you want to build. A good starti
 
 > "Build a multimodal RAG system using [CLIP ViT-B/32](https://huggingface.co/openai/clip-vit-base-patch32) and ChromaDB that ingests PDFs, images (PNG/JPG/TIFF), and spreadsheets (CSV/XLSX) into a shared 512-dimensional embedding space. Use Tesseract OCR to extract text from images, convert tables to schema descriptions for CLIP's text encoder, store all embeddings with HNSW indexing in ChromaDB, and serve a Streamlit UI with drag-and-drop ingestion and a chat query panel that shows retrieved content with modality labels and similarity scores."
 
-<a href="https://heyneo.so/dashboard?section=new-chat&prompt=Build%20a%20multimodal%20RAG%20system%20using%20CLIP%20ViT-B%2F32%20and%20ChromaDB%20that%20ingests%20PDFs%2C%20images%20%28PNG%2FJPG%2FTIFF%29%2C%20and%20spreadsheets%20%28CSV%2FXLSX%29%20into%20a%20shared%20512-dimensional%20embedding%20space.%20Use%20Tesseract%20OCR%20to%20extract%20text%20from%20images%2C%20convert%20tables%20to%20schema%20descriptions%20for%20CLIP%27s%20text%20encoder%2C%20store%20all%20embeddings%20with%20HNSW%20indexing%20in%20ChromaDB%2C%20and%20serve%20a%20Streamlit%20UI%20with%20drag-and-drop%20ingestion%20and%20a%20chat%20query%20panel%20that%20shows%20retrieved%20content%20with%20modality%20labels%20and%20similarity%20scores." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
+<a href="https://heyneo.com/dashboard?section=new-chat&prompt=Build%20a%20multimodal%20RAG%20system%20using%20CLIP%20ViT-B%2F32%20and%20ChromaDB%20that%20ingests%20PDFs%2C%20images%20%28PNG%2FJPG%2FTIFF%29%2C%20and%20spreadsheets%20%28CSV%2FXLSX%29%20into%20a%20shared%20512-dimensional%20embedding%20space.%20Use%20Tesseract%20OCR%20to%20extract%20text%20from%20images%2C%20convert%20tables%20to%20schema%20descriptions%20for%20CLIP%27s%20text%20encoder%2C%20store%20all%20embeddings%20with%20HNSW%20indexing%20in%20ChromaDB%2C%20and%20serve%20a%20Streamlit%20UI%20with%20drag-and-drop%20ingestion%20and%20a%20chat%20query%20panel%20that%20shows%20retrieved%20content%20with%20modality%20labels%20and%20similarity%20scores." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
 
 NEO generates the project structure and core implementation. From there you iterate — ask it to add a Python CLI for batch ingestion and retrieval, tune the HNSW index parameters for sub-50ms retrieval latency, or add structured logging with per-query latency and modality distribution metrics.
 
@@ -116,7 +116,7 @@ streamlit run app.py
 
 Open `localhost:8501`, drag in PDFs, images, and spreadsheets to populate the knowledge base, then query across all three modalities at once.
 
-NEO built a multimodal RAG system where CLIP embeddings unify text, images, and tables into a single retrievable space—delivering 0.030-second latency and 60%+ cross-modal accuracy on queries that text-only systems simply cannot answer. See what else NEO ships at [heyneo.so](https://heyneo.so/).
+NEO built a multimodal RAG system where CLIP embeddings unify text, images, and tables into a single retrievable space—delivering 0.030-second latency and 60%+ cross-modal accuracy on queries that text-only systems simply cannot answer. See what else NEO ships at [heyneo.com](https://heyneo.com/).
 
 ---
 

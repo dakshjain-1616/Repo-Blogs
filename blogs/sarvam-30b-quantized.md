@@ -79,7 +79,7 @@ Open NEO in VS Code or Cursor and describe what you want to build. A good starti
 
 > "Quantize the [Sarvam 30B](https://huggingface.co/sarvamai/sarvam-30b) multilingual Indian language model into GGUF and GPTQ formats targeting consumer hardware. Produce Q4_K_M, Q5_K_M, Q8_0, and Q2_K GGUF variants using llama.cpp, and a 4-bit GPTQ variant using AutoGPTQ. Include a benchmark script that evaluates each variant against IndicGLUE and Flores-200 translation pairs for Hindi, Bengali, Tamil, and Telugu, and reports accuracy retention versus the BF16 baseline."
 
-<a href="https://heyneo.so/dashboard?section=new-chat&prompt=Quantize%20the%20Sarvam%2030B%20multilingual%20Indian%20language%20model%20into%20GGUF%20and%20GPTQ%20formats%20targeting%20consumer%20hardware.%20Produce%20Q4_K_M%2C%20Q5_K_M%2C%20Q8_0%2C%20and%20Q2_K%20GGUF%20variants%20using%20llama.cpp%2C%20and%20a%204-bit%20GPTQ%20variant%20using%20AutoGPTQ.%20Include%20a%20benchmark%20script%20that%20evaluates%20each%20variant%20against%20IndicGLUE%20and%20Flores-200%20translation%20pairs%20for%20Hindi%2C%20Bengali%2C%20Tamil%2C%20and%20Telugu%2C%20and%20reports%20accuracy%20retention%20versus%20the%20BF16%20baseline." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
+<a href="https://heyneo.com/dashboard?section=new-chat&prompt=Quantize%20the%20Sarvam%2030B%20multilingual%20Indian%20language%20model%20into%20GGUF%20and%20GPTQ%20formats%20targeting%20consumer%20hardware.%20Produce%20Q4_K_M%2C%20Q5_K_M%2C%20Q8_0%2C%20and%20Q2_K%20GGUF%20variants%20using%20llama.cpp%2C%20and%20a%204-bit%20GPTQ%20variant%20using%20AutoGPTQ.%20Include%20a%20benchmark%20script%20that%20evaluates%20each%20variant%20against%20IndicGLUE%20and%20Flores-200%20translation%20pairs%20for%20Hindi%2C%20Bengali%2C%20Tamil%2C%20and%20Telugu%2C%20and%20reports%20accuracy%20retention%20versus%20the%20BF16%20baseline." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
 
 NEO generates the quantization scripts, evaluation harness, and HuggingFace upload configuration. From there you iterate — ask it to add hybrid CPU/GPU layer offloading for machines with 8 GB VRAM, add an Ollama Modelfile generator for one-command local deployment, or add code-switching evaluation using mixed Hindi-English prompts.
 
@@ -101,7 +101,7 @@ Run inference with llama.cpp (build from https://github.com/ggml-org/llama.cpp):
 
 The Q4_K_M GGUF runs entirely on a 24 GB GPU at 15-25 tokens per second, and in hybrid CPU/GPU mode on 8 GB VRAM machines at 3-6 tokens per second — making serious Indian language AI accessible without datacenter hardware.
 
-NEO built a quantized Sarvam 30B so that serious Indian language model capabilities are deployable beyond datacenter infrastructure, bringing multilingual AI accessibility to the hardware that most of the world actually has. See what else NEO ships at [heyneo.so](https://heyneo.so/).
+NEO built a quantized Sarvam 30B so that serious Indian language model capabilities are deployable beyond datacenter infrastructure, bringing multilingual AI accessibility to the hardware that most of the world actually has. See what else NEO ships at [heyneo.com](https://heyneo.com/).
 
 ---
 

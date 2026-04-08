@@ -79,7 +79,7 @@ Open NEO in VS Code or Cursor and describe what you want to build. A good starti
 
 > "Build a closed-loop prompt optimization system in Python. Use two LLMs: an Optimizer LLM that writes prompts and analyzes failures, and a Target LLM that executes prompts against synthetic test datasets. Score results with accuracy or semantic similarity metrics. Store every iteration in a persistent JSON ledger to avoid re-running experiments. Support YAML config files with CLI overrides and multiple inference backends including OpenRouter, Ollama, and llama.cpp."
 
-<a href="https://heyneo.so/dashboard?section=new-chat&prompt=Build%20a%20closed-loop%20prompt%20optimization%20system%20in%20Python.%20Use%20two%20LLMs%3A%20an%20Optimizer%20LLM%20that%20writes%20prompts%20and%20analyzes%20failures%2C%20and%20a%20Target%20LLM%20that%20executes%20prompts%20against%20synthetic%20test%20datasets.%20Score%20results%20with%20accuracy%20or%20semantic%20similarity%20metrics.%20Store%20every%20iteration%20in%20a%20persistent%20JSON%20ledger%20to%20avoid%20re-running%20experiments.%20Support%20YAML%20config%20files%20with%20CLI%20overrides%20and%20multiple%20inference%20backends%20including%20OpenRouter%2C%20Ollama%2C%20and%20llama.cpp." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
+<a href="https://heyneo.com/dashboard?section=new-chat&prompt=Build%20a%20closed-loop%20prompt%20optimization%20system%20in%20Python.%20Use%20two%20LLMs%3A%20an%20Optimizer%20LLM%20that%20writes%20prompts%20and%20analyzes%20failures%2C%20and%20a%20Target%20LLM%20that%20executes%20prompts%20against%20synthetic%20test%20datasets.%20Score%20results%20with%20accuracy%20or%20semantic%20similarity%20metrics.%20Store%20every%20iteration%20in%20a%20persistent%20JSON%20ledger%20to%20avoid%20re-running%20experiments.%20Support%20YAML%20config%20files%20with%20CLI%20overrides%20and%20multiple%20inference%20backends%20including%20OpenRouter%2C%20Ollama%2C%20and%20llama.cpp." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
 
 NEO generates the project structure and core implementation. From there you iterate — ask it to add support for custom evaluation metrics, build a results dashboard that visualizes score progression across iterations, or extend the ledger with deduplication logic that detects semantically similar prompts already tested. Each request builds on what's already there.
 
@@ -94,7 +94,7 @@ python main.py --config config.yaml
 
 The system prints a configuration summary on startup, runs up to 10 optimization iterations, and produces a final report showing score progression and the best prompt found. Swap in your own task description and initial prompt in `config.yaml` to optimize prompts for any classification or generation task.
 
-NEO built a closed-loop autonomous prompt optimizer where an Optimizer LLM iteratively refines prompts for a Target LLM using synthetic datasets, structured failure analysis, and a persistent experiment ledger. See what else NEO ships at [heyneo.so](https://heyneo.so/).
+NEO built a closed-loop autonomous prompt optimizer where an Optimizer LLM iteratively refines prompts for a Target LLM using synthetic datasets, structured failure analysis, and a persistent experiment ledger. See what else NEO ships at [heyneo.com](https://heyneo.com/).
 
 ---
 

@@ -86,7 +86,7 @@ Open NEO in VS Code or Cursor and describe what you want to build. A good starti
 
 > "Build a Python async multi-model consensus framework using the OpenAI SDK and Pydantic. It should query a configurable list of OpenRouter models simultaneously using asyncio.gather(), then support two aggregation strategies: a synthesis strategy where a judge model reads all responses and produces a unified answer with conflict flags, and a voting strategy that returns the most frequent response. Handle individual model failures gracefully so the council continues with remaining responses."
 
-<a href="https://heyneo.so/dashboard?section=new-chat&prompt=Build%20a%20Python%20async%20multi-model%20consensus%20framework%20using%20the%20OpenAI%20SDK%20and%20Pydantic.%20It%20should%20query%20a%20configurable%20list%20of%20OpenRouter%20models%20simultaneously%20using%20asyncio.gather%28%29%2C%20then%20support%20two%20aggregation%20strategies%3A%20a%20synthesis%20strategy%20where%20a%20judge%20model%20reads%20all%20responses%20and%20produces%20a%20unified%20answer%20with%20conflict%20flags%2C%20and%20a%20voting%20strategy%20that%20returns%20the%20most%20frequent%20response.%20Handle%20individual%20model%20failures%20gracefully%20so%20the%20council%20continues%20with%20remaining%20responses." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
+<a href="https://heyneo.com/dashboard?section=new-chat&prompt=Build%20a%20Python%20async%20multi-model%20consensus%20framework%20using%20the%20OpenAI%20SDK%20and%20Pydantic.%20It%20should%20query%20a%20configurable%20list%20of%20OpenRouter%20models%20simultaneously%20using%20asyncio.gather%28%29%2C%20then%20support%20two%20aggregation%20strategies%3A%20a%20synthesis%20strategy%20where%20a%20judge%20model%20reads%20all%20responses%20and%20produces%20a%20unified%20answer%20with%20conflict%20flags%2C%20and%20a%20voting%20strategy%20that%20returns%20the%20most%20frequent%20response.%20Handle%20individual%20model%20failures%20gracefully%20so%20the%20council%20continues%20with%20remaining%20responses." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
 
 NEO generates the project structure and core implementation. From there you iterate: ask it to add the confidence scoring and conflict detection logic to the synthesis judge prompt, wire in the voting strategy with majority-answer breakdown, or build out configurable retry and timeout handling per model. Each follow-up builds on what's already there.
 
@@ -102,7 +102,7 @@ python -c "import asyncio; from council import LLMCouncil; council = LLMCouncil(
 
 Try swapping `strategy="voting"` to compare how synthesis and majority-vote differ on the same query, or add a fourth model to the council to see how council diversity affects output quality.
 
-NEO built a multi-model consensus engine where hallucination reduction and answer quality improvement happen through model diversity, not just bigger models. See what else NEO ships at [heyneo.so](https://heyneo.so/).
+NEO built a multi-model consensus engine where hallucination reduction and answer quality improvement happen through model diversity, not just bigger models. See what else NEO ships at [heyneo.com](https://heyneo.com/).
 
 ---
 

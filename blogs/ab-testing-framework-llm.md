@@ -75,7 +75,7 @@ Open NEO in VS Code or Cursor and describe what you want to build. A good starti
 
 > "Build a multi-variant A/B testing framework for LLMs in Python. Support N variants simultaneously with MD5-based deterministic routing on user IDs, async queue-based metric logging under 1ms, one-way ANOVA with Bonferroni correction for multiple comparisons, effect size reporting, and a FastAPI endpoint for model serving. Export results as CSV and generate publication-ready visualizations."
 
-<a href="https://heyneo.so/dashboard?section=new-chat&prompt=Build%20a%20multi-variant%20A%2FB%20testing%20framework%20for%20LLMs%20in%20Python.%20Support%20N%20variants%20simultaneously%20with%20MD5-based%20deterministic%20routing%20on%20user%20IDs%2C%20async%20queue-based%20metric%20logging%20under%201ms%2C%20one-way%20ANOVA%20with%20Bonferroni%20correction%20for%20multiple%20comparisons%2C%20effect%20size%20reporting%2C%20and%20a%20FastAPI%20endpoint%20for%20model%20serving.%20Export%20results%20as%20CSV%20and%20generate%20publication-ready%20visualizations." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
+<a href="https://heyneo.com/dashboard?section=new-chat&prompt=Build%20a%20multi-variant%20A%2FB%20testing%20framework%20for%20LLMs%20in%20Python.%20Support%20N%20variants%20simultaneously%20with%20MD5-based%20deterministic%20routing%20on%20user%20IDs%2C%20async%20queue-based%20metric%20logging%20under%201ms%2C%20one-way%20ANOVA%20with%20Bonferroni%20correction%20for%20multiple%20comparisons%2C%20effect%20size%20reporting%2C%20and%20a%20FastAPI%20endpoint%20for%20model%20serving.%20Export%20results%20as%20CSV%20and%20generate%20publication-ready%20visualizations." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
 
 NEO generates the project structure and core implementation from that. From there you iterate — ask it to add Chi-Square testing for categorical outcomes, build out the YAML configuration schema for defining experiment variants and traffic splits, or extend the report generator with confidence interval tables. Each request builds on what's already there without re-explaining the context.
 
@@ -90,7 +90,7 @@ python3 run_full_pipeline.py
 
 Results land in `results/` — open the generated charts and summary tables to see flip rates, effect sizes, and Bonferroni-corrected p-values across all variants. Start the FastAPI server with `python3 src/serving.py` to route live requests.
 
-NEO built a multi-variant LLM testing framework where rigorous statistical evaluation—ANOVA, Bonferroni correction, effect sizes—is a first-class concern, not an afterthought. See what else NEO ships at [heyneo.so](https://heyneo.so/).
+NEO built a multi-variant LLM testing framework where rigorous statistical evaluation—ANOVA, Bonferroni correction, effect sizes—is a first-class concern, not an afterthought. See what else NEO ships at [heyneo.com](https://heyneo.com/).
 
 ---
 

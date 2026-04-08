@@ -76,7 +76,7 @@ Open NEO in VS Code or Cursor and describe what you want to build. A good starti
 
 > "Build an attention head visualizer for nvidia/Nemotron-Cascade-2-30B-A3B that applies attention rollout (Abnar and Zuidema 2020) to collapse per-layer, per-head attention tensors into a single effective attention matrix, renders interactive HTML heatmaps, exports CSV with one row per (layer, head, from_token, to_token), and includes a MockAttentionExtractor that produces synthetic attention matrices in milliseconds so the full visualization pipeline works offline without downloading the model."
 
-<a href="https://heyneo.so/dashboard?section=new-chat&prompt=Build%20an%20attention%20head%20visualizer%20for%20nvidia%2FNemotron-Cascade-2-30B-A3B%20that%20applies%20attention%20rollout%20%28Abnar%20and%20Zuidema%202020%29%20to%20collapse%20per-layer%2C%20per-head%20attention%20tensors%20into%20a%20single%20effective%20attention%20matrix%2C%20renders%20interactive%20HTML%20heatmaps%2C%20exports%20CSV%20with%20one%20row%20per%20%28layer%2C%20head%2C%20from_token%2C%20to_token%29%2C%20and%20includes%20a%20MockAttentionExtractor%20that%20produces%20synthetic%20attention%20matrices%20in%20milliseconds%20so%20the%20full%20visualization%20pipeline%20works%20offline%20without%20downloading%20the%20model." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
+<a href="https://heyneo.com/dashboard?section=new-chat&prompt=Build%20an%20attention%20head%20visualizer%20for%20nvidia%2FNemotron-Cascade-2-30B-A3B%20that%20applies%20attention%20rollout%20%28Abnar%20and%20Zuidema%202020%29%20to%20collapse%20per-layer%2C%20per-head%20attention%20tensors%20into%20a%20single%20effective%20attention%20matrix%2C%20renders%20interactive%20HTML%20heatmaps%2C%20exports%20CSV%20with%20one%20row%20per%20%28layer%2C%20head%2C%20from_token%2C%20to_token%29%2C%20and%20includes%20a%20MockAttentionExtractor%20that%20produces%20synthetic%20attention%20matrices%20in%20milliseconds%20so%20the%20full%20visualization%20pipeline%20works%20offline%20without%20downloading%20the%20model." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
 
 NEO generates the project structure and core implementation. From there you iterate — ask it to add a `compare_prompts` API that renders side-by-side HTML diffs for two prompts, add token importance scoring that sums attention received per input token across all layers and heads, or wire in the real `nvidia/Nemotron-Cascade-2-30B-A3B` model behind a `mock=False` flag.
 
@@ -91,7 +91,7 @@ python scripts/demo.py --mock --prompt "Explain quantum computing"
 
 The demo writes `outputs/attention_map.html` — open it to explore per-head attention weights with tooltips, then swap to `mock=False` on a GPU machine to inspect the real model.
 
-NEO built an offline-first attention visualizer for Nemotron-Cascade-2-30B-A3B that works without a GPU download and scales to real model inspection when you need it. See what else NEO ships at [heyneo.so](https://heyneo.so()).
+NEO built an offline-first attention visualizer for Nemotron-Cascade-2-30B-A3B that works without a GPU download and scales to real model inspection when you need it. See what else NEO ships at [heyneo.com](https://heyneo.com()).
 
 ---
 

@@ -69,7 +69,7 @@ Open NEO in VS Code or Cursor and describe what you want to build. A good starti
 
 > "Build a Python CLI tool that accepts JSON, CSV, XML, or SQL dump files and generates production-ready schemas in JSON Schema Draft 2020-12, Pydantic v2 models, TypeScript interfaces with Zod validators, or PostgreSQL/MySQL/SQLite DDL. Use a three-stage pipeline: statistical analysis of field cardinality, null rates, and value distributions; LLM-based semantic analysis for field name meaning and foreign key patterns; and schema synthesis that reconciles both. Detect enums, nullable vs optional vs required distinctions, and composite unique keys."
 
-<a href="https://heyneo.so/dashboard?section=new-chat&prompt=Build%20a%20Python%20CLI%20tool%20that%20accepts%20JSON%2C%20CSV%2C%20XML%2C%20or%20SQL%20dump%20files%20and%20generates%20production-ready%20schemas%20in%20JSON%20Schema%20Draft%202020-12%2C%20Pydantic%20v2%20models%2C%20TypeScript%20interfaces%20with%20Zod%20validators%2C%20or%20PostgreSQL%2FMySQL%2FSQLite%20DDL.%20Use%20a%20three-stage%20pipeline%3A%20statistical%20analysis%20of%20field%20cardinality%2C%20null%20rates%2C%20and%20value%20distributions%3B%20LLM-based%20semantic%20analysis%20for%20field%20name%20meaning%20and%20foreign%20key%20patterns%3B%20and%20schema%20synthesis%20that%20reconciles%20both.%20Detect%20enums%2C%20nullable%20vs%20optional%20vs%20required%20distinctions%2C%20and%20composite%20unique%20keys." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
+<a href="https://heyneo.com/dashboard?section=new-chat&prompt=Build%20a%20Python%20CLI%20tool%20that%20accepts%20JSON%2C%20CSV%2C%20XML%2C%20or%20SQL%20dump%20files%20and%20generates%20production-ready%20schemas%20in%20JSON%20Schema%20Draft%202020-12%2C%20Pydantic%20v2%20models%2C%20TypeScript%20interfaces%20with%20Zod%20validators%2C%20or%20PostgreSQL%2FMySQL%2FSQLite%20DDL.%20Use%20a%20three-stage%20pipeline%3A%20statistical%20analysis%20of%20field%20cardinality%2C%20null%20rates%2C%20and%20value%20distributions%3B%20LLM-based%20semantic%20analysis%20for%20field%20name%20meaning%20and%20foreign%20key%20patterns%3B%20and%20schema%20synthesis%20that%20reconciles%20both.%20Detect%20enums%2C%20nullable%20vs%20optional%20vs%20required%20distinctions%2C%20and%20composite%20unique%20keys." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
 
 NEO generates the inference pipeline, format emitters, and sample data fixtures. From there you iterate — ask it to add `if/then/else` conditional schema support for value-dependent fields, add fuzzy enum detection with configurable cardinality thresholds, or add a `--dialect` flag for BigQuery DDL output.
 
@@ -85,7 +85,7 @@ python infer.py --input ./samples/orders.json --format json-schema
 
 Point it at any JSON, CSV, or SQL file and get a complete schema in seconds — with enum values, nullable markers, and foreign key relationships already inferred.
 
-NEO built a schema inference tool that turns the first-hour data engineering tax into a ten-second automated step. See what else NEO ships at [heyneo.so](https://heyneo.so/).
+NEO built a schema inference tool that turns the first-hour data engineering tax into a ten-second automated step. See what else NEO ships at [heyneo.com](https://heyneo.com/).
 
 ---
 
