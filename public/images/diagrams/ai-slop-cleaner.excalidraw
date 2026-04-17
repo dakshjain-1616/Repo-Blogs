@@ -1,0 +1,429 @@
+{
+  "type": "excalidraw",
+  "version": 2,
+  "source": "https://excalidraw.com",
+  "elements": [
+    {
+      "id": "title",
+      "type": "text",
+      "x": 0,
+      "y": 20,
+      "width": 1240,
+      "height": 30,
+      "angle": 0,
+      "strokeColor": "#1e40af",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "text": "AI Slop Cleaner: Five-Phase AST Cleanup Pipeline",
+      "fontSize": 22,
+      "fontFamily": 3,
+      "textAlign": "center",
+      "verticalAlign": "top",
+      "originalText": "AI Slop Cleaner: Five-Phase AST Cleanup Pipeline"
+    },
+    {
+      "id": "box1",
+      "type": "rectangle",
+      "x": 40,
+      "y": 90,
+      "width": 175,
+      "height": 100,
+      "angle": 0,
+      "strokeColor": "#c2410c",
+      "backgroundColor": "#fed7aa",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "boundElements": [
+        {
+          "id": "text1",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "text1",
+      "type": "text",
+      "x": 40,
+      "y": 90,
+      "width": 175,
+      "height": 100,
+      "angle": 0,
+      "strokeColor": "#374151",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 1,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "text": "1. Audit\n(tree-sitter)\n\nUnused imports,\ncomplex funcs",
+      "fontSize": 13,
+      "fontFamily": 3,
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "containerId": "box1",
+      "originalText": "1. Audit\n(tree-sitter)\n\nUnused imports,\ncomplex funcs"
+    },
+    {
+      "id": "arrow1",
+      "type": "arrow",
+      "x": 215,
+      "y": 140,
+      "width": 65,
+      "height": 0,
+      "angle": 0,
+      "strokeColor": "#374151",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          65,
+          0
+        ]
+      ],
+      "startArrowhead": null,
+      "endArrowhead": "arrow"
+    },
+    {
+      "id": "box2",
+      "type": "rectangle",
+      "x": 280,
+      "y": 90,
+      "width": 175,
+      "height": 100,
+      "angle": 0,
+      "strokeColor": "#1e3a5f",
+      "backgroundColor": "#93c5fd",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "boundElements": [
+        {
+          "id": "text2",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "text2",
+      "type": "text",
+      "x": 280,
+      "y": 90,
+      "width": 175,
+      "height": 100,
+      "angle": 0,
+      "strokeColor": "#374151",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 1,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "text": "2. Analyze\n\nCall graph,\ndead functions\n& classes",
+      "fontSize": 13,
+      "fontFamily": 3,
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "containerId": "box2",
+      "originalText": "2. Analyze\n\nCall graph,\ndead functions\n& classes"
+    },
+    {
+      "id": "arrow2",
+      "type": "arrow",
+      "x": 455,
+      "y": 140,
+      "width": 65,
+      "height": 0,
+      "angle": 0,
+      "strokeColor": "#374151",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          65,
+          0
+        ]
+      ],
+      "startArrowhead": null,
+      "endArrowhead": "arrow"
+    },
+    {
+      "id": "box3",
+      "type": "rectangle",
+      "x": 520,
+      "y": 90,
+      "width": 175,
+      "height": 100,
+      "angle": 0,
+      "strokeColor": "#1e3a5f",
+      "backgroundColor": "#60a5fa",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "boundElements": [
+        {
+          "id": "text3",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "text3",
+      "type": "text",
+      "x": 520,
+      "y": 90,
+      "width": 175,
+      "height": 100,
+      "angle": 0,
+      "strokeColor": "#374151",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 1,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "text": "3. Clean\n\nAtomic patches\n+ file backups\n(HIGH conf only)",
+      "fontSize": 13,
+      "fontFamily": 3,
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "containerId": "box3",
+      "originalText": "3. Clean\n\nAtomic patches\n+ file backups\n(HIGH conf only)"
+    },
+    {
+      "id": "arrow3",
+      "type": "arrow",
+      "x": 695,
+      "y": 140,
+      "width": 65,
+      "height": 0,
+      "angle": 0,
+      "strokeColor": "#374151",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          65,
+          0
+        ]
+      ],
+      "startArrowhead": null,
+      "endArrowhead": "arrow"
+    },
+    {
+      "id": "box4",
+      "type": "rectangle",
+      "x": 760,
+      "y": 90,
+      "width": 175,
+      "height": 100,
+      "angle": 0,
+      "strokeColor": "#b45309",
+      "backgroundColor": "#fef3c7",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "boundElements": [
+        {
+          "id": "text4",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "text4",
+      "type": "text",
+      "x": 760,
+      "y": 90,
+      "width": 175,
+      "height": 100,
+      "angle": 0,
+      "strokeColor": "#374151",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 1,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "text": "4. Verify\n(pytest)\n\nPass \u2192 keep\nFail \u2192 rollback",
+      "fontSize": 13,
+      "fontFamily": 3,
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "containerId": "box4",
+      "originalText": "4. Verify\n(pytest)\n\nPass \u2192 keep\nFail \u2192 rollback"
+    },
+    {
+      "id": "arrow4",
+      "type": "arrow",
+      "x": 935,
+      "y": 140,
+      "width": 65,
+      "height": 0,
+      "angle": 0,
+      "strokeColor": "#374151",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          65,
+          0
+        ]
+      ],
+      "startArrowhead": null,
+      "endArrowhead": "arrow"
+    },
+    {
+      "id": "box5",
+      "type": "rectangle",
+      "x": 1000,
+      "y": 90,
+      "width": 175,
+      "height": 100,
+      "angle": 0,
+      "strokeColor": "#047857",
+      "backgroundColor": "#a7f3d0",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "boundElements": [
+        {
+          "id": "text5",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "text5",
+      "type": "text",
+      "x": 1000,
+      "y": 90,
+      "width": 175,
+      "height": 100,
+      "angle": 0,
+      "strokeColor": "#374151",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 1,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "text": "5. Document\n\nARCHITECTURE.md\nFUNCTION_MAP.md\nSLOP_REPORT.md",
+      "fontSize": 13,
+      "fontFamily": 3,
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "containerId": "box5",
+      "originalText": "5. Document\n\nARCHITECTURE.md\nFUNCTION_MAP.md\nSLOP_REPORT.md"
+    },
+    {
+      "id": "rollback-arrow",
+      "type": "arrow",
+      "x": 847,
+      "y": 190,
+      "width": 0,
+      "height": 100,
+      "angle": 0,
+      "strokeColor": "#b91c1c",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "dashed",
+      "roughness": 0,
+      "opacity": 100,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          60
+        ],
+        [
+          -240,
+          60
+        ],
+        [
+          -240,
+          0
+        ]
+      ],
+      "startArrowhead": null,
+      "endArrowhead": "arrow"
+    },
+    {
+      "id": "rollback-label",
+      "type": "text",
+      "x": 560,
+      "y": 235,
+      "width": 280,
+      "height": 25,
+      "angle": 0,
+      "strokeColor": "#b91c1c",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 1,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "text": "Tests fail \u2192 restore backups, revert patches",
+      "fontSize": 13,
+      "fontFamily": 3,
+      "textAlign": "center",
+      "verticalAlign": "top",
+      "originalText": "Tests fail \u2192 restore backups, revert patches"
+    }
+  ],
+  "appState": {
+    "viewBackgroundColor": "#ffffff",
+    "gridSize": 20
+  },
+  "files": {}
+}

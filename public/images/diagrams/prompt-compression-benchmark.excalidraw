@@ -1,0 +1,474 @@
+{
+  "type": "excalidraw",
+  "version": 2,
+  "source": "https://excalidraw.com",
+  "elements": [
+    {
+      "id": "title",
+      "type": "text",
+      "x": 0,
+      "y": 20,
+      "width": 1240,
+      "height": 30,
+      "angle": 0,
+      "strokeColor": "#1e40af",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "text": "Prompt Compression Benchmarker: Token Reduction vs Quality",
+      "fontSize": 22,
+      "fontFamily": 3,
+      "textAlign": "center",
+      "verticalAlign": "top",
+      "originalText": "Prompt Compression Benchmarker: Token Reduction vs Quality"
+    },
+    {
+      "id": "box1",
+      "type": "rectangle",
+      "x": 40,
+      "y": 90,
+      "width": 175,
+      "height": 100,
+      "angle": 0,
+      "strokeColor": "#c2410c",
+      "backgroundColor": "#fed7aa",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "boundElements": [
+        {
+          "id": "text1",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "text1",
+      "type": "text",
+      "x": 40,
+      "y": 90,
+      "width": 175,
+      "height": 100,
+      "angle": 0,
+      "strokeColor": "#374151",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 1,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "text": "Long Prompt\n(JSONL sample)\n\nRAG / summary /\ncoding context",
+      "fontSize": 13,
+      "fontFamily": 3,
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "containerId": "box1",
+      "originalText": "Long Prompt\n(JSONL sample)\n\nRAG / summary /\ncoding context"
+    },
+    {
+      "id": "arrow1",
+      "type": "arrow",
+      "x": 215,
+      "y": 140,
+      "width": 65,
+      "height": 0,
+      "angle": 0,
+      "strokeColor": "#374151",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          65,
+          0
+        ]
+      ],
+      "startArrowhead": null,
+      "endArrowhead": "arrow"
+    },
+    {
+      "id": "box2",
+      "type": "rectangle",
+      "x": 280,
+      "y": 90,
+      "width": 175,
+      "height": 100,
+      "angle": 0,
+      "strokeColor": "#6d28d9",
+      "backgroundColor": "#ddd6fe",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "boundElements": [
+        {
+          "id": "text2",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "text2",
+      "type": "text",
+      "x": 280,
+      "y": 90,
+      "width": 175,
+      "height": 100,
+      "angle": 0,
+      "strokeColor": "#374151",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 1,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "text": "Compressors\n\ntfidf, sel_context,\nllmlingua,\nllmlingua2",
+      "fontSize": 13,
+      "fontFamily": 3,
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "containerId": "box2",
+      "originalText": "Compressors\n\ntfidf, sel_context,\nllmlingua,\nllmlingua2"
+    },
+    {
+      "id": "arrow2",
+      "type": "arrow",
+      "x": 455,
+      "y": 140,
+      "width": 65,
+      "height": 0,
+      "angle": 0,
+      "strokeColor": "#374151",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          65,
+          0
+        ]
+      ],
+      "startArrowhead": null,
+      "endArrowhead": "arrow"
+    },
+    {
+      "id": "box3",
+      "type": "rectangle",
+      "x": 520,
+      "y": 90,
+      "width": 175,
+      "height": 100,
+      "angle": 0,
+      "strokeColor": "#1e3a5f",
+      "backgroundColor": "#93c5fd",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "boundElements": [
+        {
+          "id": "text3",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "text3",
+      "type": "text",
+      "x": 520,
+      "y": 90,
+      "width": 175,
+      "height": 100,
+      "angle": 0,
+      "strokeColor": "#374151",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 1,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "text": "Compressed\nPrompt\n\n~45\u201357%\ntoken reduction",
+      "fontSize": 13,
+      "fontFamily": 3,
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "containerId": "box3",
+      "originalText": "Compressed\nPrompt\n\n~45\u201357%\ntoken reduction"
+    },
+    {
+      "id": "arrow3",
+      "type": "arrow",
+      "x": 695,
+      "y": 140,
+      "width": 65,
+      "height": 0,
+      "angle": 0,
+      "strokeColor": "#374151",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          65,
+          0
+        ]
+      ],
+      "startArrowhead": null,
+      "endArrowhead": "arrow"
+    },
+    {
+      "id": "box4",
+      "type": "rectangle",
+      "x": 760,
+      "y": 90,
+      "width": 175,
+      "height": 100,
+      "angle": 0,
+      "strokeColor": "#6d28d9",
+      "backgroundColor": "#ddd6fe",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "boundElements": [
+        {
+          "id": "text4",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "text4",
+      "type": "text",
+      "x": 760,
+      "y": 90,
+      "width": 175,
+      "height": 100,
+      "angle": 0,
+      "strokeColor": "#374151",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 1,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "text": "Target LLM\n\nRuns task on\ncompressed +\nbaseline prompts",
+      "fontSize": 13,
+      "fontFamily": 3,
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "containerId": "box4",
+      "originalText": "Target LLM\n\nRuns task on\ncompressed +\nbaseline prompts"
+    },
+    {
+      "id": "arrow4",
+      "type": "arrow",
+      "x": 935,
+      "y": 140,
+      "width": 65,
+      "height": 0,
+      "angle": 0,
+      "strokeColor": "#374151",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          65,
+          0
+        ]
+      ],
+      "startArrowhead": null,
+      "endArrowhead": "arrow"
+    },
+    {
+      "id": "box5",
+      "type": "rectangle",
+      "x": 1000,
+      "y": 90,
+      "width": 175,
+      "height": 100,
+      "angle": 0,
+      "strokeColor": "#047857",
+      "backgroundColor": "#a7f3d0",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "boundElements": [
+        {
+          "id": "text5",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "text5",
+      "type": "text",
+      "x": 1000,
+      "y": 90,
+      "width": 175,
+      "height": 100,
+      "angle": 0,
+      "strokeColor": "#374151",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 1,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "text": "Quality Eval\n\nF1 / ROUGE-L /\nBM25 + LLM\njudge + latency",
+      "fontSize": 13,
+      "fontFamily": 3,
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "containerId": "box5",
+      "originalText": "Quality Eval\n\nF1 / ROUGE-L /\nBM25 + LLM\njudge + latency"
+    },
+    {
+      "id": "report-box",
+      "type": "rectangle",
+      "x": 400,
+      "y": 280,
+      "width": 400,
+      "height": 90,
+      "angle": 0,
+      "strokeColor": "#1e3a5f",
+      "backgroundColor": "#dbeafe",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "boundElements": [
+        {
+          "id": "report-text",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "report-text",
+      "type": "text",
+      "x": 400,
+      "y": 280,
+      "width": 400,
+      "height": 90,
+      "angle": 0,
+      "strokeColor": "#374151",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 1,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "text": "Reports: Terminal (colour-coded) \u00b7 JSON \u00b7 CSV\nHTML with Chart.js Pareto scatter\n+ daily-token cost projection",
+      "fontSize": 13,
+      "fontFamily": 3,
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "containerId": "report-box",
+      "originalText": "Reports: Terminal (colour-coded) \u00b7 JSON \u00b7 CSV\nHTML with Chart.js Pareto scatter\n+ daily-token cost projection"
+    },
+    {
+      "id": "report-arrow",
+      "type": "arrow",
+      "x": 1087,
+      "y": 190,
+      "width": 287,
+      "height": 90,
+      "angle": 0,
+      "strokeColor": "#374151",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "dashed",
+      "roughness": 0,
+      "opacity": 100,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          45
+        ],
+        [
+          -287,
+          45
+        ],
+        [
+          -287,
+          90
+        ]
+      ],
+      "startArrowhead": null,
+      "endArrowhead": "arrow"
+    },
+    {
+      "id": "footer-label",
+      "type": "text",
+      "x": 320,
+      "y": 400,
+      "width": 560,
+      "height": 25,
+      "angle": 0,
+      "strokeColor": "#64748b",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 1,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "text": "Tasks: RAG \u00b7 summarization \u00b7 coding    |    MCP tools: compress_text, recommend",
+      "fontSize": 13,
+      "fontFamily": 3,
+      "textAlign": "center",
+      "verticalAlign": "top",
+      "originalText": "Tasks: RAG \u00b7 summarization \u00b7 coding    |    MCP tools: compress_text, recommend"
+    }
+  ],
+  "appState": {
+    "viewBackgroundColor": "#ffffff",
+    "gridSize": 20
+  },
+  "files": {}
+}

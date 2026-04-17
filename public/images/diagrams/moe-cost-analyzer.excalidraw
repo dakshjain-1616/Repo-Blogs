@@ -1,0 +1,472 @@
+{
+  "type": "excalidraw",
+  "version": 2,
+  "source": "https://excalidraw.com",
+  "elements": [
+    {
+      "id": "title",
+      "type": "text",
+      "x": 0,
+      "y": 20,
+      "width": 1240,
+      "height": 30,
+      "angle": 0,
+      "strokeColor": "#1e40af",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "text": "MoE Cost Analyzer: Dense vs MoE Benchmarking Pipeline",
+      "fontSize": 22,
+      "fontFamily": 3,
+      "textAlign": "center",
+      "verticalAlign": "top",
+      "originalText": "MoE Cost Analyzer: Dense vs MoE Benchmarking Pipeline"
+    },
+    {
+      "id": "box1",
+      "type": "rectangle",
+      "x": 40,
+      "y": 90,
+      "width": 175,
+      "height": 100,
+      "angle": 0,
+      "strokeColor": "#c2410c",
+      "backgroundColor": "#fed7aa",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "boundElements": [
+        {
+          "id": "text1",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "text1",
+      "type": "text",
+      "x": 40,
+      "y": 90,
+      "width": 175,
+      "height": 100,
+      "angle": 0,
+      "strokeColor": "#374151",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 1,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "text": "Benchmark JSON\n\nTasks + prompts\n+ expected labels\n+ SLA config",
+      "fontSize": 13,
+      "fontFamily": 3,
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "containerId": "box1",
+      "originalText": "Benchmark JSON\n\nTasks + prompts\n+ expected labels\n+ SLA config"
+    },
+    {
+      "id": "arrow1",
+      "type": "arrow",
+      "x": 215,
+      "y": 140,
+      "width": 65,
+      "height": 0,
+      "angle": 0,
+      "strokeColor": "#374151",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          65,
+          0
+        ]
+      ],
+      "startArrowhead": null,
+      "endArrowhead": "arrow"
+    },
+    {
+      "id": "box2",
+      "type": "rectangle",
+      "x": 280,
+      "y": 90,
+      "width": 175,
+      "height": 100,
+      "angle": 0,
+      "strokeColor": "#1e40af",
+      "backgroundColor": "#dbeafe",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "boundElements": [
+        {
+          "id": "text2",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "text2",
+      "type": "text",
+      "x": 280,
+      "y": 90,
+      "width": 175,
+      "height": 100,
+      "angle": 0,
+      "strokeColor": "#374151",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 1,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "text": "Async Runner\n\nasyncio semaphore=5\n+ exp. backoff retry\n(1s / 2s / 4s)",
+      "fontSize": 13,
+      "fontFamily": 3,
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "containerId": "box2",
+      "originalText": "Async Runner\n\nasyncio semaphore=5\n+ exp. backoff retry\n(1s / 2s / 4s)"
+    },
+    {
+      "id": "arrow2a",
+      "type": "arrow",
+      "x": 455,
+      "y": 120,
+      "width": 65,
+      "height": -20,
+      "angle": 0,
+      "strokeColor": "#374151",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          65,
+          -20
+        ]
+      ],
+      "startArrowhead": null,
+      "endArrowhead": "arrow"
+    },
+    {
+      "id": "arrow2b",
+      "type": "arrow",
+      "x": 455,
+      "y": 160,
+      "width": 65,
+      "height": 20,
+      "angle": 0,
+      "strokeColor": "#374151",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          65,
+          20
+        ]
+      ],
+      "startArrowhead": null,
+      "endArrowhead": "arrow"
+    },
+    {
+      "id": "box3a",
+      "type": "rectangle",
+      "x": 520,
+      "y": 30,
+      "width": 175,
+      "height": 100,
+      "angle": 0,
+      "strokeColor": "#6d28d9",
+      "backgroundColor": "#ddd6fe",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "boundElements": [
+        {
+          "id": "text3a",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "text3a",
+      "type": "text",
+      "x": 520,
+      "y": 30,
+      "width": 175,
+      "height": 100,
+      "angle": 0,
+      "strokeColor": "#374151",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 1,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "text": "Dense Model\n(OpenRouter)\n\ngemma-4-31b-it",
+      "fontSize": 13,
+      "fontFamily": 3,
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "containerId": "box3a",
+      "originalText": "Dense Model\n(OpenRouter)\n\ngemma-4-31b-it"
+    },
+    {
+      "id": "box3b",
+      "type": "rectangle",
+      "x": 520,
+      "y": 150,
+      "width": 175,
+      "height": 100,
+      "angle": 0,
+      "strokeColor": "#6d28d9",
+      "backgroundColor": "#ddd6fe",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "boundElements": [
+        {
+          "id": "text3b",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "text3b",
+      "type": "text",
+      "x": 520,
+      "y": 150,
+      "width": 175,
+      "height": 100,
+      "angle": 0,
+      "strokeColor": "#374151",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 1,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "text": "MoE Model\n(OpenRouter)\n\ngemma-4-26b-a4b",
+      "fontSize": 13,
+      "fontFamily": 3,
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "containerId": "box3b",
+      "originalText": "MoE Model\n(OpenRouter)\n\ngemma-4-26b-a4b"
+    },
+    {
+      "id": "arrow3a",
+      "type": "arrow",
+      "x": 695,
+      "y": 80,
+      "width": 65,
+      "height": 60,
+      "angle": 0,
+      "strokeColor": "#374151",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          65,
+          60
+        ]
+      ],
+      "startArrowhead": null,
+      "endArrowhead": "arrow"
+    },
+    {
+      "id": "arrow3b",
+      "type": "arrow",
+      "x": 695,
+      "y": 200,
+      "width": 65,
+      "height": -60,
+      "angle": 0,
+      "strokeColor": "#374151",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          65,
+          -60
+        ]
+      ],
+      "startArrowhead": null,
+      "endArrowhead": "arrow"
+    },
+    {
+      "id": "box4",
+      "type": "rectangle",
+      "x": 760,
+      "y": 90,
+      "width": 175,
+      "height": 100,
+      "angle": 0,
+      "strokeColor": "#b45309",
+      "backgroundColor": "#fef3c7",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "boundElements": [
+        {
+          "id": "text4",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "text4",
+      "type": "text",
+      "x": 760,
+      "y": 90,
+      "width": 175,
+      "height": 100,
+      "angle": 0,
+      "strokeColor": "#374151",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 1,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "text": "Analyzer\n\nAvg / P50 / P95\nlatency + cost\nvs SLA thresholds",
+      "fontSize": 13,
+      "fontFamily": 3,
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "containerId": "box4",
+      "originalText": "Analyzer\n\nAvg / P50 / P95\nlatency + cost\nvs SLA thresholds"
+    },
+    {
+      "id": "arrow4",
+      "type": "arrow",
+      "x": 935,
+      "y": 140,
+      "width": 65,
+      "height": 0,
+      "angle": 0,
+      "strokeColor": "#374151",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          65,
+          0
+        ]
+      ],
+      "startArrowhead": null,
+      "endArrowhead": "arrow"
+    },
+    {
+      "id": "box5",
+      "type": "rectangle",
+      "x": 1000,
+      "y": 90,
+      "width": 175,
+      "height": 100,
+      "angle": 0,
+      "strokeColor": "#047857",
+      "backgroundColor": "#a7f3d0",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "boundElements": [
+        {
+          "id": "text5",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "text5",
+      "type": "text",
+      "x": 1000,
+      "y": 90,
+      "width": 175,
+      "height": 100,
+      "angle": 0,
+      "strokeColor": "#374151",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 1,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "text": "Decision\n\nRich table + CSV\nUSE MoE / MARGINAL\n/ STICK W/ DENSE",
+      "fontSize": 13,
+      "fontFamily": 3,
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "containerId": "box5",
+      "originalText": "Decision\n\nRich table + CSV\nUSE MoE / MARGINAL\n/ STICK W/ DENSE"
+    }
+  ],
+  "appState": {
+    "viewBackgroundColor": "#ffffff",
+    "gridSize": 20
+  },
+  "files": {}
+}
