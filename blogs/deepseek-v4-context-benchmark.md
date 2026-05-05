@@ -1,6 +1,6 @@
 ---
 title: "DeepSeek V4 Context Benchmark: Million-Token Performance on Flash, Pro, and Llama 4 Scout"
-description: "NEO benchmarked DeepSeek V4 Flash, V4 Pro, and Llama 4 Scout on four million-token tasks — needle-in-haystack, multi-hop reasoning, codebase analysis, and synthetic data. Flash achieved 100% retrieval accuracy at 2× the speed and $0.14/M tokens vs Pro's $0.32/M."
+description: "NEO benchmarked DeepSeek V4 Flash, V4 Pro, and Llama 4 Scout on four million-token tasks, needle-in-haystack, multi-hop reasoning, codebase analysis, and synthetic data. Flash achieved 100% retrieval accuracy at 2× the speed and $0.14/M tokens vs Pro's $0.32/M."
 date: 2026-05-05
 tags: [benchmarking, deepseek-v4, llama-4-scout, long-context, NIAH, retrieval, cost-analysis]
 slug: deepseek-v4-context-benchmark
@@ -31,13 +31,13 @@ NEO benchmarked three models that support million-token contexts on four tasks t
 
 ## The Four Task Types
 
-**Needle in a Haystack (NIAH)** — a specific fact is embedded at a known position in a long document. The model must retrieve it exactly. Positions tested: 10K, 100K, 500K, 900K tokens into a 1M-token document. Flash and Pro retrieved correctly at all positions; Scout failed at deep positions.
+**Needle in a Haystack (NIAH)**: a specific fact is embedded at a known position in a long document. The model must retrieve it exactly. Positions tested: 10K, 100K, 500K, 900K tokens into a 1M-token document. Flash and Pro retrieved correctly at all positions; Scout failed at deep positions.
 
-**Multi-Hop Reasoning** — a chain of three to five logical steps, each requiring a different passage to be located. All three models scored 100%, suggesting that multi-hop reasoning within long contexts is a solved problem at the current model scale.
+**Multi-Hop Reasoning**: a chain of three to five logical steps, each requiring a different passage to be located. All three models scored 100%, suggesting that multi-hop reasoning within long contexts is a solved problem at the current model scale.
 
-**Codebase Analysis** — a large synthetic codebase (300K–800K tokens) with specific bugs, function signatures, and architectural patterns that need to be found and explained. Flash and Pro performed strongly; Scout showed more hallucination on function names that appeared infrequently.
+**Codebase Analysis**: a large synthetic codebase (300K–800K tokens) with specific bugs, function signatures, and architectural patterns that need to be found and explained. Flash and Pro performed strongly; Scout showed more hallucination on function names that appeared infrequently.
 
-**Synthetic Data Tasks** — structured extraction from long synthesized documents (financial reports, research papers). All models performed well, with Flash and Pro achieving 100% on extraction accuracy.
+**Synthetic Data Tasks**: structured extraction from long synthesized documents (financial reports, research papers). All models performed well, with Flash and Pro achieving 100% on extraction accuracy.
 
 ## The Cost-Performance Takeaway
 
@@ -53,7 +53,7 @@ Open NEO in VS Code or Cursor and describe what you want to build. A good starti
 
 <a href="https://heyneo.com/dashboard?section=new-chat&prompt=Build%20a%20long-context%20benchmark%20comparing%20DeepSeek%20V4%20Flash%2C%20V4%20Pro%2C%20and%20Llama%204%20Scout%20on%20four%20task%20types%3A%20needle-in-haystack%20at%20multiple%20positions%2C%20multi-hop%20reasoning%2C%20codebase%20analysis%2C%20and%20structured%20extraction.%20Record%20accuracy%2C%20latency%2C%20and%20cost%20per%201M%20tokens.%20Generate%20comparison%20table%20and%20per-task%20accuracy%20charts." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
 
-NEO scaffolds the document generation, the NIAH position placement, the multi-hop reasoning chain construction, the model runner, and the cost/latency tracker. From there you iterate — extend NIAH to test positions every 50K tokens for a heat map of retrieval accuracy across the full context window, add more models to the comparison, or design domain-specific long-context tasks for your production use case.
+NEO scaffolds the document generation, the NIAH position placement, the multi-hop reasoning chain construction, the model runner, and the cost/latency tracker. From there you iterate: extend NIAH to test positions every 50K tokens for a heat map of retrieval accuracy across the full context window, add more models to the comparison, or design domain-specific long-context tasks for your production use case.
 
 To run the finished project:
 
@@ -68,7 +68,7 @@ python run_benchmark.py --task multihop
 python run_benchmark.py --task all  # full suite
 ```
 
-NEO benchmarked million-token context on three models and found DeepSeek V4 Flash matches Pro's accuracy at half the cost and twice the speed — and Llama 4 Scout's 33% NIAH score means it's not reliable for deep retrieval workloads. See what else NEO ships at [heyneo.com](https://heyneo.com/).
+NEO benchmarked million-token context on three models and found DeepSeek V4 Flash matches Pro's accuracy at half the cost and twice the speed, and Llama 4 Scout's 33% NIAH score means it's not reliable for deep retrieval workloads. See what else NEO ships at [heyneo.com](https://heyneo.com/).
 
 ---
 

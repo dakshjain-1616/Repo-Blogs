@@ -1,6 +1,6 @@
 ---
 title: "RAG with Retrieval-Time Semantic Deduplication: 30–50% Fewer Tokens, Better Answers"
-description: "NEO built a RAG pipeline that deduplicates retrieved chunks by semantic similarity before they reach the LLM — cutting input tokens by 30–50% and eliminating the signal dilution that makes RAG answers vague."
+description: "NEO built a RAG pipeline that deduplicates retrieved chunks by semantic similarity before they reach the LLM, cutting input tokens by 30–50% and eliminating the signal dilution that makes RAG answers vague."
 date: 2026-05-05
 tags: [RAG, deduplication, embeddings, ChromaDB, sentence-transformers, token-reduction, LLM]
 slug: rag-retrieval-semantic-deduplication
@@ -15,7 +15,7 @@ github: https://github.com/dakshjain-1616/RAG-with-Retrieval-Time-Semantic-Dedup
 
 ## The Problem
 
-> Standard RAG retrieves the top-K chunks by similarity and sends them all to the LLM. The problem is that top-K chunks from a typical document corpus are not diverse — they cluster around the same few paragraphs. The LLM sees the same information three times, compressed differently. It doesn't get three times as much signal; it gets one signal buried in noise. The answer comes out hedged and repetitive, because the context was.
+> Standard RAG retrieves the top-K chunks by similarity and sends them all to the LLM. The problem is that top-K chunks from a typical document corpus are not diverse, they cluster around the same few paragraphs. The LLM sees the same information three times, compressed differently. It doesn't get three times as much signal; it gets one signal buried in noise. The answer comes out hedged and repetitive, because the context was.
 
 NEO built this pipeline to filter chunks *after retrieval and before generation*, keeping only the semantically distinct ones. The same quality of answer, with a third fewer tokens.
 
@@ -24,9 +24,9 @@ NEO built this pipeline to filter chunks *after retrieval and before generation*
 The pipeline runs between ChromaDB retrieval and LLM generation:
 
 1. **Retrieve top-K candidates** from ChromaDB using standard semantic search.
-2. **Embed all K chunks locally** using `all-MiniLM-L6-v2` via sentence-transformers — no GPU required, no API call, runs on CPU.
+2. **Embed all K chunks locally** using `all-MiniLM-L6-v2` via sentence-transformers, no GPU required, no API call, runs on CPU.
 3. **Compute pairwise cosine similarity** across all chunk pairs.
-4. **Greedy filter** — iterate through chunks ranked by relevance; retain each chunk unless it exceeds the similarity threshold against an already-retained chunk.
+4. **Greedy filter**: iterate through chunks ranked by relevance; retain each chunk unless it exceeds the similarity threshold against an already-retained chunk.
 5. **Pass only the diverse set** to the LLM for generation.
 
 The result is a context that covers more ground per token. The LLM's answer reflects more of the document, not more of the same paragraph.
@@ -45,9 +45,9 @@ The tool logs the deduplication ratio per query so you can tune empirically.
 
 The pipeline logs per-query metrics in JSON:
 
-- **Deduplication ratio** — chunks removed / chunks retrieved
-- **Token usage** — tokens before and after deduplication
-- **Retrieval metrics** — latency, candidate count, retained count
+- **Deduplication ratio**: chunks removed / chunks retrieved
+- **Token usage**: tokens before and after deduplication
+- **Retrieval metrics**: latency, candidate count, retained count
 
 Across a typical RAG workload, input tokens drop 30–50% with no measurable answer quality regression on factual queries. On ambiguous queries the answers often improve, because the LLM receives a more balanced view of the document set.
 
@@ -63,7 +63,7 @@ Open NEO in VS Code or Cursor and describe what you want to build. A good starti
 
 <a href="https://heyneo.com/dashboard?section=new-chat&prompt=Build%20a%20RAG%20pipeline%20with%20retrieval-time%20semantic%20deduplication.%20Retrieve%20top-K%20chunks%20from%20ChromaDB%2C%20embed%20them%20locally%20using%20sentence-transformers%20on%20CPU%2C%20compute%20pairwise%20cosine%20similarity%2C%20apply%20greedy%20filtering%20to%20retain%20only%20semantically%20distinct%20chunks%2C%20then%20pass%20deduplicated%20context%20to%20an%20LLM.%20Log%20deduplication%20ratio%20and%20token%20savings%20per%20query%20as%20JSON.%20Support%20tunable%20similarity%20threshold%20and%20mock%20mode." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
 
-NEO scaffolds the ChromaDB integration, the local embedding step, the pairwise similarity matrix, the greedy filter, and the metrics logger. From there you iterate — swap `all-MiniLM-L6-v2` for a domain-specific embedding model, add a diversity-aware re-ranker that combines relevance and novelty scores, or wire the deduplication ratio into a dashboard that tracks context quality over time.
+NEO scaffolds the ChromaDB integration, the local embedding step, the pairwise similarity matrix, the greedy filter, and the metrics logger. From there you iterate: swap `all-MiniLM-L6-v2` for a domain-specific embedding model, add a diversity-aware re-ranker that combines relevance and novelty scores, or wire the deduplication ratio into a dashboard that tracks context quality over time.
 
 To run the finished project:
 

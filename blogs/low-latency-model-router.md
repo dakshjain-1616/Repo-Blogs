@@ -1,6 +1,6 @@
 ---
 title: "Low-Latency Model Router: Sub-Millisecond LLM Selection Across OpenRouter"
-description: "NEO built an intelligent model router that selects the optimal LLM for each request from OpenRouter's catalogue in under 0.1ms, with automatic failover, Redis caching, and three priority modes — speed, cost, quality, and balanced."
+description: "NEO built an intelligent model router that selects the optimal LLM for each request from OpenRouter's catalogue in under 0.1ms, with automatic failover, Redis caching, and three priority modes, speed, cost, quality, and balanced."
 date: 2026-05-05
 tags: [routing, OpenRouter, LLM, FastAPI, Redis, caching, failover, latency]
 slug: low-latency-model-router
@@ -38,11 +38,11 @@ The weights shift based on your priority mode:
 | `quality` | 0.10 | 0.20 | 0.70 |
 | `balanced` | 0.33 | 0.33 | 0.33 |
 
-The router selects the highest-scoring available model and routes to it. If that model fails, it retries with the next candidate automatically — no retry logic in your application code.
+The router selects the highest-scoring available model and routes to it. If that model fails, it retries with the next candidate automatically, no retry logic in your application code.
 
 ## Redis Caching with In-Memory Fallback
 
-Repeated requests with the same routing decision don't re-score the model catalogue. Redis caches routing decisions keyed by priority mode and request profile. If Redis is unavailable the router falls back to in-memory caching transparently — the application never sees a cache miss as an error.
+Repeated requests with the same routing decision don't re-score the model catalogue. Redis caches routing decisions keyed by priority mode and request profile. If Redis is unavailable the router falls back to in-memory caching transparently, the application never sees a cache miss as an error.
 
 Cache metrics (hit rate, decision latency, usage by model) are exposed on `/metrics`.
 
@@ -73,7 +73,7 @@ Open NEO in VS Code or Cursor and describe what you want to build. A good starti
 
 <a href="https://heyneo.com/dashboard?section=new-chat&prompt=Build%20an%20LLM%20router%20that%20selects%20the%20optimal%20model%20from%20OpenRouter%27s%20catalogue%20for%20each%20request%20in%20under%200.1ms.%20Score%20each%20model%20using%20weighted%20latency%2C%20cost%2C%20and%20quality%20dimensions.%20Support%20four%20priority%20modes%3A%20speed%2C%20cost%2C%20quality%2C%20and%20balanced.%20Add%20automatic%20failover.%20Cache%20routing%20decisions%20in%20Redis%20with%20in-memory%20fallback.%20Expose%20as%20FastAPI%20service%20with%20route%2C%20complete%2C%20models%2C%20metrics%2C%20and%20health%20endpoints." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
 
-NEO scaffolds the scoring engine, the priority mode configurations, the Redis caching layer, the failover logic, and the FastAPI server. From there you iterate — add a fifth priority mode tuned for your workload's specific cost/quality tradeoff, plug in real p50/p99 latency data from your own request history, or add a budget cap that stops routing to expensive models once you hit a daily spend limit.
+NEO scaffolds the scoring engine, the priority mode configurations, the Redis caching layer, the failover logic, and the FastAPI server. From there you iterate: add a fifth priority mode tuned for your workload's specific cost/quality tradeoff, plug in real p50/p99 latency data from your own request history, or add a budget cap that stops routing to expensive models once you hit a daily spend limit.
 
 To run the finished project:
 
@@ -88,7 +88,7 @@ router explore --mode quality         # browse models by quality score
 router benchmark --requests 100       # measure routing overhead
 ```
 
-NEO built a sub-millisecond model router with weighted scoring, four priority modes, automatic failover, and Redis caching — so you never hardcode a model again. See what else NEO ships at [heyneo.com](https://heyneo.com/).
+NEO built a sub-millisecond model router with weighted scoring, four priority modes, automatic failover, and Redis caching, so you never hardcode a model again. See what else NEO ships at [heyneo.com](https://heyneo.com/).
 
 ---
 
