@@ -1,13 +1,13 @@
 ---
-title: "HypothesisEngine: An Autonomous Research Agent That Reads the Literature So You Don't Have To"
-description: "NEO built HypothesisEngine, an autonomous research agent that generates hypotheses, searches scientific literature across arxiv, PubMed, and Semantic Scholar, and synthesizes findings into structured reports using chain-of-thought reasoning."
-date: 2026-03-23
-tags: [research automation, LLM agents, scientific literature, hypothesis generation, chain-of-thought]
+title: "HypothesisEngine: Autonomous Research Framework That Investigates Claims with Evidence-Based Reasoning"
+description: "NEO built an autonomous research framework that systematically examines hypotheses through web search, code execution, and logical reasoning—weighting evidence by source reliability and generating comprehensive investigation briefs with confidence scoring."
+date: 2026-05-13
+tags: [autonomous research, hypothesis testing, evidence synthesis, fact-checking, AI reasoning, multi-method investigation]
 slug: hypothesis-engine-autonomous-research
 github: https://github.com/dakshjain-1616/HypothesisEngine---Autonomous-Research-Framework
 ---
 
-# HypothesisEngine: An Autonomous Research Agent That Reads the Literature So You Don't Have To
+# HypothesisEngine: Autonomous Research Framework That Investigates Claims with Evidence-Based Reasoning
 
 [![View on GitHub](https://img.shields.io/badge/View_on_GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/dakshjain-1616/HypothesisEngine---Autonomous-Research-Framework)
 
@@ -15,82 +15,66 @@ github: https://github.com/dakshjain-1616/HypothesisEngine---Autonomous-Research
 
 ## The Problem
 
-> Scientific research begins with a literature review, and literature reviews are brutally slow. A researcher entering a new sub-field can spend weeks reading papers before forming a coherent picture of what is known, what is contested, and where the gaps are. Even experienced researchers struggle to track the accelerating pace of publication across arxiv, PubMed, and dozens of other repositories simultaneously.
+> Separating fact from fiction requires systematic investigation. A single source is unreliable. Anecdotes feel true but prove nothing. Most research tools aggregate search results—they don't actually investigate. They leave you reading raw links and drawing your own conclusions.
 
-NEO built HypothesisEngine to compress that process — not by summarizing individual papers, but by reasoning across them, surfacing connections, and generating testable hypotheses grounded in evidence.
+NEO built HypothesisEngine to conduct full investigations using three distinct methods: web search for empirical evidence, code execution for quantitative analysis, and logical reasoning to evaluate implications. Evidence is weighted by source reliability and synthesized into verdicts with explicit confidence scoring.
 
-## How the Hypothesis Generation Loop Works
+## Three-Method Investigation Architecture
 
-HypothesisEngine operates as a multi-stage agent loop rather than a single-pass pipeline. The distinction matters. A single-pass system reads some papers and produces output. A loop refines its own hypotheses by searching for contradicting evidence, updating confidence scores, and deciding when it has gathered enough to synthesize.
+The engine works by combining three complementary investigation approaches, each feeding into a central synthesis layer.
 
-The loop begins with a research question provided by the user. This is deliberately broad — "what mechanisms link gut microbiome composition to depression?" is a valid starting point. The agent decomposes the question into structured sub-queries using chain-of-thought reasoning. Each sub-query targets a specific facet: epidemiological associations, candidate mechanisms, intervention studies, conflicting findings.
+### Method 1: Web Search and Evidence Gathering
 
-Sub-queries fan out to three literature sources in parallel: arxiv for recent preprints, PubMed for peer-reviewed biomedical literature, and Semantic Scholar for cross-domain citation graphs. Results are ranked by relevance using a combination of semantic similarity and citation recency weighting. The agent does not assume that newer papers are more correct — it tracks the citation genealogy of claims to identify which findings have propagated widely versus which remain isolated results.
+Conducts web searches to find empirical evidence from reliable sources. Each finding is weighted by source type—peer-reviewed publications rank highest, followed by institutional sources, news outlets, and general web content.
 
-## Chain-of-Thought Evidence Synthesis
+Results are confidence-scored based on source reliability and corroboration across multiple sources. A finding from one blog receives lower confidence than the same finding confirmed across multiple peer-reviewed studies.
 
-The core technical contribution of HypothesisEngine is its evidence synthesis layer. After each search round, the agent runs a structured reasoning pass using chain-of-thought prompting. It is not summarizing — it is building an argument.
+### Method 2: Code Execution for Quantitative Analysis
 
-For each candidate hypothesis, the agent constructs an evidence chain: a sequence of findings from different papers that together support or undermine the hypothesis. Each link in the chain includes the source paper, the specific claim being extracted, the study type (RCT, cohort, in vitro, computational), and an uncertainty flag if the claim conflicts with other sources. This produces a reasoned argument tree rather than a flat list of citations.
+For claims involving numbers, code execution verifies quantitative claims empirically. The engine computes statistics, runs simulations, or processes datasets directly rather than relying on cited numbers.
 
-The agent also tracks hypothesis confidence as a first-class value. A hypothesis supported by three independent RCTs has a different confidence profile than one supported by two preprints and a review article that cites both. HypothesisEngine makes that distinction explicit in its output.
+This matters because reported statistics are often incomplete or misrepresented. Running analysis yourself ensures testing what actually matters.
 
-When contradictions arise — and they frequently do — the agent does not discard either finding. Instead it generates a resolution hypothesis: a more nuanced claim that can accommodate both results. This often surfaces the most interesting research directions, the precise conditions under which effect A appears but effect B does not.
+### Method 3: Logical Reasoning and Implication Analysis
 
-## Multi-Source Search Architecture
+Applies logical reasoning to evaluate implications. If A is true and B is true, what follows? Are there contradictions? What would need to be true for the overall hypothesis to hold?
 
-The search layer uses adapter-based architecture. Each literature source (arxiv, PubMed, Semantic Scholar) has a dedicated adapter that normalizes the API response format into a shared document schema. The schema captures title, abstract, authors, publication date, citation count, DOI, and a pre-computed embedding of the abstract.
+This reasoning layer catches internal inconsistencies that raw evidence gathering misses.
 
-Embeddings are computed once and cached. This matters for the iterative loop — on the second and third passes, the agent retrieves documents by vector similarity to its current hypothesis state rather than re-running keyword searches. The search strategy evolves as the agent's understanding deepens.
+## Evidence Synthesis and Verdicts
 
-The Semantic Scholar adapter is particularly valuable for cross-domain discovery. A mechanism first described in neuroscience may have a counterpart in immunology that the researcher would not have thought to search for. Citation graph traversal from a seed paper can surface these connections automatically. HypothesisEngine uses forward and backward citation traversal — both "papers that cite this" and "papers this cites" — to map the intellectual neighborhood of each key finding.
+After investigation, findings are synthesized across all three methods:
 
-## Output: Structured Research Reports
+- **SUPPORTED**: Multiple independent methods confirm the hypothesis
+- **REFUTED**: Multiple methods contradict the hypothesis
+- **PARTIALLY SUPPORTED/REFUTED**: Evidence points in different directions
+- **INCONCLUSIVE**: Insufficient evidence
 
-The final output is a structured research report in Markdown and JSON formats. The Markdown version is human-readable — organized into sections for background, candidate hypotheses (ranked by confidence), supporting evidence, contradicting evidence, identified research gaps, and suggested experimental designs.
+Each verdict includes a confidence score visualized as a bar. A 95% confident "SUPPORTED" verdict is actionable. A 45% confident verdict signals to dig deeper.
 
-Suggested experimental designs are a notable feature. Once the agent has characterized what is known and what is uncertain, it can reason about what kind of study would most efficiently resolve the uncertainty. A hypothesis with strong observational support but no mechanistic evidence calls for a different experiment than one with proposed mechanisms but inconsistent epidemiology. The agent makes that distinction and proposes study designs accordingly — not detailed protocols, but conceptual designs at the level of "a randomized controlled trial in human subjects measuring X would test whether Y causes Z under condition W."
+## Reports and Documentation
 
-The JSON output is intended for downstream integration — feeding into project management tools, citation managers, or other research automation systems.
+Investigation results include an executive summary with verdict tables, detailed per-question analysis with method badges, synthesis narratives, and complete source citations with URLs.
 
-## Practical Applications and Limitations
+All work is timestamped. You can review how conclusions changed as evidence accumulated. The system logs every web search, code execution, and reasoning step for reproducibility.
 
-HypothesisEngine is most useful at the beginning of a research project, when the landscape of a field is unfamiliar, or when exploring a speculative cross-disciplinary connection. It is substantially less useful for highly specialized technical questions where the relevant literature is too small for pattern extraction.
+## No External Dependencies
 
-The tool does not replace domain expertise. A senior researcher reading the output will immediately spot when the agent has over-weighted a poorly-designed study or missed a critical methodological issue. The value is not in replacing that judgment but in doing the mechanical work of retrieval, reading, and initial synthesis fast enough that the researcher can focus their judgment on the interesting parts.
+The framework operates entirely offline using Python 3.8+ with only the standard library. No API keys, no external services, no cloud dependencies. This is critical for sensitive investigations where keeping work private is non-negotiable.
 
 ## How to Build This with NEO
 
-Open NEO in VS Code or Cursor and describe what you want to build. A good starting prompt for this project:
+Open NEO in VS Code or Cursor and describe what you want to build:
 
-> "Build an autonomous research agent called HypothesisEngine that takes a broad research question, decomposes it into structured sub-queries using chain-of-thought reasoning, fans queries out to arxiv, PubMed, and Semantic Scholar in parallel, and synthesizes findings into ranked hypotheses. Each hypothesis should have a confidence score based on study type weighting (RCT > cohort > in vitro > computational) and an evidence chain showing the specific claims from each paper that support or contradict it. When contradictions arise, generate resolution hypotheses that accommodate both results. Use forward and backward citation graph traversal via the Semantic Scholar adapter to surface cross-domain connections. Cache abstract embeddings after first retrieval so subsequent passes use vector similarity rather than re-running keyword searches. Output a Markdown report with candidate hypotheses ranked by confidence, supporting and contradicting evidence, identified research gaps, and suggested experimental designs."
+> "Build an autonomous research framework that investigates hypotheses by combining three investigation methods: (1) web search with source reliability weighting (peer-reviewed sources ranked highest), (2) code execution for quantitative analysis, (3) logical reasoning to evaluate implications. The system should synthesize evidence across methods and output verdicts as SUPPORTED, REFUTED, PARTIALLY_SUPPORTED/REFUTED, or INCONCLUSIVE with explicit confidence scoring. Generate comprehensive investigation reports with executive summaries, detailed findings with method badges, source citations, and timestamped logs. Use only Python 3.8+ standard library, no external APIs."
 
-<a href="https://heyneo.com/dashboard?section=new-chat&prompt=Build%20an%20autonomous%20research%20agent%20called%20HypothesisEngine%20that%20takes%20a%20broad%20research%20question%2C%20decomposes%20it%20into%20structured%20sub-queries%20using%20chain-of-thought%20reasoning%2C%20fans%20queries%20out%20to%20arxiv%2C%20PubMed%2C%20and%20Semantic%20Scholar%20in%20parallel%2C%20and%20synthesizes%20findings%20into%20ranked%20hypotheses.%20Each%20hypothesis%20should%20have%20a%20confidence%20score%20based%20on%20study%20type%20weighting%20%28RCT%20%3E%20cohort%20%3E%20in%20vitro%20%3E%20computational%29%20and%20an%20evidence%20chain%20showing%20the%20specific%20claims%20from%20each%20paper%20that%20support%20or%20contradict%20it.%20When%20contradictions%20arise%2C%20generate%20resolution%20hypotheses%20that%20accommodate%20both%20results.%20Use%20forward%20and%20backward%20citation%20graph%20traversal%20via%20the%20Semantic%20Scholar%20adapter%20to%20surface%20cross-domain%20connections.%20Cache%20abstract%20embeddings%20after%20first%20retrieval%20so%20subsequent%20passes%20use%20vector%20similarity%20rather%20than%20re-running%20keyword%20searches.%20Output%20a%20Markdown%20report%20with%20candidate%20hypotheses%20ranked%20by%20confidence%2C%20supporting%20and%20contradicting%20evidence%2C%20identified%20research%20gaps%2C%20and%20suggested%20experimental%20designs." style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
+<a href="https://heyneo.com/dashboard?section=new-chat&prompt=Build%20an%20autonomous%20research%20framework%20that%20investigates%20hypotheses%20by%20combining%20three%20investigation%20methods" style="display:inline-block;background:#1e40af;color:#ffffff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;">Build with NEO →</a>
 
-NEO generates the project structure and core implementation from that. From there you iterate — ask it to add the adapter-based architecture with normalized document schema across all three literature sources, add the iterative refinement loop where the agent searches for contradicting evidence and updates confidence scores before synthesizing, or add JSON output format for downstream integration with citation managers and project management tools. Each request builds on what's already there.
-
-To run the finished project:
-
-```bash
-git clone https://github.com/dakshjain-1616/HypothesisEngine---Autonomous-Research-Framework
-cd HypothesisEngine---Autonomous-Research-Framework
-python3 src/hypothesis_engine.py \
-  --hypothesis "Regular exercise improves cognitive function in older adults" \
-  --output reports/exercise_cognition.md \
-  --questions 5
-```
-
-The terminal shows progress through each stage — sub-query decomposition, parallel literature retrieval, chain-of-thought synthesis — and writes a complete Markdown research brief with ranked hypotheses and suggested experimental designs.
-
-NEO built HypothesisEngine to give researchers a collaborator that never gets tired of reading papers. See what else NEO ships at [heyneo.com](https://heyneo.com/).
+NEO generates the investigation framework, evidence synthesis logic, confidence scoring system, and report generator. From there you iterate — add domain-specific investigation templates, implement confidence threshold filters, or integrate real-time source reliability scoring.
 
 ---
 
 ## Try NEO in Your IDE
 
-Install the NEO extension to bring AI-powered development directly into your workflow:
-
 - **VS Code**: [NEO in VS Code](https://marketplace.visualstudio.com/items?itemName=NeoResearchInc.heyneo)
 - **Cursor**: <a href="cursor://extension/NeoResearchInc.heyneo" style="color:#0066FF;font-weight:bold;">Install NEO for Cursor →</a>
-
----
