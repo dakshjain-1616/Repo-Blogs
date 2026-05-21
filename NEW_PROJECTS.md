@@ -1,9 +1,23 @@
-# New Projects — Added 2026-05-15
+# New blogs added 2026-05-21
 
-3 new blog posts covering AI tool config sync, cross-session knowledge persistence, and multi-tool proxy context management. Each post ships with a hand-crafted Excalidraw architecture diagram under `public/images/diagrams/<slug>.{excalidraw,png}`.
+Three new blog posts. Diagrams generated via `gen_3_more_diagrams.py` then rendered to PNG via `render_pil.py`.
 
-| Blog | Slug | GitHub | Diagram |
-|------|------|--------|---------|
-| RuleSync — single RULES.yaml synced to 6 AI tool config formats, 5-dimension quality audit, file watcher | `rulesync` | [dakshjain-1616/RuleSync](https://github.com/dakshjain-1616/RuleSync) | RULES.yaml hub → Pydantic parser → 6-adapter fan-out (Claude/Cursor/Gemini/Codex/Windsurf/Kiro) + audit dimension bar |
-| ContextCarry — local proxy captures AI sessions, extracts 5 knowledge types into graph, injects Context Brief | `context-carry` | [dakshjain-1616/Context-Carry-](https://github.com/dakshjain-1616/Context-Carry-) | pipeline: AI tools → proxy → 5 detectors → SQLite knowledge graph → relevance scorer → brief injected |
-| ToolRouter — shared session state across AI tools, Handoff Briefs on tool switch, real token spend tracking | `tool-router` | [dakshjain-1616/Tool-Router](https://github.com/dakshjain-1616/Tool-Router) | multi-tool input → proxy → state store (file tracker + decision extractor) → handoff brief + spend dashboard |
+| Project | Blog | Diagram | GitHub |
+|---|---|---|---|
+| ArchGuard | [blogs/arch-guard.md](blogs/arch-guard.md) | `public/images/diagrams/arch-guard.png` | https://github.com/dakshjain-1616/Arch-Guard |
+| CostGuard | [blogs/cost-guard.md](blogs/cost-guard.md) | `public/images/diagrams/cost-guard.png` | https://github.com/dakshjain-1616/cost-Guard |
+| AgentLiar | [blogs/agent-liar.md](blogs/agent-liar.md) | `public/images/diagrams/agent-liar.png` | https://github.com/dakshjain-1616/AgentLiar |
+
+## Descriptions and keywords
+
+### ArchGuard
+**Description:** A Python static analysis CLI that scans codebases for six architectural-degradation patterns (circular dependencies, god classes, service-layer bypass, magic values, cyclomatic complexity, layer violations), supports per-PR comparison and 10-commit trend tracking, and plugs into pre-commit hooks and GitHub Actions.
+**Keywords:** static analysis, python, architecture, code quality, AST, NetworkX, CLI, technical debt, dependency graph, git hooks, GitHub Actions, code review, refactoring, codebase health, pre-commit
+
+### CostGuard
+**Description:** A local FastAPI proxy that sits between your application and OpenAI / Anthropic / OpenRouter, estimates request cost with tiktoken before forwarding, and enforces session, hourly, daily, and project-level spending caps with a HTTP 402 circuit breaker plus a live terminal dashboard.
+**Keywords:** LLM cost control, FastAPI proxy, OpenAI, Anthropic, OpenRouter, tiktoken, budget enforcement, circuit breaker, AI observability, WebSocket dashboard, SQLite, pre-flight estimation, token counting, safe mode, spend tracking
+
+### AgentLiar
+**Description:** A verification system for coding agents that takes the task, the agent's claim, and the produced diff, then runs four parallel checks (file integrity, test quality, scope narrowing, optional LLM judge) and returns a weighted 0-100 confidence score with per-check evidence, available as a CLI, Python library, GitHub Action, and FastAPI service.
+**Keywords:** agent verification, coding agents, AI evaluation, LLM judge, OpenRouter, FastAPI, GitHub Actions, async orchestration, test quality, scope detection, agent overclaim, code review automation, asyncio, Pydantic, confidence scoring
