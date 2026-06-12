@@ -122,3 +122,53 @@ Prompt Compression Benchmark	https://github.com/dakshjain-1616/Prompt-Compressio
 LLM Eval Suite ( GPT 5.4 vs Opus 4.7) 	https://github.com/dakshjain-1616/LLM-Evaluation-Suite			FALSE	FALSE	
 Moe cost analysis 	https://github.com/dakshjain-1616/MoE-Cost-Analyzer			FALSE	FALSE	
 Neural tts	https://github.com/gauravvij/neural_tts			FALSE	FALSE	
+Loop Anti Pattern Linter	https://github.com/dakshjain-1616/Loop-Anti-Pattern-Linter			FALSE	FALSE	
+RAG with retrival time semantic deduplication 	https://github.com/dakshjain-1616/RAG-with-Retrieval-Time-Semantic-Deduplication			FALSE	FALSE	
+Low Latency Model Router	https://github.com/dakshjain-1616/low-Latency-Model-Router			FALSE	FALSE	
+Neural TTS	https://github.com/gauravvij/neural_tts			FALSE	FALSE	
+Qwen Lens Studio	https://github.com/dakshjain-1616/Qwen-Lens-Studio			FALSE	FALSE	
+Multi Agent Google ADK showcase	https://github.com/dakshjain-1616/-Multi-Agent-Google-ADK-Showcase			FALSE	FALSE	
+Agent Session Manager 	https://github.com/dakshjain-1616/Agent-Session-Manager			FALSE	FALSE	
+Rag Prep	https://github.com/dakshjain-1616/RagPrep			FALSE	FALSE	
+Smolagents Task Library	https://github.com/dakshjain-1616/Smolagents-Task-Library			FALSE	FALSE	
+Agent Failure Classifier 	https://github.com/dakshjain-1616/Agent-Failure-Classifier			FALSE	FALSE	
+Agent Handoff Protocol	https://github.com/dakshjain-1616/Agent-Handoff-Protocol			FALSE	FALSE	
+Agent Memory Compressor 	https://github.com/dakshjain-1616/Agent-Memory-Compressor			FALSE	FALSE	
+Agent tool registry 	https://github.com/dakshjain-1616/Agent-tool-registry-			FALSE	FALSE	
+llama stack Showcase	https://github.com/dakshjain-1616/Llama-Stack-Showcase			FALSE	FALSE	
+Local Model Behaviour Prober 	https://github.com/dakshjain-1616/Local-Model-Behavior-Prober			FALSE	FALSE	
+Token Budget Negotiator 	https://github.com/dakshjain-1616/Token-Budget-Negotiator			FALSE	FALSE	
+llm behaviour Diff Model Updated Detector	https://github.com/dakshjain-1616/-LLM-Behavior-Diff-Model-Update-Detector			FALSE	FALSE	
+Synthetic Data flywheel 	https://github.com/dakshjain-1616/Synthetic-Data-Flywheel			FALSE	FALSE	
+LLm powered Git Bisect	https://github.com/dakshjain-1616/LLM-Powered-Git-Bisect			FALSE	FALSE	
+Claude-Opus-4.7-vs-GPT-5.5-vs-DeepSeek-V4-Pro-Reasoning-Benchmark	https://github.com/dakshjain-1616/Claude-Opus-4.7-vs-GPT-5.5-vs-DeepSeek-V4-Pro-Reasoning-Benchmark			FALSE	FALSE	
+A2A-MCP-Dual-Protocol-Reference-Agent	https://github.com/dakshjain-1616/A2A-MCP-Dual-Protocol-Reference-Agent			FALSE	FALSE	
+Long-Horizon-Agent-Benchmark-GLM-5.1-vs-Kimi-K2.6-vs-DeepSeek-V4-Pro	https://github.com/dakshjain-1616/-Long-Horizon-Agent-Benchmark-GLM-5.1-vs-Kimi-K2.6-vs-DeepSeek-V4-Pro			FALSE	FALSE	
+SmolVLM2-Edge-Vision-Agent	https://github.com/dakshjain-1616/SmolVLM2-Edge-Vision-Agent			FALSE	FALSE	
+Deepseek v4 Context Benchmark	https://github.com/dakshjain-1616/DeepSeek-V4-Context-Benchmark			FALSE	FALSE	
+Morph 	https://github.com/dakshjain-1616/Morph			FALSE	FALSE	
+Invariant	https://github.com/dakshjain-1616/Invariant			FALSE	FALSE	
+Context Craft 	https://github.com/dakshjain-1616/ContextCraft			FALSE	FALSE	
+PipelineScope 	https://github.com/dakshjain-1616/PipelineScope			FALSE	FALSE	
+Agent Constitution	https://github.com/dakshjain-1616/Agent-Constitution			FALSE	FALSE	
+ContextTimeMachine 	https://github.com/dakshjain-1616/ContextTimeMachine			FALSE	FALSE	
+Live Context 	https://github.com/dakshjain-1616/LiveContext			FALSE	FALSE	
+Agent Sync	https://github.com/dakshjain-1616/agentsync			FALSE	FALSE	
+Asr Evaluation	https://github.com/dakshjain-1616/Asr-Evaluation			FALSE	FALSE	
+Tool Router 	https://github.com/dakshjain-1616/Tool-Router			FALSE	FALSE	
+Rule Sync 	https://github.com/dakshjain-1616/RuleSync			FALSE	FALSE	
+Context carrry 	https://github.com/dakshjain-1616/Context-Carry-			FALSE	FALSE	
+Arch Guard 	https://github.com/dakshjain-1616/Arch-Guard			FALSE	FALSE	
+Cost Guard	https://github.com/dakshjain-1616/cost-Guard			FALSE	FALSE	
+Agent Lier	https://github.com/dakshjain-1616/AgentLiar			FALSE	FALSE	
+Agent Sandbox escape detector 	https://github.com/dakshjain-1616/Agent-Sandbox-Escape-Detector			FALSE	FALSE	
+Deep Research Report Agent	https://github.com/dakshjain-1616/Deep-Research-Report-Agent			FALSE	FALSE	
+Finetune vs prompt engineering 	https://github.com/dakshjain-1616/Fine-tune-vs-Prompt-Engineering-Decision-Tool			FALSE	FALSE	
+LLM Real-World Benchmark	https://github.com/dakshjain-1616/LLM-Real-World-Benchmark			FALSE	FALSE	
+Reasoning token efficiency leaderboard	https://github.com/dakshjain-1616/Reasoning-Token-Efficiency-Leaderboard			FALSE	FALSE	
+Context Compaction Visualizer	https://github.com/dakshjain-1616/Context-Compaction-Visualizer			FALSE	FALSE	
+Data Pipeline Debugger	https://github.com/dakshjain-1616/Data-Pipeline-Debugger			FALSE	FALSE	
+Harness Readiness Auditor	https://github.com/dakshjain-1616/Harness-Readiness-Auditor			FALSE	FALSE	
+Harness Template Library	https://github.com/dakshjain-1616/Harness-Template-Library			FALSE	FALSE	
+Multi-Service System Design & Implementation Agent	https://github.com/dakshjain-1616/Multi-Service-System-Design-Implementation-Agent			FALSE	FALSE	
+Tool Permission Matrix Builder & Validator	https://github.com/dakshjain-1616/Tool-Permission-Matrix-Builder-Validator			FALSE	FALSE	

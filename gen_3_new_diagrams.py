@@ -8,7 +8,7 @@ Patterns:
 """
 import json, os
 
-OUT = "/home/daksh/description_And_blogs/public/images/diagrams"
+OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "public", "images", "diagrams")
 
 TITLE = "#1e40af"
 SUBTITLE = "#3b82f6"
@@ -259,7 +259,8 @@ def build_rulesync():
 
     return els
 
-write("rulesync", build_rulesync())
+if __name__ == "__main__":
+    write("rulesync", build_rulesync())
 
 
 # ===== 2. context-carry =====
@@ -327,7 +328,8 @@ def build_context_carry():
 
     return els
 
-write("context-carry", build_context_carry())
+if __name__ == "__main__":
+    write("context-carry", build_context_carry())
 
 
 # ===== 3. tool-router =====
@@ -420,6 +422,7 @@ def build_tool_router():
 
     return els
 
-write("tool-router", build_tool_router())
+if __name__ == "__main__":
+    write("tool-router", build_tool_router())
 
 print("All 3 diagrams written. Run render_pil.py to generate PNGs.")
